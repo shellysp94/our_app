@@ -48,6 +48,7 @@ module.exports={
                         if(rows[i].image !== null)
                         {
                             //rows[i].image = getPicNameAndEncode((rows[i].image).substring(6));
+                            //change
                             rows[i].image = getPicNameAndEncode((rows[i].image));
                         }
                         
