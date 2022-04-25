@@ -11,7 +11,7 @@ function getPicNameAndEncode(imageName)
     finalFilePath=dirnametemp+'images\\'+imageName;
     //encode image as base 64
     var imageAsBase64 = fs.readFileSync(finalFilePath, 'base64');
-    
+
     return imageAsBase64;
 }
 
@@ -35,8 +35,8 @@ module.exports={
         const arr = (req.params.userid).split(",");
         
         mySqlConnection.query(`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image 
-            FROM users_db_updated.user_configuration a 
-            LEFT JOIN users_db_updated.user_pictures b 
+            FROM user_configuration a 
+            LEFT JOIN user_pictures b 
             ON a.user_id =  b.user_id 
             WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null) `,[arr], (err,rows)=>{
             if(!err)
@@ -47,7 +47,8 @@ module.exports={
                     {
                         if(rows[i].image !== null)
                         {
-                            rows[i].image = getPicNameAndEncode((rows[i].image).substring(6));
+                            //rows[i].image = getPicNameAndEncode((rows[i].image).substring(6));
+                            rows[i].image = getPicNameAndEncode((rows[i].image));
                         }
                         
                     }
