@@ -21,6 +21,21 @@ function splitCommas(myQuery, relevantColumn, string) {
   return splittedQuery
 }
 
+function noFilter(req, callback) {
+  let allUsersWithoutMe = [];
+
+  getAllUsersConfiguration(req, (allUsers) => {
+
+    allUsers.forEach(user => {
+      if(parseInt(user.user_id, 10) !== parseInt(req.user_id, 10))
+      {
+        allUsersWithoutMe.push(user);
+      }
+    });
+    return callback(allUsersWithoutMe);
+  })
+}
+
   getAllFilters = (req, res) => {
     mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
       try {
@@ -48,138 +63,176 @@ function splitCommas(myQuery, relevantColumn, string) {
     );
   };
 
-  // getUserFilter = (req, res) => {
-  //   const userid = req.params.userid;
-
-  //   mySqlConnection.query(
-  //     "SELECT * FROM Filters WHERE user_id = ?",
-  //     [userid],
-  //     (err, rows) => {
-  //       try {
-  //         res.send(rows);
-  //       } catch (err) {
-  //         console.log(err.message);
-  //       }
-  //     }
-  //   );
-  // };
-
   getUsersWithCommonSearchMode = (req, callback) => {
     const searchMode = req.search_mode;
 
-    mySqlConnection.query(
-      `select user_id from filters where search_mode like '${searchMode}'`, (err,rows) => {
-        try {
-          return callback(rows);
-        } catch (err) {
-          console.log(err.message);
+    if(searchMode === 'Whatever')
+    {
+      noFilter(req, allUsersWithoutMe => {
+        //console.log(allUsersWithoutMe);
+        return callback(allUsersWithoutMe);
+      })
+    }
+    else
+    {
+      mySqlConnection.query(
+        `select user_id from filters where search_mode like '${searchMode}'`, (err,rows) => {
+          try {
+            return callback(rows);
+          } catch (err) {
+            console.log(err.message);
+          }
         }
-      }
-    )
+      )
+    }
   }
 
   getUsersWithCommonHobbiesFilter = (req, callback) => {
     const hobbiesFilter = req.hobbies_filter;
-   
-    let sqlQuery = splitCommas("select uc.user_id from filters f right join user_configuration uc using (user_id) where hobbies_filter like ",
-    "hobbies_filter", hobbiesFilter);
-    sqlQuery = sqlQuery.concat(splitCommas(" or hobbies like ", "hobbies", hobbiesFilter));
 
-    mySqlConnection.query(
-      sqlQuery,
-      (err, rows) => {
-        try {
-          return callback(rows);
-        } catch (err) {
-          console.log(err.message);
+    if(hobbiesFilter === 'Did not choose yet')
+    {
+      noFilter(req, allUsersWithoutMe => {
+        return callback(allUsersWithoutMe);
+      })
+    }
+    else
+    {
+      let sqlQuery = splitCommas("select uc.user_id from filters f right join user_configuration uc using (user_id) where hobbies_filter like ",
+      "hobbies_filter", hobbiesFilter);
+      sqlQuery = sqlQuery.concat(splitCommas(" or hobbies like ", "hobbies", hobbiesFilter));
+  
+      mySqlConnection.query(
+        sqlQuery,
+        (err, rows) => {
+          try {
+            return callback(rows);
+          } catch (err) {
+            console.log(err.message);
+          }
         }
-      }
-    );
+      );
+    }
   };
 
   getUsersWithCommonGenderFilter = (req, callback) => {
     const genderFilter = req.gender_filter;
 
-    const splitGenderFilter = genderFilter.replace(/,/g, '%');
-    let queryStr; 
-    if(genderFilter === 'All')
+    if(genderFilter === 'Did not choose yet' || genderFilter === 'All')
     {
-      queryStr = `select user_id from user_configuration where gender like 'Woman' or gender like 'Man' or gender like 'prefer not to say'`
+      noFilter(req, allUsersWithoutMe => {
+        return callback(allUsersWithoutMe);
+      })
     }
-    else if(genderFilter === 'Men')
+    else
     {
-      queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Man' and gender not like 'Woman'`;
-    }
-    else if(genderFilter === 'Women')
-    {
-      queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Woman'`;
-    }
-    else 
-    {
-      queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Woman' or gender like 'Man'`;
-    }
-
-    mySqlConnection.query(queryStr,
-      (err, rows) => {
-        try {
-          return callback(rows);
-        } catch (err) {
-          console.log(err.message);
-        }
+      let queryStr; 
+      // if(genderFilter === 'All')
+      // {
+      //    queryStr = `select user_id from user_configuration where gender like 'Woman' or gender like 'Man' or gender like 'prefer not to say'`
+      // }
+      if(genderFilter === 'Men')
+      {
+        queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Man' and gender not like 'Woman'`;
       }
-    );
+      else if(genderFilter === 'Women')
+      {
+        queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Woman'`;
+      }
+      else 
+      {
+        queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Woman' or gender like 'Man'`;
+      }
+
+       mySqlConnection.query(queryStr,
+        (err, rows) => {
+          try {
+            return callback(rows);
+          } catch (err) {
+             console.log(err.message);
+          }
+        }
+      );
+    }
   };
 
   getUsersWithCommonRelationshipFilter = (req, callback) => {
     const relationshipFilter = req.relationship_filter;
 
-    let sqlQuery = splitCommas("select uc.user_id from filters f right join user_configuration uc using (user_id) where relationship_filter like ",
-    "relationship_filter", relationshipFilter);
-    sqlQuery = sqlQuery.concat(splitCommas(" or relationship_status like ", "relationship_status", relationshipFilter));
+    if(relationshipFilter === 'Did not choose yet')
+    {
+      noFilter(req, allUsersWithoutMe => {
+        return callback(allUsersWithoutMe);
+      })
+    }
+    else
+    {
+      let sqlQuery = splitCommas("select uc.user_id from filters f right join user_configuration uc using (user_id) where relationship_filter like ",
+      "relationship_filter", relationshipFilter);
+      sqlQuery = sqlQuery.concat(splitCommas(" or relationship_status like ", "relationship_status", relationshipFilter));
     
-    mySqlConnection.query(
-      sqlQuery,
-      (err, rows) => {
-        try {
-          return callback(rows);
-        } catch (err) {
-          console.log(err.message);
+      mySqlConnection.query(
+        sqlQuery,
+        (err, rows) => {
+          try {
+            return callback(rows);
+          } catch (err) {
+            console.log(err.message);
+          }
         }
-      }
-    );
+      );
+    }
   };
 
   getUsersWithCommonInterestingInFilter = (req, callback) => {
     const interestingInFilter = req.interesting_in_filter;
 
-    let sqlQuery = splitCommas("select user_id from filters where interesting_in_filter like ", "interesting_in_filter", interestingInFilter);
+    if(interestingInFilter === 'Did not choose yet')
+    {
+      noFilter(req, allUsersWithoutMe => {
+        return callback(allUsersWithoutMe);
+      })
+    }
+    else 
+    {
+      let sqlQuery = splitCommas("select user_id from filters where interesting_in_filter like ", "interesting_in_filter", interestingInFilter);
 
-    mySqlConnection.query(
-      sqlQuery,
-      (err, rows) => {
-        try {
-          return callback(rows);
-        } catch (err) {
-          console.log(err.message);
+      mySqlConnection.query(
+        sqlQuery,
+        (err, rows) => {
+          try {
+            return callback(rows);
+          } catch (err) {
+            console.log(err.message);
+          }
         }
-      }
-    );
+      );
+    }
   };
 
   getUsersWithCommonAgeFilter = (req, callback) => {
     const age = [];
-    const from = JSON.parse(req.age_filter)[0];
-    const until = JSON.parse(req.age_filter)[1];
-
-    getAllUsersConfiguration(req, (response) => {
-     response.forEach(user => {
-       if(user.age >= from && user.age <= until)
-       {
-          age.push(user.user_id);
-       }
-     })
-     return callback(age);
-   });
+    if(age.length === 0)
+    {
+      noFilter(req, allUsersWithoutMe => {
+        return callback(allUsersWithoutMe);
+      })
+    }
+    else
+    {
+      const from = JSON.parse(req.age_filter)[0];
+      const until = JSON.parse(req.age_filter)[1];
+  
+      getAllUsersConfiguration(req, (response) => {
+       response.forEach(user => {
+         if(parseInt(user.age, 10) >= from && parseInt(user.age, 10) <= until)
+         {
+            age.push(user);
+         }
+       })
+       return callback(age);
+     });
+    }
   };
 
   getUserFriendsThatFilteredFriendsOnly = (req, callback) => {
@@ -217,18 +270,16 @@ function splitCommas(myQuery, relevantColumn, string) {
     let gender = [];
     let relationship = [];
     let interestingIn = [];
-    let allUsersWithoutMe = [];
+    let age = [];
 
     getUserFilter(req, (userFilter) => {
       if(userFilter.length === 0)
       {
-        getAllUsersConfiguration(req, (allUsers) => {
-          allUsers.forEach(user => {
-            if(parseInt(user.user_id, 10) !== parseInt(req.params.userid, 10))
-            {
-              allUsersWithoutMe.push(user);
-            }
-          });
+        let currentUser_id = {
+          user_id : String(req.params.userid)
+        };
+
+        noFilter(currentUser_id, allUsersWithoutMe => {
           res.send(allUsersWithoutMe);
         })
       }
@@ -236,58 +287,56 @@ function splitCommas(myQuery, relevantColumn, string) {
       {
         getUsersWithCommonSearchMode(userFilter[0], (response) => {
           response.forEach(user => {
-            if(parseInt(req.params.userid, 10) !== user.user_id)
+            if(parseInt(req.params.userid, 10) !== parseInt(user.user_id, 10))
             {
               searchMode.push(user.user_id);
             }
           });
-          //console.log(searchMode);
+          //console.log("search mode:",searchMode);
     
           getUsersWithCommonHobbiesFilter(userFilter[0], (response) => {
-            //console.log(response);
             response.forEach(user => {         
               hobbies.push(user.user_id);
             });
+            //console.log("hobbies:",hobbies);
             const mutualUsers_SearchMode_Hobbies = searchMode.filter(user => hobbies.includes(user));
-            //console.log(mutualUsers_SearchMode_Hobbies);
         
             getUsersWithCommonGenderFilter(userFilter[0], (response) => {
               response.forEach(user => {         
                 gender.push(user.user_id);
               });
+              //console.log("gender", gender);
               const mutualUsers_Hobbies_Gender = mutualUsers_SearchMode_Hobbies.filter(user => gender.includes(user));
-              //console.log(mutualUsers_Hobbies_Gender)
     
               getUsersWithCommonRelationshipFilter(userFilter[0], (response) => {
-                response.forEach(user => {         
+                response.forEach(user => {       
                   relationship.push(user.user_id);
                 });
+                //console.log("relationship:",relationship);
                 const mutualUsers_Gender_Relationship = mutualUsers_Hobbies_Gender.filter(user => relationship.includes(user));
-                //console.log(mutualUsers_Gender_Relationship);
     
                 getUsersWithCommonInterestingInFilter(userFilter[0], (response) => {
                   response.forEach(user => {         
                     interestingIn.push(user.user_id);
                   });
+                  //console.log("interesting in:",interestingIn);
                   const mutualUsers_Relationship_InterestingIn = mutualUsers_Gender_Relationship.filter(user => interestingIn.includes(user));
-                  //console.log(mutualUsers_Relationship_InterestingIn);
     
                   getUsersWithCommonAgeFilter(userFilter[0], (response) => {
-                    const mutualUsers_InterestingIn_Age = mutualUsers_Relationship_InterestingIn.filter(user => response.includes(user));
-                    //console.log(mutualUsers_InterestingIn_Age);
-    
+                    response.forEach(user => {         
+                      age.push(user.user_id);
+                    });
+                    //console.log("age",age);
+                    const mutualUsers_InterestingIn_Age = mutualUsers_Relationship_InterestingIn.filter(user => age.includes(user));
                     if(userFilter[0].friends_only_filter === 1)
                     {
                       getUserFriendsThatFilteredFriendsOnly(userFilter[0], (response) => {
-                        //console.log(response);
                         const mutualUsers_Age_FriendsOnly = mutualUsers_InterestingIn_Age.filter(user => response.includes(user));
-                        //console.log(mutualUsers_Age_FriendsOnly);
       
                         let resultArrayToObject = {
                           params : {userid : String(mutualUsers_Age_FriendsOnly)}
                        };
-      
-                       //console.log(resultArrayToObject);
+
                        getUserConfiguration(resultArrayToObject, res);
                       })
                     }
@@ -297,7 +346,6 @@ function splitCommas(myQuery, relevantColumn, string) {
                         params : {userid : String(mutualUsers_InterestingIn_Age)}
                      };
     
-                     //console.log(resultArrayToObject);
                      getUserConfiguration(resultArrayToObject, res);
                     }
                   })
@@ -308,80 +356,6 @@ function splitCommas(myQuery, relevantColumn, string) {
         });
       }
     });
-
-    // getUsersWithCommonSearchMode(req, (response) => {
-    //   response.forEach(user => {
-    //     if(parseInt(req.params.userid, 10) !== user.user_id)
-    //     {
-    //       searchMode.push(user.user_id);
-    //     }
-    //   });
-    //   //console.log(searchMode);
-
-    //   getUsersWithCommonHobbiesFilter(req, (response) => {
-    //     //console.log(response);
-    //     response.forEach(user => {         
-    //       hobbies.push(user.user_id);
-    //     });
-    //     const mutualUsers_SearchMode_Hobbies = searchMode.filter(user => hobbies.includes(user));
-    //     //console.log(mutualUsers_SearchMode_Hobbies);
-    
-    //     getUsersWithCommonGenderFilter(req, (response) => {
-    //       response.forEach(user => {         
-    //         gender.push(user.user_id);
-    //       });
-    //       const mutualUsers_Hobbies_Gender = mutualUsers_SearchMode_Hobbies.filter(user => gender.includes(user));
-    //       //console.log(mutualUsers_Hobbies_Gender)
-
-    //       getUsersWithCommonRelationshipFilter(req, (response) => {
-    //         response.forEach(user => {         
-    //           relationship.push(user.user_id);
-    //         });
-    //         const mutualUsers_Gender_Relationship = mutualUsers_Hobbies_Gender.filter(user => relationship.includes(user));
-    //         //console.log(mutualUsers_Gender_Relationship);
-
-    //         getUsersWithCommonInterestingInFilter(req, (response) => {
-    //           response.forEach(user => {         
-    //             interestingIn.push(user.user_id);
-    //           });
-    //           const mutualUsers_Relationship_InterestingIn = mutualUsers_Gender_Relationship.filter(user => interestingIn.includes(user));
-    //           //console.log(mutualUsers_Relationship_InterestingIn);
-
-    //           getUsersWithCommonAgeFilter(req, (response) => {
-    //             const mutualUsers_InterestingIn_Age = mutualUsers_Relationship_InterestingIn.filter(user => response.includes(user));
-    //             //console.log(mutualUsers_InterestingIn_Age);
-
-
-    //             if(req.body.friends_only_filter === 1)
-    //             {
-    //               getUserFriendsThatFilteredFriendsOnly(req, (response) => {
-    //                 //console.log(response);
-    //                 const mutualUsers_Age_FriendsOnly = mutualUsers_InterestingIn_Age.filter(user => response.includes(user));
-    //                 //console.log(mutualUsers_Age_FriendsOnly);
-  
-    //                 let resultArrayToObject = {
-    //                   params : {userid : String(mutualUsers_Age_FriendsOnly)}
-    //                };
-  
-    //                //console.log(resultArrayToObject);
-    //                getUserConfiguration(resultArrayToObject, res);
-    //               })
-    //             }
-    //             else
-    //             {
-    //               let resultArrayToObject = {
-    //                 params : {userid : String(mutualUsers_InterestingIn_Age)}
-    //              };
-
-    //              //console.log(resultArrayToObject);
-    //              getUserConfiguration(resultArrayToObject, res);
-    //             }
-    //           })
-    //         })
-    //       })
-    //     })
-    //   })
-    // });
   };
 
   createUserFilter = (req, res) => {
@@ -401,6 +375,7 @@ function splitCommas(myQuery, relevantColumn, string) {
       relationship_filter = '${relationshipFilter}', interesting_in_filter = '${interestingInFilter}', age_filter = '${ageFilter}', friends_only_filter = ${friendsOnly}`,
       (err, rows) => {
         try {
+          //console.log(res);
           getUserFilteredUsers(req, res);
           // mySqlConnection.query(
           //   `select first_name from user_configuration where user_id = ${userid}`,
@@ -548,22 +523,71 @@ function splitCommas(myQuery, relevantColumn, string) {
   };
 
   returnAllFiltersInSet = (req, res) => {
-    let filters = { 
-      Hobbies : {
-        Sport : ['basketball', 'beach volleyball', 'crossfit', 'dancing', 'football/soccer', 'gym workout', 'hiking', 'pilates', 'running', 'slacklining', 'surfing', 'swimming', 'tennis', 'yoga'],
-        Food : ['baking', 'cooking', 'eating outside', 'interested in culinary', 'interesting in nutrition'],
-        Music : ['playing drums', 'playing guitar', 'playing in a band', 'playing piano', 'playing synthesizer', 'singing'],
-        Art : ['acting', 'fashion designing', 'handicraft', 'home decorating', 'juggling', 'painting'],
-        Knowledge : ['blogging', 'interested in medicine and biology', 'learning new languages', 'listening to podcasts', 'playing chess', 'puzzling', 'reading', 'writing'],
-        Technology : ['coding', 'hacking', 'playing video games'],
-        Outside_Inside : ['camping', 'gardening', 'sailing', 'skippering', 'shopping', 'tanning', 'traveling']},
-      Search_Mode : ['Whatever', 'Beer', 'Study', 'Food', 'Training', 'Coffee', 'Shopping'],
-      Gender : ['Men', 'Women', 'All'],
-      Relationship : ['Divorced', 'Engaged', 'In a relationship', 'In an open relationship', 'Married', 'Single' , 'Widowed'],
-      Interesting_In : ['Friends','Hookup', 'Long term relationship', 'Short term relationship', 'Sport buddy', 'Study buddy', 'Work buddy']
+
+    let myFilters = {
+      Hobbies: [
+        {
+          type: 'Sport',
+          lst: ['basketball', 'beach volleyball', 'crossfit', 'dancing', 'football/soccer', 'gym workout', 'hiking', 'pilates', 'running', 'slacklining', 'surfing', 'swimming', 'tennis', 'yoga']
+        },
+        {
+          type: 'Food',
+          lst: ['baking', 'cooking', 'eating outside', 'interested in culinary', 'interesting in nutrition']
+        },
+        {
+          type: 'Music',
+          lst: ['playing drums', 'playing guitar', 'playing in a band', 'playing piano', 'playing synthesizer', 'singing']
+        },
+        {
+          type: 'Art',
+          lst: ['acting', 'fashion designing', 'handicraft', 'home decorating', 'juggling', 'painting']
+        },
+        {
+          type: 'Knowledge',
+          lst: ['blogging', 'interested in medicine and biology', 'learning new languages', 'listening to podcasts', 'playing chess', 'puzzling', 'reading', 'writing']
+        },
+        {
+          type: 'Technology',
+          lst: ['coding', 'hacking', 'playing video games']
+        },
+        {
+          type: 'Outside_Inside',
+          lst: ['camping', 'gardening', 'sailing', 'skippering', 'shopping', 'tanning', 'traveling']
+        }
+      ],
+      Search_Mode: [
+        'Whatever', 'Beer', 'Study', 'Food', 'Training', 'Coffee', 'Shopping'
+      ],
+      Gender : [
+        'Did not choose yet', 'Men', 'Women', 'All'
+      ],
+      Relationship : [
+        'Did not choose yet', 'Divorced', 'Engaged', 'In a relationship', 'In an open relationship', 'Married', 'Single' , 'Widowed'
+      ],
+      Interesting_In : [
+        'Did not choose yet', 'Friends','Hookup', 'Long term relationship', 'Short term relationship', 'Sport buddy', 'Study buddy', 'Work buddy'
+      ]
     }
 
-    return res.send(filters);
+
+    // let filters = { 
+    //   Hobbies : {
+    //     category : {
+    //     general : ['Did not choose yet'],
+    //     Sport : ['basketball', 'beach volleyball', 'crossfit', 'dancing', 'football/soccer', 'gym workout', 'hiking', 'pilates', 'running', 'slacklining', 'surfing', 'swimming', 'tennis', 'yoga'],
+    //     Food : ['baking', 'cooking', 'eating outside', 'interested in culinary', 'interesting in nutrition'],
+    //     Music : ['playing drums', 'playing guitar', 'playing in a band', 'playing piano', 'playing synthesizer', 'singing'],
+    //     Art : ['acting', 'fashion designing', 'handicraft', 'home decorating', 'juggling', 'painting'],
+    //     Knowledge : ['blogging', 'interested in medicine and biology', 'learning new languages', 'listening to podcasts', 'playing chess', 'puzzling', 'reading', 'writing'],
+    //     Technology : ['coding', 'hacking', 'playing video games'],
+    //     Outside_Inside : ['camping', 'gardening', 'sailing', 'skippering', 'shopping', 'tanning', 'traveling']}},
+    //   Search_Mode : ['Whatever', 'Beer', 'Study', 'Food', 'Training', 'Coffee', 'Shopping'],
+    //   Gender : ['Did not choose yet', 'Men', 'Women', 'All'],
+    //   Relationship : ['Did not choose yet', 'Divorced', 'Engaged', 'In a relationship', 'In an open relationship', 'Married', 'Single' , 'Widowed'],
+    //   Interesting_In : ['Did not choose yet', 'Friends','Hookup', 'Long term relationship', 'Short term relationship', 'Sport buddy', 'Study buddy', 'Work buddy']
+    // }
+
+    return res.send(myFilters);
   }
 
 module.exports = {
