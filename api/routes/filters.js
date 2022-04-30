@@ -2,25 +2,25 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  getAllFilters,
-  getUserFilter,
-  getUsersWithCommonSearchMode,
-  getUsersWithCommonHobbiesFilter,
-  getUsersWithCommonGenderFilter,
-  getUsersWithCommonRelationshipFilter,
-  getUsersWithCommonInterestingInFilter,
-  getUsersWithCommonAgeFilter,
-  getUserFriendsThatFilteredFriendsOnly,
-  getUserFilteredUsers,
-  createUserFilter,
-  updateUserHobbiesFilter,
-  updateUserGenderFilter,
-  updateUserRelationshipFilter,
-  updateUserInterestingInFilter,
-  updateUserAgeFilter,
-  updateUserFriendsOnlyFilter,
-  deleteUserFilter,
-  returnAllFiltersInSet,
+	getAllFilters,
+	getUserFilter,
+	getUsersWithCommonSearchMode,
+	getUsersWithCommonHobbiesFilter,
+	getUsersWithCommonGenderFilter,
+	getUsersWithCommonRelationshipFilter,
+	getUsersWithCommonInterestingInFilter,
+	getUsersWithCommonAgeFilter,
+	getUserFriendsThatFilteredFriendsOnly,
+	getUserFilteredUsers,
+	createUserFilter,
+	updateUserHobbiesFilter,
+	updateUserGenderFilter,
+	updateUserRelationshipFilter,
+	updateUserInterestingInFilter,
+	updateUserAgeFilter,
+	updateUserFriendsOnlyFilter,
+	deleteUserFilter,
+	returnAllFiltersInSet,
 } = require("../controllers/filters");
 
 router.get("//allFiltersInSet", returnAllFiltersInSet);
@@ -40,7 +40,10 @@ router.put("/update/gender/:userid", updateUserGenderFilter);
 router.put("/update/relationship/:userid", updateUserRelationshipFilter);
 router.put("/update/interestingIn/:userid", updateUserInterestingInFilter);
 router.put("/update/age/:userid", updateUserAgeFilter);
-router.put("/update/friendsOnly/:userid/:friendsOnly", updateUserFriendsOnlyFilter);
+router.put(
+	"/update/friendsOnly/:userid/:friendsOnly",
+	updateUserFriendsOnlyFilter
+);
 router.delete("/:userid", deleteUserFilter); //delete a chat (/chats/:useridA/:useridB)
 
 module.exports = router;

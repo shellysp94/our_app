@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  getAllConnections,
-  getAllConnectedConnections,
-  getUsersConnection,
-  getAllUserConnections,
-  getAllUserConnectedConnections,
-  createUsersConnection,
-  deleteUsersConnection,
+	getAllConnections,
+	getAllConnectedConnections,
+	getUsersConnection,
+	getAllUserConnections,
+	getAllUserConnectedConnections,
+	createUsersConnection,
+	deleteUsersConnection,
 } = require("../controllers/connections");
 
 router.get("/", getAllConnections); //get all chats (/chats)

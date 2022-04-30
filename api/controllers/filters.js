@@ -378,21 +378,7 @@ createUserFilter = (req, res) => {
       relationship_filter = '${relationshipFilter}', interesting_in_filter = '${interestingInFilter}', age_filter = '${ageFilter}', friends_only_filter = ${friendsOnly}`,
 		(err, rows) => {
 			try {
-				//console.log(res);
 				getUserFilteredUsers(req, res);
-				// mySqlConnection.query(
-				//   `select first_name from user_configuration where user_id = ${userid}`,
-				//   (err, rows) => {
-				//     try {
-				//       const userName = rows[0].first_name;
-				//       msgToClient = {msg: `${userName}'s filters are now updated!`};
-				//       return res.send(msgToClient);
-				//     }
-				//     catch (err) {
-				//       console.log(err.message);
-				//     }
-				//   }
-				// )
 			} catch (err) {
 				console.log(err.message);
 			}
@@ -540,7 +526,7 @@ deleteUserFilter = (req, res) => {
 };
 
 returnAllFiltersInSet = (req, res) => {
-	let myFilters = {
+	let filters = {
 		Hobbies: [
 			{
 				type: "Sport",
@@ -654,25 +640,7 @@ returnAllFiltersInSet = (req, res) => {
 			"Work buddy",
 		],
 	};
-
-	// let filters = {
-	//   Hobbies : {
-	//     category : {
-	//     general : ['Did not choose yet'],
-	//     Sport : ['basketball', 'beach volleyball', 'crossfit', 'dancing', 'football/soccer', 'gym workout', 'hiking', 'pilates', 'running', 'slacklining', 'surfing', 'swimming', 'tennis', 'yoga'],
-	//     Food : ['baking', 'cooking', 'eating outside', 'interested in culinary', 'interesting in nutrition'],
-	//     Music : ['playing drums', 'playing guitar', 'playing in a band', 'playing piano', 'playing synthesizer', 'singing'],
-	//     Art : ['acting', 'fashion designing', 'handicraft', 'home decorating', 'juggling', 'painting'],
-	//     Knowledge : ['blogging', 'interested in medicine and biology', 'learning new languages', 'listening to podcasts', 'playing chess', 'puzzling', 'reading', 'writing'],
-	//     Technology : ['coding', 'hacking', 'playing video games'],
-	//     Outside_Inside : ['camping', 'gardening', 'sailing', 'skippering', 'shopping', 'tanning', 'traveling']}},
-	//   Search_Mode : ['Whatever', 'Beer', 'Study', 'Food', 'Training', 'Coffee', 'Shopping'],
-	//   Gender : ['Did not choose yet', 'Men', 'Women', 'All'],
-	//   Relationship : ['Did not choose yet', 'Divorced', 'Engaged', 'In a relationship', 'In an open relationship', 'Married', 'Single' , 'Widowed'],
-	//   Interesting_In : ['Did not choose yet', 'Friends','Hookup', 'Long term relationship', 'Short term relationship', 'Sport buddy', 'Study buddy', 'Work buddy']
-	// }
-
-	return res.send(myFilters);
+	return res.send(filters);
 };
 
 module.exports = {
@@ -696,8 +664,3 @@ module.exports = {
 	deleteUserFilter: deleteUserFilter,
 	returnAllFiltersInSet: returnAllFiltersInSet,
 };
-
-////////romina was here
-///testtttttttt
-//mor
-///mor1
