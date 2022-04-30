@@ -273,13 +273,13 @@ getUserFilteredUsers = (req, res) => {
 						searchMode.push(user.user_id);
 					}
 				});
-				//console.log("search mode:",searchMode);
+				console.log("search mode:", searchMode);
 
 				getUsersWithCommonHobbiesFilter(userFilter[0], (response) => {
 					response.forEach((user) => {
 						hobbies.push(user.user_id);
 					});
-					//console.log("hobbies:",hobbies);
+					console.log("hobbies:", hobbies);
 					const mutualUsers_SearchMode_Hobbies = searchMode.filter((user) =>
 						hobbies.includes(user)
 					);
@@ -288,7 +288,7 @@ getUserFilteredUsers = (req, res) => {
 						response.forEach((user) => {
 							gender.push(user.user_id);
 						});
-						//console.log("gender", gender);
+						console.log("gender", gender);
 						const mutualUsers_Hobbies_Gender =
 							mutualUsers_SearchMode_Hobbies.filter((user) =>
 								gender.includes(user)
@@ -298,7 +298,7 @@ getUserFilteredUsers = (req, res) => {
 							response.forEach((user) => {
 								relationship.push(user.user_id);
 							});
-							//console.log("relationship:",relationship);
+							console.log("relationship:", relationship);
 							const mutualUsers_Gender_Relationship =
 								mutualUsers_Hobbies_Gender.filter((user) =>
 									relationship.includes(user)
@@ -310,7 +310,7 @@ getUserFilteredUsers = (req, res) => {
 									response.forEach((user) => {
 										interestingIn.push(user.user_id);
 									});
-									//console.log("interesting in:",interestingIn);
+									console.log("interesting in:", interestingIn);
 									const mutualUsers_Relationship_InterestingIn =
 										mutualUsers_Gender_Relationship.filter((user) =>
 											interestingIn.includes(user)
@@ -320,7 +320,7 @@ getUserFilteredUsers = (req, res) => {
 										response.forEach((user) => {
 											age.push(user.user_id);
 										});
-										//console.log("age",age);
+										console.log("age", age);
 										const mutualUsers_InterestingIn_Age =
 											mutualUsers_Relationship_InterestingIn.filter((user) =>
 												age.includes(user)
@@ -370,6 +370,11 @@ createUserFilter = (req, res) => {
 	const interestingInFilter = req.body.interesting_in_filter;
 	const ageFilter = req.body.age_filter;
 	const friendsOnly = req.body.friends_only_filter;
+
+	console.log(`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interesting_in_filter, age_filter, friends_only_filter) 
+	values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestingInFilter}', '${ageFilter}', ${friendsOnly}) 
+	ON DUPLICATE KEY UPDATE user_id = ${userid}, search_mode = '${searchMode}', hobbies_filter = '${hobbiesFilter}', gender_filter = '${genderFilter}', 
+	relationship_filter = '${relationshipFilter}', interesting_in_filter = '${interestingInFilter}', age_filter = '${ageFilter}', friends_only_filter = ${friendsOnly}`);
 
 	mySqlConnection.query(
 		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interesting_in_filter, age_filter, friends_only_filter) 
