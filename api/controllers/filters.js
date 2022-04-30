@@ -32,6 +32,7 @@ function noFilter(req, callback) {
 				allUsersWithoutMe.push(user);
 			}
 		});
+		//console.log("all users without me:", allUsersWithoutMe);
 		return callback(allUsersWithoutMe);
 	});
 }
@@ -259,12 +260,19 @@ getUserFilteredUsers = (req, res) => {
 
 	getUserFilter(req, (userFilter) => {
 		if (userFilter.length === 0) {
-			let currentUser_id = {
-				user_id: String(req.params.userid),
-			};
+			let currentUser_id = req.params.userid;
+			let usersToSend = [];
 
 			noFilter(currentUser_id, (allUsersWithoutMe) => {
-				res.send(allUsersWithoutMe);
+				allUsersWithoutMe.forEach((user) => {
+					usersToSend.push(user.user_id);
+				});
+
+				let resultArrayToObject = {
+					params: {userid: String(usersToSend)},
+				};
+
+				getUserConfiguration(resultArrayToObject, res);
 			});
 		} else {
 			getUsersWithCommonSearchMode(userFilter[0], (response) => {
@@ -348,6 +356,7 @@ getUserFilteredUsers = (req, res) => {
 												params: {userid: String(mutualUsers_InterestingIn_Age)},
 											};
 
+											//console.log(resultArrayToObject);
 											getUserConfiguration(resultArrayToObject, res);
 										}
 									});
