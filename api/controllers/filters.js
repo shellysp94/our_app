@@ -25,10 +25,11 @@ function splitCommas(myQuery, relevantColumn, string) {
 
 function noFilter(req, callback) {
 	let allUsersWithoutMe = [];
-
+	//console.log("req.user_id:", req.user_id);
 	getAllUsersConfiguration(req, (allUsers) => {
 		allUsers.forEach((user) => {
 			if (parseInt(user.user_id, 10) !== parseInt(req.user_id, 10)) {
+				//console.log(user);
 				allUsersWithoutMe.push(user);
 			}
 		});
@@ -67,6 +68,7 @@ getUsersWithCommonSearchMode = (req, callback) => {
 	const searchMode = req.search_mode;
 
 	if (searchMode === "Whatever") {
+		//console.log(req);
 		noFilter(req, (allUsersWithoutMe) => {
 			//console.log(allUsersWithoutMe);
 			return callback(allUsersWithoutMe);
@@ -260,7 +262,9 @@ getUserFilteredUsers = (req, res) => {
 
 	getUserFilter(req, (userFilter) => {
 		if (userFilter.length === 0) {
-			let currentUser_id = req.params.userid;
+			let currentUser_id = {user_id: req.params.userid};
+			//console.log(currentUser_id);
+			//let currentUser_id = req.params.userid;
 			let usersToSend = [];
 
 			noFilter(currentUser_id, (allUsersWithoutMe) => {
@@ -268,6 +272,7 @@ getUserFilteredUsers = (req, res) => {
 					usersToSend.push(user.user_id);
 				});
 
+				console.log(usersToSend);
 				let resultArrayToObject = {
 					params: {userid: String(usersToSend)},
 				};
