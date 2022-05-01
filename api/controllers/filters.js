@@ -202,14 +202,14 @@ getUsersWithCommonInterestingInFilter = (req, callback) => {
 
 getUsersWithCommonAgeFilter = (req, callback) => {
 	const age = [];
-	if (age.length === 0) {
+	const from = JSON.parse(req.age_filter)[0];
+	const until = JSON.parse(req.age_filter)[1];
+
+	if (typeof from === "undefined" || typeof until === "undefined") {
 		noFilter(req, (allUsersWithoutMe) => {
 			return callback(allUsersWithoutMe);
 		});
 	} else {
-		const from = JSON.parse(req.age_filter)[0];
-		const until = JSON.parse(req.age_filter)[1];
-
 		getAllUsersConfiguration(req, (response) => {
 			response.forEach((user) => {
 				if (parseInt(user.age, 10) >= from && parseInt(user.age, 10) <= until) {
@@ -260,7 +260,11 @@ getUserFilteredUsers = (req, res) => {
 	let interestingIn = [];
 	let age = [];
 
+	// console.log(typeof req.body.age_filter);
+	// console.log(req.body.age_filter);
+
 	getUserFilter(req, (userFilter) => {
+		//console.log(userFilter[0]);
 		if (userFilter.length === 0) {
 			let currentUser_id = {user_id: req.params.userid};
 			//console.log(currentUser_id);
@@ -330,6 +334,7 @@ getUserFilteredUsers = (req, res) => {
 										);
 
 									getUsersWithCommonAgeFilter(userFilter[0], (response) => {
+										//console.log(userFilter[0]);
 										response.forEach((user) => {
 											age.push(user.user_id);
 										});
@@ -382,8 +387,19 @@ createUserFilter = (req, res) => {
 	const genderFilter = req.body.gender_filter;
 	const relationshipFilter = req.body.relationship_filter;
 	const interestingInFilter = req.body.interesting_in_filter;
-	const ageFilter = req.body.age_filter;
+	let ageFilter = req.body.age_filter;
 	const friendsOnly = req.body.friends_only_filter;
+
+	if (ageFilter.length === 0) {
+		ageFilter = "[]";
+	} else {
+		ageFilter = "[";
+		ageFilter = ageFilter.concat(req.body.age_filter[0]);
+		ageFilter = ageFilter.concat(",");
+		ageFilter = ageFilter.concat(req.body.age_filter[1]);
+		ageFilter = ageFilter.concat("]");
+	}
+	//console.log("age filter:", ageFilter);
 
 	mySqlConnection.query(
 		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interesting_in_filter, age_filter, friends_only_filter) 
