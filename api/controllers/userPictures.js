@@ -23,6 +23,9 @@ const upload = multer({
     limits: {fileSize: '1000000'},
     fileFilter: (req, file, cb)=>
     {
+        ///
+        console.log(file);
+        ///
         const fileTypes = /jpeg|jpg|png/;
         const mimeType = fileTypes.test(file.mimetype);
         const extName = fileTypes.test(path.extname(file.originalname));
@@ -37,26 +40,26 @@ const upload = multer({
 }).single('image');
 
 module.exports={
-    upload,
+    // upload,
 
-    storeUserPic: (req,res) => {
-        let user_id= req.params.userid;
-        //image = req.file.path;
-        image = req.file.path.substring(7);
-        main_image = req.body.main_image;
+    // storeUserPic: (req,res) => {
+    //     let user_id= req.params.userid;
+    //     //image = req.file.path;
+    //     image = req.file.path.substring(7);
+    //     main_image = req.body.main_image;
 
-        mySqlConnection.query(`INSERT INTO user_pictures (user_id, image, main_image) VALUES ("${user_id}","${image}","${main_image}")`,(err,result)=> {
-            if(!err)
-            {
-                res.send("picture of user added successfully");
-            }
-            else
-            {
-                console.log(err);
-            }
-         })
+    //     mySqlConnection.query(`INSERT INTO user_pictures (user_id, image, main_image) VALUES ("${user_id}","${image}","${main_image}")`,(err,result)=> {
+    //         if(!err)
+    //         {
+    //             res.send("picture of user added successfully");
+    //         }
+    //         else
+    //         {
+    //             console.log(err);
+    //         }
+    //      })
 
-    },
+    // },
 
     getUserPictures: (req,res) => {
         mySqlConnection.query("SELECT* from user_pictures WHERE user_id=?",[req.params.userid], (err,rows)=>{
@@ -142,5 +145,37 @@ module.exports={
                 console.log(err)
             }
         })
+    },
+
+    uploadBase64Image: async(req,res,next) =>
+    {
+        try
+        {
+            let user_id= req.params.userid;
+            main_image = req.body.main_image;
+            
+            const pathName = "./images/"+Date.now()+'.png'
+            const imgdata = req.body.base64image;
+            const base64Data = imgdata.replace(/^data:([A-Za-z-+/]+);base64,/,'');
+            fs.writeFileSync(pathName, base64Data, {encoding: 'base64'});
+            
+            mySqlConnection.query(`INSERT INTO user_pictures (user_id, image, main_image) VALUES ("${user_id}","${pathName.substring(9)}","${main_image}")`,(err,result)=> {
+                if(!err)
+                {
+                    return res.send({"msg":"picture of user added successfully","image":pathName.substring(9)});
+                }
+                
+                else
+                {
+                    console.log(err);
+                }
+            })
+
+            //return res.send(pathName);
+        }
+        catch(e)
+        {
+            next(e);
+        }
     }
 }
