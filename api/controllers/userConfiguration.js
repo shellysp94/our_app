@@ -3,6 +3,7 @@ const fs = require("fs");
 const mySqlConnection = dbConfig;
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
+//const formatYmd = (date) => date.toISOString().slice(0, date.length);
 
 function getPicNameAndEncode(imageName) {
 	dirnametemp = __dirname.substring(0, __dirname.length - 15);
@@ -46,6 +47,17 @@ module.exports = {
 								//change
 								//change nu. 2
 								rows[i].image = getPicNameAndEncode(rows[i].image);
+							}
+							else
+							{
+								if(rows[i].gender == 'Man')
+								{
+									rows[i].image = getPicNameAndEncode("male_profile.jpg")
+								}
+								else
+								{
+									rows[i].image = getPicNameAndEncode("woman_profile.jpg")
+								}
 							}
 						}
 					}
