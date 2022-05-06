@@ -2,66 +2,13 @@ const dbConfig = require('../../config/db_config');
 const mySqlConnection = dbConfig;
 
 const path = require("path");
-const multer = require("multer");
 const fs = require("fs");
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) =>
-    {
-        cb(null, 'images/')
 
-    },
-    filename: (req, file, cb) =>
-    {
-        //cb(null, Date.now()+file.originalname);
-        cb(null, file.originalname);
-    }
-});
 
-const upload = multer({
-    storage: storage,
-    limits: {fileSize: '1000000'},
-    fileFilter: (req, file, cb)=>
-    {
-        ///
-        console.log(file);
-        ///
-        const fileTypes = /jpeg|jpg|png/;
-        const mimeType = fileTypes.test(file.mimetype);
-        const extName = fileTypes.test(path.extname(file.originalname));
-
-        if(mimeType && extName)
-        {
-            return cb(null, true);
-        }
-
-        cb("upload only jpeg/jpg/png");
-    }
-}).single('image');
 
 module.exports={
-    // upload,
-
-    // storeUserPic: (req,res) => {
-    //     let user_id= req.params.userid;
-    //     //image = req.file.path;
-    //     image = req.file.path.substring(7);
-    //     main_image = req.body.main_image;
-
-    //     mySqlConnection.query(`INSERT INTO user_pictures (user_id, image, main_image) VALUES ("${user_id}","${image}","${main_image}")`,(err,result)=> {
-    //         if(!err)
-    //         {
-    //             res.send("picture of user added successfully");
-    //         }
-    //         else
-    //         {
-    //             console.log(err);
-    //         }
-    //      })
-
-    // },
-
-    getUserPictures: (req,res) => {
+       getUserPictures: (req,res) => {
         mySqlConnection.query("SELECT* from user_pictures WHERE user_id=?",[req.params.userid], (err,rows)=>{
             if(!err)
             {
@@ -153,26 +100,37 @@ module.exports={
         {
             let user_id= req.params.userid;
             main_image = req.body.main_image;
-            
-            const pathName = "./images/"+Date.now()+'.png'
-            const imgdata = req.body.base64image;
-            const base64Data = imgdata.replace(/^data:([A-Za-z-+/]+);base64,/,'');
-            fs.writeFileSync(pathName, base64Data, {encoding: 'base64'});
-            
-            mySqlConnection.query(`INSERT INTO user_pictures (user_id, image, main_image) VALUES ("${user_id}","${pathName.substring(9)}","${main_image}")`,(err,result)=> {
+            mySqlConnection.query(`SELECT* FROM user_pictures WHERE user_id=? AND main_image='1'`, [user_id], (err,rows) =>
+            {
                 if(!err)
                 {
-                    return res.send({"msg":"picture of user added successfully","image":pathName.substring(9)});
-                }
-                
-                else
-                {
-                    console.log(err);
-                }
-            })
+                    if(rows.length>0 && main_image == '1')
+                    {
+                        return res.send({msg: "user already has main image"});
+                    }  
 
-            //return res.send(pathName);
+                    else
+                    {
+                        const pathName = "./images/"+Date.now()+'.png'
+                        const imgdata = req.body.base64image;
+                        const base64Data = imgdata.replace(/^data:([A-Za-z-+/]+);base64,/,'');
+                        fs.writeFileSync(pathName, base64Data, {encoding: 'base64'});
+                        mySqlConnection.query(`INSERT INTO user_pictures (user_id, image, main_image) VALUES ("${user_id}","${pathName.substring(9)}","${main_image}")`,(err,result)=> 
+                        {
+                            if(!err)
+                            {
+                                return res.send({"msg":"picture of user added successfully","image":pathName.substring(9)});
+                            }
+                            else
+                            {
+                                console.log(err);
+                            }
+                        });
+                }
+            }
+        });
         }
+        
         catch(e)
         {
             next(e);
