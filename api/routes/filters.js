@@ -20,10 +20,8 @@ const {
 	updateUserAgeFilter,
 	updateUserFriendsOnlyFilter,
 	deleteUserFilter,
-	returnAllFiltersInSet,
 } = require("../controllers/filters");
 
-router.get("//allFiltersInSet", returnAllFiltersInSet);
 router.get("/", getAllFilters); //get all chats (/chats)
 router.get("/:userid", getUserFilter); //get a chat by A_userid and B_userid (/chats/:useridA/:useridB)
 router.get("//searchMode", getUsersWithCommonSearchMode);

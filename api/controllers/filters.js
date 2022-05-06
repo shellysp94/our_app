@@ -90,7 +90,7 @@ getUsersWithCommonSearchMode = (req, callback) => {
 getUsersWithCommonHobbiesFilter = (req, callback) => {
 	const hobbiesFilter = req.hobbies_filter;
 
-	if (hobbiesFilter === "Did not choose yet") {
+	if (hobbiesFilter === "Hobbies") {
 		noFilter(req, (allUsersWithoutMe) => {
 			return callback(allUsersWithoutMe);
 		});
@@ -117,7 +117,7 @@ getUsersWithCommonHobbiesFilter = (req, callback) => {
 getUsersWithCommonGenderFilter = (req, callback) => {
 	const genderFilter = req.gender_filter;
 
-	if (genderFilter === "Did not choose yet" || genderFilter === "All") {
+	if (genderFilter === "Gender" || genderFilter === "All") {
 		noFilter(req, (allUsersWithoutMe) => {
 			return callback(allUsersWithoutMe);
 		});
@@ -148,7 +148,7 @@ getUsersWithCommonGenderFilter = (req, callback) => {
 getUsersWithCommonRelationshipFilter = (req, callback) => {
 	const relationshipFilter = req.relationship_filter;
 
-	if (relationshipFilter === "Did not choose yet") {
+	if (relationshipFilter === "Relationship") {
 		noFilter(req, (allUsersWithoutMe) => {
 			return callback(allUsersWithoutMe);
 		});
@@ -179,7 +179,7 @@ getUsersWithCommonRelationshipFilter = (req, callback) => {
 getUsersWithCommonInterestingInFilter = (req, callback) => {
 	const interestingInFilter = req.interesting_in_filter;
 
-	if (interestingInFilter === "Did not choose yet") {
+	if (interestingInFilter === "Interesting in") {
 		noFilter(req, (allUsersWithoutMe) => {
 			return callback(allUsersWithoutMe);
 		});
@@ -260,9 +260,6 @@ getUserFilteredUsers = (req, res) => {
 	let interestingIn = [];
 	let age = [];
 
-	// console.log(typeof req.body.age_filter);
-	// console.log(req.body.age_filter);
-
 	getUserFilter(req, (userFilter) => {
 		//console.log(userFilter[0]);
 		if (userFilter.length === 0) {
@@ -276,7 +273,7 @@ getUserFilteredUsers = (req, res) => {
 					usersToSend.push(user.user_id);
 				});
 
-				console.log(usersToSend);
+				//console.log(usersToSend);
 				let resultArrayToObject = {
 					params: {userid: String(usersToSend)},
 				};
@@ -399,7 +396,6 @@ createUserFilter = (req, res) => {
 		ageFilter = ageFilter.concat(req.body.age_filter[1]);
 		ageFilter = ageFilter.concat("]");
 	}
-	//console.log("age filter:", ageFilter);
 
 	mySqlConnection.query(
 		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interesting_in_filter, age_filter, friends_only_filter) 
@@ -408,7 +404,14 @@ createUserFilter = (req, res) => {
       relationship_filter = '${relationshipFilter}', interesting_in_filter = '${interestingInFilter}', age_filter = '${ageFilter}', friends_only_filter = ${friendsOnly}`,
 		(err, rows) => {
 			try {
-				getUserFilteredUsers(req, res);
+				if (typeof rows === "undefined") {
+					msgToClient = {
+						msg: `Something went wrong. Filter wasn't add to database or wasn't update in the database`,
+					};
+					return res.send(msgToClient);
+				} else {
+					getUserFilteredUsers(req, res);
+				}
 			} catch (err) {
 				console.log(err.message);
 			}
@@ -555,124 +558,6 @@ deleteUserFilter = (req, res) => {
 	);
 };
 
-returnAllFiltersInSet = (req, res) => {
-	let filters = {
-		Hobbies: [
-			{
-				type: "Sport",
-				lst: [
-					"basketball",
-					"beach volleyball",
-					"crossfit",
-					"dancing",
-					"football/soccer",
-					"gym workout",
-					"hiking",
-					"pilates",
-					"running",
-					"slacklining",
-					"surfing",
-					"swimming",
-					"tennis",
-					"yoga",
-				],
-			},
-			{
-				type: "Food",
-				lst: [
-					"baking",
-					"cooking",
-					"eating outside",
-					"interested in culinary",
-					"interesting in nutrition",
-				],
-			},
-			{
-				type: "Music",
-				lst: [
-					"playing drums",
-					"playing guitar",
-					"playing in a band",
-					"playing piano",
-					"playing synthesizer",
-					"singing",
-				],
-			},
-			{
-				type: "Art",
-				lst: [
-					"acting",
-					"fashion designing",
-					"handicraft",
-					"home decorating",
-					"juggling",
-					"painting",
-				],
-			},
-			{
-				type: "Knowledge",
-				lst: [
-					"blogging",
-					"interested in medicine and biology",
-					"learning new languages",
-					"listening to podcasts",
-					"playing chess",
-					"puzzling",
-					"reading",
-					"writing",
-				],
-			},
-			{
-				type: "Technology",
-				lst: ["coding", "hacking", "playing video games"],
-			},
-			{
-				type: "Outside_Inside",
-				lst: [
-					"camping",
-					"gardening",
-					"sailing",
-					"skippering",
-					"shopping",
-					"tanning",
-					"traveling",
-				],
-			},
-		],
-		Search_Mode: [
-			"Whatever",
-			"Beer",
-			"Study",
-			"Food",
-			"Training",
-			"Coffee",
-			"Shopping",
-		],
-		Gender: ["Did not choose yet", "Men", "Women", "All"],
-		Relationship: [
-			"Did not choose yet",
-			"Divorced",
-			"Engaged",
-			"In a relationship",
-			"In an open relationship",
-			"Married",
-			"Single",
-			"Widowed",
-		],
-		Interesting_In: [
-			"Did not choose yet",
-			"Friends",
-			"Hookup",
-			"Long term relationship",
-			"Short term relationship",
-			"Sport buddy",
-			"Study buddy",
-			"Work buddy",
-		],
-	};
-	return res.send(filters);
-};
-
 module.exports = {
 	getAllFilters: getAllFilters,
 	getUserFilter: getUserFilter,
@@ -692,5 +577,4 @@ module.exports = {
 	updateUserAgeFilter: updateUserAgeFilter,
 	updateUserFriendsOnlyFilter: updateUserFriendsOnlyFilter,
 	deleteUserFilter: deleteUserFilter,
-	returnAllFiltersInSet: returnAllFiltersInSet,
 };
