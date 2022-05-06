@@ -46,7 +46,9 @@ module.exports={
                             email : email,
                             token : accessToken
                         }
+
                         return res.send(userCred);
+                        
                     }
 
                     else

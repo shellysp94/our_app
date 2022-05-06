@@ -11,6 +11,7 @@ module.exports={
 
 // config 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 
 app.use('/images',express.static('./images'));
 
@@ -24,7 +25,6 @@ const chatsRoutes = require("./api/routes/chats");
 const filtersRoutes = require("./api/routes/filters");
 const connectionsRoutes = require("./api/routes/connections");
 const notificationsRoutes = require("./api/routes/notifications");
-
 
 app.use('/users',usersRoutes);
 app.use('/userConfiguration',userConfigurationRoutes);
