@@ -4,15 +4,34 @@ const mySqlConnection = dbConfig;
 const path = require("path");
 const fs = require("fs");
 
+function getPicNameAndEncode(imageName) {
+	dirnametemp = __dirname.substring(0, __dirname.length - 15);
+	finalFilePath = dirnametemp + "images\\" + imageName;
+	//encode image as base 64
+	var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
 
-
+	return imageAsBase64;
+}
 
 module.exports={
+    getPicNameAndEncode,
        getUserPictures: (req,res) => {
         mySqlConnection.query("SELECT* from user_pictures WHERE user_id=?",[req.params.userid], (err,rows)=>{
             if(!err)
             {
-                res.send(rows);
+                if(rows.length > 0)
+                {
+                    for(var i =0; i<rows.length; i++)
+                    {
+                        rows[i].image = getPicNameAndEncode(rows[i].image);
+                    }
+                }
+                else
+                {
+                    return res.send({msg: "The user has no images"});
+                }
+
+                return res.send(rows);
             }
             else
             {
