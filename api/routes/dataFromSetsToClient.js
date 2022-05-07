@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const {returnAllFiltersInSet} = require("../controllers/dataFromSetsToClient");
+const {getAllConstants} = require("../controllers/dataFromSetsToClient");
 
-router.get("/", returnAllFiltersInSet);
+router.get("/", getAllConstants);
 
 module.exports = router;
