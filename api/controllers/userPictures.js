@@ -15,6 +15,7 @@ function getPicNameAndEncode(imageName) {
 
 module.exports={
     getPicNameAndEncode,
+
        getUserPictures: (req,res) => {
         mySqlConnection.query("SELECT* from user_pictures WHERE user_id=?",[req.params.userid], (err,rows)=>{
             if(!err)
@@ -25,13 +26,41 @@ module.exports={
                     {
                         rows[i].image = getPicNameAndEncode(rows[i].image);
                     }
+                    return res.send(rows);
                 }
                 else
                 {
-                    return res.send({msg: "The user has no images"});
+                    //maybe should convert to cb func in user confihturaion
+                    mySqlConnection.query(`SELECT * from user_configuration where user_id = ?`, [req.params.userid], (err, newRows)=>
+                    {
+                        if(!err)
+                        {
+                            main_image = '1';
+                            user_id = req.params.userid;
+    
+                            if(newRows[0].gender == "Woman")
+                            {
+                                user_image = getPicNameAndEncode("woman_profile.jpg");
+                            }
+                            else
+                            {
+                                user_image = getPicNameAndEncode("male_profile.jpg");
+                            }
+                            
+                            return res.send( 
+                            {
+                                user_id : user_id,
+                                image : user_image,
+                                main_image : main_image
+                            })
+                            
+                        }
+                        else
+                        {
+                            console.log(err);
+                        }
+                    })
                 }
-
-                return res.send(rows);
             }
             else
             {
