@@ -42,17 +42,22 @@ module.exports={
                             {
                                 user_image = getPicNameAndEncode("woman_profile.jpg");
                             }
-                            else
+                            else if(newRows[0].gender == "Man")
                             {
                                 user_image = getPicNameAndEncode("male_profile.jpg");
                             }
+
+                            else
+                            {
+                                user_image = getPicNameAndEncode("non_binary_profile.PNG");
+                            }
                             
                             return res.send( 
-                            {
+                            [{
                                 user_id : user_id,
                                 image : user_image,
                                 main_image : main_image
-                            })
+                            }])
                             
                         }
                         else

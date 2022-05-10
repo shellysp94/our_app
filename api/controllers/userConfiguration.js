@@ -51,9 +51,14 @@ module.exports = {
 								{
 									rows[i].image =  userPictures.getPicNameAndEncode("male_profile.jpg")
 								}
-								else
+								else if(rows[i].gender == 'Woman')
 								{
 									rows[i].image = userPictures.getPicNameAndEncode("woman_profile.jpg")
+								}
+
+								else
+								{
+									rows[i].image = userPictures.getPicNameAndEncode("non_binary_profile.PNG")
 								}
 							}
 						}
