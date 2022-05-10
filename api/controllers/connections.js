@@ -2,8 +2,7 @@ const dbConfig = require("../../config/db_config");
 const {getUserConfiguration} = require("./userConfiguration");
 const mySqlConnection = dbConfig;
 
-function myArray(user, rows, userConnections) {
-	//let userConnections = [];
+function getConnectionsForConfiguration(user, rows, userConnections) {
 	const rowsLength = rows.length;
 
 	for (i = 0; i < rowsLength; i++) {
@@ -68,24 +67,8 @@ module.exports = {
 			[user, user],
 			(err, rows) => {
 				try {
-					console.log("rows are:", rows);
 					let userConnections = [];
-					const rowsLength = rows.length;
-
-					for (i = 0; i < rowsLength; i++) {
-						if (
-							!userConnections.includes(rows[i].user_A_id) &&
-							rows[i].user_A_id !== parseInt(user, 10)
-						) {
-							userConnections.push(rows[i].user_A_id);
-						} else if (
-							!userConnections.includes(rows[i].user_B_id) &&
-							rows[i].user_B_id !== parseInt(user, 10)
-						) {
-							userConnections.push(rows[i].user_B_id);
-						}
-					}
-
+					getConnectionsForConfiguration(user, rows, userConnections);
 					let resultArrayToObject = {
 						params: {userid: String(userConnections)},
 					};
@@ -104,25 +87,35 @@ module.exports = {
 			[user, user],
 			(err, rows) => {
 				try {
-					const rowsLength = rows.length;
 					let userConnectedConnections = [];
-
-					for (i = 0; i < rowsLength; i++) {
-						if (
-							!userConnectedConnections.includes(rows[i].user_A_id) &&
-							rows[i].user_A_id !== parseInt(user, 10)
-						) {
-							userConnectedConnections.push(rows[i].user_A_id);
-						} else if (
-							!userConnectedConnections.includes(rows[i].user_B_id) &&
-							rows[i].user_B_id !== parseInt(user, 10)
-						) {
-							userConnectedConnections.push(rows[i].user_B_id);
-						}
-					}
-
+					getConnectionsForConfiguration(user, rows, userConnectedConnections);
 					let resultArrayToObject = {
 						params: {userid: String(userConnectedConnections)},
+					};
+					getUserConfiguration(resultArrayToObject, res);
+				} catch (err) {
+					console.log(err.message);
+				}
+			}
+		);
+	},
+
+	getAllUserConnectedConnectionsByName: (req, res) => {
+		const user = req.params.userid;
+		const name = req.body.name;
+		mySqlConnection.query(
+			`select distinct user_id from user_configuration right join connections on(user_id = user_a_id or user_id = user_b_id)
+			where first_name like "${name}%" and user_id != ${user} and connected = 1`,
+			(err, rows) => {
+				try {
+					let connectionsByName = [];
+					console.log(rows);
+					for (i = 0; i < rows.length; i++) {
+						console.log(rows[i].user_id);
+						connectionsByName.push(rows[i].user_id);
+					}
+					let resultArrayToObject = {
+						params: {userid: String(connectionsByName)},
 					};
 					getUserConfiguration(resultArrayToObject, res);
 				} catch (err) {
