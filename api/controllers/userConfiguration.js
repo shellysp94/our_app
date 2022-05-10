@@ -1,18 +1,18 @@
 const dbConfig = require("../../config/db_config");
+const userPictures = require("../controllers/userPictures");
 const fs = require("fs");
 const mySqlConnection = dbConfig;
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
-//const formatYmd = (date) => date.toISOString().slice(0, date.length);
 
-function getPicNameAndEncode(imageName) {
-	dirnametemp = __dirname.substring(0, __dirname.length - 15);
-	finalFilePath = dirnametemp + "images\\" + imageName;
-	//encode image as base 64
-	var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
+// function getPicNameAndEncode(imageName) {
+// 	dirnametemp = __dirname.substring(0, __dirname.length - 15);
+// 	finalFilePath = dirnametemp + "images\\" + imageName;
+// 	//encode image as base 64
+// 	var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
 
-	return imageAsBase64;
-}
+// 	return imageAsBase64;
+// }
 
 module.exports = {
 	getAllUsersConfiguration: (req, cb) => {
@@ -43,20 +43,22 @@ module.exports = {
 					if (rows.length > 0) {
 						for (let i = 0; i < rows.length; i++) {
 							if (rows[i].image !== null) {
-								//rows[i].image = getPicNameAndEncode((rows[i].image).substring(6));
-								//change
-								//change nu. 2
-								rows[i].image = getPicNameAndEncode(rows[i].image);
+								rows[i].image =userPictures.getPicNameAndEncode(rows[i].image);
 							}
 							else
 							{
 								if(rows[i].gender == 'Man')
 								{
-									rows[i].image = getPicNameAndEncode("male_profile.jpg")
+									rows[i].image =  userPictures.getPicNameAndEncode("male_profile.jpg")
 								}
+								else if(rows[i].gender == 'Woman')
+								{
+									rows[i].image = userPictures.getPicNameAndEncode("woman_profile.jpg")
+								}
+
 								else
 								{
-									rows[i].image = getPicNameAndEncode("woman_profile.jpg")
+									rows[i].image = userPictures.getPicNameAndEncode("non_binary_profile.PNG")
 								}
 							}
 						}
