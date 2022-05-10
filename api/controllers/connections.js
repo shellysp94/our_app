@@ -2,6 +2,25 @@ const dbConfig = require("../../config/db_config");
 const {getUserConfiguration} = require("./userConfiguration");
 const mySqlConnection = dbConfig;
 
+function myArray(user, rows, userConnections) {
+	//let userConnections = [];
+	const rowsLength = rows.length;
+
+	for (i = 0; i < rowsLength; i++) {
+		if (
+			!userConnections.includes(rows[i].user_A_id) &&
+			rows[i].user_A_id !== parseInt(user, 10)
+		) {
+			userConnections.push(rows[i].user_A_id);
+		} else if (
+			!userConnections.includes(rows[i].user_B_id) &&
+			rows[i].user_B_id !== parseInt(user, 10)
+		) {
+			userConnections.push(rows[i].user_B_id);
+		}
+	}
+}
+
 module.exports = {
 	getAllConnections: (req, res) => {
 		mySqlConnection.query("SELECT * FROM Connections", (err, rows) => {
@@ -49,6 +68,7 @@ module.exports = {
 			[user, user],
 			(err, rows) => {
 				try {
+					console.log("rows are:", rows);
 					let userConnections = [];
 					const rowsLength = rows.length;
 
