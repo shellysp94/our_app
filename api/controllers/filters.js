@@ -96,12 +96,9 @@ getUsersWithCommonHobbiesFilter = (req, callback) => {
 		});
 	} else {
 		let sqlQuery = splitCommas(
-			"select uc.user_id from filters f right join user_configuration uc using (user_id) where hobbies_filter like ",
-			"hobbies_filter",
+			"select uc.user_id from filters f right join user_configuration uc using (user_id) where hobbies like ",
+			"hobbies",
 			hobbiesFilter
-		);
-		sqlQuery = sqlQuery.concat(
-			splitCommas(" or hobbies like ", "hobbies", hobbiesFilter)
 		);
 
 		mySqlConnection.query(sqlQuery, (err, rows) => {
