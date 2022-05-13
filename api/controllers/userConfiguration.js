@@ -36,7 +36,8 @@ module.exports = {
             FROM user_configuration a 
             LEFT JOIN user_pictures b 
             ON a.user_id =  b.user_id 
-            WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null) `,
+            WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
+			ORDER BY first_name asc, last_name asc `,
 			[arr],
 			(err, rows) => {
 				if (!err) {
