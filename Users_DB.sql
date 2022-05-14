@@ -26,13 +26,25 @@ CREATE TABLE Connections (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE Chats (
+  chat_id int not null auto_increment unique, 
   create_date date not null,
   user_A_id int NOT NULL,
   user_B_id int NOT NULL,
+  primary key (chat_id),
   foreign key (user_A_id) references connections (user_A_id),
   foreign key (user_B_id) references connections (user_B_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE Messages (
+  chat_id int not null, 
+  create_date date not null,
+  sender_user_id int NOT NULL,
+  receiver_user_id int NOT NULL,
+  content varchar(5000) not null,
+  foreign key (chat_id) references chats (chat_id),
+  foreign key (sender_user_id) references chats (user_A_id),
+  foreign key (receiver_user_id) references chats (user_B_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE Notifications (
   notification_id int NOT NULL AUTO_INCREMENT,
