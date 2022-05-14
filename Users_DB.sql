@@ -28,6 +28,7 @@ CREATE TABLE Connections (
 CREATE TABLE Chats (
   chat_id int not null auto_increment unique, 
   create_date date not null,
+  last_login date not null,
   user_A_id int NOT NULL,
   user_B_id int NOT NULL,
   primary key (chat_id),
