@@ -11,7 +11,7 @@ module.exports = {
 
 // config
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use("/images", express.static("./images"));
 
@@ -22,6 +22,7 @@ const userPicturesRoutes = require("./api/routes/userPictures");
 const authRoutes = require("./api/routes/auth");
 
 const chatsRoutes = require("./api/routes/chats");
+const messagesRoutes = require("./api/routes/messages");
 const filtersRoutes = require("./api/routes/filters");
 const connectionsRoutes = require("./api/routes/connections");
 const notificationsRoutes = require("./api/routes/notifications");
@@ -33,6 +34,7 @@ app.use("/userPictures", userPicturesRoutes);
 app.use("/auth", authRoutes);
 
 app.use("/chats", chatsRoutes);
+app.use("/messages", messagesRoutes);
 app.use("/filters", filtersRoutes);
 app.use("/connections", connectionsRoutes);
 app.use("/notifications", notificationsRoutes);
