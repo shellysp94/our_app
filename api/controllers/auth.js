@@ -47,8 +47,18 @@ module.exports={
                             token : accessToken
                         }
 
-                        return res.send(userCred);
-                        
+                        mySqlConnection.query('UPDATE users SET ?',{token:accessToken}, (err, results) =>
+                        {
+                            if(!err)
+                            {
+                                return res.send(userCred);
+                            }
+                            else
+                            {
+                                console.log(err);
+                            }
+                        });
+
                     }
 
                     else
