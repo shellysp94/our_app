@@ -99,5 +99,25 @@ module.exports={
                 }
             });
         })
-    }   
+    },
+    verifyToken: (req, res, next) => 
+    {
+        const authHeader = req.headers['authorization']
+        const token = authHeader && authHeader.split(' ')[1]
+        if (token == null)
+        {
+            return res.send("No token sent");
+        } 
+      
+        jwt.verify(token, publicToken, (err, payload) => 
+        {
+          if(err) 
+          {
+              return res.send("Not valid token");
+          }
+          
+          req.payload = payload
+          next()
+        })
+      }   
 }
