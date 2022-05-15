@@ -9,8 +9,7 @@ CREATE TABLE Users (
   user_id int NOT NULL AUTO_INCREMENT unique,
   email varchar(500) not null,
   password varchar(500) not null,
-  socket_id int not null default '0',
-  login_status tinyint not null default '0',
+  token varchar(500) not null,
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
