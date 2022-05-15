@@ -103,7 +103,7 @@ module.exports = {
 	getAllUserConnectionsByName: (req, res) => {
 		const user = req.params.userid;
 		const connected = req.params.connected;
-		let fullName = req.body.name.split(/(\s+)/);
+		let fullName = req.params.name.split(/(\s+)/);
 		let firstName = fullName[0];
 		let lastName = fullName[2];
 
@@ -113,7 +113,8 @@ module.exports = {
 		//console.log("first name:", firstName, "last name:", lastName);
 
 		let sqlQuery = `select distinct user_id from user_configuration right join connections on(user_id = user_a_id or user_id = user_b_id)
-		where first_name like "${firstName}%" and last_name like "${lastName}%" and user_id != ${user}`;
+		where first_name like "${firstName}%" and last_name like "${lastName}%" and (user_a_id = ${user} or user_b_id = ${user}) and user_id != ${user}`;
+		//console.log(sqlQuery);
 
 		if (parseInt(connected, 10) === 1) {
 			sqlQuery = sqlQuery.concat(` and connected = 1`);
@@ -121,14 +122,21 @@ module.exports = {
 
 		mySqlConnection.query(sqlQuery, (err, rows) => {
 			try {
-				let connectionsByName = [];
-				for (i = 0; i < rows.length; i++) {
-					connectionsByName.push(rows[i].user_id);
+				if (typeof rows !== "undefined") {
+					let connectionsByName = [];
+					for (i = 0; i < rows.length; i++) {
+						connectionsByName.push(rows[i].user_id);
+					}
+					let resultArrayToObject = {
+						params: {userid: String(connectionsByName)},
+					};
+					getUserConfiguration(resultArrayToObject, res);
+				} else {
+					msgToClient = {
+						msg: `There are no suitable connections`,
+					};
+					return res.send(msgToClient);
 				}
-				let resultArrayToObject = {
-					params: {userid: String(connectionsByName)},
-				};
-				getUserConfiguration(resultArrayToObject, res);
 			} catch (err) {
 				console.log(err.message);
 			}
