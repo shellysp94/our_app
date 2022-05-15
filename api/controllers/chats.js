@@ -1,5 +1,5 @@
 const dbConfig = require("../../config/db_config");
-const {getChatMessages} = require("./messages");
+const {getChatMessages, deleteChatMessages} = require("./messages");
 const mySqlConnection = dbConfig;
 
 module.exports = {
@@ -131,20 +131,40 @@ module.exports = {
 			(err, rows) => {
 				try {
 					mySqlConnection.query(
-						`select first_name from user_configuration where user_id = ${userIdA} or user_id = ${userIdB}`,
+						`select chat_id from chats where (user_a_id = ${userIdA} and user_b_id = ${userIdB})
+						or (user_a_id = ${userIdB} and user_b_id = ${userIdA})`,
 						(err, rows) => {
-							try {
-								const user_A_Name = rows[0].first_name;
-								const user_B_Name = rows[1].first_name;
+							if (rows.length === 0) {
 								msgToClient = {
-									msg: `Chat between ${user_A_Name} and ${user_B_Name} deleted successfully`,
+									msg: `Chat was not exist`,
 								};
 								return res.send(msgToClient);
-							} catch (err) {
-								console.log(err.message);
+							} else {
+								const chatID = rows[0].chat_id;
+								let desiredChatRoom = {
+									params: {
+										chatID: String(chatID),
+									},
+								};
+								deleteChatMessages(desiredChatRoom, res);
 							}
 						}
 					);
+					// mySqlConnection.query(
+					// 	`select first_name from user_configuration where user_id = ${userIdA} or user_id = ${userIdB}`,
+					// 	(err, rows) => {
+					// 		try {
+					// 			const user_A_Name = rows[0].first_name;
+					// 			const user_B_Name = rows[1].first_name;
+					// 			msgToClient = {
+					// 				msg: `Chat between ${user_A_Name} and ${user_B_Name} deleted successfully`,
+					// 			};
+					// 			return res.send(msgToClient);
+					// 		} catch (err) {
+					// 			console.log(err.message);
+					// 		}
+					// 	}
+					// );
 				} catch (err) {
 					console.log(err.message);
 				}
