@@ -23,7 +23,7 @@ module.exports = {
 				try {
 					if (rows.length === 0) {
 						msgToClient = {
-							msg: `There is no chat between this two users`,
+							msg: `There is no chat between these two users`,
 						};
 						return res.send(msgToClient);
 					} else {
