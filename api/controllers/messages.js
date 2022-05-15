@@ -5,6 +5,8 @@ getChatMessages = (req, res) => {
 	const chatID = req.params.chatID;
 	const messagesOffset = req.params.messagesOffset;
 
+	console.log("checking for git");
+
 	mySqlConnection.query(
 		`select * from messages where chat_id = ${chatID} order by create_date asc limit 50 offset ${messagesOffset}`,
 		(err, rows) => {
@@ -39,22 +41,3 @@ module.exports = {
 	getChatMessages,
 	createChatMessage,
 };
-
-// createMessage = (req, res) => {
-// 	const userid = req.params.userid;
-
-// 	mySqlConnection.query(
-// 		"delete from Filters where user_id = ?",
-// 		[userid],
-// 		(err, result) => {
-// 			try {
-// 				msgToClient = {
-// 					msg: `User number ${userid} filter deleted successfully`,
-// 				};
-// 				return res.send(msgToClient);
-// 			} catch (err) {
-// 				console.log(err.message);
-// 			}
-// 		}
-// 	);
-// };
