@@ -125,46 +125,30 @@ module.exports = {
 		const userIdA = req.params.useridA;
 		const userIdB = req.params.useridB;
 
+		// mySqlConnection.query(
+		// 	"DELETE FROM Chats WHERE user_A_id = ? AND user_B_id = ?",
+		// 	[userIdA, userIdB],
+		// 	(err, rows) => {
+		// 		try {
 		mySqlConnection.query(
-			"DELETE FROM Chats WHERE user_A_id = ? AND user_B_id = ?",
-			[userIdA, userIdB],
+			`select chat_id from chats where (user_a_id = ${userIdA} and user_b_id = ${userIdB})
+						or (user_a_id = ${userIdB} and user_b_id = ${userIdA})`,
 			(err, rows) => {
 				try {
-					mySqlConnection.query(
-						`select chat_id from chats where (user_a_id = ${userIdA} and user_b_id = ${userIdB})
-						or (user_a_id = ${userIdB} and user_b_id = ${userIdA})`,
-						(err, rows) => {
-							if (rows.length === 0) {
-								msgToClient = {
-									msg: `Chat was not exist`,
-								};
-								return res.send(msgToClient);
-							} else {
-								const chatID = rows[0].chat_id;
-								let desiredChatRoom = {
-									params: {
-										chatID: String(chatID),
-									},
-								};
-								deleteChatMessages(desiredChatRoom, res);
-							}
-						}
-					);
-					// mySqlConnection.query(
-					// 	`select first_name from user_configuration where user_id = ${userIdA} or user_id = ${userIdB}`,
-					// 	(err, rows) => {
-					// 		try {
-					// 			const user_A_Name = rows[0].first_name;
-					// 			const user_B_Name = rows[1].first_name;
-					// 			msgToClient = {
-					// 				msg: `Chat between ${user_A_Name} and ${user_B_Name} deleted successfully`,
-					// 			};
-					// 			return res.send(msgToClient);
-					// 		} catch (err) {
-					// 			console.log(err.message);
-					// 		}
-					// 	}
-					// );
+					if (rows.length === 0) {
+						msgToClient = {
+							msg: `Chat was not exist`,
+						};
+						return res.send(msgToClient);
+					} else {
+						const chatID = rows[0].chat_id;
+						let desiredChatRoom = {
+							params: {
+								chatID: String(chatID),
+							},
+						};
+						deleteChatMessages(desiredChatRoom, res);
+					}
 				} catch (err) {
 					console.log(err.message);
 				}
