@@ -131,14 +131,21 @@ module.exports = {
 		mySqlConnection.query(sqlQuery, (err, rows) => {
 			try {
 				if (typeof rows !== "undefined") {
-					let connectionsByName = [];
-					for (i = 0; i < rows.length; i++) {
-						connectionsByName.push(rows[i].user_id);
+					if (rows.length === 0) {
+						msgToClient = {
+							msg: `There are no suitable connections`,
+						};
+						return res.send(msgToClient);
+					} else {
+						let connectionsByName = [];
+						for (i = 0; i < rows.length; i++) {
+							connectionsByName.push(rows[i].user_id);
+						}
+						let resultArrayToObject = {
+							params: {userid: String(connectionsByName)},
+						};
+						getUserConfiguration(resultArrayToObject, res);
 					}
-					let resultArrayToObject = {
-						params: {userid: String(connectionsByName)},
-					};
-					getUserConfiguration(resultArrayToObject, res);
 				} else {
 					msgToClient = {
 						msg: `There are no suitable connections`,
