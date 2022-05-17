@@ -8,7 +8,7 @@ const {
 	getUsersWithCommonHobbiesFilter,
 	getUsersWithCommonGenderFilter,
 	getUsersWithCommonRelationshipFilter,
-	getUsersWithCommonInterestingInFilter,
+	getUsersWithCommonInterestedInFilter,
 	getUsersWithCommonAgeFilter,
 	getUserFriendsThatFilteredFriendsOnly,
 	getUserFilteredUsers,
@@ -16,7 +16,7 @@ const {
 	updateUserHobbiesFilter,
 	updateUserGenderFilter,
 	updateUserRelationshipFilter,
-	updateUserInterestingInFilter,
+	updateUserInterestedInFilter,
 	updateUserAgeFilter,
 	updateUserFriendsOnlyFilter,
 	deleteUserFilter,
@@ -28,7 +28,7 @@ router.get("//searchMode", getUsersWithCommonSearchMode);
 router.get("//hobbies", getUsersWithCommonHobbiesFilter);
 router.get("//gender", getUsersWithCommonGenderFilter);
 router.get("//relationship", getUsersWithCommonRelationshipFilter);
-router.get("//interestingIn", getUsersWithCommonInterestingInFilter);
+router.get("//interestedIn", getUsersWithCommonInterestedInFilter);
 router.get("//age", getUsersWithCommonAgeFilter);
 router.get("//friendsOnly/:userid", getUserFriendsThatFilteredFriendsOnly);
 router.get("//filteredUsers/:userid", getUserFilteredUsers);
@@ -36,7 +36,7 @@ router.post("/:userid", createUserFilter); //post a chat (/chats/:useridA/:useri
 router.put("/update/hobbies/:userid", updateUserHobbiesFilter);
 router.put("/update/gender/:userid", updateUserGenderFilter);
 router.put("/update/relationship/:userid", updateUserRelationshipFilter);
-router.put("/update/interestingIn/:userid", updateUserInterestingInFilter);
+router.put("/update/interestedIn/:userid", updateUserInterestedInFilter);
 router.put("/update/age/:userid", updateUserAgeFilter);
 router.put(
 	"/update/friendsOnly/:userid/:friendsOnly",

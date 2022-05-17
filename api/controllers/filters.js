@@ -173,18 +173,18 @@ getUsersWithCommonRelationshipFilter = (req, callback) => {
 	}
 };
 
-getUsersWithCommonInterestingInFilter = (req, callback) => {
-	const interestingInFilter = req.interesting_in_filter;
+getUsersWithCommonInterestedInFilter = (req, callback) => {
+	const interestedInFilter = req.interested_in_filter;
 
-	if (interestingInFilter === "Interesting in") {
+	if (interestedInFilter === "Interested in") {
 		noFilter(req, (allUsersWithoutMe) => {
 			return callback(allUsersWithoutMe);
 		});
 	} else {
 		let sqlQuery = splitCommas(
-			"select user_id from filters where interesting_in_filter like ",
-			"interesting_in_filter",
-			interestingInFilter
+			"select user_id from filters where interested_in_filter like ",
+			"interested_in_filter",
+			interestedInFilter
 		);
 
 		mySqlConnection.query(sqlQuery, (err, rows) => {
@@ -254,7 +254,7 @@ getUserFilteredUsers = (req, res) => {
 	let hobbies = [];
 	let gender = [];
 	let relationship = [];
-	let interestingIn = [];
+	let interestedIn = [];
 	let age = [];
 
 	getUserFilter(req, (userFilter) => {
@@ -315,16 +315,16 @@ getUserFilteredUsers = (req, res) => {
 									relationship.includes(user)
 								);
 
-							getUsersWithCommonInterestingInFilter(
+							getUsersWithCommonInterestedInFilter(
 								userFilter[0],
 								(response) => {
 									response.forEach((user) => {
-										interestingIn.push(user.user_id);
+										interestedIn.push(user.user_id);
 									});
-									//console.log("interesting in:", interestingIn);
-									const mutualUsers_Relationship_InterestingIn =
+									//console.log("interested in:", interestedIn);
+									const mutualUsers_Relationship_InterestedIn =
 										mutualUsers_Gender_Relationship.filter((user) =>
-											interestingIn.includes(user)
+											interestedIn.includes(user)
 										);
 
 									getUsersWithCommonAgeFilter(userFilter[0], (response) => {
@@ -333,8 +333,8 @@ getUserFilteredUsers = (req, res) => {
 											age.push(user.user_id);
 										});
 										//console.log("age", age);
-										const mutualUsers_InterestingIn_Age =
-											mutualUsers_Relationship_InterestingIn.filter((user) =>
+										const mutualUsers_InterestedIn_Age =
+											mutualUsers_Relationship_InterestedIn.filter((user) =>
 												age.includes(user)
 											);
 										if (userFilter[0].friends_only_filter === 1) {
@@ -342,7 +342,7 @@ getUserFilteredUsers = (req, res) => {
 												userFilter[0],
 												(response) => {
 													const mutualUsers_Age_FriendsOnly =
-														mutualUsers_InterestingIn_Age.filter((user) =>
+														mutualUsers_InterestedIn_Age.filter((user) =>
 															response.includes(user)
 														);
 
@@ -357,7 +357,7 @@ getUserFilteredUsers = (req, res) => {
 											);
 										} else {
 											let resultArrayToObject = {
-												params: {userid: String(mutualUsers_InterestingIn_Age)},
+												params: {userid: String(mutualUsers_InterestedIn_Age)},
 											};
 
 											//console.log(resultArrayToObject);
@@ -380,7 +380,7 @@ createUserFilter = (req, res) => {
 	const hobbiesFilter = req.body.hobbies_filter;
 	const genderFilter = req.body.gender_filter;
 	const relationshipFilter = req.body.relationship_filter;
-	const interestingInFilter = req.body.interesting_in_filter;
+	const interestedInFilter = req.body.interested_in_filter;
 	let ageFilter = req.body.age_filter;
 	const friendsOnly = req.body.friends_only_filter;
 
@@ -395,10 +395,10 @@ createUserFilter = (req, res) => {
 	}
 
 	mySqlConnection.query(
-		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interesting_in_filter, age_filter, friends_only_filter) 
-      values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestingInFilter}', '${ageFilter}', ${friendsOnly}) 
+		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, friends_only_filter) 
+      values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${friendsOnly}) 
       ON DUPLICATE KEY UPDATE user_id = ${userid}, search_mode = '${searchMode}', hobbies_filter = '${hobbiesFilter}', gender_filter = '${genderFilter}', 
-      relationship_filter = '${relationshipFilter}', interesting_in_filter = '${interestingInFilter}', age_filter = '${ageFilter}', friends_only_filter = ${friendsOnly}`,
+      relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', friends_only_filter = ${friendsOnly}`,
 		(err, rows) => {
 			try {
 				if (typeof rows === "undefined") {
@@ -476,17 +476,17 @@ updateUserRelationshipFilter = (req, res) => {
 	);
 };
 
-updateUserInterestingInFilter = (req, res) => {
-	const interestingInFilter = req.body.interesting_in_filter;
+updateUserInterestedInFilter = (req, res) => {
+	const interestedInFilter = req.body.interested_in_filter;
 	const userid = req.params.userid;
 
 	mySqlConnection.query(
-		"UPDATE Filters SET interesting_in_filter = ? WHERE user_id = ?",
-		[interestingInFilter, userid],
+		"UPDATE Filters SET interested_in_filter = ? WHERE user_id = ?",
+		[interestedInFilter, userid],
 		(err, result) => {
 			try {
 				msgToClient = {
-					msg: `User number ${userid} updated interesting in filter to ${interestingInFilter} successfully`,
+					msg: `User number ${userid} updated interested in filter to ${interestedInFilter} successfully`,
 				};
 				return res.send(msgToClient);
 			} catch (err) {
@@ -562,7 +562,7 @@ module.exports = {
 	getUsersWithCommonHobbiesFilter: getUsersWithCommonHobbiesFilter,
 	getUsersWithCommonGenderFilter: getUsersWithCommonGenderFilter,
 	getUsersWithCommonRelationshipFilter: getUsersWithCommonRelationshipFilter,
-	getUsersWithCommonInterestingInFilter: getUsersWithCommonInterestingInFilter,
+	getUsersWithCommonInterestedInFilter: getUsersWithCommonInterestedInFilter,
 	getUsersWithCommonAgeFilter: getUsersWithCommonAgeFilter,
 	getUserFriendsThatFilteredFriendsOnly: getUserFriendsThatFilteredFriendsOnly,
 	getUserFilteredUsers: getUserFilteredUsers,
@@ -570,7 +570,7 @@ module.exports = {
 	updateUserHobbiesFilter: updateUserHobbiesFilter,
 	updateUserGenderFilter: updateUserGenderFilter,
 	updateUserRelationshipFilter: updateUserRelationshipFilter,
-	updateUserInterestingInFilter: updateUserInterestingInFilter,
+	updateUserInterestedInFilter: updateUserInterestedInFilter,
 	updateUserAgeFilter: updateUserAgeFilter,
 	updateUserFriendsOnlyFilter: updateUserFriendsOnlyFilter,
 	deleteUserFilter: deleteUserFilter,
