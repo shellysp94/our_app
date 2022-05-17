@@ -105,15 +105,6 @@ module.exports = {
 		const connected = req.params.connected;
 		let fullName = req.params.name.split(/(\s+)/);
 		let firstName, lastName;
-		// if (fullName.length > 1) {
-		// 	//User try to search first name AND last name.
-		// 	let firstName = fullName[0];
-		// 	let lastName = fullName[2];
-		// }
-
-		// if (typeof lastName === "undefined") {
-		// 	lastName = "";
-		// }
 
 		let sqlQuery = `select distinct user_id from user_configuration right join connections on(user_id = user_a_id or user_id = user_b_id)
 		where (user_a_id = ${user} or user_b_id = ${user}) and user_id != ${user}`;
