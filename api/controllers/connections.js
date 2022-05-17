@@ -104,21 +104,38 @@ module.exports = {
 		const user = req.params.userid;
 		const connected = req.params.connected;
 		let fullName = req.params.name.split(/(\s+)/);
-		let firstName = fullName[0];
-		let lastName = fullName[2];
+		let firstName, lastName;
+		// if (fullName.length > 1) {
+		// 	//User try to search first name AND last name.
+		// 	let firstName = fullName[0];
+		// 	let lastName = fullName[2];
+		// }
 
-		if (typeof lastName === "undefined") {
-			lastName = "";
-		}
-		//console.log("first name:", firstName, "last name:", lastName);
+		// if (typeof lastName === "undefined") {
+		// 	lastName = "";
+		// }
 
 		let sqlQuery = `select distinct user_id from user_configuration right join connections on(user_id = user_a_id or user_id = user_b_id)
-		where first_name like "${firstName}%" and last_name like "${lastName}%" and (user_a_id = ${user} or user_b_id = ${user}) and user_id != ${user}`;
-		//console.log(sqlQuery);
+		where (user_a_id = ${user} or user_b_id = ${user}) and user_id != ${user}`;
+
+		if (fullName.length > 1) {
+			//User try to search first name AND last name.
+			firstName = fullName[0];
+			lastName = fullName[2];
+			//console.log("first name:", firstName, "last name:", lastName);
+			sqlQuery = sqlQuery.concat(
+				` and first_name like "${firstName}%" and last_name like "${lastName}%"`
+			);
+		} else {
+			sqlQuery = sqlQuery.concat(
+				` and (first_name like "${fullName[0]}%" or last_name like "${fullName[0]}%")`
+			);
+		}
 
 		if (parseInt(connected, 10) === 1) {
 			sqlQuery = sqlQuery.concat(` and connected = 1`);
 		}
+		//console.log(sqlQuery);
 
 		mySqlConnection.query(sqlQuery, (err, rows) => {
 			try {
