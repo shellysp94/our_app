@@ -1,21 +1,32 @@
-const {app} = require("./app");
+const {app, jwt} = require("./app");
 const WebSocket = require('ws');
-
+const url = require('url');
+const publicToken= require('./config/auth_config');
 const port = process.env.PORT || 3000;
 const http = require("http");
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({server});
 
-var user_dict={};
+var online_users=[];
 
-wss.on('connection', (ws) =>
+wss.on('connection', (ws, req) =>
 {
-	console.log('A new client connected');
-	ws.send('Welcome new client');
+	var token = url.parse(req.url,true).query.token
 
-	user_dict[1] = ws
-	console.log(user_dict);
+	jwt.verify(token, publicToken, (err, payload) => 
+	{
+	  if(err) 
+	  {
+		  ws.close()
+		  //return res.send("Not valid token, connection closed");
+	  }
+
+	  else
+	  {
+		  online_users[token] = ws;
+	  }
+	});
 
 	ws.on('message', (message) =>
 	{

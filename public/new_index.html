@@ -16,8 +16,19 @@
         "Authorization" : 'bearer ' +"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTI2MTc5NzAsImV4cCI6MTY1Mjg3NzE3MH0.g_t7ndceaRywf3iC2vtZOs6hBDe6L4mjvv843L8LZuI"
     }
 };
-    const socket = new WebSocket('ws://localhost:3000',options);
+    const ws = new WebSocket('ws://localhost:3000?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE2NTI5ODQxMDAsImV4cCI6MTY1MzI0MzMwMH0.utPIPlKejbNm0CIO_sL5B4NBEx_XZtsuHAiPyfrD4_I');
 
+    ws.onopen = (event) =>
+    {
+        console.log("Websocket connection established");
+        ws.send("hello world");
+    }
+
+    ws.onmessage = (event) =>
+    {
+        console.log("WebSocket message received: ", event.data);
+    }
+/*
 
     // Connection opened
     socket.addEventListener('open', function (event) {
@@ -32,5 +43,6 @@
     const sendMessage = () => {
         socket.send('Hello From Client1!');
     }
+    */
 </script>
 </html>
