@@ -47,7 +47,7 @@ module.exports={
                             token : accessToken
                         }
 
-                        mySqlConnection.query('UPDATE users SET ?',{token:accessToken}, (err, results) =>
+                        mySqlConnection.query('UPDATE users SET token=? WHERE email=?',[accessToken,email], (err, results) =>
                         {
                             if(!err)
                             {
