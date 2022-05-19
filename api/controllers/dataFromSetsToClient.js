@@ -31,7 +31,7 @@
 // 					"cooking",
 // 					"eating outside",
 // 					"interested in culinary",
-// 					"interesting in nutrition",
+// 					"interested in nutrition",
 // 				],
 // 			},
 // 			{
@@ -106,8 +106,8 @@
 // 			"Single",
 // 			"Widowed",
 // 		],
-// 		Interesting_In: [
-// 			"Interesting in",
+// 		Interested_In: [
+// 			"Interested in",
 // 			"Friends",
 // 			"Hookup",
 // 			"Long term relationship",
@@ -178,7 +178,7 @@ module.exports = {
 						"cooking",
 						"eating outside",
 						"interested in culinary",
-						"interesting in nutrition",
+						"interested in nutrition",
 					],
 				},
 				{
