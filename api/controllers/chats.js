@@ -28,14 +28,12 @@ module.exports = {
 						return res.send(msgToClient);
 					} else {
 						const chatID = rows[0].chat_id;
-						//console.log("the chat id:", chatID);
 						let desiredChatRoom = {
 							params: {
 								chatID: String(chatID),
 								messagesOffset: String(0),
 							},
 						};
-						//console.log("for messages:", desiredChatRoom);
 						getChatMessages(desiredChatRoom, res);
 					}
 				} catch (err) {
