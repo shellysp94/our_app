@@ -9,7 +9,14 @@ getChatMessages = (req, res) => {
 		`select * from messages where chat_id = ${chatID} order by create_day, create_time desc limit 50 offset ${messagesOffset}`,
 		(err, rows) => {
 			try {
-				res.send(rows);
+				if (typeof rows === "undefined" || rows.length === 0) {
+					msgToClient = {
+						msg: `Chat room number ${chatID} is empty.`,
+					};
+					return res.send(msgToClient);
+				} else {
+					res.send(rows);
+				}
 			} catch (err) {
 				console.log(err.message);
 			}
