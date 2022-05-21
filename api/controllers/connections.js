@@ -1,5 +1,8 @@
 const dbConfig = require("../../config/db_config");
-const {getUserConfiguration} = require("./userConfiguration");
+const {
+	getUserConfiguration,
+	getUserConfigurationInner,
+} = require("./userConfiguration");
 const mySqlConnection = dbConfig;
 
 function getConnectionsForConfiguration(user, rows, userConnections) {
@@ -161,6 +164,7 @@ module.exports = {
 	getAllUserConnectionsType: (req, res) => {
 		const userid = req.params.userid;
 		let usersConfigurations = [];
+		let mergeObjects = [];
 
 		mySqlConnection.query(
 			`
@@ -176,8 +180,32 @@ module.exports = {
 					for (user = 0; user < rows.length; user++) {
 						usersConfigurations.push(rows[user].user_id);
 					}
-					console.log(usersConfigurations);
-					//res.send(rows);
+
+					let resultArrayToObject = {
+						params: {userid: String(usersConfigurations)},
+					};
+					getUserConfigurationInner(
+						resultArrayToObject,
+						(resultFromConfiguration) => {
+							for (user = 0; user < resultFromConfiguration.length; user++) {
+								for (row = 0; row < rows.length; row++) {
+									if (
+										parseInt(resultFromConfiguration[user].user_id, 10) ===
+										parseInt(rows[row].user_id, 10)
+									) {
+										mergeObjects.push(
+											Object.assign(
+												{},
+												resultFromConfiguration[user],
+												rows[row]
+											)
+										);
+									}
+								}
+							}
+							res.send(mergeObjects);
+						}
+					);
 				} catch (err) {
 					console.log(err.message);
 				}
