@@ -8,6 +8,7 @@ const {
 	getAllUserConnections,
 	getAllUserConnectedConnections,
 	getAllUserConnectionsByName,
+	getAllUserConnectionsType,
 	createUsersConnection,
 	deleteUsersConnection,
 } = require("../controllers/connections");
@@ -18,6 +19,7 @@ router.get("/:useridA/:useridB", getUsersConnection);
 router.get("/:userid", getAllUserConnections);
 router.get("//connected/:userid", getAllUserConnectedConnections);
 router.get("//byName/:userid/:connected/:name", getAllUserConnectionsByName);
+router.get("//byType/:userid", getAllUserConnectionsType);
 router.post("/:useridA/:useridB", createUsersConnection); //post a chat (/chats/:useridA/:useridB)
 router.delete("/:useridA/:useridB", deleteUsersConnection); //delete a chat (/chats/:useridA/:useridB)
 
