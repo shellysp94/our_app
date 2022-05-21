@@ -158,6 +158,33 @@ module.exports = {
 		});
 	},
 
+	getAllUserConnectionsType: (req, res) => {
+		const userid = req.params.userid;
+		let usersConfigurations = [];
+
+		mySqlConnection.query(
+			`
+		select distinct user_id, 
+			if((user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
+			if(user_a_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
+			if(user_b_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
+			if(user_a_id is null and user_b_id is null, 1, 0) notConnected
+		from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id)
+		where user_id != ${userid};`,
+			(err, rows) => {
+				try {
+					for (user = 0; user < rows.length; user++) {
+						usersConfigurations.push(rows[user].user_id);
+					}
+					console.log(usersConfigurations);
+					//res.send(rows);
+				} catch (err) {
+					console.log(err.message);
+				}
+			}
+		);
+	},
+
 	createUsersConnection: (req, res) => {
 		const creationDate = new Date();
 		const lastUpdate = new Date();
