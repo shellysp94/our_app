@@ -4,6 +4,7 @@ const {
 	getAllUsersConfiguration,
 	getUserConfiguration,
 } = require("./userConfiguration");
+const {getAllUserConnectionsType} = require("./connections");
 const mySqlConnection = dbConfig;
 
 function splitCommas(myQuery, relevantColumn, string) {
@@ -120,10 +121,6 @@ getUsersWithCommonGenderFilter = (req, callback) => {
 		});
 	} else {
 		let queryStr;
-		// if(genderFilter === 'All')
-		// {
-		//    queryStr = `select user_id from user_configuration where gender like 'Woman' or gender like 'Man' or gender like 'prefer not to say'`
-		// }
 		if (genderFilter === "Men") {
 			queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Man' and gender not like 'Woman'`;
 		} else if (genderFilter === "Women") {
@@ -258,26 +255,18 @@ getUserFilteredUsers = (req, res) => {
 	let age = [];
 
 	getUserFilter(req, (userFilter) => {
-		//console.log(userFilter[0]);
 		if (userFilter.length === 0) {
-			let currentUser_id = {user_id: req.params.userid};
-			//console.log(currentUser_id);
-			//let currentUser_id = req.params.userid;
-			let usersToSend = [];
-
-			noFilter(currentUser_id, (allUsersWithoutMe) => {
-				allUsersWithoutMe.forEach((user) => {
-					usersToSend.push(user.user_id);
-				});
-
-				//console.log(usersToSend);
-				let resultArrayToObject = {
-					params: {userid: String(usersToSend)},
-				};
-
-				getUserConfiguration(resultArrayToObject, res);
-			});
+			// user don't have filters - return to client all users in db
+			let getUsersConfigurationsWithoutMyself = {
+				params: {
+					userid: String(req.params.userid),
+					type: String(0),
+					usersToPresent: [0],
+				},
+			};
+			getAllUserConnectionsType(getUsersConfigurationsWithoutMyself, res);
 		} else {
+			// user have filters
 			getUsersWithCommonSearchMode(userFilter[0], (response) => {
 				response.forEach((user) => {
 					if (parseInt(req.params.userid, 10) !== parseInt(user.user_id, 10)) {
@@ -337,32 +326,19 @@ getUserFilteredUsers = (req, res) => {
 											mutualUsers_Relationship_InterestedIn.filter((user) =>
 												age.includes(user)
 											);
-										if (userFilter[0].friends_only_filter === 1) {
-											getUserFriendsThatFilteredFriendsOnly(
-												userFilter[0],
-												(response) => {
-													const mutualUsers_Age_FriendsOnly =
-														mutualUsers_InterestedIn_Age.filter((user) =>
-															response.includes(user)
-														);
 
-													let resultArrayToObject = {
-														params: {
-															userid: String(mutualUsers_Age_FriendsOnly),
-														},
-													};
+										let resultArrayToObject = {
+											params: {
+												userid: String(req.params.userid),
+												type: String(userFilter[0].friends_only_filter),
+												usersToPresent: mutualUsers_InterestedIn_Age,
+											},
+										};
 
-													getUserConfiguration(resultArrayToObject, res);
-												}
-											);
-										} else {
-											let resultArrayToObject = {
-												params: {userid: String(mutualUsers_InterestedIn_Age)},
-											};
-
-											//console.log(resultArrayToObject);
-											getUserConfiguration(resultArrayToObject, res);
-										}
+										console.log(
+											"im result array:\n" + JSON.stringify(resultArrayToObject)
+										);
+										getAllUserConnectionsType(resultArrayToObject, res);
 									});
 								}
 							);

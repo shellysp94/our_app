@@ -163,9 +163,12 @@ module.exports = {
 
 	getAllUserConnectionsType: (req, res) => {
 		const userid = req.params.userid;
+		const type = req.params.type;
+		const usersToPresent = req.params.usersToPresent;
 		let usersConfigurations = [];
 		let mergeObjects = [];
 
+		console.log(usersToPresent);
 		mySqlConnection.query(
 			`
 		select distinct user_id, 
@@ -177,9 +180,19 @@ module.exports = {
 		where user_id != ${userid};`,
 			(err, rows) => {
 				try {
-					for (user = 0; user < rows.length; user++) {
-						usersConfigurations.push(rows[user].user_id);
+					console.log(rows);
+					if (parseInt(usersToPresent[0], 10) === 0) {
+						for (user = 0; user < rows.length; user++) {
+							usersConfigurations.push(rows[user].user_id);
+						}
+					} else {
+						for (user = 0; user < rows.length; user++) {
+							if (usersToPresent.includes(rows[user].user_id)) {
+								usersConfigurations.push(rows[user].user_id);
+							}
+						}
 					}
+					//console.log(usersConfigurations);
 
 					let resultArrayToObject = {
 						params: {userid: String(usersConfigurations)},
@@ -193,13 +206,27 @@ module.exports = {
 										parseInt(resultFromConfiguration[user].user_id, 10) ===
 										parseInt(rows[row].user_id, 10)
 									) {
-										mergeObjects.push(
-											Object.assign(
-												{},
-												resultFromConfiguration[user],
-												rows[row]
-											)
-										);
+										if (parseInt(type, 10) === 1) {
+											// user asked for his friends/requests only
+											if (parseInt(rows[row].notConnected, 10) === 0) {
+												mergeObjects.push(
+													Object.assign(
+														{},
+														resultFromConfiguration[user],
+														rows[row]
+													)
+												);
+											}
+										} else {
+											// user asked for all users in db
+											mergeObjects.push(
+												Object.assign(
+													{},
+													resultFromConfiguration[user],
+													rows[row]
+												)
+											);
+										}
 									}
 								}
 							}
