@@ -168,50 +168,29 @@ module.exports = {
 		let usersConfigurations = [];
 		let mergeObjects = [];
 
-		console.log(usersToPresent);
 		mySqlConnection.query(
 			`select distinct user_id, 
 				if((user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
 				if(user_a_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
 				if(user_b_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
 				if((user_a_id != ${userid} and user_b_id != ${userid}) or (user_a_id is null and user_b_id is null), 1, 0) notConnected
-		from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id) 
-		where user_id != ${userid}`,
-			// 	`
-			// select distinct user_id,
-			// 	if((user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
-			// 	if(user_a_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
-			// 	if(user_b_id = ${userid} and connected = 0, 1, 0) requestsUserReceived,
-			// 	if(user_a_id is null and user_b_id is null, 1, 0) notConnected
-			// from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id)
-			// where user_id != ${userid};`,
+			from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id) 
+			where user_id != ${userid}`,
 			(err, rows) => {
 				try {
-					//console.log(rows);
 					if (parseInt(usersToPresent[0], 10) === 0) {
 						// user asked for all other users
 						for (user = 0; user < rows.length; user++) {
-							if (usersConfigurations.indexOf(rows[user].user_id) === -1) {
-								usersConfigurations.push(rows[user].user_id);
-							}
+							usersConfigurations.push(rows[user].user_id);
 						}
 					} else {
-						// user asked for specific users
+						// user asked for a specific users
 						for (user = 0; user < rows.length; user++) {
-							// console.log(
-							// 	"index of return:",
-							// 	usersConfigurations.indexOf(rows[user].user_id),
-							// 	"\n" + rows[user].user_id
-							// );
-							if (
-								usersToPresent.includes(rows[user].user_id) &&
-								usersConfigurations.indexOf(rows[user].user_id) === -1
-							) {
+							if (usersToPresent.includes(rows[user].user_id)) {
 								usersConfigurations.push(rows[user].user_id);
 							}
 						}
 					}
-					console.log("the configurations to display:\n" + usersConfigurations);
 
 					let resultArrayToObject = {
 						params: {userid: String(usersConfigurations)},
@@ -238,35 +217,13 @@ module.exports = {
 											}
 										} else {
 											// user asked for all users in db
-											console.log(
-												"index of result:",
-												rows.indexOf(parseInt(rows[row].user_id, 10))
+											mergeObjects.push(
+												Object.assign(
+													{},
+													resultFromConfiguration[user],
+													rows[row]
+												)
 											);
-											if (
-												rows.indexOf(rows[row].user_id) > -1 &&
-												(rows.indexOf(
-													parseInt(rows[row].mutualConnections, 10) === 1
-												) ||
-													rows.indexOf(
-														parseInt(rows[row].requestsUserSent, 10) === 1
-													) ||
-													rows.indexOf(
-														parseInt(rows[row].requestsUserReceived, 10) === 1
-													))
-											) {
-												// don't need to add this row to the merge object.
-												console.log(
-													"don't need to add this user to merge object!"
-												);
-											} else {
-												mergeObjects.push(
-													Object.assign(
-														{},
-														resultFromConfiguration[user],
-														rows[row]
-													)
-												);
-											}
 										}
 									}
 								}
