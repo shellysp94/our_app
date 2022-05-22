@@ -31,8 +31,8 @@ CREATE TABLE Chats (
   user_A_id int NOT NULL,
   user_B_id int NOT NULL,
   primary key (chat_id),
-  foreign key (user_A_id) references connections (user_A_id),
-  foreign key (user_B_id) references connections (user_B_id)
+  foreign key (user_A_id) references Users (user_id),
+  foreign key (user_B_id) references Users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE Messages (

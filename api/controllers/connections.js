@@ -170,29 +170,48 @@ module.exports = {
 
 		console.log(usersToPresent);
 		mySqlConnection.query(
-			`
-		select distinct user_id, 
-			if((user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
-			if(user_a_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
-			if(user_b_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
-			if(user_a_id is null and user_b_id is null, 1, 0) notConnected
-		from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id)
-		where user_id != ${userid};`,
+			`select distinct user_id, 
+				if((user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
+				if(user_a_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
+				if(user_b_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
+				if((user_a_id != ${userid} and user_b_id != ${userid}) or (user_a_id is null and user_b_id is null), 1, 0) notConnected
+		from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id) 
+		where user_id != ${userid}`,
+			// 	`
+			// select distinct user_id,
+			// 	if((user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
+			// 	if(user_a_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
+			// 	if(user_b_id = ${userid} and connected = 0, 1, 0) requestsUserReceived,
+			// 	if(user_a_id is null and user_b_id is null, 1, 0) notConnected
+			// from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id)
+			// where user_id != ${userid};`,
 			(err, rows) => {
 				try {
-					console.log(rows);
+					//console.log(rows);
 					if (parseInt(usersToPresent[0], 10) === 0) {
+						// user asked for all other users
 						for (user = 0; user < rows.length; user++) {
-							usersConfigurations.push(rows[user].user_id);
+							if (usersConfigurations.indexOf(rows[user].user_id) === -1) {
+								usersConfigurations.push(rows[user].user_id);
+							}
 						}
 					} else {
+						// user asked for specific users
 						for (user = 0; user < rows.length; user++) {
-							if (usersToPresent.includes(rows[user].user_id)) {
+							// console.log(
+							// 	"index of return:",
+							// 	usersConfigurations.indexOf(rows[user].user_id),
+							// 	"\n" + rows[user].user_id
+							// );
+							if (
+								usersToPresent.includes(rows[user].user_id) &&
+								usersConfigurations.indexOf(rows[user].user_id) === -1
+							) {
 								usersConfigurations.push(rows[user].user_id);
 							}
 						}
 					}
-					//console.log(usersConfigurations);
+					console.log("the configurations to display:\n" + usersConfigurations);
 
 					let resultArrayToObject = {
 						params: {userid: String(usersConfigurations)},
@@ -219,13 +238,35 @@ module.exports = {
 											}
 										} else {
 											// user asked for all users in db
-											mergeObjects.push(
-												Object.assign(
-													{},
-													resultFromConfiguration[user],
-													rows[row]
-												)
+											console.log(
+												"index of result:",
+												rows.indexOf(parseInt(rows[row].user_id, 10))
 											);
+											if (
+												rows.indexOf(rows[row].user_id) > -1 &&
+												(rows.indexOf(
+													parseInt(rows[row].mutualConnections, 10) === 1
+												) ||
+													rows.indexOf(
+														parseInt(rows[row].requestsUserSent, 10) === 1
+													) ||
+													rows.indexOf(
+														parseInt(rows[row].requestsUserReceived, 10) === 1
+													))
+											) {
+												// don't need to add this row to the merge object.
+												console.log(
+													"don't need to add this user to merge object!"
+												);
+											} else {
+												mergeObjects.push(
+													Object.assign(
+														{},
+														resultFromConfiguration[user],
+														rows[row]
+													)
+												);
+											}
 										}
 									}
 								}
@@ -241,66 +282,42 @@ module.exports = {
 	},
 
 	createUsersConnection: (req, res) => {
-		const creationDate = new Date();
-		const lastUpdate = new Date();
 		const user_A = req.params.useridA;
 		const user_B = req.params.useridB;
 
 		mySqlConnection.query(
-			"INSERT INTO Connections (user_A_id, user_B_id, creation_date, last_update) values (?, ?, ?, ?)" +
-				"ON DUPLICATE KEY UPDATE user_A_id = ?, user_B_id = ?, last_update = ?",
-			[user_A, user_B, creationDate, lastUpdate, user_A, user_B, lastUpdate],
+			`
+		select * from connections where (user_A_id = ${user_B} and user_B_id = ${user_A}) or (((user_A_id = ${user_A} and user_B_id = ${user_B})) and connected = 1)`,
 			(err, rows) => {
 				try {
-					if (typeof rows !== "undefined") {
-						// the insert succeed
+					if (rows.length > 0) {
 						mySqlConnection.query(
-							`select * from connections where ((user_A_id = ${user_B} and user_B_id = ${user_A}) or 
-                (user_A_id = ${user_A} and user_B_id = ${user_B}))`,
+							`
+					update connections set connected = 1 where (user_A_id = ${user_B} and user_B_id = ${user_A})`,
 							(err, rows) => {
-								if (rows.length === 2) {
-									mySqlConnection.query(
-										`update connections set connected = 1 where 
-                          ((user_A_id = ${user_A} and user_B_id = ${user_B}) or
-                          (user_A_id = ${user_B} and user_B_id = ${user_A}))`,
-										(err, rows) => {
-											try {
-												mySqlConnection.query(
-													`select first_name from user_configuration where user_id = ${user_A} or user_id = ${user_B}`,
-													(err, rows) => {
-														try {
-															const user_A_Name = rows[0].first_name;
-															const user_B_Name = rows[1].first_name;
-															msgToClient = {
-																msg: `Congrats! there is a new mutual connection between ${user_A_Name} and ${user_B_Name}! Would you like starting a new chat?`,
-															};
-															return res.send(msgToClient);
-														} catch (err) {
-															console.log(err.message);
-														}
-													}
-												);
-											} catch (err) {
-												console.log(err.message);
-											}
-										}
-									);
-								} else {
-									mySqlConnection.query(
-										`select first_name from user_configuration where user_id = ${user_A} or user_id = ${user_B}`,
-										(err, rows) => {
-											try {
-												const user_A_Name = rows[0].first_name;
-												const user_B_Name = rows[1].first_name;
-												msgToClient = {
-													msg: `Not mutual Connection between ${user_A_Name} and ${user_B_Name} is now exists.`,
-												};
-												return res.send(msgToClient);
-											} catch (err) {
-												console.log(err.message);
-											}
-										}
-									);
+								try {
+									msgToClient = {
+										msg: `Congrats! there is mutual connection between users ${user_A} and ${user_B}! Would you like starting a new chat?`,
+									};
+									return res.send(msgToClient);
+								} catch (err) {
+									console.log(err.message);
+								}
+							}
+						);
+					} else {
+						mySqlConnection.query(
+							`
+					insert into connections (user_a_id, user_b_id, creation_date, last_update) values
+					(${user_A}, ${user_B}, curdate(), curdate())`,
+							(err, rows) => {
+								try {
+									msgToClient = {
+										msg: `Not mutual connection between users ${user_A} and ${user_B} is now exists.`,
+									};
+									return res.send(msgToClient);
+								} catch (err) {
+									console.log(err.message);
 								}
 							}
 						);
@@ -315,65 +332,16 @@ module.exports = {
 	deleteUsersConnection: (req, res) => {
 		const user_A = req.params.useridA;
 		const user_B = req.params.useridB;
-		const lastUpdate = new Date();
 
 		mySqlConnection.query(
-			"DELETE FROM Connections WHERE user_A_id = ? AND user_B_id = ?",
-			[user_A, user_B],
-			(err, result) => {
+			`
+		delete from connections where ((user_a_id = ${user_A} and user_b_id = ${user_B}) or (user_a_id = ${user_B} and user_b_id = ${user_A}))`,
+			(err, rows) => {
 				try {
-					mySqlConnection.query(
-						`select * from connections where user_A_id = ${user_B} and user_B_id = ${user_A}`,
-						(err, rows) => {
-							try {
-								if (rows.length > 0) {
-									mySqlConnection.query(
-										`update connections set connected = 0 where
-                    user_A_id = ${user_B} and user_B_id = ${user_A}`,
-										(err, rows) => {
-											try {
-												mySqlConnection.query(
-													`select first_name from user_configuration where user_id = ${user_A} or user_id = ${user_B}`,
-													(err, rows) => {
-														try {
-															const user_A_Name = rows[0].first_name;
-															const user_B_Name = rows[1].first_name;
-															msgToClient = {
-																msg: `Oh no! There is no longer mutual connection between ${user_A_Name} and ${user_B_Name}`,
-															};
-															return res.send(msgToClient);
-														} catch (err) {
-															console.log(err.message);
-														}
-													}
-												);
-											} catch (err) {
-												console.log(err.message);
-											}
-										}
-									);
-								} else {
-									mySqlConnection.query(
-										`select first_name from user_configuration where user_id = ${user_A} or user_id = ${user_B}`,
-										(err, rows) => {
-											try {
-												const user_A_Name = rows[0].first_name;
-												const user_B_Name = rows[1].first_name;
-												msgToClient = {
-													msg: `Connection between ${user_A_Name} and ${user_B_Name} is no longer exists.`,
-												};
-												return res.send(msgToClient);
-											} catch (err) {
-												console.log(err.message);
-											}
-										}
-									);
-								}
-							} catch (err) {
-								console.log(err.message);
-							}
-						}
-					);
+					msgToClient = {
+						msg: `There is no longer connection between users ${user_A} and ${user_B}`,
+					};
+					return res.send(msgToClient);
 				} catch (err) {
 					console.log(err.message);
 				}
