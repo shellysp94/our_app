@@ -2,8 +2,32 @@ const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 
 module.exports = {
-	getUserFriendRequests: (req, res) => {
-        mySqlConnection.query(`SELECT* from connections where user_B_id = ? and connected =0`, [req.params.userid], (err, rows) =>
+	getUserFriendRequestsRecieved: (req, res) => {
+        mySqlConnection.query(`SELECT b.*
+        from connections a
+        join user_configuration b
+        on a.user_A_id = b.user_id
+        where a.user_B_id = ? and a.connected =0;`, [req.params.userid], (err, rows) =>
+        {
+            try
+            {
+                res.send(rows)
+            }
+
+            catch (err)
+            {
+                console.log(err);
+            }
+        });
+	},
+
+    getUserFriendRequestsSent: (req,res) =>
+    {
+        mySqlConnection.query(`SELECT b.*
+        from connections a
+        join user_configuration b
+        on a.user_B_id = b.user_id
+        where a.user_A_id = ? and a.connected =0 `, [req.params.userid], (err, rows) =>
         {
             try
             {
