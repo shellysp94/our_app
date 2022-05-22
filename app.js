@@ -27,6 +27,7 @@ const filtersRoutes = require("./api/routes/filters");
 const connectionsRoutes = require("./api/routes/connections");
 const notificationsRoutes = require("./api/routes/notifications");
 const dataFromSetsToClientRoute = require("./api/routes/dataFromSetsToClient");
+const friendRequestRoute = require("./api/routes/friendRequest");
 
 app.use("/users", usersRoutes);
 app.use("/userConfiguration", userConfigurationRoutes);
@@ -39,3 +40,4 @@ app.use("/filters", filtersRoutes);
 app.use("/connections", connectionsRoutes);
 app.use("/notifications", notificationsRoutes);
 app.use("/dataFromSetsToClient", dataFromSetsToClientRoute);
+app.use("/friendRequest", friendRequestRoute);
