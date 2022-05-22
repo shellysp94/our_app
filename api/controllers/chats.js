@@ -44,8 +44,8 @@ module.exports = {
 	},
 
 	createUsersChat: (req, res) => {
-		const currentDate = new Date();
-		const lastLogin = new Date();
+		//const currentDate = new Date();
+		//const lastLogin = new Date();
 		const userIdA = req.params.useridA;
 		const userIdB = req.params.useridB;
 
@@ -56,7 +56,9 @@ module.exports = {
 					if (rows.length === 0) {
 						// there is no chat of these users --> should create a new chat for them.
 						mySqlConnection.query(
-							`select * from connections where (user_A_id = ${userIdA} and user_B_id = ${userIdB} and connected = 1)`,
+							`select * from connections 
+							where (((user_A_id = ${userIdA} and user_B_id = ${userIdB}) or (user_a_id = ${userIdB} and user_b_id = ${userIdA})) 
+							and connected = 1)`,
 							(err, rows) => {
 								try {
 									if (rows.length > 0) {
