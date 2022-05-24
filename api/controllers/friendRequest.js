@@ -1,8 +1,10 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
+const {getUserConfigurationInner} = require("./userConfiguration");
 
 module.exports = {
-	getUserFriendRequestsRecieved: (req, res) => {
+    getUserFriendRequestsRecieved: (req, res) => 
+    {
         mySqlConnection.query(`SELECT b.*
         from connections a
         join user_configuration b
@@ -11,7 +13,27 @@ module.exports = {
         {
             try
             {
-                res.send(rows)
+                if(rows.length>0)
+                {
+                    let usersArr=[];
+                    for(let i =0 ; i<rows.length;i++)
+                    {
+                        usersArr.push(rows[i].user_id)
+                    }
+
+                    let resultArrayToObject = {
+                        params: {userid: String(usersArr)},
+                    };
+
+                    getUserConfigurationInner(resultArrayToObject,(config) =>
+                    {
+                            res.send(config);   
+                    });   
+                }
+                else
+                {
+                    res.send('No friend requests recieved');
+                }
             }
 
             catch (err)
@@ -19,7 +41,7 @@ module.exports = {
                 console.log(err);
             }
         });
-	},
+    },
 
     getUserFriendRequestsSent: (req,res) =>
     {
@@ -27,11 +49,31 @@ module.exports = {
         from connections a
         join user_configuration b
         on a.user_B_id = b.user_id
-        where a.user_A_id = ? and a.connected =0 `, [req.params.userid], (err, rows) =>
+        where a.user_A_id = ? and a.connected =0;`, [req.params.userid], (err, rows) =>
         {
             try
             {
-                res.send(rows)
+                if(rows.length>0)
+                {
+                    let usersArr=[];
+                    for(let i =0 ; i<rows.length;i++)
+                    {
+                        usersArr.push(rows[i].user_id)
+                    }
+
+                    let resultArrayToObject = {
+                        params: {userid: String(usersArr)},
+                    };
+
+                    getUserConfigurationInner(resultArrayToObject,(config) =>
+                    {
+                            res.send(config);   
+                    });   
+                }
+                else
+                {
+                    res.send('No friend requests sent');
+                }
             }
 
             catch (err)
@@ -39,7 +81,7 @@ module.exports = {
                 console.log(err);
             }
         });
-	},
+    },    
 
     sendFriendRequest: (req,res) =>
     {
