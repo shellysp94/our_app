@@ -32,7 +32,7 @@ module.exports = {
                 }
                 else
                 {
-                    res.send('No friend requests recieved');
+                    res.send([]);
                 }
             }
 
@@ -72,7 +72,7 @@ module.exports = {
                 }
                 else
                 {
-                    res.send('No friend requests sent');
+                    res.send([]);
                 }
             }
 
