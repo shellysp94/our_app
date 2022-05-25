@@ -5,14 +5,50 @@ const mySqlConnection = dbConfig;
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
-// function getPicNameAndEncode(imageName) {
-// 	dirnametemp = __dirname.substring(0, __dirname.length - 15);
-// 	finalFilePath = dirnametemp + "images\\" + imageName;
-// 	//encode image as base 64
-// 	var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
 
-// 	return imageAsBase64;
-// }
+const queryUserConfiguration = (arr, callback) => {
+
+	mySqlConnection.query(
+		`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image 
+		FROM user_configuration a 
+		LEFT JOIN user_pictures b 
+		ON a.user_id =  b.user_id 
+		WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
+		ORDER BY first_name asc, last_name asc `,
+		[arr],
+		(err, rows) => {
+			if (!err) {
+				if (rows.length > 0) {
+					for (let i = 0; i < rows.length; i++) {
+						if (rows[i].image !== null) {
+							rows[i].image =userPictures.getPicNameAndEncode(rows[i].image);
+						}
+						else
+						{
+							if(rows[i].gender == 'Man')
+							{
+								rows[i].image =  userPictures.getPicNameAndEncode("male_profile.jpg")
+							}
+							else if(rows[i].gender == 'Woman')
+							{
+								rows[i].image = userPictures.getPicNameAndEncode("woman_profile.jpg")
+							}
+
+							else
+							{
+								rows[i].image = userPictures.getPicNameAndEncode("non_binary_profile.PNG")
+							}
+						}
+					}
+				}
+
+				return callback(rows);
+			} else {
+				console.log(err);
+			}
+		}
+	);
+}
 
 module.exports = {
 	getAllUsersConfiguration: (req, cb) => {
@@ -30,93 +66,15 @@ module.exports = {
 
 	getUserConfigurationInner: (req, cb) => {
 		const arr = req.params.userid.split(",");
-
-		mySqlConnection.query(
-			`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image 
-            FROM user_configuration a 
-            LEFT JOIN user_pictures b 
-            ON a.user_id =  b.user_id 
-            WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
-			ORDER BY first_name asc, last_name asc `,
-			[arr],
-			(err, rows) => {
-				if (!err) {
-					if (rows.length > 0) {
-						for (let i = 0; i < rows.length; i++) {
-							if (rows[i].image !== null) {
-								rows[i].image =userPictures.getPicNameAndEncode(rows[i].image);
-							}
-							else
-							{
-								if(rows[i].gender == 'Man')
-								{
-									rows[i].image =  userPictures.getPicNameAndEncode("male_profile.jpg")
-								}
-								else if(rows[i].gender == 'Woman')
-								{
-									rows[i].image = userPictures.getPicNameAndEncode("woman_profile.jpg")
-								}
-
-								else
-								{
-									rows[i].image = userPictures.getPicNameAndEncode("non_binary_profile.PNG")
-								}
-							}
-						}
-					}
-
-					return cb(rows);
-				} else {
-					console.log(err);
-				}
-			}
-		);
+		return queryUserConfiguration(arr, cb);
 	},
 
 	getUserConfiguration: (req, res) => {
 		const arr = req.params.userid.split(",");
 
-		mySqlConnection.query(
-			`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image 
-            FROM user_configuration a 
-            LEFT JOIN user_pictures b 
-            ON a.user_id =  b.user_id 
-            WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
-			ORDER BY first_name asc, last_name asc `,
-			[arr],
-			(err, rows) => {
-				if (!err) {
-					if (rows.length > 0) {
-						for (let i = 0; i < rows.length; i++) {
-							if (rows[i].image !== null) {
-								rows[i].image =userPictures.getPicNameAndEncode(rows[i].image);
-							}
-							else
-							{
-								if(rows[i].gender == 'Man')
-								{
-									rows[i].image =  userPictures.getPicNameAndEncode("male_profile.jpg")
-								}
-								else if(rows[i].gender == 'Woman')
-								{
-									rows[i].image = userPictures.getPicNameAndEncode("woman_profile.jpg")
-								}
-
-								else
-								{
-									rows[i].image = userPictures.getPicNameAndEncode("non_binary_profile.PNG")
-								}
-							}
-						}
-					}
-
-					return res.send(rows);
-				} else {
-					console.log(err);
-				}
-			}
-		);
+		return queryUserConfiguration(arr, (config) => { res.send(config) });
 	},
+
 	createUserConfiguration: (req, res) => {
 		/////////////
 		mySqlConnection.query(
