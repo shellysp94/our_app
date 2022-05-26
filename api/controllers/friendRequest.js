@@ -92,7 +92,7 @@ module.exports = {
         {
             try
             {
-                mySqlConnection.query(`select* from device_token where user_id=?`, [req.params.useridA], (newErr, newRows) =>
+                mySqlConnection.query(`select* from device_token where user_id=?`, [req.params.useridB], (newErr, newRows) =>
                 {
                     try
                     {
