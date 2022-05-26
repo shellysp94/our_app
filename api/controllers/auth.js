@@ -25,6 +25,8 @@ module.exports={
                 var resultArray = Object.values(JSON.parse(JSON.stringify(rows)))
                 var dbPass = resultArray[0].password;
 
+                var user_id_from_query = resultArray[0].user_id;
+
                 bcrypt.compare(password, dbPass, (err, result) => 
                 {
                     if (err)
@@ -37,7 +39,7 @@ module.exports={
                         const accessToken = jwt.sign(
                             { user_id: resultArray[0].user_id},
                             publicToken,
-                            {expiresIn: '3d'}
+                            {expiresIn: '365d'}
                         );
 
                         const userCred = 
@@ -51,7 +53,20 @@ module.exports={
                         {
                             if(!err)
                             {
-                                return res.send(userCred);
+                                //insert the token to device_token table
+                                mySqlConnection.query('insert into device_token (user_id, device_token) values (?,?)',[user_id_from_query,req.body.device_token], (newErr, newResults) =>
+                                {
+                                    if(!newErr)
+                                    {
+                                        return res.send(userCred);
+                                    }
+
+                                    else
+                                    {
+                                        console.log(newErr);
+                                    }
+                                });
+                               
                             }
                             else
                             {

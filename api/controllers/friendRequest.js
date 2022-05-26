@@ -1,6 +1,8 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 const {getUserConfigurationInner} = require("./userConfiguration");
+const {sendNotification} = require("../fcm");
+
 
 module.exports = {
     getUserFriendRequestsRecieved: (req, res) => 
@@ -90,6 +92,25 @@ module.exports = {
         {
             try
             {
+                mySqlConnection.query(`select* from device_token where user_id=?`, [req.params.useridA], (newErr, newRows) =>
+                {
+                    try
+                    {
+                        if(newRows.length > 0)
+                        {
+                            var deviceTokenToSend = newRows[0].device_token;
+                            msgToSend = "Friend request from ${req.params.useridA} to ${req.params.useridB} sent"
+                            sendNotification(deviceTokenToSend,msgToSend);
+                        }
+                    }
+
+                    catch(newErr)
+                    {
+                        console.log(newErr);
+                    }
+                    
+                });
+                
                 res.send(`Friend request from ${req.params.useridA} to ${req.params.useridB} sent`);
             }
 
