@@ -2,6 +2,7 @@ const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 const {getUserConfigurationInner} = require("./userConfiguration");
 const {sendNotification} = require("../fcm");
+const {admin} = require("../../config/firebase_config")
 
 
 module.exports = {
@@ -100,7 +101,27 @@ module.exports = {
                         {
                             var deviceTokenToSend = newRows[0].device_token;
                             msgToSend = "Friend request from ${req.params.useridA} to ${req.params.useridB} sent"
-                            sendNotification(deviceTokenToSend,msgToSend);
+                            //sendNotification(deviceTokenToSend,msgToSend);
+                            /// checkkkkk
+
+                            const message_notification = {
+                                notification: {
+                                   title: "friend request",
+                                   body: "enter_message_here"
+                                       }
+                                };
+
+                            const notification_options = {
+                                priority: "high",
+                                timeToLive: 60 * 60 * 24
+                              };
+
+                              admin.messaging().sendToDevice(deviceTokenToSend, message_notification, notification_options)
+                              .then( response => {
+                        
+                                res.send(`Friend request from ${req.params.useridA} to ${req.params.useridB} sent`);
+                               
+                              })
                         }
                     }
 
