@@ -47,11 +47,11 @@ CREATE TABLE Messages (
 
 
 CREATE TABLE Notifications (
-  notification_id int NOT NULL AUTO_INCREMENT,
+  notification_id varchar(500) NOT NULL,
   user_id int NOT NULL,
   content varchar(5000) NOT NULL,
-  sent_from int NOT NULL,
-  creation_date date NOT NULL,
+  title varchar(5000) NOT NULL,
+  creation_date datetime NOT NULL,
   seen tinyint not null default '0',
   PRIMARY KEY (notification_id),
   foreign key (user_id) references Users (user_id)

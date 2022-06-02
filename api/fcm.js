@@ -1,27 +1,44 @@
+const {admin} = require("../config/firebase_config")
+const dbConfig = require("../config/db_config");
+const mySqlConnection = dbConfig;
+
 module.exports = {
-    sendNotification(deviceToken,msgToSend)
-{
-    const registrationToken = deviceToken;
+   sendNotification: (res,deviceTokenToSend,titleToSend, bodyToSend, userIdToSend) =>
+    {
+        const message_notification = {
+            notification: {
+               title: titleToSend,
+               body: bodyToSend
+                   }
+            };
 
-    const message = {
-    data: {
-        msgToSend
-    },
-    token: registrationToken
-    };
+        const notification_options = {
+            priority: "high",
+            timeToLive: 60 * 60 * 24
+          };
 
-    // Send a message to the device corresponding to the provided
-    // registration token.
-    getMessaging().send(message)
-    .then((response) => {
-        // Response is a message ID string.
-        console.log('Successfully sent message:', response);
-    })
-    .catch((error) => {
-        console.log('Error sending message:', error);
-    });
+          admin.messaging().sendToDevice(deviceTokenToSend, message_notification, notification_options)
+          .then( response => 
+            { 
+                sqlQuery = `insert into notifications (notification_id, user_id, content, title, creation_date) values (${response.multicastId},${userIdToSend},'${bodyToSend}','${titleToSend}',CURRENT_TIMESTAMP())`;
+
+                mySqlConnection.query(sqlQuery, (err,rows) =>
+                {
+                    try
+                    {
+                        res.send(`${titleToSend} sent`);
+                    }
+
+                    catch(err)
+                    {
+                        console.log(err);
+                    }
+                })
+            })
+
+            .catch(error =>
+                {
+                    console.log(error);
+                })
+        }
 }
-
-}
-
-

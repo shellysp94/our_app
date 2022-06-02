@@ -5,6 +5,26 @@ const {sendNotification} = require("../fcm");
 const {admin} = require("../../config/firebase_config")
 
 
+const extractParametersForNotification = (req, newRows) => 
+{
+    let tokensArr=[]
+    for(var i = 0; i<newRows.length; i++)
+    {
+        if(newRows[i].user_id == req.params.useridB)
+        {
+            tokensArr.push(newRows[i].device_token)
+        }
+
+        if(newRows[i].user_id == req.params.useridA)
+        {
+            var senderName = newRows[i].first_name +" "+ newRows[i].last_name;
+        }
+    }
+    const paramsForNotification = {deviceTokenToSend: tokensArr, titleToSend:"New friend request", bodyToSend: `Friend request from ${senderName}`,  userIdTosend: req.params.useridB}
+    return paramsForNotification;
+}
+
+
 module.exports = {
     getUserFriendRequestsRecieved: (req, res) => 
     {
@@ -93,35 +113,18 @@ module.exports = {
         {
             try
             {
-                mySqlConnection.query(`select* from device_token where user_id=?`, [req.params.useridB], (newErr, newRows) =>
+                mySqlConnection.query(`SELECT b.*, a.device_token
+                from device_token a
+                join user_configuration b
+                on a.user_id = b.user_id
+                where a.user_id = ? or b.user_id = ?`, [req.params.useridB, req.params.useridA], (newErr, newRows) =>
                 {
                     try
                     {
                         if(newRows.length > 0)
                         {
-                            var deviceTokenToSend = newRows[0].device_token;
-                            msgToSend = "Friend request from ${req.params.useridA} to ${req.params.useridB} sent"
-                            //sendNotification(deviceTokenToSend,msgToSend);
-                            /// checkkkkk
-
-                            const message_notification = {
-                                notification: {
-                                   title: "friend request",
-                                   body: "enter_message_here"
-                                       }
-                                };
-
-                            const notification_options = {
-                                priority: "high",
-                                timeToLive: 60 * 60 * 24
-                              };
-
-                              admin.messaging().sendToDevice(deviceTokenToSend, message_notification, notification_options)
-                              .then( response => {
-                        
-                                res.send(`Friend request from ${req.params.useridA} to ${req.params.useridB} sent`);
-                               
-                              })
+                            valuesForNotification = extractParametersForNotification(req,newRows);
+                            sendNotification(res, valuesForNotification.deviceTokenToSend, valuesForNotification.titleToSend, valuesForNotification.bodyToSend, valuesForNotification.userIdTosend);
                         }
                     }
 
@@ -129,10 +132,7 @@ module.exports = {
                     {
                         console.log(newErr);
                     }
-                    
                 });
-                
-                res.send(`Friend request from ${req.params.useridA} to ${req.params.useridB} sent`);
             }
 
             catch(err)
