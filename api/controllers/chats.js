@@ -1,6 +1,8 @@
 const dbConfig = require("../../config/db_config");
 const {getChatMessages, deleteChatMessages} = require("./messages");
 const mySqlConnection = dbConfig;
+const classChatRooms = require("../../classChatRooms/classChatRooms");
+let chatRoomsArray = [];
 
 module.exports = {
 	getAllChats: (req, res) => {
@@ -44,8 +46,6 @@ module.exports = {
 	},
 
 	createUsersChat: (req, res) => {
-		//const currentDate = new Date();
-		//const lastLogin = new Date();
 		const userIdA = req.params.useridA;
 		const userIdB = req.params.useridB;
 
@@ -67,13 +67,22 @@ module.exports = {
 											(err, rows) => {
 												try {
 													mySqlConnection.query(
-														`select first_name from user_configuration where user_id = ${userIdA} or user_id = ${userIdB}`,
+														`select chat_id from chats where user_A_id = ${userIdA} and user_B_id = ${userIdB}`,
 														(err, rows) => {
 															try {
-																const user_A_Name = rows[0].first_name;
-																const user_B_Name = rows[1].first_name;
+																let chatRoom = new classChatRooms(
+																	rows[0].chat_id,
+																	userIdA,
+																	userIdB
+																);
+																chatRoomsArray.push(chatRoom);
+
+																console.log(
+																	`chat room with chat_id = ${chatRoom.getChatId()} between users: ${chatRoom.getUser_A_id()} and ${chatRoom.getUser_B_id()} created successfully!`
+																);
+																console.log(chatRoomsArray);
 																msgToClient = {
-																	msg: `Chat between ${user_A_Name} and ${user_B_Name} is now exists, lets talk!`,
+																	msg: `Chat room between users ${userIdA} and ${userIdB} created.`,
 																};
 																return res.send(msgToClient);
 															} catch (err) {
