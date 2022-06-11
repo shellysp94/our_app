@@ -1,21 +1,19 @@
 const dbConfig = require("../../config/db_config");
 const {getChatMessages, deleteChatMessages} = require("./messages");
 const mySqlConnection = dbConfig;
-const classChatRooms = require("../../classChatRooms/classChatRooms");
-let chatRoomsArray = [];
+const chatRoomsArray = require("../../chatRooms/chatRoomsArray");
+const chatRooms = new chatRoomsArray().getInstance();
 
-module.exports = {
-	getAllChats: (req, res) => {
-		mySqlConnection.query("SELECT * from Chats", (err, rows) => {
-			try {
-				res.send(rows);
-			} catch (err) {
-				console.log(err.message);
-			}
-		});
-	},
-
-	getUsersChat: (req, res) => {
+(getAllChats = (req, res) => {
+	mySqlConnection.query("SELECT * from Chats", (err, rows) => {
+		try {
+			res.send(rows);
+		} catch (err) {
+			console.log(err.message);
+		}
+	});
+}),
+	(getUsersChat = (req, res) => {
 		const userIdA = req.params.useridA;
 		const userIdB = req.params.useridB;
 		mySqlConnection.query(
@@ -43,9 +41,8 @@ module.exports = {
 				}
 			}
 		);
-	},
-
-	createUsersChat: (req, res) => {
+	}),
+	(createUsersChat = (req, res) => {
 		const userIdA = req.params.useridA;
 		const userIdB = req.params.useridB;
 
@@ -57,8 +54,8 @@ module.exports = {
 						// there is no chat of these users --> should create a new chat for them.
 						mySqlConnection.query(
 							`select * from connections 
-							where (((user_A_id = ${userIdA} and user_B_id = ${userIdB}) or (user_a_id = ${userIdB} and user_b_id = ${userIdA})) 
-							and connected = 1)`,
+						where (((user_A_id = ${userIdA} and user_B_id = ${userIdB}) or (user_a_id = ${userIdB} and user_b_id = ${userIdA})) 
+						and connected = 1)`,
 							(err, rows) => {
 								try {
 									if (rows.length > 0) {
@@ -70,17 +67,19 @@ module.exports = {
 														`select chat_id from chats where user_A_id = ${userIdA} and user_B_id = ${userIdB}`,
 														(err, rows) => {
 															try {
-																let chatRoom = new classChatRooms(
+																chatRooms.insertNewChatRoom(
 																	rows[0].chat_id,
-																	userIdA,
-																	userIdB
+																	parseInt(userIdA, 10),
+																	parseInt(userIdB, 10)
 																);
-																chatRoomsArray.push(chatRoom);
 
-																console.log(
-																	`chat room with chat_id = ${chatRoom.getChatId()} between users: ${chatRoom.getUser_A_id()} and ${chatRoom.getUser_B_id()} created successfully!`
+																const currentChatRoom = chatRooms.getChatRoom(
+																	rows[0].chat_id
 																);
-																console.log(chatRoomsArray);
+																console.log(
+																	`chat room with chat_id = ${currentChatRoom.getChatId()} between users: ${currentChatRoom.getUser_A_id()} and ${currentChatRoom.getUser_B_id()} created successfully!`
+																);
+																console.log(chatRooms);
 																msgToClient = {
 																	msg: `Chat room between users ${userIdA} and ${userIdB} created.`,
 																};
@@ -112,6 +111,7 @@ module.exports = {
 							`update chats set last_login = curdate() where chat_id = ${chatID}`,
 							(err, rows) => {
 								try {
+									console.log("im from updating", chatRooms);
 									let desiredChatRoom = {
 										params: {
 											chatID: String(chatID),
@@ -130,20 +130,14 @@ module.exports = {
 				}
 			}
 		);
-	},
-
-	deleteUsersChat: (req, res) => {
+	}),
+	(deleteUsersChat = (req, res) => {
 		const userIdA = req.params.useridA;
 		const userIdB = req.params.useridB;
 
-		// mySqlConnection.query(
-		// 	"DELETE FROM Chats WHERE user_A_id = ? AND user_B_id = ?",
-		// 	[userIdA, userIdB],
-		// 	(err, rows) => {
-		// 		try {
 		mySqlConnection.query(
 			`select chat_id from chats where (user_a_id = ${userIdA} and user_b_id = ${userIdB})
-						or (user_a_id = ${userIdB} and user_b_id = ${userIdA})`,
+					or (user_a_id = ${userIdB} and user_b_id = ${userIdA})`,
 			(err, rows) => {
 				try {
 					if (rows.length === 0) {
@@ -165,5 +159,11 @@ module.exports = {
 				}
 			}
 		);
-	},
+	});
+
+module.exports = {
+	getAllChats: getAllChats,
+	getUsersChat: getUsersChat,
+	createUsersChat: createUsersChat,
+	deleteUsersChat: deleteUsersChat,
 };
