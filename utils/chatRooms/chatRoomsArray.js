@@ -1,4 +1,4 @@
-const dbConfig = require("../config/db_config");
+const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 const chatRoom = require("./chatRoom");
 
@@ -34,6 +34,10 @@ let chatRoomsArray = class {
 		if (!this.chatRooms.includes(newChatRoom)) {
 			this.chatRooms.push(newChatRoom);
 		}
+	}
+
+	getChatRoomsArray() {
+		return this.chatRooms;
 	}
 
 	getChatRoom(chat_id) {

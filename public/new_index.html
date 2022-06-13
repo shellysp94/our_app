@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socket Thing1</title>
-</head>
-<body>
-    Client1
-    <button onclick="sendMessage()">Send Msg</button>
-</body>
-<script>
-    // Create WebSocket connection.
-    var options = {
-    headers: {
-        "Authorization" : 'bearer ' +"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTI2MTc5NzAsImV4cCI6MTY1Mjg3NzE3MH0.g_t7ndceaRywf3iC2vtZOs6hBDe6L4mjvv843L8LZuI"
-    }
-};
-    const ws = new WebSocket('ws://localhost:3000?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE2NTI5ODQxMDAsImV4cCI6MTY1MzI0MzMwMH0.utPIPlKejbNm0CIO_sL5B4NBEx_XZtsuHAiPyfrD4_I');
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Socket Thing1</title>
+	</head>
+	<body>
+		Client1
+		<button onclick="sendMessage()">Send Msg</button>
+	</body>
+	<script>
+		// Create WebSocket connection.
+		var options = {
+			headers: {
+				Authorization:
+					"bearer " +
+					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTI2MTc5NzAsImV4cCI6MTY1Mjg3NzE3MH0.g_t7ndceaRywf3iC2vtZOs6hBDe6L4mjvv843L8LZuI",
+			},
+		};
+		const ws = new WebSocket(
+			"ws://localhost:3000?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE2NTI5ODQxMDAsImV4cCI6MTY1MzI0MzMwMH0.utPIPlKejbNm0CIO_sL5B4NBEx_XZtsuHAiPyfrD4_I"
+		);
 
-    ws.onopen = (event) =>
-    {
-        console.log("Websocket connection established");
-        ws.send("hello world");
-    }
+		ws.onopen = (event) => {
+			console.log("Websocket connection established");
+			ws.send("hello world");
+		};
 
-    ws.onmessage = (event) =>
-    {
-        console.log("WebSocket message received: ", event.data);
-    }
-/*
+		ws.onmessage = (event) => {
+			console.log("WebSocket message received: ", event.data);
+		};
+		/*
 
     // Connection opened
     socket.addEventListener('open', function (event) {
@@ -44,5 +46,5 @@
         socket.send('Hello From Client1!');
     }
     */
-</script>
+	</script>
 </html>

@@ -1,7 +1,7 @@
 const dbConfig = require("../../config/db_config");
 const {getChatMessages, deleteChatMessages} = require("./messages");
 const mySqlConnection = dbConfig;
-const chatRoomsArray = require("../../chatRooms/chatRoomsArray");
+const chatRoomsArray = require("../../utils/chatRooms/chatRoomsArray");
 const chatRooms = new chatRoomsArray().getInstance();
 
 (getAllChats = (req, res) => {
@@ -16,6 +16,8 @@ const chatRooms = new chatRoomsArray().getInstance();
 	(getUsersChat = (req, res) => {
 		const userIdA = req.params.useridA;
 		const userIdB = req.params.useridB;
+		const messagesOffset = req.params.offset;
+
 		mySqlConnection.query(
 			"SELECT * FROM Chats WHERE (user_A_id = ? AND user_B_id = ?) OR (user_A_id = ? AND user_B_id = ?)",
 			[userIdA, userIdB, userIdB, userIdA],
@@ -31,7 +33,7 @@ const chatRooms = new chatRoomsArray().getInstance();
 						let desiredChatRoom = {
 							params: {
 								chatID: String(chatID),
-								messagesOffset: String(0),
+								messagesOffset: String(messagesOffset),
 							},
 						};
 						getChatMessages(desiredChatRoom, res);
@@ -79,7 +81,10 @@ const chatRooms = new chatRoomsArray().getInstance();
 																console.log(
 																	`chat room with chat_id = ${currentChatRoom.getChatId()} between users: ${currentChatRoom.getUser_A_id()} and ${currentChatRoom.getUser_B_id()} created successfully!`
 																);
-																console.log(chatRooms);
+																console.log(
+																	"Im from chats file :)\n",
+																	chatRooms
+																);
 																msgToClient = {
 																	msg: `Chat room between users ${userIdA} and ${userIdB} created.`,
 																};
