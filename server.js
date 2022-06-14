@@ -13,7 +13,8 @@ const wss = new WebSocket.Server({server});
 const onlineUsers = new onlineUsersArray().getInstance();
 
 wss.on("connection", (ws, req) => {
-	let token = url.parse(req.url, true).query.token;
+	const token = req.headers.authorization.split(" ")[1];
+	//let token = url.parse(req.url, true).query.token;
 	let userid;
 
 	mySqlConnection.query(
