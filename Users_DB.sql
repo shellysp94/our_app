@@ -37,8 +37,7 @@ CREATE TABLE Chats (
 
 CREATE TABLE Messages (
   chat_id int not null, 
-  create_day date not null,
-  create_time time not null,
+  creation_date datetime NOT NULL,
   sender_user_id int NOT NULL,
   receiver_user_id int NOT NULL,
   content varchar(5000) not null,
