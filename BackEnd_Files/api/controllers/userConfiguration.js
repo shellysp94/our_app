@@ -1,13 +1,11 @@
 const dbConfig = require("../../config/db_config");
-const userPictures = require("../controllers/userPictures");
+const userPictures = require("./userPictures");
 const fs = require("fs");
 const mySqlConnection = dbConfig;
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
-
 const queryUserConfiguration = (arr, callback) => {
-
 	mySqlConnection.query(
 		`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image 
 		FROM user_configuration a 
@@ -21,22 +19,18 @@ const queryUserConfiguration = (arr, callback) => {
 				if (rows.length > 0) {
 					for (let i = 0; i < rows.length; i++) {
 						if (rows[i].image !== null) {
-							rows[i].image =userPictures.getPicNameAndEncode(rows[i].image);
-						}
-						else
-						{
-							if(rows[i].gender == 'Man')
-							{
-								rows[i].image =  userPictures.getPicNameAndEncode("male_profile.jpg")
-							}
-							else if(rows[i].gender == 'Woman')
-							{
-								rows[i].image = userPictures.getPicNameAndEncode("woman_profile.jpg")
-							}
-
-							else
-							{
-								rows[i].image = userPictures.getPicNameAndEncode("non_binary_profile.PNG")
+							rows[i].image = userPictures.getPicNameAndEncode(rows[i].image);
+						} else {
+							if (rows[i].gender == "Man") {
+								rows[i].image =
+									userPictures.getPicNameAndEncode("male_profile.jpg");
+							} else if (rows[i].gender == "Woman") {
+								rows[i].image =
+									userPictures.getPicNameAndEncode("woman_profile.jpg");
+							} else {
+								rows[i].image = userPictures.getPicNameAndEncode(
+									"non_binary_profile.PNG"
+								);
 							}
 						}
 					}
@@ -48,7 +42,7 @@ const queryUserConfiguration = (arr, callback) => {
 			}
 		}
 	);
-}
+};
 
 module.exports = {
 	getAllUsersConfiguration: (req, cb) => {
@@ -72,7 +66,9 @@ module.exports = {
 	getUserConfiguration: (req, res) => {
 		const arr = req.params.userid.split(",");
 
-		return queryUserConfiguration(arr, (config) => { res.send(config) });
+		return queryUserConfiguration(arr, (config) => {
+			res.send(config);
+		});
 	},
 
 	createUserConfiguration: (req, res) => {
