@@ -1,0 +1,32 @@
+{
+    "root": true,
+    "extends": [
+        "@react-native-community",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier",
+        "react-hooks"
+    ],
+    "parserOptions": {
+        "requireConfigFile": false,
+        "ecmaVersion": 12,
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module",
+        "parser": "@babel/eslint-parser"
+    },
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "react-hooks/exhaustive-deps": "warn"
+    }
+}
