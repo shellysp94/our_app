@@ -170,5 +170,24 @@ module.exports = {
                 console.log(err);
             }
         });
+    },
+
+    declineFriendRequest: (req,res) =>
+    {
+        const sentReqUser = req.params.useridB;
+        const declineReqUser=req.params.useridA;
+
+        mySqlConnection.query(`DELETE FROM connections WHERE user_A_id=? AND user_B_id=?`, [sentReqUser,declineReqUser], (err,rows) =>
+        {
+            try
+            {
+                res.send('Deleted friend request');
+            }
+            catch(err)
+            {
+                console.log(err);
+            }
+        });
     }
+    
 }
