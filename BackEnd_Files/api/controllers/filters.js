@@ -172,26 +172,85 @@ getUsersWithCommonRelationshipFilter = (req, callback) => {
 
 getUsersWithCommonInterestedInFilter = (req, callback) => {
 	const interestedInFilter = req.interested_in_filter;
+	let currentUserId = req.user_id;
+	let sqlQuery =
+		"select uc.user_id from filters f right join user_configuration uc using (user_id) ";
+	let currentUserGender, currentUserSexualOrientation;
 
 	if (interestedInFilter === "Interested in") {
 		noFilter(req, (allUsersWithoutMe) => {
 			return callback(allUsersWithoutMe);
 		});
+	} else if (
+		interestedInFilter.includes("Hookup") ||
+		interestedInFilter.includes("Long term relationship") ||
+		interestedInFilter.includes("Short term relationship")
+	) {
+		console.log("Here I need to filter wisely");
+		mySqlConnection.query(
+			`select gender, sexual_orientation from user_configuration where user_id = ${currentUserId}`,
+			(err, rows) => {
+				try {
+					currentUserGender = rows[0].gender;
+					currentUserSexualOrientation = rows[0].sexual_orientation;
+
+					switch (currentUserSexualOrientation) {
+						case "Heterosexual":
+							console.log("heterosexual");
+							sqlQuery = sqlQuery.concat(
+								`where (sexual_orientation like 'Heterosexual' and gender not like ${currentUserGender})`
+							);
+							break;
+						case "Homosexual":
+							console.log("Homosexual");
+							sqlQuery = sqlQuery.concat(
+								`where (sexual_orientation like 'Homosexual' and gender like ${currentUserGender})`
+							);
+							break;
+						case "Bisexual":
+							console.log("im from the switch: Bisexual");
+							sqlQuery = sqlQuery.concat(
+								`where (sexual_orientation like 'Bisexual')`
+							);
+							break;
+						case "Asexual":
+							console.log("Asexual");
+							sqlQuery = sqlQuery.concat(
+								`where (sexual_orientation like 'Asexual')`
+							);
+							break;
+						default:
+							console.log("It's probably prefer not to say");
+					}
+
+					sqlQuery = sqlQuery.concat(
+						splitCommas(
+							" and interested_in_filter like ",
+							"interested_in_filter",
+							interestedInFilter
+						)
+					);
+				} catch (err) {
+					console.log(err.message);
+				}
+			}
+		);
 	} else {
-		let sqlQuery = splitCommas(
+		sqlQuery = splitCommas(
 			"select user_id from filters where interested_in_filter like ",
 			"interested_in_filter",
 			interestedInFilter
 		);
-
-		mySqlConnection.query(sqlQuery, (err, rows) => {
-			try {
-				return callback(rows);
-			} catch (err) {
-				console.log(err.message);
-			}
-		});
 	}
+
+	console.log("from the interesting in filter:", sqlQuery);
+	mySqlConnection.query(sqlQuery, (err, rows) => {
+		try {
+			return callback(rows);
+		} catch (err) {
+			console.log(err.message);
+		}
+	});
 };
 
 getUsersWithCommonAgeFilter = (req, callback) => {
@@ -253,6 +312,7 @@ getUserFilteredUsers = (req, res) => {
 	let relationship = [];
 	let interestedIn = [];
 	let age = [];
+	//console.log("im userid:", req.params.userid);
 
 	getUserFilter(req, (userFilter) => {
 		if (userFilter.length === 0) {
@@ -359,6 +419,24 @@ createUserFilter = (req, res) => {
 	const interestedInFilter = req.body.interested_in_filter;
 	let ageFilter = req.body.age_filter;
 	const friendsOnly = req.body.friends_only_filter;
+
+	console.log("From the POST method:\n");
+	console.log(
+		"search mode:",
+		searchMode,
+		"hobbies:",
+		hobbiesFilter,
+		"gender:",
+		genderFilter,
+		"relationship:",
+		relationshipFilter,
+		"interesting in:",
+		interestedInFilter,
+		"age:",
+		ageFilter,
+		"friends only:",
+		friendsOnly
+	);
 
 	if (ageFilter.length === 0) {
 		ageFilter = "[]";
