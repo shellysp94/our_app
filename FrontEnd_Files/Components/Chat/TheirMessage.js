@@ -5,11 +5,9 @@ import styles from '../../Styles/ChatStyle';
 import {View, Text} from 'react-native';
 
 const TheirMessage = props => {
-  console.log('props.content', props.content);
-
   return (
     <View style={styles.thierMessage}>
-      <Text style={{fontWeight: 'bold'}}>user1</Text>
+      <Text style={{fontWeight: 'bold'}}>user2</Text>
       <Text>{props.content}</Text>
     </View>
   );

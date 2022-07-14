@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
     borderColor: '#FFFFFF',
     borderWidth: 3,
-    elevation: 10,
     borderRadius: 85,
   },
   pressPic: {

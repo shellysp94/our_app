@@ -11,8 +11,10 @@ const ChatItem = props => {
   const data = props.data;
   const navigation = useNavigation();
   const navi = () => {
-    navigation.navigate('Conversation');
-    //BUG ADD parameters of receiever when navigate
+    console.log(data);
+    navigation.navigate('Conversation', {
+      userId: data.user_B_id,
+    });
   };
 
   return (

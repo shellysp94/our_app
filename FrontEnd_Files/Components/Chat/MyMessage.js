@@ -1,14 +1,18 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {View, Text} from 'react-native';
 import styles from '../../Styles/ChatStyle';
+import {useSelector} from 'react-redux';
 
 const MyMessage = props => {
-  console.log('My Message', props.message.content);
+  const userConfig = useSelector(state => state.userConfig);
   return (
     <View style={styles.myMessage}>
-      <Text style={{fontWeight: 'bold'}}>user2</Text>
-      <Text>{props.message.content}</Text>
+      <Text style={{fontWeight: 'bold'}}>
+        {userConfig.first_name} {userConfig.last_name}
+      </Text>
+      <Text>{props.content}</Text>
     </View>
   );
 };

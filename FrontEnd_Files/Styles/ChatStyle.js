@@ -24,12 +24,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   messageFormContainer: {
-    position: 'absolute',
     width: '100%',
-    padding: 18,
-    bottom: 60,
-    top: 500,
-    height: 50,
+    position: 'absolute',
+    bottom: 0,
+    paddingBottom: 30,
+    paddingHorizontal: 10,
   },
   messageForm: {
     width: '95%',
@@ -42,33 +41,29 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     maxWidth: '60%',
     backgroundColor: '#CDEAE2',
-    margin: 4,
+    margin: 2,
+    alignSelf: 'flex-start',
   },
   myMessage: {
+    margin: 2,
     padding: 12,
     fontSize: 16,
     borderRadius: 6,
     maxWidth: '60%',
     alignItems: 'flex-end',
     marginRight: 18,
-    color: 'white',
-    backgroundColor: '#75bedF',
+    // color: 'white',
     alignSelf: 'flex-end',
+    backgroundColor: Theme.backgroundColor,
   },
 
   messageInput: {
-    height: 40,
-    bottom: 0,
-    width: '100%',
+    height: 50,
     backgroundColor: 'white',
     fontSize: 15,
+    bottom: 0,
   },
-  sendIcon: {
-    position: 'relative',
-  },
-  messageBlock: {
-    width: '100%',
-  },
+
   item: {
     backgroundColor: '#B0D0D9',
     width: '90%',
@@ -81,6 +76,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#fff',
     borderWidth: 1.5,
+  },
+  container: {
+    flex: 1,
   },
   Pressables: {
     alignItems: 'center',

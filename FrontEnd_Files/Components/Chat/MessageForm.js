@@ -1,33 +1,48 @@
-import React from 'react';
-import {useState} from 'react';
-import {View, Button} from 'react-native';
-import {useDispatch} from 'react-redux';
+/* eslint-disable no-alert */
+/* eslint-disable no-unused-vars */
+import React, {useState} from 'react';
+import {View, Pressable} from 'react-native';
+import {useSelector} from 'react-redux';
 import styles from '../../Styles/ChatStyle';
-import {TextInput} from 'react-native-paper';
+import axios from 'axios';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import TInput from '../TInput';
 
-const MessageForm = (props) => {
-  const [value, setValue] = useState('');
+const MessageForm = () => {
   const myUserId = useSelector(state => state.userConfig.user_id);
+  const [message, setMessage] = useState('');
 
   const newMessage = `http://192.168.1.141:3000/messages/${myUserId}`;
 
-  const HandleSubmit = event => {
-    setValue('');
-    const res = await axios.post(`${newMessage}/props.`);
-  };
-  const HandleChange = event => {
-    setValue(event.target.value);
+  const HandleSubmit = async () => {
+    try {
+      await axios.post(`${newMessage}/2`, {
+        content: message,
+      });
+
+      setMessage('');
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
-    <View>
-      <TextInput
-        style={styles.messageInput}
-        placeholder="Send a message ..."
-        value={value}
-        onChange={HandleChange}
-      />
-      <Button title="submit" onPress={HandleSubmit} color="#841584" />
+    <View style={{width: '100%', flexDirection: 'row'}}>
+      <View style={{width: '88%'}}>
+        <TInput
+          style={styles.messageInput}
+          title={'Send a message ...'}
+          value={message}
+          secureTextEntry={false}
+          onChangeText={value => setMessage(value)}
+        />
+      </View>
+
+      <Pressable
+        style={{position: 'relative', margin: 8}}
+        onPress={HandleSubmit}>
+        <Ionicons name="send-outline" size={30} color={'#1B8AA0'} />
+      </Pressable>
     </View>
   );
 };

@@ -21,6 +21,7 @@ let state = {
   friendToSearch: '',
   myHobbies: [],
   OpenChats: [],
+  currChat: [],
 };
 
 const Reducer = (state, action) => {
@@ -81,6 +82,12 @@ const Reducer = (state, action) => {
     return {
       ...state,
       OpenChats: action.OpenChats,
+    };
+  }
+  if (action.type === 'SET_CURR_CHAT') {
+    return {
+      ...state,
+      currChat: action.currChat,
     };
   }
 
