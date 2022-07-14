@@ -9,7 +9,7 @@ getChatMessages = (req, res) => {
 	const messagesOffset = req.params.messagesOffset;
 
 	mySqlConnection.query(
-		`select * from (select * from messages where chat_id = ${chatID} limit 50 offset ${messagesOffset}) as T1 order by creation_date desc`,
+		`select * from (select * from messages where chat_id = ${chatID} limit 50 offset ${messagesOffset}) as T1 order by creation_date asc`,
 		(err, rows) => {
 			try {
 				if (typeof rows === "undefined" || rows.length === 0) {
