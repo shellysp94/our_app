@@ -9,8 +9,9 @@ import {useNavigation} from '@react-navigation/native';
 
 const CustomSidebarMenu = props => {
   const navigation = useNavigation();
-  const state = useSelector(state => state);
-  const userConfig = state.userConfig;
+  const fullName = useSelector(state => state.fullName);
+  const email = useSelector(state => state.email);
+  const userConfig = useSelector(state => state.userConfig);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,8 +24,8 @@ const CustomSidebarMenu = props => {
                 source={{uri: `data:image/gif;base64,${userConfig.image}`}}
               />
             </Pressable>
-            <Text style={styles.fullNameText}>{state.fullName}</Text>
-            <Text style={styles.emailText}>{state.email}</Text>
+            <Text style={styles.fullNameText}>{fullName}</Text>
+            <Text style={styles.emailText}>{email}</Text>
           </View>
         )}
         {Object.keys(userConfig).length === 0 && (

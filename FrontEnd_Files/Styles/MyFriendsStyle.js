@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   pressableContaner: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginTop: 20,
     left: 10,
     width: '95%',

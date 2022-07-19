@@ -15,14 +15,11 @@ const Chat = () => {
 
   const dispatch = useDispatch();
   const openChats = useSelector(state => state.OpenChats);
-
   //FIX ME - need useCallback????
   const getAllChats = useCallback(async () => {
     //FIX ME there is a problem with update list of open chats
-    console.log(`${allChats}/${myUserId}`);
     try {
       const res = await axios.get(`${allChats}/${myUserId}`);
-      console.log(res);
       dispatch({
         type: 'ALL_CHATS',
         OpenChats: res.data,

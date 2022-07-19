@@ -278,7 +278,7 @@ function SignUp() {
         </View>
         <View style={styles.ButtonSection1}>
           <Button
-            color="#0E6070"
+            color="#105A87"
             title="Continue"
             onPress={() => {
               AddUserToDB();

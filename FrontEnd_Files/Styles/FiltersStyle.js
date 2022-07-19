@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import Theme from './Theme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -83,11 +84,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   viewStyle: {
-    backgroundColor: '#61AF9B',
+    backgroundColor: Theme.mainButtons,
     padding: 7,
     margin: 5,
     borderRadius: 5,
-    width: 140,
+    width: '80%',
     borderWidth: 1,
     borderColor: '#0E6070',
     elevation: 5,
@@ -99,9 +100,11 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: 140,
   },
   valueItemText: {
     fontSize: 16,
+    color: 'white',
   },
   center: {
     justifyContent: 'center',

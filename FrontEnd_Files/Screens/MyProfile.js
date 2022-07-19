@@ -26,7 +26,6 @@ const MyProfile = () => {
   const [photos, setPhotos] = useState([]);
   const email = useSelector(state => state.email);
   const userConfig = useSelector(state => state.userConfig);
-  // const hobbies = userConfig.hobbies;
   const url = 'http://192.168.1.141:3000/userPictures/';
   const rawText = useSelector(state => state.rawText.registration_form);
   const myhobbies = useSelector(state => state.myHobbies);
@@ -216,7 +215,7 @@ const MyProfile = () => {
         <View style={styles.hobbies}>
           <Text style={styles.hobbiesText}>My hobbies are:</Text>
           <Hobbies
-            style={styles.Pressables}
+            style={{...styles.Pressables, width: 200}}
             text={
               myhobbies.length !== 0
                 ? myhobbies.toString()

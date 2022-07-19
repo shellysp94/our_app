@@ -103,14 +103,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   viewStyle: {
-    backgroundColor: '#61AF9B',
+    backgroundColor: '#ADE8F4', // birthday,hobbies
     marginLeft: 30,
     padding: 7,
     margin: 5,
     borderRadius: 5,
     width: '80%',
     borderWidth: 1,
-    borderColor: '#0E6070',
+    borderColor: 'white',
     elevation: 5,
   },
   cameraButton: {

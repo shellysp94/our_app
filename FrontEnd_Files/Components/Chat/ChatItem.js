@@ -11,9 +11,8 @@ const ChatItem = props => {
   const data = props.data;
   const navigation = useNavigation();
   const navi = () => {
-    console.log(data);
     navigation.navigate('Conversation', {
-      userId: data.user_B_id,
+      friendConfig: data,
     });
   };
 
@@ -28,11 +27,10 @@ const ChatItem = props => {
           flexDirection: 'row',
         }}>
         <View style={styles.Details}>
-          <Text style={styles.title}>{data.chat_id}</Text>
+          <Text style={styles.title}>
+            {data.first_name} {data.last_name}
+          </Text>
           <Text style={styles.body}>last message</Text>
-        </View>
-        <View style={styles.dateContainer}>
-          <Text>creation date</Text>
         </View>
       </View>
     </Pressable>

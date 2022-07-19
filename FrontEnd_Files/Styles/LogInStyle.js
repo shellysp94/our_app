@@ -27,7 +27,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   button: {
-    backgroundColor: '#005252',
+    backgroundColor: Theme.mainButtons,
+    borderWidth: 1,
+    borderColor: 'white',
     justifyContent: 'center',
     alignSelf: 'center',
     zIndex: 0,

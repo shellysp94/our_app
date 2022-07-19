@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
 // eslint-disable-next-line no-unused-vars
@@ -36,7 +37,6 @@ const MyFriends = () => {
       const friends = await axios.get(
         `${myConnections}${userConfig.user_id}/1/${valToSearch}`,
       );
-      // eslint-disable-next-line no-prototype-builtins
       if (friends.data.hasOwnProperty('msg')) {
         alert(friends.data.msg); // there are no connections?
       } else {

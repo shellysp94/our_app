@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
@@ -8,15 +9,14 @@ import axios from 'axios';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TInput from '../TInput';
 
-const MessageForm = () => {
+const MessageForm = props => {
   const myUserId = useSelector(state => state.userConfig.user_id);
   const [message, setMessage] = useState('');
-
   const newMessage = `http://192.168.1.141:3000/messages/${myUserId}`;
 
   const HandleSubmit = async () => {
     try {
-      await axios.post(`${newMessage}/2`, {
+      await axios.post(`${newMessage}/${props.friendID}`, {
         content: message,
       });
 

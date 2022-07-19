@@ -39,6 +39,7 @@ const Notifications = () => {
         {notifications.map((item, index) => {
           return <NotificationItem key={index} details={item} />;
         })}
+        <NotificationItem key={1} details={{}} />
       </View>
     </View>
   );

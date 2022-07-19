@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-alert */
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from 'react';
 import {View, Text, Pressable, SafeAreaView, Image} from 'react-native';
@@ -10,7 +13,6 @@ import UpperBar from '../Components/UpperBar';
 
 const Home = () => {
   const [expanded, setExpanded] = useState(false);
-  // eslint-disable-next-line no-unused-vars
   const [photos, setPhotos] = useState([]);
   const url = 'http://192.168.1.141:3000/userPictures/main/';
   const userConfig = useSelector(state => state.userConfig);
@@ -29,7 +31,6 @@ const Home = () => {
         setVisible(true); //BUG async commands
       }
     } catch (error) {
-      // eslint-disable-next-line no-alert
       alert(error);
     }
   };
@@ -57,7 +58,6 @@ const Home = () => {
   useEffect(() => {
     setVisible(false);
     getPhotos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -74,11 +74,6 @@ const Home = () => {
               style={styles.myPic}
               source={{uri: `data:image/gif;base64,${conf.image}`}}
             />
-            {/* <LottieView
-              ref={animation}
-              style={styles.lottiStyle}
-              source={require('../Images/Shazam1.json')}
-            /> */}
           </Pressable>
         </View>
         <SafeAreaView style={styles.searchModeList}>

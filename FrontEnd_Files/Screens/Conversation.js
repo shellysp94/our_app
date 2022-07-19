@@ -17,19 +17,19 @@ import MyMessage from '../Components/Chat/MyMessage';
 import TheirMessage from '../Components/Chat/TheirMessage';
 import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
+import SocketService from '../utils/socket';
 
 const Conversation = ({route}) => {
   const myId = useSelector(state => state.userConfig.user_id);
-  const friendId = route.params.userId;
+  const friendId = route.params.friendConfig.user_id;
+  const friendName = `${route.params.friendConfig.first_name} ${route.params.friendConfig.last_name}`;
   const messagesUrl = 'http://192.168.1.141:3000/chats/';
   const messages = useSelector(state => state.currChat);
   const dispatch = useDispatch();
-  console.log(messages);
   const getMessages = async () => {
     //FIX ME there is a problem with update list of open chats
     try {
       const res = await axios.get(`${messagesUrl}${myId}/${friendId}/0`);
-
       dispatch({
         type: 'SET_CURR_CHAT',
         currChat: res.data,
@@ -39,9 +39,11 @@ const Conversation = ({route}) => {
     }
   };
 
+  // const socket = new SocketService();
+  // socket.onmessage;
   useEffect(() => {
     getMessages();
-  }, [messages]);
+  }, []); //BUG - fix the dependencies
 
   return (
     <KeyboardAvoidingView
@@ -56,7 +58,10 @@ const Conversation = ({route}) => {
                   {myId === item.sender_user_id ? (
                     <MyMessage content={item.content} />
                   ) : (
-                    <TheirMessage content={item.content} />
+                    <TheirMessage
+                      friendName={friendName}
+                      content={item.content}
+                    />
                   )}
                 </View>
               ))
@@ -65,7 +70,7 @@ const Conversation = ({route}) => {
             )}
           </View>
           <View style={styles.messageFormContainer}>
-            <MessageForm />
+            <MessageForm friendID={friendId} />
           </View>
         </View>
       </TouchableWithoutFeedback>

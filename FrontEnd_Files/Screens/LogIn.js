@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
@@ -8,6 +9,7 @@ import styles from '../Styles/LogInStyle';
 import axios from 'axios';
 import TInput from '../Components/TInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SocketService from '../utils/socket';
 
 const LogIn = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -21,7 +23,6 @@ const LogIn = ({navigation}) => {
   const dispatch = useDispatch();
   const onLoadingPage = async event => {
     const fcmtoken = await AsyncStorage.getItem('fcmtoken');
-    //console.log('fcmtoken', fcmtoken);
     setDeviceToken(fcmtoken);
 
     const response = await axios.get(`${setsURL}`);
@@ -52,7 +53,6 @@ const LogIn = ({navigation}) => {
   };
   const onSubmitFormHandler = async event => {
     try {
-      console.log('TOKEN', deviceToken);
       const response = await axios.post(`${baseUrl}`, {
         email: email,
         password: password,
@@ -81,25 +81,14 @@ const LogIn = ({navigation}) => {
             fullName: `${getUser.data[0].first_name} ${getUser.data[0].last_name}`,
             token: response.data.token,
           });
-          //console.log('Token', response.data.token);
-          const socket = new WebSocket('ws://192.168.1.141:3000', null, {
-            headers: {
-              authorization: 'Bearer ' + response.data.token,
-            },
-          });
-          socket.onopen = () => {
-            // connection opened
-            socket.send('something'); // send a message
-          };
-          //console.log(socket);
+          const socket = new SocketService(response.data.token);
+          socket.onopen;
           navigation.navigate('HomeStack');
         } catch (error) {
-          // eslint-disable-next-line no-alert
           alert(error);
         }
       }
     } catch (error) {
-      // eslint-disable-next-line no-alert
       alert(error);
     }
   };
@@ -128,11 +117,7 @@ const LogIn = ({navigation}) => {
       </View>
       <View style={styles.linkToRegister}>
         <Text style={styles.dontHaveAUser}>Don`t have a user? </Text>
-        <Pressable
-          // style={({pressed}) => ({
-          //   backgroundColor: pressed ? 'lightskyblue' : '#61AF9B',
-          // })}
-          onPress={reDirectToRegister}>
+        <Pressable onPress={reDirectToRegister}>
           <Text style={styles.createAnAcountText}>Create an account</Text>
         </Pressable>
       </View>
