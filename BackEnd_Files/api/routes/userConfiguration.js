@@ -4,7 +4,8 @@ const router = express.Router();
 
 const {
     getAllUsersConfiguration,
-    getUserConfiguration, 
+    getUserConfiguration,
+    getUsersConfigurationByRadius, 
     createUserConfiguration,
     deleteUserConfiguration,
     updateUserConfiguration,
@@ -13,6 +14,7 @@ const {
 
 router.get('/:userid',getUserConfiguration); //get user persaonal details by appid (/PersonalDetails/:appid)
 router.get('/',getAllUsersConfiguration);
+router.get('/:userid/:radius',getUsersConfigurationByRadius);
 router.post('/:userid', createUserConfiguration); //post (/PersonalDetails/)
 router.delete('/:userid', deleteUserConfiguration); //delete user persaonal details (/PersonalDetails/:appid)
 router.put('/:userid', updateUserConfiguration);
