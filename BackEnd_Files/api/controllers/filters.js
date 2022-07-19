@@ -26,17 +26,116 @@ function splitCommas(myQuery, relevantColumn, string) {
 
 function noFilter(req, callback) {
 	let allUsersWithoutMe = [];
-	//console.log("req.user_id:", req.user_id);
 	getAllUsersConfiguration(req, (allUsers) => {
 		allUsers.forEach((user) => {
 			if (parseInt(user.user_id, 10) !== parseInt(req.user_id, 10)) {
-				//console.log(user);
 				allUsersWithoutMe.push(user);
 			}
 		});
-		//console.log("all users without me:", allUsersWithoutMe);
 		return callback(allUsersWithoutMe);
 	});
+}
+
+function interestedInFilteringHelper(
+	currentUserGender,
+	currentUserSexualOrientation,
+	callback
+) {
+	let sqlQuery;
+
+	switch (currentUserSexualOrientation) {
+		case "Heterosexual":
+			sqlQuery = `(sexual_orientation like 'Heterosexual' and gender not like '${currentUserGender}')`;
+			break;
+		case "Homosexual":
+			sqlQuery = `(sexual_orientation like 'Homosexual' and gender like '${currentUserGender}')`;
+			break;
+		case "Bisexual":
+			sqlQuery = `(sexual_orientation like 'Bisexual')`;
+			break;
+		case "Asexual":
+			sqlQuery = `(sexual_orientation like 'Asexual')`;
+			break;
+		default:
+			sqlQuery = "hello - switch case --> default";
+	}
+	return callback(sqlQuery);
+}
+
+function createSqlQueryForInterestedInFiltering(
+	interestedInFilter,
+	currentUserId,
+	currentUserGender,
+	currentUserSexualOrientation,
+	callback
+) {
+	let filters = interestedInFilter.split(",");
+	let friendshipFilters = filters.filter(
+		(filter) =>
+			filter === "Friends" ||
+			filter === "Sport buddy" ||
+			filter === "Study buddy" ||
+			filter === "Work buddy"
+	);
+	let relationshipFilters = filters.filter(
+		(filter) =>
+			filter === "Hookup" ||
+			filter === "Long term relationship" ||
+			filter === "Short term relationship"
+	);
+	let sqlQuery = `select uc.user_id from filters f right join user_configuration uc using (user_id) where uc.user_id != ${currentUserId} `;
+	if (friendshipFilters.length > 0 && relationshipFilters.length > 0) {
+		// Both - friendship AND relationship filters
+		interestedInFilteringHelper(
+			currentUserGender,
+			currentUserSexualOrientation,
+			(toConcatSqlQuery) => {
+				sqlQuery = sqlQuery.concat("and (");
+				sqlQuery = sqlQuery.concat(toConcatSqlQuery);
+				sqlQuery = sqlQuery.concat(
+					splitCommas(
+						" and interested_in_filter like ",
+						"interested_in_filter",
+						relationshipFilters.toString()
+					)
+				);
+				sqlQuery = sqlQuery.concat(
+					splitCommas(
+						" or (interested_in_filter like ",
+						"interested_in_filter",
+						friendshipFilters.toString()
+					)
+				);
+				sqlQuery = sqlQuery.concat("))");
+			}
+		);
+	} else if (friendshipFilters.length > 0 && relationshipFilters.length === 0) {
+		// Only friendship filters
+		sqlQuery = splitCommas(
+			"select user_id from filters where interested_in_filter like ",
+			"interested_in_filter",
+			interestedInFilter
+		);
+	} else if (friendshipFilters.length === 0 && relationshipFilters.length > 0) {
+		// Only relationship filters
+		interestedInFilteringHelper(
+			currentUserGender,
+			currentUserSexualOrientation,
+			(toConcatSqlQuery) => {
+				sqlQuery = sqlQuery.concat("and ");
+				sqlQuery = sqlQuery.concat(toConcatSqlQuery);
+				sqlQuery = sqlQuery.concat(
+					splitCommas(
+						" and (interested_in_filter like ",
+						"interested_in_filter",
+						interestedInFilter
+					)
+				);
+				sqlQuery = sqlQuery.concat(")");
+			}
+		);
+	}
+	return callback(sqlQuery);
 }
 
 getAllFilters = (req, res) => {
@@ -171,26 +270,42 @@ getUsersWithCommonRelationshipFilter = (req, callback) => {
 };
 
 getUsersWithCommonInterestedInFilter = (req, callback) => {
-	const interestedInFilter = req.interested_in_filter;
-
+	let interestedInFilter = req.interested_in_filter;
+	let currentUserId = req.user_id;
 	if (interestedInFilter === "Interested in") {
 		noFilter(req, (allUsersWithoutMe) => {
 			return callback(allUsersWithoutMe);
 		});
 	} else {
-		let sqlQuery = splitCommas(
-			"select user_id from filters where interested_in_filter like ",
-			"interested_in_filter",
-			interestedInFilter
-		);
-
-		mySqlConnection.query(sqlQuery, (err, rows) => {
-			try {
-				return callback(rows);
-			} catch (err) {
-				console.log(err.message);
+		mySqlConnection.query(
+			`select gender, sexual_orientation from user_configuration where user_id = ${currentUserId}`,
+			(err, rows) => {
+				try {
+					let currentUserGender = rows[0].gender;
+					let currentUserSexualOrientation = rows[0].sexual_orientation;
+					createSqlQueryForInterestedInFiltering(
+						interestedInFilter,
+						currentUserId,
+						currentUserGender,
+						currentUserSexualOrientation,
+						(sqlQuery) => {
+							mySqlConnection.query(sqlQuery, (err, rows) => {
+								try {
+									console.log(
+										"******The SQL query from helper is:*******\n\n" + sqlQuery
+									);
+									return callback(rows);
+								} catch (err) {
+									console.log(err.message);
+								}
+							});
+						}
+					);
+				} catch (err) {
+					console.log(err.message);
+				}
 			}
-		});
+		);
 	}
 };
 
@@ -253,6 +368,7 @@ getUserFilteredUsers = (req, res) => {
 	let relationship = [];
 	let interestedIn = [];
 	let age = [];
+	//console.log("im userid:", req.params.userid);
 
 	getUserFilter(req, (userFilter) => {
 		if (userFilter.length === 0) {
@@ -335,9 +451,9 @@ getUserFilteredUsers = (req, res) => {
 											},
 										};
 
-										console.log(
-											"im result array:\n" + JSON.stringify(resultArrayToObject)
-										);
+										// console.log(
+										// 	"im result array:\n" + JSON.stringify(resultArrayToObject)
+										// );
 										getAllUserConnectionsType(resultArrayToObject, res);
 									});
 								}
@@ -359,6 +475,24 @@ createUserFilter = (req, res) => {
 	const interestedInFilter = req.body.interested_in_filter;
 	let ageFilter = req.body.age_filter;
 	const friendsOnly = req.body.friends_only_filter;
+
+	// console.log("From the POST method:\n");
+	// console.log(
+	// 	"search mode:",
+	// 	searchMode,
+	// 	"hobbies:",
+	// 	hobbiesFilter,
+	// 	"gender:",
+	// 	genderFilter,
+	// 	"relationship:",
+	// 	relationshipFilter,
+	// 	"interesting in:",
+	// 	interestedInFilter,
+	// 	"age:",
+	// 	ageFilter,
+	// 	"friends only:",
+	// 	friendsOnly
+	// );
 
 	if (ageFilter.length === 0) {
 		ageFilter = "[]";

@@ -1,5 +1,5 @@
-const express = require('express');
-const {verifyToken} = require('../controllers/auth');
+const express = require("express");
+const {verifyToken} = require("../controllers/auth");
 const router = express.Router();
 
 const {
@@ -20,4 +20,4 @@ router.delete('/:userid', deleteUserConfiguration); //delete user persaonal deta
 router.put('/:userid', updateUserConfiguration);
 router.put('/searchMode/:userid', updateSearchMode)
 
-module.exports=router;
+module.exports = router;
