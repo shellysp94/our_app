@@ -3,6 +3,7 @@ const dbConfig = require("../../config/db_config");
 const {
 	getAllUsersConfiguration,
 	getUserConfiguration,
+	getUserConfigurationInner,
 } = require("./userConfiguration");
 const {getAllUserConnectionsType} = require("./connections");
 const mySqlConnection = dbConfig;
@@ -138,6 +139,25 @@ function createSqlQueryForInterestedInFiltering(
 	return callback(sqlQuery);
 }
 
+function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, callback) {
+	arrayLength = myFriendsUserid.length;
+
+	for (user = 0; user < arrayLength; user++) {
+		if (user === 0) {
+			sqlQuery = sqlQuery.concat(
+				`user_a_id = ${myFriendsUserid[user]} or user_b_id = ${myFriendsUserid[user]}`
+			);
+		} else {
+			sqlQuery = sqlQuery.concat(
+				` or user_a_id = ${myFriendsUserid[user]} or user_b_id = ${myFriendsUserid[user]}`
+			);
+		}
+	}
+	sqlQuery = sqlQuery.concat(")");
+
+	return callback(sqlQuery);
+}
+
 getAllFilters = (req, res) => {
 	mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
 		try {
@@ -157,6 +177,106 @@ getUserFilter = (req, callback) => {
 		(err, rows) => {
 			try {
 				return callback(rows);
+			} catch (err) {
+				console.log(err.message);
+			}
+		}
+	);
+};
+
+getFriendsOfFriends = (req, res) => {
+	const userid = req.params.userid;
+	let myFriends_myFriendsOfFriends = {};
+	let myFriendsUserid = [];
+	let myFriendsOfFriendsUserid = [];
+	let sqlQuery = `select * from connections where connected = 1 and (user_a_id != ${userid} and user_b_id != ${userid}) and (`;
+
+	mySqlConnection.query(
+		`select user_a_id, user_b_id from connections where (user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1`,
+		(err, rows) => {
+			try {
+				if (typeof rows !== "undefined" && rows.length > 0) {
+					for (row = 0; row < rows.length; row++) {
+						if (parseInt(rows[row].user_a_id, 10) !== parseInt(userid, 10)) {
+							myFriendsUserid.push(parseInt(rows[row].user_a_id, 10));
+						} else {
+							myFriendsUserid.push(parseInt(rows[row].user_b_id, 10));
+						}
+					}
+					createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, (response) => {
+						// console.log(
+						// 	"the response from friends of friends create query functions:\n" +
+						// 		response
+						// );
+						mySqlConnection.query(response, (err, rows) => {
+							try {
+								if (typeof rows !== "undefined" && rows.length > 0) {
+									for (
+										myFriendOfFriend = 0;
+										myFriendOfFriend < rows.length;
+										myFriendOfFriend++
+									) {
+										if (
+											!myFriendsUserid.includes(
+												parseInt(rows[myFriendOfFriend].user_A_id, 10)
+											)
+										) {
+											myFriendsOfFriendsUserid.push(
+												parseInt(rows[myFriendOfFriend].user_A_id, 10)
+											);
+										}
+										if (
+											!myFriendsUserid.includes(
+												parseInt(rows[myFriendOfFriend].user_B_id, 10)
+											)
+										) {
+											myFriendsOfFriendsUserid.push(
+												parseInt(rows[myFriendOfFriend].user_B_id, 10)
+											);
+										}
+									}
+								}
+								console.log("my friends user id:\n" + myFriendsUserid);
+								console.log(
+									"my friends of friends user id:\n" + myFriendsOfFriendsUserid
+								);
+
+								let myFriendsRequest = {
+									params: {
+										userid: String(myFriendsUserid),
+									},
+								};
+								let myFriendsOfFriendsRequest = {
+									params: {
+										userid: String(myFriendsOfFriendsUserid),
+									},
+								};
+								getUserConfigurationInner(
+									myFriendsRequest,
+									(myFriendsConfigurations) => {
+										Object.assign(myFriends_myFriendsOfFriends, {
+											myFriends: myFriendsConfigurations,
+										});
+
+										getUserConfigurationInner(
+											myFriendsOfFriendsRequest,
+											(myFriendsOfFriendsConfigurations) => {
+												Object.assign(myFriends_myFriendsOfFriends, {
+													myFriendsOfFriends: myFriendsOfFriendsConfigurations,
+												});
+												res.send(myFriends_myFriendsOfFriends);
+											}
+										);
+									}
+								);
+							} catch (err) {
+								console.log(err.message);
+							}
+						});
+					});
+				} else {
+					console.log(`user -${userid}- does not have friends yet`);
+				}
 			} catch (err) {
 				console.log(err.message);
 			}
@@ -668,6 +788,7 @@ deleteUserFilter = (req, res) => {
 module.exports = {
 	getAllFilters: getAllFilters,
 	getUserFilter: getUserFilter,
+	getFriendsOfFriends: getFriendsOfFriends,
 	getUsersWithCommonSearchMode: getUsersWithCommonSearchMode,
 	getUsersWithCommonHobbiesFilter: getUsersWithCommonHobbiesFilter,
 	getUsersWithCommonGenderFilter: getUsersWithCommonGenderFilter,

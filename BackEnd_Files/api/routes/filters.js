@@ -4,6 +4,7 @@ const router = express.Router();
 const {
 	getAllFilters,
 	getUserFilter,
+	getFriendsOfFriends,
 	getUsersWithCommonSearchMode,
 	getUsersWithCommonHobbiesFilter,
 	getUsersWithCommonGenderFilter,
@@ -24,6 +25,7 @@ const {
 
 router.get("/", getAllFilters); //get all chats (/chats)
 router.get("/:userid", getUserFilter); //get a chat by A_userid and B_userid (/chats/:useridA/:useridB)
+router.get("//friendsOfFriends/:userid", getFriendsOfFriends);
 router.get("//searchMode", getUsersWithCommonSearchMode);
 router.get("//hobbies", getUsersWithCommonHobbiesFilter);
 router.get("//gender", getUsersWithCommonGenderFilter);
