@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from '../Styles/ChatStyle';
 import {
   View,
@@ -18,22 +18,26 @@ import TheirMessage from '../Components/Chat/TheirMessage';
 import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import SocketService from '../utils/socket';
+import {setCurrentChat} from '../store/Slices/chatSlice';
 
 const Conversation = ({route}) => {
-  const myId = useSelector(state => state.userConfig.user_id);
   const friendId = route.params.friendConfig.user_id;
   const friendName = `${route.params.friendConfig.first_name} ${route.params.friendConfig.last_name}`;
-  const messagesUrl = 'http://192.168.1.141:3000/chats/';
-  const messages = useSelector(state => state.currChat);
+  const myId = useSelector(state => state.configuration.userConfig.user_id);
+  const messages = useSelector(state => state.chats.currChat);
   const dispatch = useDispatch();
+
   const getMessages = async () => {
     //FIX ME there is a problem with update list of open chats
     try {
-      const res = await axios.get(`${messagesUrl}${myId}/${friendId}/0`);
-      dispatch({
-        type: 'SET_CURR_CHAT',
-        currChat: res.data,
-      });
+      const res = await axios.get(
+        `http://192.168.1.141:3000/chats/${myId}/${friendId}/0`,
+      );
+      dispatch(
+        setCurrentChat({
+          currChat: res.data,
+        }),
+      );
     } catch {
       alert('in catch');
     }

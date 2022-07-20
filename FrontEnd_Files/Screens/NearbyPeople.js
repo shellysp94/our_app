@@ -9,13 +9,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from '../Styles/NearbyPeople';
 import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
+import {updateNearbyPeople} from '../store/Slices/peopleSlice';
 
 const NearbyPeople = ({navigation}) => {
+  const user_id = useSelector(state => state.configuration.userConfig.user_id);
+  const filters = useSelector(state => state.configuration.filters);
+  const nearbyPeople = useSelector(state => state.people.nearbyPeople);
   const dispatch = useDispatch();
 
-  const user_id = useSelector(state => state.userConfig.user_id);
-  const filters = useSelector(state => state.filters);
-  const nearbyPeople = useSelector(state => state.nearbyPeople);
   const showFilters = () => {
     navigation.openDrawer();
   };
@@ -28,18 +29,12 @@ const NearbyPeople = ({navigation}) => {
           ...filters,
         },
       );
-      dispatch({
-        type: 'UPDATE_NEARBY_PEOPLE',
-        nearbyPeople: people.data,
-      });
+
+      dispatch(updateNearbyPeople({nearbyPeople: people.data}));
     } catch (error) {
-      alert(error.msg);
+      alert(error);
     }
   }, [user_id, filters, dispatch]);
-
-  useEffect(() => {
-    onApplyHandler();
-  }, [filters]);
 
   const onFriendRequest = async userNum => {
     try {
@@ -49,6 +44,47 @@ const NearbyPeople = ({navigation}) => {
       onApplyHandler(); //FIX ME?
     } catch (error) {
       alert(error);
+    }
+  };
+
+  const mappingUsers = (item, index) => {
+    if (item.mutualConnections === 1) {
+      return (
+        <UserItem
+          key={index}
+          config={item}
+          name={`${item.first_name} ${item.last_name}`}
+          type={'friend'}
+        />
+      );
+    } else if (item.requestsUserSent === 1) {
+      return (
+        <UserItem
+          key={index}
+          config={item}
+          name={`${item.first_name} ${item.last_name}`}
+          type={'requestsUserSent'}
+        />
+      );
+    } else if (item.requestsUserRecieved === 1) {
+      return (
+        <UserItem
+          key={index}
+          config={item}
+          name={`${item.first_name} ${item.last_name}`}
+          type={'requestsUserRecieved'}
+        />
+      );
+    } else if (item.notConnected === 1) {
+      return (
+        <UserItem
+          key={index}
+          config={item}
+          name={`${item.first_name} ${item.last_name}`}
+          type={'notFriend'}
+          function={onFriendRequest}
+        />
+      );
     }
   };
 
@@ -67,46 +103,7 @@ const NearbyPeople = ({navigation}) => {
 
       <View>
         <ScrollView style={styles.scroll}>
-          {nearbyPeople.map((item, index) => {
-            if (item.mutualConnections === 1) {
-              return (
-                <UserItem
-                  key={index}
-                  config={item}
-                  name={`${item.first_name} ${item.last_name}`}
-                  type={'friend'}
-                />
-              );
-            } else if (item.requestsUserSent === 1) {
-              return (
-                <UserItem
-                  key={index}
-                  config={item}
-                  name={`${item.first_name} ${item.last_name}`}
-                  type={'requestsUserSent'}
-                />
-              );
-            } else if (item.requestsUserRecieved === 1) {
-              return (
-                <UserItem
-                  key={index}
-                  config={item}
-                  name={`${item.first_name} ${item.last_name}`}
-                  type={'requestsUserRecieved'}
-                />
-              );
-            } else if (item.notConnected === 1) {
-              return (
-                <UserItem
-                  key={index}
-                  config={item}
-                  name={`${item.first_name} ${item.last_name}`}
-                  type={'notFriend'}
-                  function={onFriendRequest}
-                />
-              );
-            }
-          })}
+          {nearbyPeople.map((item, index) => mappingUsers(item, index))}
           {Object.keys(nearbyPeople).length === 0 && <Text>No people</Text>}
         </ScrollView>
       </View>

@@ -10,7 +10,7 @@ const searchModeItems = props => {
   const [visible, setVisible] = useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const modes = useSelector(state => state.rawText.filters.Search_Mode);
+  const modes = useSelector(state => state.general.rawText.filters.Search_Mode);
   const items = modes.map((item, index) => {
     return (
       <Pressable

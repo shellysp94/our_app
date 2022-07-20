@@ -8,11 +8,10 @@ import styles from '../../Styles/ChatStyle';
 import {useNavigation} from '@react-navigation/native';
 
 const ChatItem = props => {
-  const data = props.data;
   const navigation = useNavigation();
   const navi = () => {
     navigation.navigate('Conversation', {
-      friendConfig: data,
+      friendConfig: props.data,
     });
   };
 
@@ -28,7 +27,7 @@ const ChatItem = props => {
         }}>
         <View style={styles.Details}>
           <Text style={styles.title}>
-            {data.first_name} {data.last_name}
+            {props.data.first_name} {props.data.last_name}
           </Text>
           <Text style={styles.body}>last message</Text>
         </View>

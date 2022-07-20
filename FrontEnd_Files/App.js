@@ -7,6 +7,7 @@ import {
   requestUserPermission,
   NotificationListener,
 } from './utils/pushNotification_helper';
+import WebSocketProvider from './utils/socketService';
 
 const App = () => {
   useEffect(() => {
@@ -16,7 +17,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <LogInScreen />
+      <WebSocketProvider>
+        <LogInScreen />
+      </WebSocketProvider>
     </Provider>
   );
 };

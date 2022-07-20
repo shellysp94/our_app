@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import {useState} from 'react';
@@ -14,14 +15,12 @@ import {Switch} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import {updateFilters, clearFilters} from '../store/Slices/configurationSlice';
 const FiltersBarDrawer = createDrawerNavigator();
 
 const CustomFiltersBar = props => {
-  const myAge = useSelector(state => state.userConfig.age);
-  const options = useSelector(state => state.rawText);
-  //const filters = useSelector(state => state.filters);
-
-  //const [age, setAge] = useState([]);
+  const myAge = useSelector(state => state.configuration.userConfig.age);
+  const options = useSelector(state => state.general.rawText);
   const [gender, setGender] = useState(options.filters.Gender[0]);
   const [interestedIn, setInterestedIn] = useState(
     options.filters.Interested_in[0],
@@ -29,44 +28,29 @@ const CustomFiltersBar = props => {
   const [relationship, setRelationship] = useState(
     options.registration_form.relationship_status[0],
   );
-  //const [radius, setRadius] = useState('Did not choose yet');
   const [searchMode, setSearchMode] = useState(options.filters.Search_Mode[0]);
   const [isSwitchOn, setIsSwitchOn] = useState(0);
 
-  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   const dispatch = useDispatch();
   let hobbies = [];
+  let filters = {
+    search_mode_filter: searchMode,
+    age_filter: [],
+    hobbies_filter: 'Hobbies',
+    gender_filter: gender,
+    relationship_filter: relationship,
+    interested_in_filter: interestedIn,
+    friends_only_filter: isSwitchOn,
+  };
 
   const onApply = () => {
-    dispatch({
-      type: 'UPDATE_FILTERS',
-      filters: {
-        search_mode_filter: searchMode,
-        age_filter: [],
-        hobbies_filter: 'Hobbies',
-        gender_filter: gender,
-        relationship_filter: relationship,
-        interested_in_filter: interestedIn,
-        friends_only_filter: isSwitchOn,
-      },
-    });
-    // eslint-disable-next-line react/prop-types
+    dispatch(updateFilters(filters));
     props.navigation.closeDrawer();
   };
   const onClear = () => {
-    dispatch({
-      type: 'UPDATE_FILTERS',
-      filters: {
-        search_mode_filter: options.filters.Search_Mode[0],
-        age_filter: [],
-        hobbies_filter: 'Hobbies',
-        gender_filter: options.filters.Gender[0],
-        relationship_filter: options.registration_form.relationship_status[0],
-        interested_in_filter: options.filters.Interested_in[0],
-        friends_only_filter: 0,
-      },
-    });
+    dispatch(clearFilters());
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerBlock}>
@@ -104,7 +88,7 @@ const CustomFiltersBar = props => {
         <View style={styles.freindsOnlyBlock}>
           <Switch
             value={isSwitchOn}
-            onValueChange={onToggleSwitch}
+            onValueChange={() => setIsSwitchOn(!isSwitchOn)}
             color={'#0E6070'}
           />
           <Text style={styles.friendsOnlyText}>Friends Only</Text>

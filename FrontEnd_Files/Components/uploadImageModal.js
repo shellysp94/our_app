@@ -6,15 +6,14 @@ import styles from '../Styles/SignUpStyle';
 import {launchImageLibrary} from 'react-native-image-picker'; // Migration from 2.x.x to 3.x.x => showImagePicker API is removed.
 import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
-
+import {updateMainPictuer} from '../store/Slices/configurationSlice';
 const UplaodImageModal = props => {
   const [image1, setImage1] = useState({});
   const [image2, setImage2] = useState({});
   const [image3, setImage3] = useState({});
-
-  const url = 'http://192.168.1.141:3000/userPictures/';
   const conf = useSelector(state => state.userConfig);
   const dispatch = useDispatch();
+
   const pickImage = num => {
     launchImageLibrary(
       {mediaType: 'photo', includeBase64: true, maxHeight: 200, maxWidth: 200},
@@ -38,27 +37,37 @@ const UplaodImageModal = props => {
   const uploadImage = async event => {
     try {
       if (image1 !== {}) {
-        await axios.post(`${url}${conf.user_id}`, {
-          base64image: image1.base64,
-          main_image: '1',
-        });
+        await axios.post(
+          `http://192.168.1.141:3000/userPictures/${conf.user_id}`,
+          {
+            base64image: image1.base64,
+            main_image: '1',
+          },
+        );
       }
-      dispatch({
-        type: 'UPDATE_MAIN_PICTURE',
-        image: image1.base64,
-      });
+      dispatch(
+        updateMainPictuer({
+          image: image1.base64,
+        }),
+      );
       if (image2 !== {}) {
         //FIX ME - maybe image1 is not main image
-        await axios.post(`${url}${conf.user_id}`, {
-          base64image: image2.base64,
-          main_image: '0',
-        });
+        await axios.post(
+          `http://192.168.1.141:3000/userPictures/${conf.user_id}`,
+          {
+            base64image: image2.base64,
+            main_image: '0',
+          },
+        );
       }
       if (image3 !== {}) {
-        await axios.post(`${url}${conf.user_id}`, {
-          base64image: image3.base64,
-          main_image: '0',
-        });
+        await axios.post(
+          `http://192.168.1.141:3000/userPictures/${conf.user_id}`,
+          {
+            base64image: image3.base64,
+            main_image: '0',
+          },
+        );
       }
       props.setVisible(false);
     } catch (error) {

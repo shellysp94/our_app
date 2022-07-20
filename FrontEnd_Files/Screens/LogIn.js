@@ -1,44 +1,43 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Pressable} from 'react-native';
 import {useDispatch} from 'react-redux';
 import styles from '../Styles/LogInStyle';
 import axios from 'axios';
 import TInput from '../Components/TInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import SocketService from '../utils/socket';
+import {rawText, changeStatus} from '../store/Slices/generalSlice';
+import {updateDetails} from '../store/Slices/configurationSlice';
 
 const LogIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [deviceToken, setDeviceToken] = useState('');
   const [password, setPassword] = useState('');
   const [validEmail, setValidEmail] = useState(false);
-  const baseUrl = 'http://192.168.1.141:3000/auth/login';
-  const userConf = 'http://192.168.1.141:3000/userConfiguration/';
-  const setsURL = 'http://192.168.1.141:3000/dataFromSetsToClient';
 
   const dispatch = useDispatch();
+
   const onLoadingPage = async event => {
     const fcmtoken = await AsyncStorage.getItem('fcmtoken');
     setDeviceToken(fcmtoken);
 
-    const response = await axios.get(`${setsURL}`);
-    dispatch({
-      type: 'GET_RAW_TEXT',
-      rawText: response.data,
-    });
+    const response = await axios.get(
+      `http://192.168.1.141:3000/dataFromSetsToClient`,
+    );
+    dispatch(rawText({rawText: response.data}));
   };
 
   useEffect(() => {
+    dispatch(changeStatus({status: 'disconnect'}));
     onLoadingPage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const validateEmail = () => {
-    // eslint-disable-next-line no-useless-escape
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(email) === false) {
       setValidEmail(false);
@@ -53,36 +52,35 @@ const LogIn = ({navigation}) => {
   };
   const onSubmitFormHandler = async event => {
     try {
-      const response = await axios.post(`${baseUrl}`, {
-        email: email,
-        password: password,
-        device_token: deviceToken,
-      });
+      const response = await axios.post(
+        `http://192.168.1.141:3000/auth/login`,
+        {
+          email: email,
+          password: password,
+          device_token: deviceToken,
+        },
+      );
 
-      // eslint-disable-next-line no-prototype-builtins
       if (response.data.hasOwnProperty('msg')) {
-        // eslint-disable-next-line no-alert
         alert(response.data.msg);
       } else {
         try {
           const getUser = await axios.get(
-            `${userConf}${response.data.user_id}`,
+            `http://192.168.1.141:3000/userConfiguration/${response.data.user_id}`,
             {
               headers: {
                 Authorization: 'Bearer ' + response.data.token,
               },
             },
           );
-
-          dispatch({
-            type: 'UPDATE_DEATAILS',
+          let details = {
             userConfig: getUser.data[0],
             email: response.data.email,
             fullName: `${getUser.data[0].first_name} ${getUser.data[0].last_name}`,
             token: response.data.token,
-          });
-          const socket = new SocketService(response.data.token);
-          socket.onopen;
+          };
+          dispatch(updateDetails(details));
+          dispatch(changeStatus({status: 'connected'}));
           navigation.navigate('HomeStack');
         } catch (error) {
           alert(error);

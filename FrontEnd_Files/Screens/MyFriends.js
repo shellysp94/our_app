@@ -19,31 +19,32 @@ import {useSelector, useDispatch} from 'react-redux';
 import PendingFriendRequests from '../Components/PendingFriendRequests';
 import MyFriendRequests from '../Components/MyFriendRequests';
 import UpperBar from '../Components/UpperBar';
+import {updateMyFriends, searchFriend} from '../store/Slices/peopleSlice';
 
 const MyFriends = () => {
-  const dispatch = useDispatch();
-  const myConnections = 'http://192.168.1.141:3000/connections///byName/';
-  const userConfig = useSelector(state => state.userConfig);
-  const listOfConf = useSelector(state => state.myFriends);
-
-  const friendToSearch = useSelector(state => state.friendToSearch);
   const [friendName, setFriendName] = useState(friendToSearch);
   const [visibleMyRequests, setVisibleMyRequests] = useState(false);
   const [visiblePendingRequests, setVisiblePendingRequests] = useState(false);
+  const userConfig = useSelector(state => state.configuration.userConfig);
+  const listOfConf = useSelector(state => state.people.myFriends);
+  console.log(listOfConf);
+  const friendToSearch = useSelector(state => state.people.friendToSearch);
+  const dispatch = useDispatch();
 
   const FindFriend = async () => {
     const valToSearch = friendToSearch === '' ? '%20' : friendToSearch;
     try {
       const friends = await axios.get(
-        `${myConnections}${userConfig.user_id}/1/${valToSearch}`,
+        `http://192.168.1.141:3000/connections///byName/${userConfig.user_id}/1/${valToSearch}`,
       );
       if (friends.data.hasOwnProperty('msg')) {
         alert(friends.data.msg); // there are no connections?
       } else {
-        dispatch({
-          type: 'UPDATE_MY_FRIENDS',
-          myFriends: friends.data,
-        });
+        dispatch(
+          updateMyFriends({
+            myFriends: friends.data,
+          }),
+        );
       }
     } catch (error) {
       alert(error);
@@ -76,20 +77,14 @@ const MyFriends = () => {
         <Pressable
           style={styles.searchButton}
           onPress={() => {
-            dispatch({
-              type: 'FRIEND_TO_SEARCH',
-              friendToSearch: friendName,
-            });
+            dispatch(searchFriend({friendToSearch: friendName}));
           }}>
           <Text style={styles.searchText}>Search</Text>
         </Pressable>
         <Pressable
           style={styles.trashPressable}
           onPress={() => {
-            dispatch({
-              type: 'FRIEND_TO_SEARCH',
-              friendToSearch: '',
-            });
+            dispatch(searchFriend({friendToSearch: ''}));
           }}>
           <Ionicons
             color={'#122b1b'}

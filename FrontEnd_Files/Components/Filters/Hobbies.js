@@ -16,10 +16,10 @@ import {Divider} from 'react-native-paper';
 import {useSelector, useDispatch} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from '../../Styles/FiltersStyle';
-
+import {updateHobbies} from '../../store/Slices/configurationSlice';
 const Hobbies = props => {
-  const listOfHobbies = useSelector(state => state.rawText.Hobbies);
-  const myHobbies = useSelector(state => state.myHobbies);
+  const listOfHobbies = useSelector(state => state.general.rawText.Hobbies);
+  const myHobbies = useSelector(state => state.configuration.myHobbies);
   const [visible, setVisible] = useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -34,10 +34,11 @@ const Hobbies = props => {
   };
 
   const addToList = val => {
-    dispatch({
-      type: 'UPDATE_MY_HOBBIES',
-      myHobbies: [...myHobbies, val],
-    });
+    dispatch(
+      updateHobbies({
+        myHobbies: [...myHobbies, val],
+      }),
+    );
   };
 
   return (

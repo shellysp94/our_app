@@ -10,15 +10,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import TInput from '../TInput';
 
 const MessageForm = props => {
-  const myUserId = useSelector(state => state.userConfig.user_id);
+  const myUserId = useSelector(state => state.configuration.userConfig.user_id);
   const [message, setMessage] = useState('');
-  const newMessage = `http://192.168.1.141:3000/messages/${myUserId}`;
 
   const HandleSubmit = async () => {
     try {
-      await axios.post(`${newMessage}/${props.friendID}`, {
-        content: message,
-      });
+      await axios.post(
+        `http://192.168.1.141:3000/messages/${myUserId}/${props.friendID}`,
+        {
+          content: message,
+        },
+      );
 
       setMessage('');
     } catch (error) {

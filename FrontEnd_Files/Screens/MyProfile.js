@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from 'react';
@@ -12,7 +13,6 @@ import {
 import DatePicker from 'react-native-datepicker';
 import {Chip, Avatar} from 'react-native-paper';
 import Hobbies from '../Components/Filters/Hobbies';
-// import ImageCard from '../Components/imageCard';
 import TInput from '../Components/TInput';
 import styles from '../Styles/MyProfileStyle';
 import {useSelector} from 'react-redux';
@@ -24,15 +24,16 @@ import UpperBar from '../Components/UpperBar';
 const MyProfile = () => {
   const [edit, setEdit] = useState(false);
   const [photos, setPhotos] = useState([]);
-  const email = useSelector(state => state.email);
-  const userConfig = useSelector(state => state.userConfig);
-  const url = 'http://192.168.1.141:3000/userPictures/';
-  const rawText = useSelector(state => state.rawText.registration_form);
-  const myhobbies = useSelector(state => state.myHobbies);
+  const email = useSelector(state => state.configuration.email);
+  const userConfig = useSelector(state => state.configuration.userConfig);
+  const rawText = useSelector(state => state.general.rawText.registration_form);
+  const myhobbies = useSelector(state => state.configuration.myHobbies);
 
   const getPhotos = async () => {
     try {
-      const res = await axios.get(`${url}${userConfig.user_id}`);
+      const res = await axios.get(
+        `http://192.168.1.141:3000/userPictures/${userConfig.user_id}`,
+      );
       setPhotos(res.data);
     } catch (error) {
       alert(error);
@@ -41,19 +42,13 @@ const MyProfile = () => {
 
   useEffect(() => {
     getPhotos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const chipStyle = (value, chip) => {
-    return {
-      margin: 2,
-      backgroundColor: value === chip ? '#0E6070' : '#EBEBEB',
-    };
+    return {margin: 2, backgroundColor: value === chip ? '#0E6070' : '#EBEBEB'};
   };
   const chipTextColor = (value, chip) => {
-    return {
-      color: value === chip ? '#FFFFFF' : '#0E6070',
-    };
+    return {color: value === chip ? '#FFFFFF' : '#0E6070'};
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -215,7 +210,7 @@ const MyProfile = () => {
         <View style={styles.hobbies}>
           <Text style={styles.hobbiesText}>My hobbies are:</Text>
           <Hobbies
-            style={{...styles.Pressables, width: 200}}
+            style={styles.Pressables}
             text={
               myhobbies.length !== 0
                 ? myhobbies.toString()

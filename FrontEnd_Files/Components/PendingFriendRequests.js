@@ -8,13 +8,14 @@ import axios from 'axios';
 import UserItem from '../Components/userItem';
 
 const PendingFriendRequests = props => {
-  const userConfig = useSelector(state => state.userConfig);
-  const myConnections = 'http://192.168.1.141:3000/friendRequest/sendRequests/';
+  const userId = useSelector(state => state.configuration.userConfig.user_id);
   const [listOfConf, setlistOfConf] = useState([]);
 
   const getMyFriendRequest = async () => {
     try {
-      const friends = await axios.get(`${myConnections}${userConfig.user_id}`);
+      const friends = await axios.get(
+        `http://192.168.1.141:3000/friendRequest/sendRequests/${userId}`,
+      );
       if (!friends.data.hasOwnProperty('msg')) {
         setlistOfConf([...friends.data]);
       }

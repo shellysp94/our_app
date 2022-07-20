@@ -5,7 +5,7 @@ import styles from '../../Styles/ChatStyle';
 import {View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 const TheirMessage = props => {
-  const userConfig = useSelector(state => state.userConfig);
+  const userConfig = useSelector(state => state.configuration.userConfig);
 
   return (
     <View style={styles.thierMessage}>

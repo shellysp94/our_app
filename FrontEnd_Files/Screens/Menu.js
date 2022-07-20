@@ -9,9 +9,9 @@ import {useNavigation} from '@react-navigation/native';
 
 const CustomSidebarMenu = props => {
   const navigation = useNavigation();
-  const fullName = useSelector(state => state.fullName);
-  const email = useSelector(state => state.email);
-  const userConfig = useSelector(state => state.userConfig);
+  const fullName = useSelector(state => state.configuration.fullName);
+  const email = useSelector(state => state.configuration.email);
+  const userConfig = useSelector(state => state.configuration.userConfig);
 
   return (
     <SafeAreaView style={styles.container}>

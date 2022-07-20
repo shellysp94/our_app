@@ -10,8 +10,9 @@ import {useSelector} from 'react-redux';
 import UpperBar from '../Components/UpperBar';
 
 const Notifications = () => {
-  const userConfig = useSelector(state => state.userConfig);
   const [notifications, setNotifications] = useState([]);
+  const userConfig = useSelector(state => state.configuration.userConfig);
+
   const showNotifications = async userNum => {
     try {
       const res = await axios.get(

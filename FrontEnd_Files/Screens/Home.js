@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
-// eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from 'react';
 import {View, Text, Pressable, SafeAreaView, Image} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
@@ -10,22 +9,24 @@ import UplaodImageModal from '../Components/uploadImageModal';
 import styles from '../Styles/HomeStyle';
 import axios from 'axios';
 import UpperBar from '../Components/UpperBar';
-
+import {updateSearchMode} from '../store/Slices/configurationSlice';
 const Home = () => {
   const [expanded, setExpanded] = useState(false);
   const [photos, setPhotos] = useState([]);
-  const url = 'http://192.168.1.141:3000/userPictures/main/';
-  const userConfig = useSelector(state => state.userConfig);
   const [visible, setVisible] = useState(false);
 
-  const fullName = useSelector(state => state.fullName);
-  const searchMode = useSelector(state => state.searchMode);
-  const raw = useSelector(state => state.rawText);
-  const searchModeOptions = raw.filters.Search_Mode;
+  const userConfig = useSelector(state => state.configuration.userConfig);
+  const fullName = useSelector(state => state.configuration.fullName);
+  const searchMode = useSelector(state => state.configuration.searchMode);
+  const searchModeOptions = useSelector(
+    state => state.general.rawText.filters.Search_Mode,
+  );
 
   const getPhotos = async () => {
     try {
-      const userPhotos = await axios.get(`${url}${userConfig.user_id}`);
+      const userPhotos = await axios.get(
+        `http://192.168.1.141:3000/userPictures/main/${userConfig.user_id}`,
+      );
       setPhotos(userPhotos.data);
       if (userPhotos.data.length === 0) {
         setVisible(true); //BUG async commands
@@ -34,14 +35,14 @@ const Home = () => {
       alert(error);
     }
   };
-  const conf = useSelector(state => state.userConfig);
   const dispatch = useDispatch();
   const changeMode = item => {
     setExpanded(!expanded);
-    dispatch({
-      type: 'UPDATE_SEARCH_MODE',
-      searchMode: item,
-    });
+    dispatch(
+      updateSearchMode({
+        searchMode: item,
+      }),
+    );
   };
 
   const items = searchModeOptions.map((item, index) => {
@@ -72,7 +73,7 @@ const Home = () => {
           <Pressable style={styles.pressPic}>
             <Image
               style={styles.myPic}
-              source={{uri: `data:image/gif;base64,${conf.image}`}}
+              source={{uri: `data:image/gif;base64,${userConfig.image}`}}
             />
           </Pressable>
         </View>

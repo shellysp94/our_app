@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React, {useState} from 'react';
 import {View, Text, Modal, Button, Pressable} from 'react-native';
@@ -7,18 +8,15 @@ import {useSelector} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const AgeItem = props => {
+  const config = useSelector(state => state.configuration.userConfig);
   const [visible, setVisible] = useState(false);
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const config = useSelector(state => state.userConfig);
-  // const stateFilters = useSelector(state => state.filters);
-  // const dispatch = useDispatch();
   const [min, setMin] = useState(config.age - 5);
   const [max, setMax] = useState(config.age + 5);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
 
   return (
     <View style={styles.viewStyle}>
-      {/* modal */}
       <Modal transparent={true} visible={visible}>
         <View style={styles.Item}>
           <Text style={styles.title}>Age</Text>
@@ -30,7 +28,9 @@ const AgeItem = props => {
             max={100}
             values={[min, max]}
             onValuesChangeFinish={values => {
-              setMax(values[1]), setMin(values[0]), props.setAge(values);
+              setMax(values[1]);
+              setMin(values[0]);
+              props.setAge(values);
             }}
           />
           <View style={styles.buttonContainer}>
@@ -49,9 +49,9 @@ const AgeItem = props => {
         </Pressable>
         <Pressable
           onPress={() => {
-            setMax(config.age + 5),
-              setMin(config.age - 5),
-              props.setAge([min, max]);
+            setMax(config.age + 5);
+            setMin(config.age - 5);
+            props.setAge([min, max]);
           }}>
           <Ionicons
             color={'#1B8AA0'}

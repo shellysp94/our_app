@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-alert */
 /* eslint-disable no-prototype-builtins */
@@ -9,16 +10,16 @@ import axios from 'axios';
 import UserItem from '../Components/userItem';
 
 const MyFriendRequests = props => {
-  const userConfig = useSelector(state => state.userConfig);
   const [listOfConf, setlistOfConf] = useState([]);
-  const user_id = useSelector(state => state.userConfig.user_id);
+  const userConfig = useSelector(state => state.configuration.userConfig);
+  const user_id = userConfig.user_id;
 
   const onAccept = async userNum => {
     try {
-      const res = await axios.post(
+      await axios.post(
         `http://192.168.1.141:3000/friendRequest/approve/${user_id}/${userNum}`,
       );
-      getMyFriendRequest();
+      getMyFriendRequest(); //FIX ME
     } catch (error) {
       alert(error);
     }

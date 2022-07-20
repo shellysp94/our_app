@@ -8,26 +8,23 @@ import styles from '../Styles/ChatStyle';
 import UpperBar from '../Components/UpperBar';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-
+import {openChats} from '../store/Slices/chatSlice';
 const Chat = () => {
-  const allChats = 'http://192.168.1.141:3000/chats';
-  const myUserId = useSelector(state => state.userConfig.user_id);
-
+  const myUserId = useSelector(state => state.configuration.userConfig.user_id);
+  const chats = useSelector(state => state.OpenChats);
   const dispatch = useDispatch();
-  const openChats = useSelector(state => state.OpenChats);
-  //FIX ME - need useCallback????
-  const getAllChats = useCallback(async () => {
+
+  const getAllChats = async () => {
     //FIX ME there is a problem with update list of open chats
     try {
-      const res = await axios.get(`${allChats}/${myUserId}`);
-      dispatch({
-        type: 'ALL_CHATS',
-        OpenChats: res.data,
-      });
+      const res = await axios.get(
+        `http://192.168.1.141:3000/chats/${myUserId}`,
+      );
+      dispatch(openChats({OpenChats: res.data}));
     } catch (error) {
       alert(error);
     }
-  }, [dispatch]);
+  };
 
   useEffect(() => {
     getAllChats();
@@ -37,8 +34,8 @@ const Chat = () => {
     <View style={styles.manageChatsContainer}>
       <UpperBar title={'Chats'} />
       <View>
-        {openChats &&
-          openChats.map((item, index) => <ChatItem key={index} data={item} />)}
+        {chats &&
+          chats.map((item, index) => <ChatItem key={index} data={item} />)}
       </View>
     </View>
   );

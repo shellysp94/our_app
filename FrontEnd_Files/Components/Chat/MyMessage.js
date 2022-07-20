@@ -6,7 +6,7 @@ import styles from '../../Styles/ChatStyle';
 import {useSelector} from 'react-redux';
 
 const MyMessage = props => {
-  const userConfig = useSelector(state => state.userConfig);
+  const userConfig = useSelector(state => state.configuration.userConfig);
   return (
     <View style={styles.myMessage}>
       <Text style={{fontWeight: 'bold'}}>

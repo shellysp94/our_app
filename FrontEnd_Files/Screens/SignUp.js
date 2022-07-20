@@ -12,6 +12,7 @@ import styles from '../Styles/SignUpStyle';
 import axios from 'axios';
 import TInput from '../Components/TInput';
 import {useSelector, useDispatch} from 'react-redux';
+import {updateDetails} from '../store/Slices/configurationSlice';
 
 function SignUp() {
   const [date, setDate] = useState(new Date());
@@ -35,8 +36,8 @@ function SignUp() {
 
   const baseUrl = 'http://192.168.1.141:3000/auth/register';
 
-  const hobbies = useSelector(state => state.myHobbies);
-  const rawText = useSelector(state => state.rawText.registration_form);
+  const hobbies = useSelector(state => state.configuration.myHobbies);
+  const rawText = useSelector(state => state.general.rawText.registration_form);
 
   var day = date.getDate();
   var month = date.getMonth() + 1;
@@ -44,22 +45,16 @@ function SignUp() {
   month = month.toString().padStart(2, '0');
 
   const chipStyle = (value, chip) => {
-    return {
-      margin: 2,
-      backgroundColor: value === chip ? '#0E6070' : '#EBEBEB',
-    };
+    return {margin: 2, backgroundColor: value === chip ? '#0E6070' : '#EBEBEB'};
   };
   const chipTextColor = (value, chip) => {
-    return {
-      color: value === chip ? '#FFFFFF' : '#0E6070',
-    };
+    return {color: value === chip ? '#FFFFFF' : '#0E6070'};
   };
 
   var year = date.getFullYear();
   const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate;
     setShow(false);
-    setDate(currentDate);
+    setDate(selectedDate);
   };
 
   const validateEmail = () => {
@@ -81,38 +76,41 @@ function SignUp() {
     setEmail(value);
     validateEmail();
   };
+
+  let configuration = {
+    email: email,
+    password: password,
+    first_name: firstName,
+    last_name: lastName,
+    date_of_birth: `${day}-${month}-${year}`,
+    city: city,
+    gender: gender,
+    phone_number: phoneNumber,
+    relationship_status: relationshipStatus,
+    sexual_orientation: sexualOrientation,
+    profession: profession,
+    pronoun: pronoun,
+    hobbies: [...hobbies],
+    //FIX ME
+    radius: 1000,
+    longitude: 31.88,
+    latitude: 24.11,
+  };
+
   const AddUserToDB = async event => {
     try {
-      const response = await axios.post(`${baseUrl}`, {
-        email: email,
-        password: password,
-        first_name: firstName,
-        last_name: lastName,
-        date_of_birth: `${day}-${month}-${year}`,
-        city: city,
-        gender: gender,
-        phone_number: phoneNumber,
-        relationship_status: relationshipStatus,
-        sexual_orientation: sexualOrientation,
-        profession: profession,
-        pronoun: pronoun,
-        hobbies: [...hobbies],
-        //FIX ME
-        radius: 1000,
-        longitude: 31.88,
-        latitude: 24.11,
-      });
+      const response = await axios.post(`${baseUrl}`, configuration);
       if (response.data.hasOwnProperty('msg')) {
         alert(response.data.msg);
       } else {
-        alert('ההרשמה בוצעה בהצלחה');
-        dispatch({
-          type: 'UPDATE_DEATAILS',
+        let loginDetails = {
           userConfig: response.data,
           email: response.data.email,
           fullName: `${response.data.first_name} ${response.data.last_name}`,
           token: response.data.token,
-        });
+        };
+
+        dispatch(updateDetails(loginDetails));
         navigation.navigate('Log In stack');
       }
     } catch (error) {

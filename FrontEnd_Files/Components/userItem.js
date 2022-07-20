@@ -3,15 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Pressable,
-  Modal,
-  Button,
-} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable, Button} from 'react-native';
 import UserProfile from './UserProfile';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
@@ -22,9 +14,7 @@ const UserItem = props => {
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   const config = props.config;
-  const url = 'http://192.168.1.141:3000/chats/';
-  const myConfig = useSelector(state => state.userConfig);
-  console.log(props);
+  const myConfig = useSelector(state => state.configuration.userConfig);
 
   const typeIcon = () => {
     if (props.type === 'notFriend')
@@ -35,7 +25,6 @@ const UserItem = props => {
     }
     if (props.type === 'requestsUserSent') {
       return <Button title={'Pending'} color={'orange'} />;
-      //return <Ionicons name="add-circle-outline" size={30} />;
     } else {
       return (
         <Button
@@ -48,11 +37,9 @@ const UserItem = props => {
   };
   const createNewChat = async () => {
     try {
-      console.log(`${url}${myConfig.user_id}/${config.user_id}`);
-      const res = await axios.post(
-        `${url}${myConfig.user_id}/${config.user_id}`,
+      await axios.post(
+        `http://192.168.1.141:3000/chats/${myConfig.user_id}/${config.user_id}`,
       );
-      alert('GOOD');
     } catch {
       alert('in catch');
     }
@@ -135,8 +122,6 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
-    // borderColor: '#614051',
-    // borderWidth: 1,
   },
   Picture: {
     width: 40,
