@@ -2,7 +2,6 @@ const {query, response} = require("express");
 const dbConfig = require("../../config/db_config");
 const {
 	getAllUsersConfiguration,
-	getUserConfiguration,
 	getUserConfigurationInner,
 } = require("./userConfiguration");
 const {getAllUserConnectionsType} = require("./connections");
