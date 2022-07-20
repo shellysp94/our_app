@@ -274,7 +274,10 @@ getFriendsOfFriends = (req, res) => {
 						});
 					});
 				} else {
-					console.log(`user -${userid}- does not have friends yet`);
+					msgToClient = {
+						msg: `user ${userid} does not have friends yet`,
+					};
+					return res.send(msgToClient);
 				}
 			} catch (err) {
 				console.log(err.message);
