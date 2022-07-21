@@ -1,7 +1,7 @@
 const dbConfig = require("../../config/db_config");
 const userPictures = require("./userPictures");
 const fs = require("fs");
-const { emitWarning } = require("process");
+const {emitWarning} = require("process");
 const mySqlConnection = dbConfig;
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
@@ -72,33 +72,31 @@ module.exports = {
 		});
 	},
 
-	getUsersConfigurationByRadius: (req, cb) =>
-	{
-		const user_id=req.params.userid
-		const radius = req.params.radius;
+	getUsersConfigurationByRadius: (req, cb) => {
+		const user_id = req.user_id;
+		const radius = req.radius_filter;
 
-		mySqlConnection.query(`SELECT longitude, latitude FROM user_configuration WHERE user_id=${user_id}`, (err,rows) =>
-		{
-			try
-			{
-				mySqlConnection.query(`SELECT *, ( 3959 * acos ( cos ( radians(${rows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - radians(${rows[0].longitude}) ) + sin ( radians(${rows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS distance FROM users_db.user_configuration HAVING (distance < ${radius}) ORDER BY distance`
-				,(newErr,newRows) =>
-				{
-					try
-					{
-						return cb(newRows);
-					}
-					catch
-					{
-						console.log(newErr.message);
-					}
-				});
+		mySqlConnection.query(
+			`SELECT longitude, latitude FROM user_configuration WHERE user_id=${user_id}`,
+			(err, rows) => {
+				try {
+					mySqlConnection.query(
+						`SELECT *, ( 3959 * acos ( cos ( radians(${rows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
+						radians(${rows[0].longitude}) ) + sin ( radians(${rows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS
+						distance FROM users_db.user_configuration HAVING ((distance < ${radius}) and (user_id != ${user_id})) ORDER BY distance`,
+						(newErr, newRows) => {
+							try {
+								return cb(newRows);
+							} catch {
+								console.log(newErr.message);
+							}
+						}
+					);
+				} catch {
+					console.log(err.message);
+				}
 			}
-			catch
-			{
-				console.log(err.message);
-			}
-		});
+		);
 	},
 
 	createUserConfiguration: (req, res) => {

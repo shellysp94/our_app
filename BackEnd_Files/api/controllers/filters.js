@@ -3,6 +3,7 @@ const dbConfig = require("../../config/db_config");
 const {
 	getAllUsersConfiguration,
 	getUserConfigurationInner,
+	getUsersConfigurationByRadius,
 } = require("./userConfiguration");
 const {getAllUserConnectionsType} = require("./connections");
 const mySqlConnection = dbConfig;
@@ -490,7 +491,7 @@ getUserFilteredUsers = (req, res) => {
 	let relationship = [];
 	let interestedIn = [];
 	let age = [];
-	//console.log("im userid:", req.params.userid);
+	let radius = [];
 
 	getUserFilter(req, (userFilter) => {
 		if (userFilter.length === 0) {
@@ -504,6 +505,7 @@ getUserFilteredUsers = (req, res) => {
 			};
 			getAllUserConnectionsType(getUsersConfigurationsWithoutMyself, res);
 		} else {
+			//console.log("userFilter[0]\n" + JSON.stringify(userFilter[0].user_id));
 			// user have filters
 			getUsersWithCommonSearchMode(userFilter[0], (response) => {
 				response.forEach((user) => {
@@ -565,18 +567,28 @@ getUserFilteredUsers = (req, res) => {
 												age.includes(user)
 											);
 
-										let resultArrayToObject = {
-											params: {
-												userid: String(req.params.userid),
-												type: String(userFilter[0].friends_only_filter),
-												usersToPresent: mutualUsers_InterestedIn_Age,
-											},
-										};
+										getUsersConfigurationByRadius(userFilter[0], (response) => {
+											response.forEach((user) => {
+												radius.push(user.user_id);
+											});
+											console.log("radius array:", radius);
 
-										// console.log(
-										// 	"im result array:\n" + JSON.stringify(resultArrayToObject)
-										// );
-										getAllUserConnectionsType(resultArrayToObject, res);
+											const mutualUsers_Age_Radius =
+												mutualUsers_InterestedIn_Age.filter((user) =>
+													radius.includes(user)
+												);
+											console.log("the mutuals:", mutualUsers_Age_Radius);
+
+											let resultArrayToObject = {
+												params: {
+													userid: String(req.params.userid),
+													type: String(userFilter[0].friends_only_filter),
+													usersToPresent: mutualUsers_Age_Radius,
+												},
+											};
+
+											getAllUserConnectionsType(resultArrayToObject, res);
+										});
 									});
 								}
 							);
@@ -596,6 +608,7 @@ createUserFilter = (req, res) => {
 	const relationshipFilter = req.body.relationship_filter;
 	const interestedInFilter = req.body.interested_in_filter;
 	let ageFilter = req.body.age_filter;
+	const radiusFilter = req.body.radius_filter;
 	const friendsOnly = req.body.friends_only_filter;
 
 	// console.log("From the POST method:\n");
@@ -627,10 +640,10 @@ createUserFilter = (req, res) => {
 	}
 
 	mySqlConnection.query(
-		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, friends_only_filter) 
-      values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${friendsOnly}) 
+		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, radius_filter, friends_only_filter) 
+      values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${radiusFilter}, ${friendsOnly}) 
       ON DUPLICATE KEY UPDATE user_id = ${userid}, search_mode = '${searchMode}', hobbies_filter = '${hobbiesFilter}', gender_filter = '${genderFilter}', 
-      relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', friends_only_filter = ${friendsOnly}`,
+      relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', radius_filter = ${radiusFilter}, friends_only_filter = ${friendsOnly}`,
 		(err, rows) => {
 			try {
 				if (typeof rows === "undefined") {
