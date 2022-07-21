@@ -52,33 +52,34 @@ createChatMessage = (req, res) => {
 							};
 							return res.send(msgToClient);
 						} else {
+							console.log("The row from DB:\n" + JSON.stringify(rows[0]));
 							// message from sender to receiver in their chat room insert to the database
 							// need to send the message to these users (sender and receiver)
 
-							const message = messageFormat(
-								sender,
-								receiver,
-								senderOnlineUser.getUserName(),
-								content
-							);
-							console.log(message);
+							// const message = messageFormat(
+							// 	sender,
+							// 	receiver,
+							// 	senderOnlineUser.getUserName(),
+							// 	content
+							// );
+							//console.log(message);
 
 							if (typeof receiverOnlineUser !== "undefined") {
 								// sender and receiver are online - should send each of them the message in their chat room
-								senderOnlineUser.websocket.send(JSON.stringify(message));
-								receiverOnlineUser.websocket.send(JSON.stringify(message));
+								senderOnlineUser.websocket.send(JSON.stringify(rows[0]));
+								receiverOnlineUser.websocket.send(JSON.stringify(rows[0]));
 							} else {
 								// message from sender to receiver insert to the database and save in the relevant chat room
 								// but the receiver is offline now, so should send notification to the receiver that he has a new message!
-								senderOnlineUser.websocket.send(JSON.stringify(message));
+								senderOnlineUser.websocket.send(JSON.stringify(rows[0]));
 								console.log(
-									`user number ${sender} sent a message to user number ${receiver}.\nthe message it's: "${JSON.stringify(
-										message
-									)}"`
+									`user number ${sender} sent a message to user number ${receiver}.\nthe message is: ${JSON.stringify(
+										rows[0]
+									)}`
 								);
 							}
-							res.send(rows);
 						}
+						res.send(rows);
 					}
 				);
 			} catch (err) {
