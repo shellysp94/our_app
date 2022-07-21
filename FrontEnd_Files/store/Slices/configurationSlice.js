@@ -39,9 +39,9 @@ export const configurationSlice = createSlice({
       state.myHobbies = action.payload.myHobbies;
     },
     updateFilters: (state, action) => {
-      state.filters = action.payload.filters;
+      state.filters = action.payload;
     },
-    clearFilters: (state, action) => {
+    clearFilters: state => {
       state.filters = initialState.filters;
     },
   },
@@ -52,6 +52,8 @@ export const {
   updateMainPictuer,
   updateSearchMode,
   updateHobbies,
+  updateFilters,
+  clearFilters,
 } = configurationSlice.actions;
 
 export default configurationSlice.reducer;

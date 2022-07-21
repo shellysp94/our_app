@@ -17,6 +17,7 @@ wss.on("connection", (ws, req) => {
 	//let token = url.parse(req.url, true).query.token;
 	let userid;
 
+
 	mySqlConnection.query(
 		`select user_id from users where token = "${token}"`,
 		(err, rows) => {
@@ -29,7 +30,19 @@ wss.on("connection", (ws, req) => {
 							ws.close();
 						} else {
 							onlineUsers.insertNewOnlineUser(userid, ws);
-							console.log(`user number ${userid} connected`);
+							// console.log(`user number ${ userid } connected`);
+							// console.log("from server");
+							// console.log("***********************************************************")
+							// console.log(`user id: ${ userid }`);
+							// console.log("***********************************************************")
+							// console.log(ws);
+
+				
+							// for (i = 0; i < 10; i++)
+							// {
+							// 	ws.send("message from server");
+							// 	console.log('2 sec.');
+							// }	
 						}
 					});
 				} else {

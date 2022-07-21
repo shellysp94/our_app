@@ -20,7 +20,11 @@ const FiltersBarDrawer = createDrawerNavigator();
 
 const CustomFiltersBar = props => {
   const myAge = useSelector(state => state.configuration.userConfig.age);
+  const stateFilters = useSelector(state => state.configuration.filters);
+
   const options = useSelector(state => state.general.rawText);
+  const [age, setAge] = useState(myAge);
+  const [radius, setRadius] = useState(500);
   const [gender, setGender] = useState(options.filters.Gender[0]);
   const [interestedIn, setInterestedIn] = useState(
     options.filters.Interested_in[0],
@@ -44,7 +48,10 @@ const CustomFiltersBar = props => {
   };
 
   const onApply = () => {
+    console.log('ON APPLY STATE FILTERS: ', stateFilters);
     dispatch(updateFilters(filters));
+    console.log('ON APPLY STATE FILTERS: ', stateFilters);
+
     props.navigation.closeDrawer();
   };
   const onClear = () => {
@@ -59,7 +66,7 @@ const CustomFiltersBar = props => {
       </View>
       <DrawerItemList {...props} />
       <View style={styles.filtersMenu}>
-        <AgeItem myAge={myAge} /*setAge={setAge}*/ />
+        <AgeItem myAge={age} setAge={setAge} />
         <FilterItem
           title={gender}
           arr={options.filters.Gender}
@@ -79,11 +86,12 @@ const CustomFiltersBar = props => {
           value={relationship}
         />
         <Hobbies style={styles.viewStyle} list={hobbies} title={'Hobbies'} />
-        <Radius /*setRadius={setRadius}*/ />
+        <Radius value={radius} setRadius={setRadius} />
         <SearchMode
           value={searchMode}
           title={searchMode}
-          setSearchMode={setSearchMode}
+          function={setSearchMode}
+          arr={options.filters.Search_Mode}
         />
         <View style={styles.freindsOnlyBlock}>
           <Switch

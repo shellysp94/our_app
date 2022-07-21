@@ -16,7 +16,7 @@ const searchModeItems = props => {
       <Pressable
         style={{marginTop: 20}}
         key={index}
-        onPress={() => props.setSearchMode(item)}>
+        onPress={() => (props.function(item), hideModal())}>
         <Text style={{...styles.textItem, margin: 0}}>{item}</Text>
       </Pressable>
     );
@@ -39,12 +39,16 @@ const searchModeItems = props => {
           onPress={showModal}>
           <Text style={styles.valueItemText}>{props.title}</Text>
         </Pressable>
-        <Ionicons
-          color={'#1B8AA0'}
-          size={18}
-          style={styles.trashIcon}
-          name={'trash-outline'}
-        />
+        <Pressable
+          style={styles.center}
+          onPress={() => props.function(props.arr[0])}>
+          <Ionicons
+            color={'#1B8AA0'}
+            size={18}
+            style={styles.trashIcon}
+            name={'trash-outline'}
+          />
+        </Pressable>
       </View>
     </View>
   );

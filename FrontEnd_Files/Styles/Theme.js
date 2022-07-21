@@ -1,8 +1,8 @@
 const Theme = {
   //background: '#61AF9B',
   //background: '#0077b6',
-  backgroundColor: '#F5F2EC',
-  //backgroundColor: '#00B4D8',
+  //backgroundColor: '#F5F2EC',
+  backgroundColor: '#00B4D8',
   mainButtons: '#105A87',
   // background: '#48cae4',
   // background: '#90e0ef',

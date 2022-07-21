@@ -24,7 +24,7 @@ const Conversation = ({route}) => {
   const friendId = route.params.friendConfig.user_id;
   const friendName = `${route.params.friendConfig.first_name} ${route.params.friendConfig.last_name}`;
   const myId = useSelector(state => state.configuration.userConfig.user_id);
-  const messages = useSelector(state => state.chats.currChat);
+  const messages = useSelector(state => state.chat.currChat);
   const dispatch = useDispatch();
 
   const getMessages = async () => {

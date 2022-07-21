@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {View, Text, Modal, Button, Pressable} from 'react-native';
 import RnVerticalSlider from 'rn-vertical-slider';
 import styles from '../../Styles/FiltersStyle';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Radius = props => {
   const [visible, setVisible] = useState(false);
@@ -15,13 +16,15 @@ const Radius = props => {
     <View style={styles.viewStyle}>
       <Modal transparent={true} visible={visible}>
         <View style={styles.Item}>
-          <Text style={{...styles.title, marginBottom: 20}}>Radius</Text>
+          <Text style={{...styles.title, marginBottom: 20}}>
+            Radius: {props.value} m
+          </Text>
           <View style={styles.radiusSliderContainer}>
             <RnVerticalSlider
-              value={radiusVal}
+              value={props.value}
               disabled={false}
               min={0}
-              max={100}
+              max={5000}
               onChange={value => {
                 props.setRadius(value); //FIX ME
               }}
@@ -30,8 +33,7 @@ const Radius = props => {
               }}
               width={50}
               height={300}
-              step={1}
-              borderRadius={5}
+              step={100}
             />
 
             <View style={{top: 50, width: 250, alignSelf: 'center'}}>
@@ -40,9 +42,19 @@ const Radius = props => {
           </View>
         </View>
       </Modal>
-      <Pressable title={'Mode'} onPress={showModal}>
-        <Text style={{color: '#FFFFFF', fontSize: 16}}>Radius</Text>
-      </Pressable>
+      <View style={styles.item}>
+        <Pressable title={'Mode'} onPress={showModal}>
+          <Text style={{color: '#FFFFFF', fontSize: 16}}>{props.value} m</Text>
+        </Pressable>
+        <Pressable style={styles.center}>
+          <Ionicons
+            color={'#1B8AA0'}
+            size={18}
+            style={styles.trashIcon}
+            name={'trash-outline'}
+          />
+        </Pressable>
+      </View>
     </View>
   );
 };

@@ -66,11 +66,15 @@ createChatMessage = (req, res) => {
 							if (typeof receiverOnlineUser !== "undefined") {
 								// sender and receiver are online - should send each of them the message in their chat room
 								senderOnlineUser.websocket.send(JSON.stringify(message));
+
+							
 								receiverOnlineUser.websocket.send(JSON.stringify(message));
 							} else {
 								// message from sender to receiver insert to the database and save in the relevant chat room
 								// but the receiver is offline now, so should send notification to the receiver that he has a new message!
 								senderOnlineUser.websocket.send(JSON.stringify(message));
+								// console.log("from messages");
+								// console.log(senderOnlineUser);
 								console.log(
 									`user number ${sender} sent a message to user number ${receiver}.\nthe message it's: "${JSON.stringify(
 										message

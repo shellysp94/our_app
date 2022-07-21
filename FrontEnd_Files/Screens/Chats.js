@@ -11,7 +11,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {openChats} from '../store/Slices/chatSlice';
 const Chat = () => {
   const myUserId = useSelector(state => state.configuration.userConfig.user_id);
-  const chats = useSelector(state => state.OpenChats);
+  const chats = useSelector(state => state.chat.OpenChats);
   const dispatch = useDispatch();
 
   const getAllChats = async () => {

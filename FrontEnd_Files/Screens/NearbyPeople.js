@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
@@ -16,25 +17,31 @@ const NearbyPeople = ({navigation}) => {
   const filters = useSelector(state => state.configuration.filters);
   const nearbyPeople = useSelector(state => state.people.nearbyPeople);
   const dispatch = useDispatch();
+  // console.log('user_id ', user_id);
+  // console.log('filters ', filters);
+  // console.log('nearbyPeople ', nearbyPeople);
 
   const showFilters = () => {
     navigation.openDrawer();
   };
 
   const onApplyHandler = useCallback(async () => {
+    //BUG not render on filters change. render sometimes onSave code
     try {
+      console.log('IN HERE');
       const people = await axios.post(
-        `http://192.168.1.141:3000/filters/${user_id}`,
-        {
-          ...filters,
-        },
+        `http://192.168.1.141:3000/filters/${user_id}`, //NOTICE: use this url or another?
+        filters,
       );
-
       dispatch(updateNearbyPeople({nearbyPeople: people.data}));
     } catch (error) {
       alert(error);
     }
   }, [user_id, filters, dispatch]);
+
+  useEffect(() => {
+    onApplyHandler();
+  }, []);
 
   const onFriendRequest = async userNum => {
     try {

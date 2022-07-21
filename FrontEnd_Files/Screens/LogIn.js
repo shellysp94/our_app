@@ -36,7 +36,7 @@ const LogIn = ({navigation}) => {
     dispatch(changeStatus({status: 'disconnect'}));
     onLoadingPage();
   }, []);
-
+  
   const validateEmail = () => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(email) === false) {

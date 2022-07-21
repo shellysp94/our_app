@@ -86,7 +86,7 @@ const Hobbies = props => {
       {/* filter item */}
       <View style={styles.item}>
         <Pressable style={styles.center} onPress={showModal}>
-          <Text style={styles.valueItemText}>{props.text}</Text>
+          <Text style={styles.valueItemText}>{props.title}</Text>
         </Pressable>
         <Pressable style={styles.center}>
           <Ionicons

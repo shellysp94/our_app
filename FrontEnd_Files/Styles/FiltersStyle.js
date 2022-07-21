@@ -94,8 +94,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   itemPressable: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    justifyContent: 'center',
   },
   item: {
     flexDirection: 'row',

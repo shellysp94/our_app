@@ -10,6 +10,7 @@ import styles from '../Styles/HomeStyle';
 import axios from 'axios';
 import UpperBar from '../Components/UpperBar';
 import {updateSearchMode} from '../store/Slices/configurationSlice';
+
 const Home = () => {
   const [expanded, setExpanded] = useState(false);
   const [photos, setPhotos] = useState([]);
