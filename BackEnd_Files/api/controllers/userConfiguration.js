@@ -8,12 +8,12 @@ const formatYmd = (date) => date.toISOString().slice(0, 10);
 
 const queryUserConfiguration = (arr, callback) => {
 	mySqlConnection.query(
-		`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image 
+		`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image  
 		FROM user_configuration a 
 		LEFT JOIN user_pictures b 
 		ON a.user_id =  b.user_id 
 		WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
-		ORDER BY first_name asc, last_name asc `,
+		ORDER BY first_name asc, last_name asc`,
 		[arr],
 		(err, rows) => {
 			if (!err) {

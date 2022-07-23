@@ -24,6 +24,23 @@ const extractParametersForNotification = (req, newRows) =>
     return paramsForNotification;
 }
 
+function getConnectionsForConfiguration(user, rows, userConnections) {
+	const rowsLength = rows.length;
+
+	for (i = 0; i < rowsLength; i++) {
+		if (
+			!userConnections.includes(rows[i].user_A_id) &&
+			rows[i].user_A_id !== parseInt(user, 10)
+		) {
+			userConnections.push(rows[i].user_A_id);
+		} else if (
+			!userConnections.includes(rows[i].user_B_id) &&
+			rows[i].user_B_id !== parseInt(user, 10)
+		) {
+			userConnections.push(rows[i].user_B_id);
+		}
+	}
+}
 
 module.exports = {
     getUserFriendRequestsRecieved: (req, res) => 
@@ -106,6 +123,30 @@ module.exports = {
         });
     },    
 
+    getMyFriends: (req,res) =>
+    {
+        user_id = req.params.userid;
+        mySqlConnection.query(
+			`SELECT * FROM Connections WHERE (user_A_id = ${user_id} OR user_B_id = ${user_id}) AND connected = 1`,
+			(err, rows) => {
+				try {
+					let userConnectedConnections = [];
+					getConnectionsForConfiguration(user_id, rows, userConnectedConnections);
+					let resultArrayToObject = {
+						params: {userid: String(userConnectedConnections)},
+					};
+
+                    getUserConfigurationInner(resultArrayToObject,(config) =>
+                    {
+                            res.send(config);   
+                    });  
+				} catch (err) {
+					console.log(err.message);
+				}
+			}
+		);
+    },
+
     sendFriendRequest: (req,res) =>
     {
         mySqlConnection.query(`insert into connections (user_a_id, user_b_id, creation_date, last_update) values
@@ -147,6 +188,44 @@ module.exports = {
         const approvedUser = req.params.useridA;
         const sentReqUser = req.params.useridB;
 
+        mySqlConnection.query(`update connections set connected = 1 where (user_A_id = ? and user_B_id = ?)`,[sentReqUser,approvedUser], (err,rows)=>
+        {
+            try
+            {
+                res.send(`${approvedUser} approved friend request from ${sentReqUser}`);
+            }
+
+            catch(err)
+            {
+                console.log(newErr);
+            }
+        });
+    },
+
+    declineFriendRequest: (req,res) =>
+    {
+        const declinedUser = req.params.useridA;
+        const sentReqUser = req.params.useridB;
+
+        mySqlConnection.query(`DELETE FROM connections WHERE user_A_id =${sentReqUser} and user_B_id =${declinedUser}`, (err,rows) =>
+        {
+            try
+            {
+                res.send(`${declinedUser} declined friend request from ${sentReqUser}`);
+            }
+
+            catch
+            {
+                console.log(err.message);
+            }
+        });
+    }
+            
+   /*  approveFriendRequest: (req,res) =>
+    {
+        const approvedUser = req.params.useridA;
+        const sentReqUser = req.params.useridB;
+
         mySqlConnection.query(`insert into connections (user_a_id, user_b_id, connected, creation_date, last_update) values
         (?,?,?, curdate(), curdate())`, [approvedUser, sentReqUser, 1], (err,rows)=>
         {
@@ -170,5 +249,5 @@ module.exports = {
                 console.log(err);
             }
         });
-    }
+    } */
 }
