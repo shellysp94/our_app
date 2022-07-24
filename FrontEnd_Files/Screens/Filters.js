@@ -13,6 +13,7 @@ import styles from '../Styles/FiltersStyle';
 import FilterItem from '../Components/Filters/FilterItem';
 import {Switch} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
+import Theme from '../Styles/Theme';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {updateFilters, clearFilters} from '../store/Slices/configurationSlice';
@@ -61,7 +62,7 @@ const CustomFiltersBar = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerBlock}>
-        <Ionicons name="search-circle-outline" size={40} color={'#1B8AA0'} />
+        <Ionicons name="search-circle-outline" size={40} color={'#2C143E'} />
         <Text style={styles.findNewFriendsText}>Find New Friends</Text>
       </View>
       <DrawerItemList {...props} />
@@ -85,7 +86,11 @@ const CustomFiltersBar = props => {
           function={setRelationship}
           value={relationship}
         />
-        <Hobbies style={styles.viewStyle} list={hobbies} title={'Hobbies'} />
+        <Hobbies
+          styling={'Filters'}
+          list={hobbies}
+          text={hobbies.length !== 0 ? hobbies.toString() : 'Hobbies'}
+        />
         <Radius value={radius} setRadius={setRadius} />
         <SearchMode
           value={searchMode}
@@ -97,14 +102,14 @@ const CustomFiltersBar = props => {
           <Switch
             value={isSwitchOn}
             onValueChange={() => setIsSwitchOn(!isSwitchOn)}
-            color={'#0E6070'}
+            color={'#2C143E'}
           />
           <Text style={styles.friendsOnlyText}>Friends Only</Text>
         </View>
         <View style={styles.applyBlock}>
           <Pressable onPress={() => onApply()} style={styles.searchPressable}>
             <Ionicons
-              color={'#FFFFFF'}
+              color={'#2C143E'}
               size={25}
               style={styles.searchIcon}
               name={'search-circle-outline'}
@@ -114,7 +119,7 @@ const CustomFiltersBar = props => {
 
           <Pressable onPress={() => onClear()} style={styles.trashPressables}>
             <Ionicons
-              style={styles.trashIcon}
+              style={{alignSelf: 'center', left: 10}}
               size={18}
               name={'trash-outline'}
             />

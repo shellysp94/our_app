@@ -93,11 +93,12 @@ const styles = StyleSheet.create({
   hobbies: {
     marginTop: 30,
     flexDirection: 'column',
-    left: 40,
+    left: 20,
   },
   hobbiesText: {
     color: '#0E6070',
     alignSelf: 'flex-start',
+    left: 20,
   },
   subText: {
     alignSelf: 'center',
@@ -141,9 +142,8 @@ const styles = StyleSheet.create({
   catagoryText: {
     left: 40,
     marginTop: 15,
-    color: '#0E6070',
+    color: '#FFFFFF',
   },
-  selectedChip: {},
 });
 
 export default styles;

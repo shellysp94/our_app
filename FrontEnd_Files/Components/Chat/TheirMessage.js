@@ -9,7 +9,7 @@ const TheirMessage = props => {
 
   return (
     <View style={styles.thierMessage}>
-      <Text style={{fontWeight: 'bold'}}>{props.friendName}</Text>
+      <Text style={styles.thierMessageContent}>{props.friendName}</Text>
       <Text>{props.content}</Text>
     </View>
   );

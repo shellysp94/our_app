@@ -7,9 +7,10 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   chatFeed: {
-    height: '100%',
+    height: '90%',
     width: '100%',
     overflow: 'scroll',
+    top: 30,
   },
   chatTitle: {
     textAlign: 'center',
@@ -25,9 +26,7 @@ const styles = StyleSheet.create({
   },
   messageFormContainer: {
     width: '100%',
-    position: 'absolute',
-    bottom: 0,
-    paddingBottom: 30,
+    bottom: 20,
     paddingHorizontal: 10,
   },
   messageForm: {
@@ -40,8 +39,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderRadius: 6,
     maxWidth: '60%',
-    backgroundColor: '#CDEAE2',
+    backgroundColor: '#48D1CC',
     margin: 2,
+    marginLeft: 18,
     alignSelf: 'flex-start',
   },
   myMessage: {
@@ -52,11 +52,12 @@ const styles = StyleSheet.create({
     maxWidth: '60%',
     alignItems: 'flex-end',
     marginRight: 18,
-    // color: 'white',
     alignSelf: 'flex-end',
     backgroundColor: Theme.backgroundColor,
   },
-
+  thierMessageContent: {
+    fontWeight: 'bold',
+  },
   messageInput: {
     height: 50,
     backgroundColor: 'white',
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    backgroundColor: '#B0D0D9',
+    backgroundColor: '#FFFFFF',
     width: '90%',
     marginTop: 5,
     alignSelf: 'center',
@@ -74,7 +75,6 @@ const styles = StyleSheet.create({
     elevation: 10,
     marginBottom: 5,
     borderRadius: 5,
-    borderColor: '#fff',
     borderWidth: 1.5,
   },
   container: {
@@ -94,13 +94,11 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     alignItems: 'flex-start',
-    color: '#2B7CAD',
+    color: '#2C143E',
   },
   body: {
     fontSize: 18,
-    alignItems: 'flex-start',
     color: '#105A87',
-    fontWeight: 'bold',
   },
   dateContainer: {
     justifyContent: 'center',

@@ -6,12 +6,12 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useState, useEffect} from 'react';
 import {View, Text, Pressable} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import styles from '../Styles/LogInStyle';
 import axios from 'axios';
 import TInput from '../Components/TInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {rawText, changeStatus} from '../store/Slices/generalSlice';
+import {changeStatus, getUpdater, rawText} from '../store/Slices/generalSlice';
 import {updateDetails} from '../store/Slices/configurationSlice';
 
 const LogIn = ({navigation}) => {
@@ -19,7 +19,7 @@ const LogIn = ({navigation}) => {
   const [deviceToken, setDeviceToken] = useState('');
   const [password, setPassword] = useState('');
   const [validEmail, setValidEmail] = useState(false);
-
+  const raw = useSelector(state => state.general.rawText);
   const dispatch = useDispatch();
 
   const onLoadingPage = async event => {
@@ -36,7 +36,7 @@ const LogIn = ({navigation}) => {
     dispatch(changeStatus({status: 'disconnect'}));
     onLoadingPage();
   }, []);
-  
+
   const validateEmail = () => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(email) === false) {
@@ -60,7 +60,6 @@ const LogIn = ({navigation}) => {
           device_token: deviceToken,
         },
       );
-
       if (response.data.hasOwnProperty('msg')) {
         alert(response.data.msg);
       } else {
@@ -80,8 +79,17 @@ const LogIn = ({navigation}) => {
             token: response.data.token,
           };
           dispatch(updateDetails(details));
+          console.log('DETAILS UPDATED');
           dispatch(changeStatus({status: 'connected'}));
           navigation.navigate('HomeStack');
+
+          // dispatch(getUpdater(details)).then(() => {
+          //   //dispatch(updateDetails(details));
+          //   console.log('line 87');
+          //   console.log('raw: ', raw);
+          //   //navigation.navigate('HomeStack');
+          //   alert(JSON.stringify(raw, null, 2));
+          // });
         } catch (error) {
           alert(error);
         }

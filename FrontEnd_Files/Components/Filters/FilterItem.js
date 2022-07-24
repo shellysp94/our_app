@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
@@ -34,20 +35,17 @@ const FilterItem = props => {
         </View>
       </Modal>
 
-      <View style={styles.item}>
-        <Pressable style={styles.itemPressable} onPress={showModal}>
-          <Text style={styles.valueItemText}>{props.title}</Text>
-        </Pressable>
-        <Pressable
-          style={styles.center}
-          onPress={() => props.function(props.arr[0])}>
-          <Ionicons
-            color={'#1B8AA0'}
-            size={18}
-            style={styles.trashIcon}
-            name={'trash-outline'}
-          />
-        </Pressable>
+      <View style={{flexDirection: 'row'}}>
+        <View>
+          <Pressable style={styles.itemPressable} onPress={showModal}>
+            <Text style={styles.valueItemText}>{props.title}</Text>
+          </Pressable>
+        </View>
+        <View style={{justifyContent: 'center'}}>
+          <Pressable onPress={() => props.function(props.arr[0])}>
+            <Ionicons color={'#1B8AA0'} size={18} name={'trash-outline'} />
+          </Pressable>
+        </View>
       </View>
     </View>
   );

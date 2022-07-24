@@ -45,10 +45,10 @@ function SignUp() {
   month = month.toString().padStart(2, '0');
 
   const chipStyle = (value, chip) => {
-    return {margin: 2, backgroundColor: value === chip ? '#0E6070' : '#EBEBEB'};
+    return {margin: 2, backgroundColor: value === chip ? '#48D1CC' : '#EBEBEB'};
   };
   const chipTextColor = (value, chip) => {
-    return {color: value === chip ? '#FFFFFF' : '#0E6070'};
+    return {color: value === chip ? '#0E6070' : '#2C143E'};
   };
 
   var year = date.getFullYear();
@@ -266,7 +266,7 @@ function SignUp() {
         <View style={styles.Hobbies}>
           <Text style={styles.catagoryText}>My hobbies are:</Text>
           <Hobbies
-            styling={styles.viewStyle}
+            styling={'SignUp'}
             text={
               hobbies.length !== 0 ? hobbies.toString() : 'Pick your hobbies'
             }
@@ -276,7 +276,7 @@ function SignUp() {
         </View>
         <View style={styles.ButtonSection1}>
           <Button
-            color="#105A87"
+            color="#48D1CC"
             title="Continue"
             onPress={() => {
               AddUserToDB();

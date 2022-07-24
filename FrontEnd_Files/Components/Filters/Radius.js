@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-native/no-inline-styles */
 // eslint-disable-next-line no-unused-vars
 import React, {useState} from 'react';
@@ -8,7 +9,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Radius = props => {
   const [visible, setVisible] = useState(false);
-  const [radiusVal, setRadiusVal] = useState(1);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
@@ -43,7 +43,10 @@ const Radius = props => {
         </View>
       </Modal>
       <View style={styles.item}>
-        <Pressable title={'Mode'} onPress={showModal}>
+        <Pressable
+          style={styles.itemPressable}
+          title={'Mode'}
+          onPress={showModal}>
           <Text style={{color: '#FFFFFF', fontSize: 16}}>{props.value} m</Text>
         </Pressable>
         <Pressable style={styles.center}>

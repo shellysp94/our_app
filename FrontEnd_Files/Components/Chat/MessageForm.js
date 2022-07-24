@@ -29,7 +29,7 @@ const MessageForm = props => {
   };
 
   return (
-    <View style={{width: '100%', flexDirection: 'row'}}>
+    <View style={{width: '100%', top: 30, flexDirection: 'row'}}>
       <View style={{width: '88%'}}>
         <TInput
           style={styles.messageInput}

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-prototype-builtins */
@@ -26,6 +27,7 @@ const PendingFriendRequests = props => {
   useEffect(() => {
     getMyFriendRequest();
   }, []);
+
   return (
     <View style={styles.container}>
       <Pressable

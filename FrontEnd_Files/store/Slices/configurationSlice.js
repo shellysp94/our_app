@@ -43,6 +43,10 @@ export const configurationSlice = createSlice({
     },
     clearFilters: state => {
       state.filters = initialState.filters;
+      console.log('changed');
+    },
+    clearHobbies: (state, action) => {
+      state.myHobbies = [];
     },
   },
 });
@@ -54,6 +58,7 @@ export const {
   updateHobbies,
   updateFilters,
   clearFilters,
+  clearHobbies,
 } = configurationSlice.actions;
 
 export default configurationSlice.reducer;

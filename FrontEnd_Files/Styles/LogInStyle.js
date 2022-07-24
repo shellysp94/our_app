@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: '#2C143E',
   },
   icon: {
     height: 15,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     padding: 7,
   },
   createAnAcountText: {
-    color: '#005252',
+    color: '#48D1CC',
     fontWeight: 'bold',
   },
   dontHaveAUser: {

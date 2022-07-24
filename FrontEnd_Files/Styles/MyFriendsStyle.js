@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
   searchButton: {
     width: 70,
     borderRadius: 5,
-    backgroundColor: '#005252',
+    backgroundColor: '#48D1CC',
     justifyContent: 'center',
   },
   searchText: {
     alignSelf: 'center',
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: Theme.backgroundColor,
   },
 
   scroll: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   requestPressable: {
     width: 150,
-    backgroundColor: '#007c7c',
+    backgroundColor: '#48D1CC',
     elevation: 10,
     borderRadius: 5,
     justifyContent: 'center',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   requestText: {
     alignSelf: 'center',
-    color: '#ffffff',
+    color: Theme.backgroundColor,
     fontWeight: 'bold',
   },
   listOfConfContainer: {

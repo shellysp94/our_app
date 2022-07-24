@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    //  backgroundColor: '#EBEBEB',
     left: 40,
   },
   Hobbies: {
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   viewStyle: {
-    backgroundColor: '#ADE8F4', // birthday,hobbies
+    backgroundColor: '#EBEBEB', // birthday,hobbies
     marginLeft: 30,
     padding: 7,
     margin: 5,
@@ -112,6 +111,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     elevation: 5,
+  },
+  signUpHobbies: {
+    backgroundColor: '#EBEBEB', // birthday,hobbies
+    marginLeft: 30,
+    padding: 7,
+    margin: 5,
+    borderRadius: 5,
+    width: '80%',
+    borderWidth: 1,
+    borderColor: 'white',
+    elevation: 5,
+  },
+  HobbiesItem: {
+    width: 280,
+    margin: 5,
   },
   cameraButton: {
     width: 50,
@@ -129,7 +143,7 @@ const styles = StyleSheet.create({
   },
   catagoryText: {
     left: 40,
-    color: '#0E6070',
+    color: '#48D1CC',
   },
   invalidText: {
     left: 30,
@@ -148,7 +162,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   dateText: {
-    color: '#0E6070',
+    color: Theme.backgroundColor,
+    padding: 7,
   },
   Xbutton: {
     fontSize: 18,

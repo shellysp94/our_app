@@ -1,35 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Theme from './Theme';
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  headerBlock: {
-    alignItems: 'center',
-    top: 20,
-  },
-  findNewFriendsText: {
-    color: '#2C143E',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  filtersMenu: {
-    top: 30,
-    alignSelf: 'center',
-    width: '90%',
-    height: '80%',
-  },
-  myPic: {
-    position: 'absolute',
-    alignSelf: 'center',
-  },
-  modePic: {
-    alignSelf: 'center',
-    height: 40,
-    width: 40,
-  },
-
   trashPressables: {
     backgroundColor: '#ffff',
     alignSelf: 'center',
@@ -40,49 +11,7 @@ const styles = StyleSheet.create({
     height: 40,
     flexDirection: 'row',
   },
-  clearText: {
-    color: '#2C143E',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    fontSize: 16,
-    left: 35,
-  },
-  applyText: {
-    color: '#2C143E',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    fontSize: 16,
-  },
-  searchIcon: {
-    left: 10,
-    position: 'absolute',
-    justifyContent: 'center',
-  },
-  searchPressable: {
-    backgroundColor: Theme.mainButtons,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    width: 150,
-    elevation: 5,
-    borderRadius: 5,
-    height: 50,
-  },
-  freindsOnlyBlock: {
-    alignSelf: 'flex-start',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    top: 10,
-    left: 20,
-  },
-  friendsOnlyText: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-  },
-  applyBlock: {
-    top: 20,
-    width: 100,
-    alignSelf: 'center',
-  },
+
   viewStyle: {
     backgroundColor: Theme.backgroundColor,
     padding: 7,
@@ -137,7 +66,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   textItem: {
-    // color: item === props.value ? 'red' : '#1B8AA0',
     color: '#1B8AA0',
     backgroundColor: '#ffff',
     elevation: 5,

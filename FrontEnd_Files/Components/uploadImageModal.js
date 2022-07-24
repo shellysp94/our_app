@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 import React, {useState} from 'react';
@@ -11,7 +12,7 @@ const UplaodImageModal = props => {
   const [image1, setImage1] = useState({});
   const [image2, setImage2] = useState({});
   const [image3, setImage3] = useState({});
-  const conf = useSelector(state => state.userConfig);
+  const conf = useSelector(state => state.configuration.userConfig);
   const dispatch = useDispatch();
 
   const pickImage = num => {

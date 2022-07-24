@@ -9,10 +9,10 @@ const MyMessage = props => {
   const userConfig = useSelector(state => state.configuration.userConfig);
   return (
     <View style={styles.myMessage}>
-      <Text style={{fontWeight: 'bold'}}>
+      <Text style={{fontWeight: 'bold', color: 'white'}}>
         {userConfig.first_name} {userConfig.last_name}
       </Text>
-      <Text>{props.content}</Text>
+      <Text style={{color: 'white'}}>{props.content}</Text>
     </View>
   );
 };

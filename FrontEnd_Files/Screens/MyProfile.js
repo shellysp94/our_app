@@ -45,10 +45,10 @@ const MyProfile = () => {
   }, []);
 
   const chipStyle = (value, chip) => {
-    return {margin: 2, backgroundColor: value === chip ? '#0E6070' : '#EBEBEB'};
+    return {margin: 2, backgroundColor: value === chip ? '#48D1CC' : '#EBEBEB'};
   };
   const chipTextColor = (value, chip) => {
-    return {color: value === chip ? '#FFFFFF' : '#0E6070'};
+    return {color: value === chip ? '#0E6070' : '#2C143E'};
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -210,6 +210,7 @@ const MyProfile = () => {
         <View style={styles.hobbies}>
           <Text style={styles.hobbiesText}>My hobbies are:</Text>
           <Hobbies
+            styling={'SignUp'}
             style={styles.Pressables}
             text={
               myhobbies.length !== 0
