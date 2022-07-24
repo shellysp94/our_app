@@ -2,7 +2,8 @@ const {query, response} = require("express");
 const dbConfig = require("../../config/db_config");
 const {
 	getAllUsersConfiguration,
-	getUserConfiguration,
+	getUserConfigurationInner,
+	getUsersConfigurationByRadius,
 } = require("./userConfiguration");
 const {getAllUserConnectionsType} = require("./connections");
 const mySqlConnection = dbConfig;
@@ -138,6 +139,25 @@ function createSqlQueryForInterestedInFiltering(
 	return callback(sqlQuery);
 }
 
+function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, callback) {
+	arrayLength = myFriendsUserid.length;
+
+	for (user = 0; user < arrayLength; user++) {
+		if (user === 0) {
+			sqlQuery = sqlQuery.concat(
+				`user_a_id = ${myFriendsUserid[user]} or user_b_id = ${myFriendsUserid[user]}`
+			);
+		} else {
+			sqlQuery = sqlQuery.concat(
+				` or user_a_id = ${myFriendsUserid[user]} or user_b_id = ${myFriendsUserid[user]}`
+			);
+		}
+	}
+	sqlQuery = sqlQuery.concat(")");
+
+	return callback(sqlQuery);
+}
+
 getAllFilters = (req, res) => {
 	mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
 		try {
@@ -157,6 +177,109 @@ getUserFilter = (req, callback) => {
 		(err, rows) => {
 			try {
 				return callback(rows);
+			} catch (err) {
+				console.log(err.message);
+			}
+		}
+	);
+};
+
+getFriendsOfFriends = (req, res) => {
+	const userid = req.params.userid;
+	let myFriends_myFriendsOfFriends = {};
+	let myFriendsUserid = [];
+	let myFriendsOfFriendsUserid = [];
+	let sqlQuery = `select * from connections where connected = 1 and (user_a_id != ${userid} and user_b_id != ${userid}) and (`;
+
+	mySqlConnection.query(
+		`select user_a_id, user_b_id from connections where (user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1`,
+		(err, rows) => {
+			try {
+				if (typeof rows !== "undefined" && rows.length > 0) {
+					for (row = 0; row < rows.length; row++) {
+						if (parseInt(rows[row].user_a_id, 10) !== parseInt(userid, 10)) {
+							myFriendsUserid.push(parseInt(rows[row].user_a_id, 10));
+						} else {
+							myFriendsUserid.push(parseInt(rows[row].user_b_id, 10));
+						}
+					}
+					createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, (response) => {
+						// console.log(
+						// 	"the response from friends of friends create query functions:\n" +
+						// 		response
+						// );
+						mySqlConnection.query(response, (err, rows) => {
+							try {
+								if (typeof rows !== "undefined" && rows.length > 0) {
+									for (
+										myFriendOfFriend = 0;
+										myFriendOfFriend < rows.length;
+										myFriendOfFriend++
+									) {
+										if (
+											!myFriendsUserid.includes(
+												parseInt(rows[myFriendOfFriend].user_A_id, 10)
+											)
+										) {
+											myFriendsOfFriendsUserid.push(
+												parseInt(rows[myFriendOfFriend].user_A_id, 10)
+											);
+										}
+										if (
+											!myFriendsUserid.includes(
+												parseInt(rows[myFriendOfFriend].user_B_id, 10)
+											)
+										) {
+											myFriendsOfFriendsUserid.push(
+												parseInt(rows[myFriendOfFriend].user_B_id, 10)
+											);
+										}
+									}
+								}
+								console.log("my friends user id:\n" + myFriendsUserid);
+								console.log(
+									"my friends of friends user id:\n" + myFriendsOfFriendsUserid
+								);
+
+								let myFriendsRequest = {
+									params: {
+										userid: String(myFriendsUserid),
+									},
+								};
+								let myFriendsOfFriendsRequest = {
+									params: {
+										userid: String(myFriendsOfFriendsUserid),
+									},
+								};
+								getUserConfigurationInner(
+									myFriendsRequest,
+									(myFriendsConfigurations) => {
+										Object.assign(myFriends_myFriendsOfFriends, {
+											myFriends: myFriendsConfigurations,
+										});
+
+										getUserConfigurationInner(
+											myFriendsOfFriendsRequest,
+											(myFriendsOfFriendsConfigurations) => {
+												Object.assign(myFriends_myFriendsOfFriends, {
+													myFriendsOfFriends: myFriendsOfFriendsConfigurations,
+												});
+												res.send(myFriends_myFriendsOfFriends);
+											}
+										);
+									}
+								);
+							} catch (err) {
+								console.log(err.message);
+							}
+						});
+					});
+				} else {
+					msgToClient = {
+						msg: `user ${userid} does not have friends yet`,
+					};
+					return res.send(msgToClient);
+				}
 			} catch (err) {
 				console.log(err.message);
 			}
@@ -368,7 +491,7 @@ getUserFilteredUsers = (req, res) => {
 	let relationship = [];
 	let interestedIn = [];
 	let age = [];
-	//console.log("im userid:", req.params.userid);
+	let radius = [];
 
 	getUserFilter(req, (userFilter) => {
 		if (userFilter.length === 0) {
@@ -382,6 +505,7 @@ getUserFilteredUsers = (req, res) => {
 			};
 			getAllUserConnectionsType(getUsersConfigurationsWithoutMyself, res);
 		} else {
+			//console.log("userFilter[0]\n" + JSON.stringify(userFilter[0].user_id));
 			// user have filters
 			getUsersWithCommonSearchMode(userFilter[0], (response) => {
 				response.forEach((user) => {
@@ -443,18 +567,28 @@ getUserFilteredUsers = (req, res) => {
 												age.includes(user)
 											);
 
-										let resultArrayToObject = {
-											params: {
-												userid: String(req.params.userid),
-												type: String(userFilter[0].friends_only_filter),
-												usersToPresent: mutualUsers_InterestedIn_Age,
-											},
-										};
+										getUsersConfigurationByRadius(userFilter[0], (response) => {
+											response.forEach((user) => {
+												radius.push(user.user_id);
+											});
+											console.log("radius array:", radius);
 
-										// console.log(
-										// 	"im result array:\n" + JSON.stringify(resultArrayToObject)
-										// );
-										getAllUserConnectionsType(resultArrayToObject, res);
+											const mutualUsers_Age_Radius =
+												mutualUsers_InterestedIn_Age.filter((user) =>
+													radius.includes(user)
+												);
+											console.log("the mutuals:", mutualUsers_Age_Radius);
+
+											let resultArrayToObject = {
+												params: {
+													userid: String(req.params.userid),
+													type: String(userFilter[0].friends_only_filter),
+													usersToPresent: mutualUsers_Age_Radius,
+												},
+											};
+
+											getAllUserConnectionsType(resultArrayToObject, res);
+										});
 									});
 								}
 							);
@@ -474,6 +608,7 @@ createUserFilter = (req, res) => {
 	const relationshipFilter = req.body.relationship_filter;
 	const interestedInFilter = req.body.interested_in_filter;
 	let ageFilter = req.body.age_filter;
+	const radiusFilter = req.body.radius_filter;
 	const friendsOnly = req.body.friends_only_filter;
 
 	// console.log("From the POST method:\n");
@@ -505,10 +640,10 @@ createUserFilter = (req, res) => {
 	}
 
 	mySqlConnection.query(
-		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, friends_only_filter) 
-      values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${friendsOnly}) 
+		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, radius_filter, friends_only_filter) 
+      values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${radiusFilter}, ${friendsOnly}) 
       ON DUPLICATE KEY UPDATE user_id = ${userid}, search_mode = '${searchMode}', hobbies_filter = '${hobbiesFilter}', gender_filter = '${genderFilter}', 
-      relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', friends_only_filter = ${friendsOnly}`,
+      relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', radius_filter = ${radiusFilter}, friends_only_filter = ${friendsOnly}`,
 		(err, rows) => {
 			try {
 				if (typeof rows === "undefined") {
@@ -668,6 +803,7 @@ deleteUserFilter = (req, res) => {
 module.exports = {
 	getAllFilters: getAllFilters,
 	getUserFilter: getUserFilter,
+	getFriendsOfFriends: getFriendsOfFriends,
 	getUsersWithCommonSearchMode: getUsersWithCommonSearchMode,
 	getUsersWithCommonHobbiesFilter: getUsersWithCommonHobbiesFilter,
 	getUsersWithCommonGenderFilter: getUsersWithCommonGenderFilter,

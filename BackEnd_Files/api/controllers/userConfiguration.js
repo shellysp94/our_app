@@ -1,18 +1,19 @@
 const dbConfig = require("../../config/db_config");
 const userPictures = require("./userPictures");
 const fs = require("fs");
+const {emitWarning} = require("process");
 const mySqlConnection = dbConfig;
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
 const queryUserConfiguration = (arr, callback) => {
 	mySqlConnection.query(
-		`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image 
+		`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image  
 		FROM user_configuration a 
 		LEFT JOIN user_pictures b 
 		ON a.user_id =  b.user_id 
 		WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
-		ORDER BY first_name asc, last_name asc `,
+		ORDER BY first_name asc, last_name asc`,
 		[arr],
 		(err, rows) => {
 			if (!err) {
@@ -69,6 +70,33 @@ module.exports = {
 		return queryUserConfiguration(arr, (config) => {
 			res.send(config);
 		});
+	},
+
+	getUsersConfigurationByRadius: (req, cb) => {
+		const user_id = req.user_id;
+		const radius = req.radius_filter;
+
+		mySqlConnection.query(
+			`SELECT longitude, latitude FROM user_configuration WHERE user_id=${user_id}`,
+			(err, rows) => {
+				try {
+					mySqlConnection.query(
+						`SELECT *, ( 3959 * acos ( cos ( radians(${rows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
+						radians(${rows[0].longitude}) ) + sin ( radians(${rows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS
+						distance FROM users_db.user_configuration HAVING ((distance < ${radius}) and (user_id != ${user_id})) ORDER BY distance`,
+						(newErr, newRows) => {
+							try {
+								return cb(newRows);
+							} catch {
+								console.log(newErr.message);
+							}
+						}
+					);
+				} catch {
+					console.log(err.message);
+				}
+			}
+		);
 	},
 
 	createUserConfiguration: (req, res) => {
