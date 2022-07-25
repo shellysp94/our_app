@@ -47,11 +47,12 @@ function getConnectionsForConfiguration(user, rows, userConnections) {
 module.exports = {
     getUserFriendRequestsRecieved: (req, res) => 
     {
+        user_id = req.params.userid;
         mySqlConnection.query(`SELECT b.*
         from connections a
         join user_configuration b
         on a.user_A_id = b.user_id
-        where a.user_B_id = ? and a.connected =0;`, [req.params.userid], (err, rows) =>
+        where a.user_B_id = ? and a.connected =0;`, [user_id], (err, rows) =>
         {
             try
             {
@@ -67,7 +68,7 @@ module.exports = {
                         params: {userid: String(usersArr)},
                     };
 
-                    getUserConfigurationInner(resultArrayToObject,(config) =>
+                    getUserConfigurationInner(resultArrayToObject,user_id,(config) =>
                     {
                             res.send(config);   
                     });   
@@ -87,11 +88,13 @@ module.exports = {
 
     getUserFriendRequestsSent: (req,res) =>
     {
+        user_id = req.params.userid;
+
         mySqlConnection.query(`SELECT b.*
         from connections a
         join user_configuration b
         on a.user_B_id = b.user_id
-        where a.user_A_id = ? and a.connected =0;`, [req.params.userid], (err, rows) =>
+        where a.user_A_id = ? and a.connected =0;`, [user_id], (err, rows) =>
         {
             try
             {
@@ -107,7 +110,7 @@ module.exports = {
                         params: {userid: String(usersArr)},
                     };
 
-                    getUserConfigurationInner(resultArrayToObject,(config) =>
+                    getUserConfigurationInner(resultArrayToObject,user_id,(config) =>
                     {
                             res.send(config);   
                     });   
@@ -138,7 +141,7 @@ module.exports = {
 						params: {userid: String(userConnectedConnections)},
 					};
 
-                    getUserConfigurationInner(resultArrayToObject,(config) =>
+                    getUserConfigurationInner(resultArrayToObject,user_id,(config) =>
                     {
                             res.send(config);   
                     });  
