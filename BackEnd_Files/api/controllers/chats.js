@@ -4,6 +4,8 @@ const {getChatMessages, deleteChatMessages} = require("./messages");
 const mySqlConnection = dbConfig;
 const chatRoomsArray = require("../../utils/chatRooms/chatRoomsArray");
 const chatRooms = new chatRoomsArray().getInstance();
+const onlineUsersArray = require("../../utils/users/onlineUsersArray");
+const onlineUsers = new onlineUsersArray().getInstance();
 
 getAllChats = (req, res) => {
 	mySqlConnection.query("SELECT * from Chats", (err, rows) => {
@@ -166,14 +168,46 @@ createUsersChat = (req, res) => {
 																parseInt(userIdA, 10),
 																parseInt(userIdB, 10)
 															);
-
 															const currentChatRoom = chatRooms.getChatRoom(
 																rows[0].chat_id
 															);
-															console.log(
-																`chat room with chat_id = ${currentChatRoom.getChatId()} between users: ${currentChatRoom.getUser_A_id()} and ${currentChatRoom.getUser_B_id()} created successfully!`
-															);
-															console.log("Im from chats file :)\n", chatRooms);
+
+															console.log("create a new chat -->");
+
+															if (onlineUsers.includesAUser(userIdA)) {
+																onlineUsers.updateChatRoomOfUser(
+																	userIdA,
+																	currentChatRoom
+																);
+
+																console.log(
+																	`user id ${userIdA} chat rooms:\n${JSON.stringify(
+																		onlineUsers
+																			.getOnlineUser(userIdA)
+																			.getAllUserChatRooms()
+																	)}`
+																);
+															}
+
+															if (onlineUsers.includesAUser(userIdB)) {
+																onlineUsers.updateChatRoomOfUser(
+																	userIdB,
+																	currentChatRoom
+																);
+
+																console.log(
+																	`user id ${userIdB} chat rooms:\n${JSON.stringify(
+																		onlineUsers
+																			.getOnlineUser(userIdB)
+																			.getAllUserChatRooms()
+																	)}`
+																);
+															}
+
+															// console.log(
+															// 	`chat room with chat_id = ${currentChatRoom.getChatId()} between users: ${currentChatRoom.getUser_A_id()} and ${currentChatRoom.getUser_B_id()} created successfully!`
+															// );
+															// console.log("Im from chats file :)\n", chatRooms);
 															msgToClient = {
 																msg: `Chat room between users ${userIdA} and ${userIdB} created.`,
 															};

@@ -63,6 +63,26 @@ let onlineUsersArray = class {
 		);
 		return onlineUser;
 	}
+
+	includesAUser(user_id) {
+		let isExists = 0;
+		this.onlineUsers.forEach((onlineUser) => {
+			if (parseInt(onlineUser.user_id) === parseInt(user_id)) {
+				isExists = 1;
+			}
+		});
+
+		// console.log(
+		// 	`result of includes a user (online users array) is: ----${isExists}----`
+		// );
+
+		return isExists;
+	}
+
+	updateChatRoomOfUser(user_id, chatRoom) {
+		const onlineUser = this.getOnlineUser(user_id);
+		onlineUser.updateOnlineUserChatRoomsArray(chatRoom);
+	}
 };
 
 class Singleton {

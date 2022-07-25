@@ -2,7 +2,8 @@ const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 const chatRoom = require("./chatRoom");
 
-getAllChatsInDatabase = (callback) => {
+function getAllChatsInDatabase(callback) {
+	// return Promise((resolve, reject) => {
 	mySqlConnection.query(
 		"SELECT chat_id, user_A_id, user_B_id from Chats",
 		(err, rows) => {
@@ -11,9 +12,21 @@ getAllChatsInDatabase = (callback) => {
 			} catch (err) {
 				console.log(err.message);
 			}
+
+			// 	if (err) {
+			// 		reject(err);
+			// 	}
+
+			// 	if (rows !== undefined) {
+			// 		resolve(rows);
+			// 	} else {
+			// 		reject(err);
+			// 	}
+			// }
 		}
 	);
-};
+	//});
+}
 
 let chatRoomsArray = class {
 	constructor() {
@@ -27,11 +40,31 @@ let chatRoomsArray = class {
 				);
 			});
 		});
+		console.log("C'tor of Chat Rooms Array");
 	}
 
-	insertNewChatRoom(chat_id, user_A_id, user_B_id) {
-		const newChatRoom = new chatRoom(chat_id, user_A_id, user_B_id);
-		if (!this.chatRooms.includes(newChatRoom)) {
+	// async initChatRooms() {
+	// 	const chatRooms = await getAllChatsInDatabase();
+	// 	chatRooms.forEach((chatRoom) => {
+	// 		this.insertNewChatRoom(
+	// 			chatRoom.chat_id,
+	// 			chatRoom.user_A_id,
+	// 			chatRoom.user_B_id
+	// 		);
+	// 	});
+	// 	console.log("-------from the init of chat rooms array-------");
+	// }
+
+	async insertNewChatRoom(chat_id, user_A_id, user_B_id) {
+		let isExists = 0;
+		this.chatRooms.forEach((chatRoom) => {
+			if (parseInt(chat_id) === parseInt(chatRoom.getChatId())) {
+				isExists = 1;
+			}
+		});
+
+		if (isExists === 0) {
+			const newChatRoom = new chatRoom(chat_id, user_A_id, user_B_id);
 			this.chatRooms.push(newChatRoom);
 		}
 	}
@@ -49,6 +82,7 @@ class Singleton {
 	constructor() {
 		if (!Singleton.instance) {
 			Singleton.instance = new chatRoomsArray();
+			// Singleton.instance.initChatRooms();
 		}
 	}
 

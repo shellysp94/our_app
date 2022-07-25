@@ -22,19 +22,6 @@ function getUserName(user_id) {
 			}
 		);
 	});
-	// mySqlConnection.query(
-	// 	`select first_name from user_configuration where user_id = ${user_id}`,
-	// 	(err, rows) => {
-	// 		if (typeof rows === "undefined" || rows.length === 0) {
-	// 			console.log(
-	// 				"something wrong. This user id didn't exist in the database"
-	// 			);
-	// 			return callback();
-	// 		} else {
-	// 			return callback(rows[0].first_name);
-	// 		}
-	// 	}
-	// );
 }
 
 let onlineUser = class {
@@ -44,39 +31,36 @@ let onlineUser = class {
 		this.websocket;
 		this.userChatRooms;
 		console.log("C'tor of online user");
-		// getUserName(user_id, (userName) => {
-		// 	this.user_id = user_id;
-		// 	this.user_name = userName;
-		// 	this.websocket = websocket;
-		// 	this.userChatRooms = chatRooms.filter(
-		// 		(chatRoom) =>
-		// 			chatRoom.getUser_A_id() === parseInt(user_id, 10) ||
-		// 			chatRoom.getUser_B_id() === parseInt(user_id, 10)
-		// 	);
-		// 	console.log(`C'tor of user: ${user_id} create an online user!`);
-		// console.log(
-		// 	`Online User C'tor --> create online user with id: ${user_id}.\nThe object is: ${JSON.stringify(
-		// 		this
-		// 	)}`
-		// );
-		//});
 	}
 
 	async initOnlineUser(user_id, websocket) {
 		const userName = await getUserName(user_id);
-		this.user_id = user_id;
-		this.user_name = userName;
-		this.websocket = websocket;
-		this.userChatRooms = chatRooms.filter(
-			(chatRoom) =>
-				chatRoom.getUser_A_id() === parseInt(user_id, 10) ||
-				chatRoom.getUser_B_id() === parseInt(user_id, 10)
-		);
-		console.log(`C'tor of user: ${user_id} create an online user!`);
+		if (userName.length === 0) {
+			console.log(
+				`INIT online user --->\nSomething went wrong! user id ---${user_id}--- name is undefined from DB! Didn't create this online user.
+				Go to "onlineUser.js" file - the class file`
+			);
+		} else {
+			this.user_id = user_id;
+			this.user_name = userName;
+			this.websocket = websocket;
+			this.userChatRooms = chatRooms.filter(
+				(chatRoom) =>
+					chatRoom.getUser_A_id() === parseInt(user_id, 10) ||
+					chatRoom.getUser_B_id() === parseInt(user_id, 10)
+			);
+			console.log(`C'tor of user: ${user_id} create an online user!`);
+		}
 	}
 
-	updateOnlineUserChatRooms() {
+	updateOnlineUserChatRoomsArray(newChatRoom) {
+		this.userChatRooms.forEach((chatRoom) => {
+			if (parseInt(chatRoom.chat_id) !== parseInt(newChatRoom.chat_id)) {
+				this.userChatRooms.push(newChatRoom);
+			}
+		});
 		console.log(`Update chat rooms array of user: ${this.user_id}`);
+		console.log("His chat Rooms now are:", this.userChatRooms);
 	}
 
 	getUserId() {
