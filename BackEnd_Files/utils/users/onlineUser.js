@@ -54,11 +54,16 @@ let onlineUser = class {
 	}
 
 	updateOnlineUserChatRoomsArray(newChatRoom) {
+		let isExists = 0;
 		this.userChatRooms.forEach((chatRoom) => {
 			if (parseInt(chatRoom.chat_id) !== parseInt(newChatRoom.chat_id)) {
-				this.userChatRooms.push(newChatRoom);
+				isExists = 1;
 			}
 		});
+
+		if (isExists === 0) {
+			this.userChatRooms.push(newChatRoom);
+		}
 		console.log(`Update chat rooms array of user: ${this.user_id}`);
 		console.log("His chat Rooms now are:", this.userChatRooms);
 	}
