@@ -28,7 +28,6 @@ export default WebSocketProvider = ({children}) => {
   };
   const token = useSelector(state => state.configuration.token);
   const status = useSelector(state => state.general.status);
-  // ws = {socket: socket};
 
   if (!socket) {
     socket = new WebSocket('ws://192.168.1.141:3000', null, {

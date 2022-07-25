@@ -46,6 +46,7 @@ const CustomFiltersBar = props => {
     relationship_filter: relationship,
     interested_in_filter: interestedIn,
     friends_only_filter: isSwitchOn,
+    radius_filter: 500,
   };
 
   const onApply = () => {

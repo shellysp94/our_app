@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-sequences */
-/* eslint-disable no-undef */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
@@ -12,25 +12,6 @@ const initialState = {
   status: 'disconnected',
 };
 
-const onLoadingPage = async () => {
-  const dispatch = useDispatch();
-  console.log('Loading...');
-  try {
-    const response = await axios.get(
-      `http://192.168.1.141:3000/dataFromSetsToClient`,
-    );
-    dispatch(rawText({rawText: response.data})); //BUG
-  } catch (error) {
-    alert(error);
-  }
-};
-
-export const getUpdater = createAsyncThunk('general', async () => {
-  await new Promise(resolve => (onLoadingPage(), setTimeout(resolve, 1000)));
-  console.log('****');
-
-  return 'simulatedAsyncAwait';
-});
 export const generalSlice = createSlice({
   name: 'general',
   initialState,
@@ -42,24 +23,12 @@ export const generalSlice = createSlice({
       state.status = action.payload.status;
       console.log('status changed');
     },
-  },
-  extraReducers: builder => {
-    builder.addCase(getUpdater.pending, state => {
-      state.status = 'loading';
-      // console.log('state.status: ', state.status);
-    });
-    builder.addCase(getUpdater.fulfilled, (state, action) => {
-      state.rawText = action.payload.rawText;
-      state.status = 'updated';
-      console.log('state.status: ', state.status);
-    });
-    builder.addCase(getUpdater.rejected, state => {
-      state.status = 'rejected';
-      // console.log('state.status: ', state.status);
-    });
+    getConstants: (state, action) => {
+      console.log('GETTING CONSTENTS...');
+    },
   },
 });
 
-export const {rawText, changeStatus} = generalSlice.actions;
+export const {rawText, changeStatus, getConstants} = generalSlice.actions;
 
 export default generalSlice.reducer;

@@ -15,6 +15,7 @@ const initialState = {
     interested_in_filter: 'Interested in',
     age_filter: [],
     friends_only_filter: 0,
+    radius_filter: 500,
   },
 };
 

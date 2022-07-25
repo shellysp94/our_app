@@ -51,7 +51,6 @@ const Hobbies = props => {
     );
   };
 
-  console.log(JSON.stringify(hobbiesStyle, null, 2));
   return (
     <View style={hobbiesStyle.viewStyle}>
       <Modal transparent={true} visible={visible}>

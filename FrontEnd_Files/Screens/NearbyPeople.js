@@ -20,6 +20,7 @@ const NearbyPeople = ({navigation}) => {
   // console.log('user_id ', user_id);
   // console.log('filters ', filters);
   // console.log('nearbyPeople ', nearbyPeople);
+  console.log('filters ', filters);
 
   const showFilters = () => {
     navigation.openDrawer();
@@ -33,6 +34,7 @@ const NearbyPeople = ({navigation}) => {
         `http://192.168.1.141:3000/filters/${user_id}`, //NOTICE: use this url or another?
         filters,
       );
+      console.log(people.data);
       dispatch(updateNearbyPeople({nearbyPeople: people.data}));
     } catch (error) {
       alert(error);
