@@ -43,19 +43,7 @@ let chatRoomsArray = class {
 		console.log("C'tor of Chat Rooms Array");
 	}
 
-	// async initChatRooms() {
-	// 	const chatRooms = await getAllChatsInDatabase();
-	// 	chatRooms.forEach((chatRoom) => {
-	// 		this.insertNewChatRoom(
-	// 			chatRoom.chat_id,
-	// 			chatRoom.user_A_id,
-	// 			chatRoom.user_B_id
-	// 		);
-	// 	});
-	// 	console.log("-------from the init of chat rooms array-------");
-	// }
-
-	async insertNewChatRoom(chat_id, user_A_id, user_B_id) {
+	insertNewChatRoom(chat_id, user_A_id, user_B_id) {
 		let isExists = 0;
 		this.chatRooms.forEach((chatRoom) => {
 			if (parseInt(chat_id) === parseInt(chatRoom.getChatId())) {
