@@ -3,7 +3,6 @@ const mySqlConnection = dbConfig;
 const chatRoom = require("./chatRoom");
 
 function getAllChatsInDatabase(callback) {
-	// return Promise((resolve, reject) => {
 	mySqlConnection.query(
 		"SELECT chat_id, user_A_id, user_B_id from Chats",
 		(err, rows) => {
@@ -12,20 +11,8 @@ function getAllChatsInDatabase(callback) {
 			} catch (err) {
 				console.log(err.message);
 			}
-
-			// 	if (err) {
-			// 		reject(err);
-			// 	}
-
-			// 	if (rows !== undefined) {
-			// 		resolve(rows);
-			// 	} else {
-			// 		reject(err);
-			// 	}
-			// }
 		}
 	);
-	//});
 }
 
 let chatRoomsArray = class {
@@ -70,7 +57,6 @@ class Singleton {
 	constructor() {
 		if (!Singleton.instance) {
 			Singleton.instance = new chatRoomsArray();
-			// Singleton.instance.initChatRooms();
 		}
 	}
 

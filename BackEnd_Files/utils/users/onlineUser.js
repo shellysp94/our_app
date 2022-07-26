@@ -53,19 +53,15 @@ let onlineUser = class {
 		}
 	}
 
-	updateOnlineUserChatRoomsArray(newChatRoom) {
-		let isExists = 0;
-		this.userChatRooms.forEach((chatRoom) => {
-			if (parseInt(chatRoom.chat_id) !== parseInt(newChatRoom.chat_id)) {
-				isExists = 1;
-			}
-		});
-
-		if (isExists === 0) {
-			this.userChatRooms.push(newChatRoom);
+	updateOnlineUserChatRoomsArray(chatRoom) {
+		if (!this.userChatRooms.includes(chatRoom)) {
+			this.userChatRooms.push(chatRoom);
+			console.log(
+				`---FROM ONLINE USER CLASS---\nPush a new chat room for user id: ${
+					this.user_id
+				}. Push chat room:\n${JSON.stringify(chatRoom)}`
+			);
 		}
-		console.log(`Update chat rooms array of user: ${this.user_id}`);
-		console.log("His chat Rooms now are:", this.userChatRooms);
 	}
 
 	getUserId() {

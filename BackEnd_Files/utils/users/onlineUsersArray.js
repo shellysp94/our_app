@@ -3,7 +3,6 @@ const onlineUser = require("./onlineUser");
 let onlineUsersArray = class {
 	constructor() {
 		this.onlineUsers = [];
-
 		console.log("Online users array ctor:");
 	}
 
@@ -27,8 +26,6 @@ let onlineUsersArray = class {
 				`Insert a new online user-\nUser id ${user_id} is already in the array. Didn't insert him again.`
 			);
 		}
-
-		//console.log(`Online users array\n${JSON.stringify(this)}`);
 	}
 
 	removeAnOnlineUser(user_id) {
@@ -40,9 +37,7 @@ let onlineUsersArray = class {
 					onlineUser.websocket.readyState === 3
 				) {
 					this.onlineUsers.splice(this.onlineUsers.indexOf(onlineUser), 1);
-					console.log(
-						"Remove from online users array:\n" + JSON.stringify(this)
-					);
+					console.log("Remove from online users array");
 				}
 			}
 		});
@@ -57,10 +52,6 @@ let onlineUsersArray = class {
 			(user) => parseInt(user.user_id) === parseInt(user_id)
 		);
 
-		console.log(
-			`Get an online user with user_id = ${user_id} (from the array class):\n` +
-				onlineUser
-		);
 		return onlineUser;
 	}
 
@@ -72,16 +63,18 @@ let onlineUsersArray = class {
 			}
 		});
 
-		// console.log(
-		// 	`result of includes a user (online users array) is: ----${isExists}----`
-		// );
-
 		return isExists;
 	}
 
-	updateChatRoomOfUser(user_id, chatRoom) {
+	async updateChatRoomOfUser(user_id, chatRoom) {
 		const onlineUser = this.getOnlineUser(user_id);
-		onlineUser.updateOnlineUserChatRoomsArray(chatRoom);
+		await onlineUser.updateOnlineUserChatRoomsArray(chatRoom);
+
+		console.log(
+			`---FROM ONLINE USERS **ARRAY**---\n user's number: ${user_id} chat rooms array is now:\n${this.getOnlineUser(
+				user_id
+			).getAllUserChatRooms()}`
+		);
 	}
 };
 

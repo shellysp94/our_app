@@ -204,10 +204,6 @@ createUsersChat = (req, res) => {
 																);
 															}
 
-															// console.log(
-															// 	`chat room with chat_id = ${currentChatRoom.getChatId()} between users: ${currentChatRoom.getUser_A_id()} and ${currentChatRoom.getUser_B_id()} created successfully!`
-															// );
-															// console.log("Im from chats file :)\n", chatRooms);
 															msgToClient = {
 																msg: `Chat room between users ${userIdA} and ${userIdB} created.`,
 															};
