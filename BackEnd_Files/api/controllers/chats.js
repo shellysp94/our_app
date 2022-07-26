@@ -38,6 +38,7 @@ getSpecificUserChats = (req, res) => {
 					};
 					getUserConfigurationInner(
 						resultArrayToObject,
+						userid,
 						(relevantUsersConfiguration) => {
 							// get the last message in a specific chat to display
 							for (
