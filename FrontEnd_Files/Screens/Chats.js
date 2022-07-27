@@ -1,8 +1,9 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 import React, {useCallback, useEffect} from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import ChatItem from '../Components/Chat/ChatItem';
 import styles from '../Styles/ChatStyle';
 import UpperBar from '../Components/UpperBar';
@@ -31,8 +32,12 @@ const Chat = () => {
   }, []);
 
   return (
-    <View style={styles.manageChatsContainer}>
+    <View style={styles.View.manageChatsContainer}>
       <UpperBar title={'Chats'} />
+      <Text
+        style={{...styles.Text.title, color: '#FFFFFF', alignSelf: 'center'}}>
+        My Open Chats
+      </Text>
       <View>
         {chats &&
           chats.map((item, index) => <ChatItem key={index} data={item} />)}

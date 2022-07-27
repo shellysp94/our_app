@@ -16,6 +16,8 @@ import Settings from '../Screens/Settings';
 import Notifications from '../Screens/Notifications';
 import FiltersBar from '../Screens/Filters';
 import Conversation from '../Screens/Conversation';
+import Theme from '../Styles/Theme';
+import {tSObjectKeyword} from '@babel/types';
 
 const MainDrawer = createDrawerNavigator();
 const NearbyPeopleStack = createStackNavigator();
@@ -94,7 +96,13 @@ const DrawerItems = DrawerScreens.map(item => {
       name={item.title}
       key={item.title}
       component={item.screen}
-      options={{drawerIcon: () => <Ionicons name={item.icon} size={22} />}}
+      options={{
+        drawerLabelStyle: {fontFamily: 'RobotoCondensed-Bold'},
+        activeBackgroundColor: {backgroundColor: '#316172'},
+        drawerIcon: () => (
+          <Ionicons color={Theme.secondColor} name={item.icon} size={22} />
+        ),
+      }}
     />
   );
 });
@@ -118,7 +126,12 @@ function LogInScreen() {
 function DrawerNavi() {
   return (
     <MainDrawer.Navigator
-      screenOptions={{headerShown: false}}
+      screenOptions={{
+        headerShown: false,
+        drawerActiveBackgroundColor: '#a5e5f3',
+        drawerActiveTintColor: Theme.backgroundColor,
+        drawerInactiveTintColor: Theme.secondColor,
+      }}
       drawerContent={props => <CustomSidebarMenu {...props} />}>
       {DrawerItems}
     </MainDrawer.Navigator>

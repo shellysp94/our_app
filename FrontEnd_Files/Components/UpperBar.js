@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   text: {
     left: 40,
     color: 'white',
+    fontFamily: 'RobotoCondensed-Regular',
     fontSize: 20,
   },
 });

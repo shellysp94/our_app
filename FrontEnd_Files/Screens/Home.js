@@ -10,6 +10,7 @@ import styles from '../Styles/HomeStyle';
 import axios from 'axios';
 import UpperBar from '../Components/UpperBar';
 import {updateSearchMode} from '../store/Slices/configurationSlice';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const Home = () => {
   const [expanded, setExpanded] = useState(false);
@@ -45,13 +46,27 @@ const Home = () => {
       }),
     );
   };
-
+  const getIcon = item => {
+    if (item === 'Food') return require('../assets/icons/hamburger.png');
+    if (item === 'Coffee') return require('../assets/icons/coffee-cup.png');
+    if (item === 'Training') return require('../assets/icons/sports.png');
+    if (item === 'Beer') return require('../assets/icons/toast.png');
+    if (item === 'Whatever') return require('../assets/icons/all.png');
+    if (item === 'Study') return require('../assets/icons/education.png');
+    if (item === 'Shopping') return require('../assets/icons/shopping.png');
+  };
   const items = searchModeOptions.map((item, index) => {
     return (
       <List.Item
-        style={styles.searchModeItems}
+        style={styles.List.searchModeItems}
         title={item}
         key={index}
+        left={props => (
+          <Image
+            style={{left: 5, height: 20, width: 20, alignSelf: 'center'}}
+            source={getIcon(item)}
+          />
+        )}
         onPress={() => changeMode(item)}
       />
     );
@@ -63,30 +78,35 @@ const Home = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View>
-        <UplaodImageModal visible={visible} setVisible={setVisible} />
-      </View>
+    <View style={styles.View.container}>
+      <UplaodImageModal visible={visible} setVisible={setVisible} />
       <UpperBar title={'Home'} />
-      <View style={styles.innterContainer}>
-        <Text style={styles.text}>Welcome {fullName}!</Text>
+      <View style={styles.View.innterContainer}>
+        <Text style={styles.Text.text}>Welcome </Text>
+        <Text style={styles.Text.text}>{fullName}!</Text>
         <View>
-          <Pressable style={styles.pressPic}>
+          <Pressable style={styles.Pressable.pressPic}>
             <Image
-              style={styles.myPic}
+              style={styles.Image.myPic}
               source={{uri: `data:image/gif;base64,${userConfig.image}`}}
             />
           </Pressable>
         </View>
-        <SafeAreaView style={styles.searchModeList}>
+        <ScrollView style={styles.ScrollView.searchModeList}>
           <List.Accordion
             title={searchMode}
-            style={styles.selectedSearchMode}
+            style={styles.List.selectedSearchMode}
             expanded={expanded}
-            onPress={() => setExpanded(!expanded)}>
+            onPress={() => setExpanded(!expanded)}
+            left={props => (
+              <Image
+                style={{left: 5, height: 20, width: 20, alignSelf: 'center'}}
+                source={getIcon(searchMode)}
+              />
+            )}>
             {items}
           </List.Accordion>
-        </SafeAreaView>
+        </ScrollView>
       </View>
     </View>
   );

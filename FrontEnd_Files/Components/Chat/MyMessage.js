@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
@@ -7,12 +8,19 @@ import {useSelector} from 'react-redux';
 
 const MyMessage = props => {
   const userConfig = useSelector(state => state.configuration.userConfig);
+  const date = props.time.split('T');
+
   return (
-    <View style={styles.myMessage}>
-      <Text style={{fontWeight: 'bold', color: 'white'}}>
+    <View style={styles.View.myMessage}>
+      <Text style={{...styles.Text.MessageTitle, color: 'white'}}>
         {userConfig.first_name} {userConfig.last_name}
       </Text>
-      <Text style={{color: 'white'}}>{props.content}</Text>
+      <Text style={{...styles.Text.MessageBody, color: 'white'}}>
+        {props.content}
+      </Text>
+      <View style={{alignSelf: 'flex-end'}}>
+        <Text>{date[1].substring(0, 5)}</Text>
+      </View>
     </View>
   );
 };

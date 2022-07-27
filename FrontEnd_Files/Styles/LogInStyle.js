@@ -18,16 +18,14 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   buttonSection: {
-    marginTop: 330,
+    marginTop: 30,
     width: 250,
     height: 70,
     alignSelf: 'center',
     justifyContent: 'space-between',
-    zIndex: 0,
-    position: 'absolute',
   },
   button: {
-    backgroundColor: Theme.mainButtons,
+    backgroundColor: Theme.highLightColor,
     borderWidth: 1,
     borderColor: 'white',
     justifyContent: 'center',
@@ -39,8 +37,8 @@ const styles = StyleSheet.create({
   buttonText: {
     alignSelf: 'center',
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#2C143E',
+    fontFamily: Theme.fontFamilyRegular,
+    color: Theme.backgroundColor,
   },
   icon: {
     height: 15,
@@ -53,14 +51,16 @@ const styles = StyleSheet.create({
   },
   FormItemText: {
     color: '#ffffff',
-    fontSize: 34,
+    fontSize: 50,
     alignSelf: 'center',
     marginBottom: 20,
+    fontFamily: Theme.fontFamilyRegular,
   },
   linkToRegister: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop: 30,
   },
   textInput: {
     width: '100%',
@@ -68,6 +68,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginBottom: 20,
     height: 50,
+    fontFamily: Theme.fontFamilyRegular,
+
     borderRadius: 5,
   },
   scroll: {
@@ -76,11 +78,15 @@ const styles = StyleSheet.create({
     padding: 7,
   },
   createAnAcountText: {
-    color: '#48D1CC',
-    fontWeight: 'bold',
+    color: Theme.highLightColor,
+    fontFamily: Theme.fontFamilyRegular,
+    // fontWeight: 'bold',
+    fontSize: 18,
   },
   dontHaveAUser: {
     color: '#FFFFFF',
+    fontSize: 18,
+    fontFamily: Theme.fontFamilyRegular,
   },
 });
 

@@ -1,4 +1,6 @@
 import {StyleSheet} from 'react-native';
+import Theme from './Theme';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -20,10 +22,13 @@ const styles = StyleSheet.create({
   },
   fullNameText: {
     alignSelf: 'center',
-    fontWeight: 'bold',
+    fontFamily: Theme.fontFamilyBold,
+    color: Theme.backgroundColor,
   },
   emailText: {
     alignSelf: 'center',
+    color: Theme.backgroundColor,
+    fontFamily: Theme.fontFamilyRegular,
   },
 });
 export default styles;

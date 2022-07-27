@@ -1,66 +1,18 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {PermissionsAndroid} from 'react-native';
+import {call, put, takeEvery} from 'redux-saga/effects';
 import Geolocation from '@react-native-community/geolocation';
+import {setMyLocation} from '../store/Slices/generalSlice';
+import {useDispatch} from 'react-redux';
 
-export default function userLocation() {
-  const [currentLongitude, setCurrentLongitude] = useState('...');
-  const [currentLatitude, setCurrentLatitude] = useState('...');
-  const [locationStatus, setLocationStatus] = useState('');
-
-  console.log('currentLongitude: ', currentLongitude);
-  console.log('currentLatitude: ', currentLatitude);
-  console.log('locationStatus: ', locationStatus);
-
-  return {currentLongitude, currentLatitude, locationStatus};
-}
-export const getOneTimeLocation = () => {
-  setLocationStatus('Getting Location ...');
-  Geolocation.getCurrentPosition(
-    //Will give you the current location
-    position => {
-      setLocationStatus('You are Here');
-      const currentLongitude = JSON.stringify(position.coords.longitude);
-      const currentLatitude = JSON.stringify(position.coords.latitude);
-      setCurrentLongitude(currentLongitude);
-      setCurrentLatitude(currentLatitude);
-    },
-    error => {
-      setLocationStatus(error.message);
-    },
-    {
-      enableHighAccuracy: false,
-      timeout: 30000,
-      maximumAge: 1000,
-    },
-  );
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
 };
 
-export const subscribeLocationLocation = () => {
-  watchID = Geolocation.watchPosition(
-    position => {
-      setLocationStatus('You are Here');
-      console.log(position);
-
-      const currentLongitude = JSON.stringify(position.coords.longitude);
-      const currentLatitude = JSON.stringify(position.coords.latitude);
-
-      setCurrentLongitude(currentLongitude);
-      setCurrentLatitude(currentLatitude);
-    },
-    error => {
-      setLocationStatus(error.message);
-    },
-    {
-      enableHighAccuracy: false,
-      maximumAge: 1000,
-    },
-  );
-};
-
-export const requestLocationPermission = async () => {
+const checkLocationPermission = async () => {
   try {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -70,13 +22,41 @@ export const requestLocationPermission = async () => {
       },
     );
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      //To Check, If Permission is granted
-      getOneTimeLocation();
-      subscribeLocationLocation();
+      return 'Permission Granted';
     } else {
-      setLocationStatus('Permission Denied');
+      return 'Permission Denied';
     }
   } catch (err) {
     console.warn(err);
   }
 };
+
+//FIX ME - change accurency to 5 meters
+export function getMyLocation() {
+  console.log('2');
+  return new Promise((resolve, reject) => {
+    Geolocation.getCurrentPosition((success, error) => {
+      if (error) {
+        reject(error);
+      }
+      resolve(success);
+    });
+  });
+}
+
+export function* getCurrentLocationSaga() {
+  const locationPermission = yield call(checkLocationPermission);
+  console.log('locationPermission: ', locationPermission);
+  if (locationPermission === 'Permission Granted') {
+    console.log('1');
+    const result = yield call(getMyLocation);
+    console.log('PROMISE RESULT: ', result);
+    yield put(
+      setMyLocation({
+        myLatitude: result.coords.latitude,
+        myLongitude: result.coords.longitude,
+      }),
+    );
+    console.log('4');
+  }
+}

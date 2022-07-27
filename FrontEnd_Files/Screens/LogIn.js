@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-prototype-builtins */
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
@@ -19,22 +18,15 @@ const LogIn = ({navigation}) => {
   const [deviceToken, setDeviceToken] = useState('');
   const [password, setPassword] = useState('');
   const [validEmail, setValidEmail] = useState(false);
-  // const raw = useSelector(state => state.general.rawText);
   const dispatch = useDispatch();
 
-  const onLoadingPage = async event => {
+  const getFcmToken = async event => {
     const fcmtoken = await AsyncStorage.getItem('fcmtoken');
     setDeviceToken(fcmtoken);
-
-    // const response = await axios.get(
-    //   `http://192.168.1.141:3000/dataFromSetsToClient`,
-    // );
-    // dispatch(rawText({rawText: response.data}));
   };
 
   useEffect(() => {
-    //dispatch(changeStatus({status: 'disconnect'}));
-    onLoadingPage();
+    getFcmToken();
   }, []);
 
   const validateEmail = () => {
@@ -62,7 +54,6 @@ const LogIn = ({navigation}) => {
           device_token: deviceToken,
         },
       );
-      console.log('response.data:', response.data);
       if (response.data.hasOwnProperty('msg')) {
         alert(response.data.msg);
       } else {

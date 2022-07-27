@@ -1,41 +1,32 @@
 /* eslint-disable require-yield */
-import {put, all, call, takeEvery} from 'redux-saga/effects';
+import {put, all, call} from 'redux-saga/effects';
 import axios from 'axios';
-import {rawText, getConstants} from '../Slices/generalSlice';
+import {rawText} from '../Slices/generalSlice';
+import {getCurrentLocationSaga} from '../../utils/location';
+import {getSocketSaga} from '../../utils/socket';
 
-//const delay = ms => new Promise(res => setTimeout(res, ms));
-
-export function* helloSaga() {
-  console.log('Hello Sagas!');
+export function* helloApp() {
+  console.log('WELCOME TO OUR APP!');
 }
 
-const getData = () => {
-  return axios.get(`http://192.168.1.141:3000/dataFromSetsToClient`);
+const getData = async () => {
+  return await axios.get(`http://192.168.1.141:3000/dataFromSetsToClient`);
 };
 
-export function* workLogin() {
-  console.log('Login!!!');
+export function* getConstants() {
   try {
     const response = yield call(getData);
     yield put(rawText({rawText: response.data}));
-    console.log('Login2');
+    console.log('CONSTANTS ACCEPTED');
   } catch (e) {
     console.log(e);
   }
 }
 
-// export function* incrementAsync() {
-//   yield call(delay, 1000);
-//   //yield put(Increment());
-// }
-
-// export function* watchIncrementAsync() {
-//   //yield takeEvery(AsyncIncrement, incrementAsync);
-// }
-export function* watchLogin() {
-  yield takeEvery(getConstants, workLogin);
-}
-
 export function* rootSaga() {
-  yield all([helloSaga(), watchLogin()]);
+  console.log('---------------START---------------');
+  yield all([helloApp(), getConstants()]);
+  console.log('-----------------');
+  yield call(getCurrentLocationSaga);
+  yield call(getSocketSaga);
 }

@@ -4,11 +4,11 @@ import React, {useEffect} from 'react';
 import LogInScreen from './roots/root';
 import {Provider} from 'react-redux';
 import {store} from './store/store';
+
 import {
   requestUserPermission,
   NotificationListener,
 } from './utils/pushNotification_helper';
-import WebSocketProvider from './utils/socketService';
 
 const App = () => {
   useEffect(() => {
@@ -18,9 +18,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <WebSocketProvider>
-        <LogInScreen />
-      </WebSocketProvider>
+      <LogInScreen />
     </Provider>
   );
 };

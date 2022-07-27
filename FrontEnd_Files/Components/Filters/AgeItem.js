@@ -6,6 +6,7 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import styles from '../../Styles/FiltersStyle';
 import {useSelector} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Theme from '../../Styles/Theme';
 
 const AgeItem = props => {
   const config = useSelector(state => state.configuration.userConfig);
@@ -16,13 +17,13 @@ const AgeItem = props => {
   const hideModal = () => setVisible(false);
 
   return (
-    <View style={styles.viewStyle}>
+    <View style={styles.FilterItem.viewStyle}>
       <Modal transparent={true} visible={visible}>
-        <View style={styles.Item}>
-          <Text style={styles.title}>Age</Text>
-          <Text style={styles.sliderValues}>{`${min}-${max}`}</Text>
+        <View style={styles.Modal.Item}>
+          <Text style={styles.Modal.title}>Age</Text>
+          <Text style={styles.Modal.sliderValues}>{`${min}-${max}`}</Text>
           <MultiSlider
-            sliderLength={250}
+            sliderLength={290}
             isMarkersSeparated={true}
             min={18}
             max={100}
@@ -33,17 +34,21 @@ const AgeItem = props => {
               props.setAge(values);
             }}
           />
-          <View style={styles.buttonContainer}>
-            <Button title={'close'} onPress={hideModal} />
+          <View style={styles.Modal.buttonContainer}>
+            <Button
+              color={Theme.highLightColor}
+              title={'close'}
+              onPress={hideModal}
+            />
           </View>
         </View>
       </Modal>
 
       {/* filter item */}
-      <View style={styles.item}>
-        <Pressable style={styles.itemPressable} onPress={showModal}>
+      <View style={styles.FilterItem.item}>
+        <Pressable style={styles.FilterItem.itemPressable} onPress={showModal}>
           {/* FIX ME -  stateFilters.age_filter !== [] only after apply*/}
-          <Text style={styles.valueItemText}>
+          <Text style={styles.FilterItem.valueItemText}>
             {min}-{max}
           </Text>
         </Pressable>
@@ -56,7 +61,7 @@ const AgeItem = props => {
           <Ionicons
             color={'#1B8AA0'}
             size={18}
-            style={styles.trashIcon}
+            style={styles.FilterItem.trashIcon}
             name={'trash-outline'}
           />
         </Pressable>

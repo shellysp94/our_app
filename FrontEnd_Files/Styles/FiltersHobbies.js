@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   valueItemText: {
     fontSize: 16,
     color: '#FFFFFF',
+    fontFamily: Theme.fontFamilyRegular,
   },
 
   //////Modal

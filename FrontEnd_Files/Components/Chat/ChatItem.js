@@ -19,27 +19,20 @@ const ChatItem = props => {
 
   return (
     //FIX ME how to move to certain conversation with certain user
-    <Pressable style={styles.item} onPress={() => navi()}>
-      <Pressable style={styles.Pressables}>
+    <Pressable style={styles.Pressable.item} onPress={() => navi()}>
+      <Pressable style={styles.Pressable.Pressables}>
         <Image
-          style={{
-            height: 50,
-            width: 50,
-            borderRadius: 25,
-          }}
+          style={styles.Image.userPic}
           source={{uri: `data:image/gif;base64,${data.image}`}}
         />
       </Pressable>
-      <View
-        style={{
-          flexDirection: 'row',
-        }}>
-        <View style={styles.Details}>
-          <Text style={styles.title}>
+      <View style={styles.View.row}>
+        <View style={styles.View.Details}>
+          <Text style={styles.Text.title}>
             {data.first_name} {data.last_name}
           </Text>
           {data.hasOwnProperty('content') ? (
-            <Text style={styles.body}>{data.content}</Text>
+            <Text style={styles.Text.body}>{data.content}</Text>
           ) : (
             <Text style={{color: 'gray'}}>The chat is empty</Text>
           )}

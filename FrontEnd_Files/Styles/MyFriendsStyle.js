@@ -2,77 +2,91 @@ import {StyleSheet} from 'react-native';
 import Theme from './Theme';
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Theme.backgroundColor,
-    height: Theme.height,
-    width: Theme.width,
-  },
-  searchFriend: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    left: 5,
-    width: '98%',
-  },
   textInput: {
-    padding: 4,
-    width: 220,
-    backgroundColor: '#fff',
-    borderColor: 'darkgray',
-    borderWidth: 1,
-    borderRadius: 5,
+    textInput: {
+      padding: 4,
+      width: 220,
+      backgroundColor: '#ffffff',
+      fontSize: 16,
+      fontFamily: Theme.fontFamilyRegular,
+      borderWidth: 1,
+      borderRadius: 5,
+    },
   },
-  searchButton: {
-    width: 70,
-    borderRadius: 5,
-    backgroundColor: '#48D1CC',
-    justifyContent: 'center',
+  Pressable: {
+    searchButton: {
+      width: 70,
+      borderRadius: 5,
+      backgroundColor: Theme.highLightColor,
+      justifyContent: 'center',
+    },
+    trashPressable: {
+      justifyContent: 'center',
+    },
+    requestPressable: {
+      width: 180,
+      backgroundColor: Theme.secondColor,
+      elevation: 10,
+      borderRadius: 5,
+      justifyContent: 'center',
+      borderColor: '#FFFFFF',
+      borderWidth: 1,
+      height: 30,
+    },
   },
-  searchText: {
-    alignSelf: 'center',
-    fontWeight: 'bold',
-    color: Theme.backgroundColor,
+  View: {
+    container: {
+      backgroundColor: Theme.backgroundColor,
+      height: Theme.height,
+      width: Theme.width,
+    },
+    pressableContaner: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      marginTop: 20,
+      left: 10,
+      width: '95%',
+    },
+    searchFriend: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      left: 5,
+      width: '98%',
+    },
   },
-
-  scroll: {
-    height: 200,
-    padding: 7,
+  Icon: {
+    trashIcon: {
+      backgroundColor: 'white',
+      elevation: 10,
+      padding: 7,
+      width: 35,
+      height: 35,
+      borderRadius: 5,
+    },
   },
-  trashPressable: {
-    justifyContent: 'center',
+  Text: {
+    searchText: {
+      alignSelf: 'center',
+      color: Theme.backgroundColor,
+      fontFamily: Theme.fontFamilyRegular,
+      fontSize: 18,
+    },
+    requestText: {
+      alignSelf: 'center',
+      color: '#FFFFFF',
+      fontFamily: Theme.fontFamilyRegular,
+      fontSize: 16,
+    },
   },
-  trashIcon: {
-    backgroundColor: 'white',
-    elevation: 10,
-    padding: 7,
-    width: 35,
-    height: 35,
-    borderRadius: 5,
+  SafeAreaView: {
+    listOfConfContainer: {
+      top: 20,
+    },
   },
-  pressableContaner: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 20,
-    left: 10,
-    width: '95%',
-  },
-  requestPressable: {
-    width: 150,
-    backgroundColor: '#48D1CC',
-    elevation: 10,
-    borderRadius: 5,
-    justifyContent: 'center',
-    borderColor: '#FFFFFF',
-    borderWidth: 1,
-    height: 30,
-  },
-  requestText: {
-    alignSelf: 'center',
-    color: Theme.backgroundColor,
-    fontWeight: 'bold',
-  },
-  listOfConfContainer: {
-    top: 20,
-  },
+  // scroll: {
+  //   height: 200,
+  //   padding: 7,
+  // },
 });
 
 export default styles;

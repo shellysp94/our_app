@@ -2,14 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  Image,
-  ScrollView,
-  Pressable,
-  Modal,
-} from 'react-native';
+import {View, Image, ScrollView, Pressable, Modal} from 'react-native';
 import {Text, Avatar} from 'react-native-paper';
 import axios from 'axios';
 import styles from '../Styles/UserProfile';

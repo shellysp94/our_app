@@ -23,29 +23,29 @@ const searchModeItems = props => {
   });
 
   return (
-    <View style={styles.viewStyle}>
+    <View style={styles.FilterItem.viewStyle}>
       <Modal transparent={true} visible={visible}>
-        <View style={styles.Item}>
-          <View style={styles.searchModeList}>{items}</View>
+        <View style={styles.Modal.Item}>
+          <View style={styles.Modal.searchModeList}>{items}</View>
           <View style={{marginTop: 70}}>
             <Button title={'close'} onPress={hideModal} />
           </View>
         </View>
       </Modal>
-      <View style={styles.item}>
+      <View style={styles.FilterItem.item}>
         <Pressable
-          style={styles.itemPressable}
+          style={styles.FilterItem.itemPressable}
           title={'Mode'}
           onPress={showModal}>
-          <Text style={styles.valueItemText}>{props.title}</Text>
+          <Text style={styles.FilterItem.valueItemText}>{props.title}</Text>
         </Pressable>
         <Pressable
-          style={styles.center}
+          style={styles.FilterItem.center}
           onPress={() => props.function(props.arr[0])}>
           <Ionicons
             color={'#1B8AA0'}
             size={18}
-            style={styles.trashIcon}
+            style={styles.FilterItem.trashIcon}
             name={'trash-outline'}
           />
         </Pressable>

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 50,
     borderWidth: 2,
-    borderColor: '#0E6070',
+    borderColor: Theme.secondColor,
     marginBottom: 10,
   },
   mainPic: {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     borderWidth: 4,
-    borderColor: '#3999C5',
+    borderColor: Theme.highLightColor,
     marginBottom: 10,
   },
   fullName: {
@@ -74,12 +74,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   subText: {
+    fontFamily: Theme.fontFamilyRegular,
     alignSelf: 'center',
   },
   title: {
     fontSize: 25,
     alignSelf: 'center',
     color: '#ffffff',
+    fontFamily: Theme.fontFamilyRegular,
   },
   pic: {
     height: 80,
@@ -167,6 +169,7 @@ const styles = StyleSheet.create({
   },
   Xbutton: {
     fontSize: 18,
+    fontFamily: Theme.fontFamilyRegular,
   },
   modalContainer: {
     padding: 20,

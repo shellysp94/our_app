@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
@@ -8,6 +9,7 @@ import {launchImageLibrary} from 'react-native-image-picker'; // Migration from 
 import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
 import {updateMainPictuer} from '../store/Slices/configurationSlice';
+import Theme from '../Styles/Theme';
 const UplaodImageModal = props => {
   const [image1, setImage1] = useState({});
   const [image2, setImage2] = useState({});
@@ -70,7 +72,7 @@ const UplaodImageModal = props => {
           },
         );
       }
-      props.setVisible(false);
+      props.setVisible(false); //FIX ME - modal dont close
     } catch (error) {
       console.error(error);
     }
@@ -128,11 +130,24 @@ const UplaodImageModal = props => {
               />
             </Pressable>
             <View>
-              <Button
-                color="#0E6070"
-                title="Upload"
-                onPress={() => uploadImage()}
-              />
+              <Pressable
+                style={{
+                  backgroundColor: Theme.secondColor,
+                  padding: 6,
+                  width: 90,
+                  borderRadius: 5,
+                  marginTop: 10,
+                }}
+                onPress={() => uploadImage()}>
+                <Text
+                  style={{
+                    alignSelf: 'center',
+                    fontFamily: Theme.fontFamilyBold,
+                    color: '#FFFFFF',
+                  }}>
+                  Upload
+                </Text>
+              </Pressable>
             </View>
           </View>
         </View>

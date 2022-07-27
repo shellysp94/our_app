@@ -27,25 +27,20 @@ const MyFriends = () => {
   const [visiblePendingRequests, setVisiblePendingRequests] = useState(false);
   const userConfig = useSelector(state => state.configuration.userConfig);
   const listOfConf = useSelector(state => state.people.myFriends);
-  console.log(listOfConf);
   const friendToSearch = useSelector(state => state.people.friendToSearch);
   const dispatch = useDispatch();
 
   const FindFriend = async () => {
-    const valToSearch = friendToSearch === '' ? '%20' : friendToSearch;
     try {
+      const valToSearch = friendToSearch === '' ? '%20' : friendToSearch;
       const friends = await axios.get(
         `http://192.168.1.141:3000/connections///byName/${userConfig.user_id}/1/${valToSearch}`,
       );
-      if (friends.data.hasOwnProperty('msg')) {
-        alert(friends.data.msg); // there are no connections?
-      } else {
-        dispatch(
-          updateMyFriends({
-            myFriends: friends.data,
-          }),
-        );
-      }
+      dispatch(
+        updateMyFriends({
+          myFriends: friends.data,
+        }),
+      );
     } catch (error) {
       alert(error);
     }
@@ -59,7 +54,7 @@ const MyFriends = () => {
   }, [friendToSearch, visibleMyRequests, visiblePendingRequests]);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.View.container}>
       <UpperBar title={'My Friends'} />
 
       <Modal transparent={true} visible={visibleMyRequests}>
@@ -68,45 +63,45 @@ const MyFriends = () => {
       <Modal transparent={true} visible={visiblePendingRequests}>
         <PendingFriendRequests setVisible={setVisiblePendingRequests} />
       </Modal>
-      <View style={styles.searchFriend}>
+      <View style={styles.View.searchFriend}>
         <TextInput
-          style={styles.textInput}
+          style={styles.textInput.textInput}
           placeholder={`Search a friend`}
           onChangeText={val => setFriendName(val)}
         />
         <Pressable
-          style={styles.searchButton}
+          style={styles.Pressable.searchButton}
           onPress={() => {
             dispatch(searchFriend({friendToSearch: friendName}));
           }}>
-          <Text style={styles.searchText}>Search</Text>
+          <Text style={styles.Text.searchText}>Search</Text>
         </Pressable>
         <Pressable
-          style={styles.trashPressable}
+          style={styles.Pressable.trashPressable}
           onPress={() => {
             dispatch(searchFriend({friendToSearch: ''}));
           }}>
           <Ionicons
             color={'#122b1b'}
             size={20}
-            style={styles.trashIcon}
+            style={styles.Icon.trashIcon}
             name={'trash-outline'}
           />
         </Pressable>
       </View>
-      <View style={styles.pressableContaner}>
+      <View style={styles.View.pressableContaner}>
         <Pressable
-          style={styles.requestPressable}
+          style={styles.Pressable.requestPressable}
           onPress={() => setVisibleMyRequests(true)}>
-          <Text style={styles.requestText}>My friend requests</Text>
+          <Text style={styles.Text.requestText}>My friend requests</Text>
         </Pressable>
         <Pressable
-          style={styles.requestPressable}
+          style={styles.Pressable.requestPressable}
           onPress={() => setVisiblePendingRequests(true)}>
-          <Text style={styles.requestText}>Pending friend request</Text>
+          <Text style={styles.Text.requestText}>Pending friend request</Text>
         </Pressable>
       </View>
-      <SafeAreaView style={styles.listOfConfContainer}>
+      <SafeAreaView style={styles.SafeAreaView.listOfConfContainer}>
         {listOfConf.map(item => {
           return (
             <UserItem config={item} key={`${item.user_id}`} type={'friend'} />

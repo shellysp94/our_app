@@ -1,92 +1,42 @@
-// /* eslint-disable prettier/prettier */
-// /* eslint-disable no-unused-vars */
-// import React from 'react';
+import {take, call, select} from 'redux-saga/effects';
+import {changeStatus} from '../store/Slices/generalSlice';
+// import {newMessageWaiting} from '../store/Slices/chatSlice';
 
-// // class SocketService
-// // {
-// //   constructor(token) {
-// //     if (!SocketService.socket) {
-// //       this.socket = new WebSocket('ws://192.168.1.141:3000', null, {
-// //         headers: {
-// //           authorization: 'Bearer ' + token,
-// //         },
-// //       });
-// //     }
-// //     return this.socket;
-// //   }
-// //   getSocket = function () {
-// //     return this.socket;
-// //   };
-// //   myonOpen(event)
-// //   {
-// //     this.socket.onopen = (event) => {
-// //       // connection opened
-// //       console.log("socket")
-// //       this.socket.send('something');  // send a message
-// //     };
-// // }
+const getToken = state => state.configuration.token;
 
-// //   onmessage = event =>
-// //   {
-// //     console.log("event ",event)
-// //     console.log("on message!")
-// //   }
+export function* createWebSocketConnection() {
+  console.log('6');
 
-// //   onerror() {
-// //     // an error occurred
-// //   }
-// //   onclose() {
-// //     // connection closed
-// //     console.log('disconnect');
-// //   }
-// // }
-// // export default SocketService;
+  const token = yield select(getToken);
+  console.log('token: ', token);
+  const socket = new WebSocket('ws://192.168.1.141:3000', null, {
+    headers: {
+      authorization: 'Bearer ' + token,
+    },
+  });
+  return socket;
+}
 
-// let socketService = class
-// {
-//   constructor(token)
-//   {
-//     this.socket = new WebSocket('ws://192.168.1.141:3000', null, {
-//       headers: {
-//         authorization: 'Bearer ' + token,
-//       },
-//     });
-//   };
+export function* getSocketSaga() {
+  console.log('5');
+  yield take(changeStatus.type);
+  const socket = yield call(createWebSocketConnection);
+  //   const token = yield select(getToken);
+  console.log('socket: ', socket);
 
-//   getSocket()
-//   {
-//     return this.socket;
-//   };
-//   myOnOpen()
-//   {
-//     this.socket.onopen = () =>
-//     {
-//       // connection opened
-//       console.log("socket")
-//       this.socket.send('something');  // send a message
-//     };
-
-//   };
-//   myOnClose()
-//   {
-//     this.socket.onclose = () =>
-//     {
-//           console.log('disconnect');
-//     }
-
-//   }
-// };
-
-// class Singleton {
-// 	constructor() {
-// 		if (!Singleton.instance) {
-// 			Singleton.instance = new socketService();
-// 		}
-// 	}
-
-// 	getInstance() {
-// 		return Singleton.instance;
-// 	}
-// }
-
-// export default Singleton;
+  if (socket) {
+    console.log('in line 28');
+    socket.onopen = event => {
+      // connection opened
+      console.log('SOCKET');
+    };
+    socket.onmessage = event => {
+      console.log('7');
+      console.log(JSON.parse(event.data));
+      //yield put(newMessageWaiting({newMessage: true})); //FIX ME - how to update message from function*
+    };
+    socket.onerror = error => {
+      console.log(error);
+    };
+  }
+}

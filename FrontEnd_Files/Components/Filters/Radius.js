@@ -13,13 +13,13 @@ const Radius = props => {
   const hideModal = () => setVisible(false);
 
   return (
-    <View style={styles.viewStyle}>
+    <View style={styles.FilterItem.viewStyle}>
       <Modal transparent={true} visible={visible}>
-        <View style={styles.Item}>
+        <View style={styles.Modal.Item}>
           <Text style={{...styles.title, marginBottom: 20}}>
             Radius: {props.value} m
           </Text>
-          <View style={styles.radiusSliderContainer}>
+          <View style={styles.Modal.radiusSliderContainer}>
             <RnVerticalSlider
               value={props.value}
               disabled={false}
@@ -42,18 +42,26 @@ const Radius = props => {
           </View>
         </View>
       </Modal>
-      <View style={styles.item}>
+
+      <View style={styles.FilterItem.item}>
         <Pressable
-          style={styles.itemPressable}
+          style={styles.FilterItem.itemPressable}
           title={'Mode'}
           onPress={showModal}>
-          <Text style={{color: '#FFFFFF', fontSize: 16}}>{props.value} m</Text>
+          <Text
+            style={{
+              fontFamily: 'RobotoCondensed-Regular',
+              color: '#FFFFFF',
+              fontSize: 16,
+            }}>
+            {props.value} m
+          </Text>
         </Pressable>
         <Pressable style={styles.center}>
           <Ionicons
             color={'#1B8AA0'}
             size={18}
-            style={styles.trashIcon}
+            style={styles.FilterItem.trashIcon}
             name={'trash-outline'}
           />
         </Pressable>

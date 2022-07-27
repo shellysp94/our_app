@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
   OpenChats: [],
   currChat: [],
+  newMessage: false,
 };
 
 export const chatSlice = createSlice({
@@ -14,6 +15,10 @@ export const chatSlice = createSlice({
     },
     setCurrentChat: (state, action) => {
       state.currChat = action.payload.currChat;
+    },
+    newMessageWaiting: (state, action) => {
+      state.newMessage = action.payload.newMessage;
+      console.log('new message state is: ', state.newMessage);
     },
   },
 });

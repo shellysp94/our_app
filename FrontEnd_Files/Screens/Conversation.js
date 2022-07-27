@@ -20,11 +20,11 @@ import MyMessage from '../Components/Chat/MyMessage';
 import TheirMessage from '../Components/Chat/TheirMessage';
 import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
-import SocketService from '../utils/socket';
 import {setCurrentChat} from '../store/Slices/chatSlice';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {useNavigation} from '@react-navigation/native';
+
 const Conversation = ({route}) => {
   const navigation = useNavigation();
   const friendId = route.params.friendConfig.user_id;
@@ -50,60 +50,45 @@ const Conversation = ({route}) => {
     }
   };
 
-  // const socket = new SocketService();
-  // socket.onmessage;
   useEffect(() => {
     getMessages();
   }, []); //BUG - fix the dependencies
 
   return (
-    <KeyboardAvoidingView style={styles.container}>
-      <View
-        style={{
-          top: 10,
-          left: 10,
-          padding: 7,
-          flexDirection: 'row',
-          width: '95%',
-        }}>
-        <View
-          style={{
-            alignSelf: 'center',
-            marginRight: 10,
-          }}>
-          <Pressable
-            style={{alignSelf: 'center'}}
-            onPress={() => navigation.goBack()}>
-            <Ionicons name={'arrow-back-outline'} size={30} />
-          </Pressable>
-        </View>
+    <KeyboardAvoidingView style={styles.View.container}>
+      <View style={styles.View.chatDetailsContainer}>
+        <Pressable
+          style={{alignSelf: 'center', marginRight: 10}}
+          onPress={() => navigation.goBack()}>
+          <Ionicons name={'arrow-back-outline'} size={30} />
+        </Pressable>
         <View style={{flexDirection: 'row', alignSelf: 'center'}}>
           <Image
-            style={{
-              height: 50,
-              width: 50,
-              borderRadius: 25,
-            }}
+            style={styles.Image.userPic}
             source={{uri: `data:image/gif;base64,${friendImage}`}}
           />
-          <Text style={{...styles.title, left: 30, alignSelf: 'center'}}>
+          <Text style={{...styles.Text.title, left: 30, alignSelf: 'center'}}>
             {friendName}
           </Text>
         </View>
       </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.chatFeed}>
+        <View style={styles.View.chatFeed}>
           <View style={{height: '88%'}}>
-            <ScrollView>
+            <ScrollView style={{height: '70%'}}>
               {messages.length > 0 ? (
                 messages.map((item, index) => (
-                  <View key={index} style={styles.messageBlock}>
+                  <View key={index}>
                     {myId === item.sender_user_id ? (
-                      <MyMessage content={item.content} />
+                      <MyMessage
+                        content={item.content}
+                        time={item.creation_date}
+                      />
                     ) : (
                       <TheirMessage
                         friendName={friendName}
                         content={item.content}
+                        time={item.creation_date}
                       />
                     )}
                   </View>
@@ -113,7 +98,7 @@ const Conversation = ({route}) => {
               )}
             </ScrollView>
           </View>
-          <View style={styles.messageFormContainer}>
+          <View style={styles.View.messageFormContainer}>
             <MessageForm friendID={friendId} />
           </View>
         </View>

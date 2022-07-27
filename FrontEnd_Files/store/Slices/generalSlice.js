@@ -1,15 +1,11 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-sequences */
-/* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react';
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
-import Promise from 'promise';
-import {useDispatch} from 'react-redux';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   rawText: {},
   status: 'disconnected',
+  myLatitude: 0,
+  myLongitude: 0,
 };
 
 export const generalSlice = createSlice({
@@ -21,14 +17,20 @@ export const generalSlice = createSlice({
     },
     changeStatus: (state, action) => {
       state.status = action.payload.status;
-      console.log('status changed');
+      console.log(`status changed to ${state.status}`);
     },
-    getConstants: (state, action) => {
+    getConstants: () => {
       console.log('GETTING CONSTENTS...');
+    },
+    setMyLocation: (state, action) => {
+      console.log('3');
+      state.myLatitude = action.payload.myLatitude;
+      state.myLongitude = action.payload.myLongitude;
     },
   },
 });
 
-export const {rawText, changeStatus, getConstants} = generalSlice.actions;
+export const {rawText, changeStatus, getConstants, setMyLocation} =
+  generalSlice.actions;
 
 export default generalSlice.reducer;

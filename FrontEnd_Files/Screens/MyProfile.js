@@ -11,15 +11,13 @@ import {
   Pressable,
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-import {Chip, Avatar} from 'react-native-paper';
+import {Chip} from 'react-native-paper';
 import Hobbies from '../Components/Filters/Hobbies';
 import TInput from '../Components/TInput';
 import styles from '../Styles/MyProfileStyle';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import UpperBar from '../Components/UpperBar';
-
-//FIX ME ליצור אובייקט שישמש כסטייט זמני וכשלוחצים על כפתור הוא יחליף את הקונפיגורציה בסטייט ובשרת
 
 const MyProfile = () => {
   const [edit, setEdit] = useState(false);
@@ -51,17 +49,16 @@ const MyProfile = () => {
     return {color: value === chip ? '#0E6070' : '#2C143E'};
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.SafeAreaView.container}>
       <UpperBar title={'My Profile'} />
       <ScrollView>
-        <View style={styles.photosContainer}>
-          {photos.map(item => {
+        <View style={styles.View.photosContainer}>
+          {photos.map((item, index) => {
             return (
-              <View key={photos.fileName}>
+              <View key={index}>
                 <Pressable>
-                  <Avatar.Image
-                    size={80}
-                    style={styles.myPic}
+                  <Image
+                    style={styles.Image.myPic}
                     source={{uri: `data:image/gif;base64,${item.image}`}}
                   />
                 </Pressable>
@@ -70,38 +67,38 @@ const MyProfile = () => {
           })}
 
           <Pressable
-            style={styles.touchablePen}
+            style={styles.Pressable.touchablePen}
             onPress={() => {
               setEdit(!edit);
             }}>
             <Image
-              style={styles.penPic}
-              source={require('../Images/pencil.png')}
+              style={styles.Image.penPic}
+              source={require('../Images/pencil.png')} //FIX ME - CHANGE TO ICON
             />
           </Pressable>
         </View>
-        <View style={styles.emailPassword}>
-          <View style={styles.column}>
+        <View style={styles.View.emailPassword}>
+          <View style={styles.View.column}>
             <TInput
-              style={styles.textInput}
+              style={styles.TInput.textInput}
               value={email}
               title={'Email'}
               editable={edit}
             />
           </View>
         </View>
-        <View style={styles.fullName}>
-          <View style={styles.column}>
+        <View style={styles.View.fullName}>
+          <View style={styles.View.column}>
             <TInput
-              style={styles.nameInput}
+              style={styles.TInput.nameInput}
               value={userConfig.first_name}
               title={'First Name'}
               editable={edit}
             />
           </View>
-          <View style={styles.column}>
+          <View style={styles.View.column}>
             <TInput
-              style={styles.nameInput}
+              style={styles.TInput.nameInput}
               value={userConfig.last_name}
               title={'Last Name'}
               editable={edit}
@@ -109,26 +106,26 @@ const MyProfile = () => {
           </View>
         </View>
         <TInput
-          style={styles.textInput}
+          style={styles.TInput.textInput}
           title={`Phone number`}
           value={userConfig.phone_number}
           editable={edit}
         />
         <TInput
-          style={styles.textInput}
+          style={styles.TInput.textInput}
           title={`City`}
           value={userConfig.city}
           editable={edit}
         />
         <TInput
-          style={styles.textInput}
+          style={styles.TInput.textInput}
           title={`Proffesion`}
           value={userConfig.profession}
           editable={edit}
         />
         <View>
-          <Text style={styles.catagoryText}>I identify as</Text>
-          <View style={styles.chipsBlocks}>
+          <Text style={styles.Text.catagoryText}>I identify as</Text>
+          <View style={styles.View.chipsBlocks}>
             {rawText.gender.map(item => {
               return (
                 <Chip
@@ -142,8 +139,8 @@ const MyProfile = () => {
           </View>
         </View>
         <View>
-          <Text style={styles.catagoryText}>I prefer to be called</Text>
-          <View style={styles.chipsBlocks}>
+          <Text style={styles.Text.catagoryText}>I prefer to be called</Text>
+          <View style={styles.View.chipsBlocks}>
             {rawText.sexual_orientation.map(item => {
               return (
                 <Chip
@@ -160,8 +157,8 @@ const MyProfile = () => {
           </View>
         </View>
         <View>
-          <Text style={styles.catagoryText}>pronoun</Text>
-          <View style={styles.chipsBlocks}>
+          <Text style={styles.Text.catagoryText}>pronoun</Text>
+          <View style={styles.View.chipsBlocks}>
             {rawText.pronoun.map(item => {
               return (
                 <Chip
@@ -174,8 +171,8 @@ const MyProfile = () => {
             })}
           </View>
         </View>
-        <Text style={styles.catagoryText}>My relationship status</Text>
-        <View style={styles.chipsBlocks}>
+        <Text style={styles.Text.catagoryText}>My relationship status</Text>
+        <View style={styles.View.chipsBlocks}>
           {rawText.relationship_status.map(item => {
             return (
               <Chip
@@ -187,10 +184,10 @@ const MyProfile = () => {
             );
           })}
         </View>
-        <View style={styles.birthday}>
-          <Text>birthday🎈🎉✨</Text>
+        <View style={styles.View.birthday}>
+          <Text style={styles.Text.catagoryText}>birthday🎈🎉✨</Text>
           <DatePicker
-            style={styles.datePicker}
+            style={styles.DatePicker.datePicker}
             date={userConfig.date_of_birth}
             mode={'date'}
             placeholder="enter your birthday🎈🎉✨"
@@ -207,11 +204,11 @@ const MyProfile = () => {
             // }}
           />
         </View>
-        <View style={styles.hobbies}>
-          <Text style={styles.hobbiesText}>My hobbies are:</Text>
+        <View style={styles.View.hobbies}>
+          <Text style={styles.Text.hobbiesText}>My hobbies are:</Text>
           <Hobbies
             styling={'SignUp'}
-            style={styles.Pressables}
+            style={styles.Pressable.Pressables}
             text={
               myhobbies.length !== 0
                 ? myhobbies.toString()

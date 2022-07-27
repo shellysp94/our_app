@@ -7,7 +7,7 @@ import {View, Text, ScrollView, Pressable} from 'react-native';
 import UserItem from '../Components/userItem';
 import UpperBar from '../Components/UpperBar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import styles from '../Styles/NearbyPeople';
+import styles from '../Styles/NearbyPeopleStyle';
 import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
 import {updateNearbyPeople} from '../store/Slices/peopleSlice';
@@ -17,10 +17,6 @@ const NearbyPeople = ({navigation}) => {
   const filters = useSelector(state => state.configuration.filters);
   const nearbyPeople = useSelector(state => state.people.nearbyPeople);
   const dispatch = useDispatch();
-  // console.log('user_id ', user_id);
-  // console.log('filters ', filters);
-  // console.log('nearbyPeople ', nearbyPeople);
-  console.log('filters ', filters);
 
   const showFilters = () => {
     navigation.openDrawer();
@@ -98,20 +94,20 @@ const NearbyPeople = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.View.container}>
       <UpperBar title={'Nearby people'} />
-      <View style={styles.openFiltersContainer}>
+      <View style={styles.View.openFiltersContainer}>
         <Pressable
-          style={styles.filtersStyle}
+          style={styles.Pressable.filtersStyle}
           onPress={showFilters}
           onApply={onApplyHandler}>
           <Ionicons name={'filter-outline'} size={22} />
-          <Text style={styles.openFiltersText}>Open Filters</Text>
+          <Text style={styles.Text.openFiltersText}>Open Filters</Text>
         </Pressable>
       </View>
 
       <View>
-        <ScrollView style={styles.scroll}>
+        <ScrollView style={styles.ScrollView.scroll}>
           {nearbyPeople.map((item, index) => mappingUsers(item, index))}
           {Object.keys(nearbyPeople).length === 0 && <Text>No people</Text>}
         </ScrollView>

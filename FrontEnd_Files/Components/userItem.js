@@ -7,7 +7,9 @@ import {View, Text, StyleSheet, Image, Pressable, Button} from 'react-native';
 import UserProfile from './UserProfile';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
+import Theme from '../Styles/Theme';
 import {useSelector} from 'react-redux';
+import {tSObjectKeyword} from '@babel/types';
 
 const UserItem = props => {
   const [visible, setVisible] = useState(false);
@@ -91,8 +93,14 @@ const UserItem = props => {
                 {config.first_name} {config.last_name}
               </Text>
             </View>
-            <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: 200,
+              }}>
               <Text style={styles.friendAge}>age: {config.age}</Text>
+              <Text style={styles.friendAge}>distance: ??</Text>
             </View>
           </View>
           <View
@@ -133,15 +141,15 @@ const styles = StyleSheet.create({
   },
   friendName: {
     fontSize: 22,
-    color: '#122b1b',
-    fontWeight: 'bold',
+    fontFamily: Theme.fontFamilyBold,
+    color: '#000729',
     alignItems: 'flex-start',
   },
   friendAge: {
     fontSize: 18,
     alignItems: 'flex-start',
-    color: '#122b1b',
-    fontWeight: 'bold',
+    color: Theme.secondColor,
+    fontFamily: Theme.fontFamilyRegular,
   },
 });
 

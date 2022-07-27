@@ -4,6 +4,7 @@
 import React from 'react';
 import {TextInput} from 'react-native';
 import {View} from 'react-native';
+import Theme from '../Styles/Theme';
 
 const TInput = props => {
   return (
@@ -14,6 +15,7 @@ const TInput = props => {
           fontSize: 18,
           backgroundColor: '#FFFFFF',
           borderRadius: 5,
+          color: Theme.backgroundColor,
         }}
         value={props.value}
         editable={props.editable}
