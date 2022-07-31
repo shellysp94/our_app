@@ -2,7 +2,7 @@ const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 const chatRoom = require("./chatRoom");
 
-getAllChatsInDatabase = (callback) => {
+function getAllChatsInDatabase(callback) {
 	mySqlConnection.query(
 		"SELECT chat_id, user_A_id, user_B_id from Chats",
 		(err, rows) => {
@@ -13,7 +13,7 @@ getAllChatsInDatabase = (callback) => {
 			}
 		}
 	);
-};
+}
 
 let chatRoomsArray = class {
 	constructor() {
@@ -27,11 +27,19 @@ let chatRoomsArray = class {
 				);
 			});
 		});
+		console.log("C'tor of Chat Rooms Array");
 	}
 
 	insertNewChatRoom(chat_id, user_A_id, user_B_id) {
-		const newChatRoom = new chatRoom(chat_id, user_A_id, user_B_id);
-		if (!this.chatRooms.includes(newChatRoom)) {
+		let isExists = 0;
+		this.chatRooms.forEach((chatRoom) => {
+			if (parseInt(chat_id) === parseInt(chatRoom.getChatId())) {
+				isExists = 1;
+			}
+		});
+
+		if (isExists === 0) {
+			const newChatRoom = new chatRoom(chat_id, user_A_id, user_B_id);
 			this.chatRooms.push(newChatRoom);
 		}
 	}

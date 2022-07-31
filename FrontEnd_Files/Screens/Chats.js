@@ -19,7 +19,7 @@ const Chat = () => {
     //FIX ME there is a problem with update list of open chats
     try {
       const res = await axios.get(
-        `http://192.168.1.141:3000/chats/${myUserId}`,
+        `http://192.168.1.103:3000/chats/${myUserId}`,
       );
       dispatch(openChats({OpenChats: res.data}));
     } catch (error) {

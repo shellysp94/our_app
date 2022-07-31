@@ -30,7 +30,7 @@ const MyProfile = () => {
   const getPhotos = async () => {
     try {
       const res = await axios.get(
-        `http://192.168.1.141:3000/userPictures/${userConfig.user_id}`,
+        `http://192.168.1.103:3000/userPictures/${userConfig.user_id}`,
       );
       setPhotos(res.data);
     } catch (error) {

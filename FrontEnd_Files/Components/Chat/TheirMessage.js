@@ -10,11 +10,13 @@ const TheirMessage = props => {
   //console.log(date[1].substring(0, 5));
   //const date = new Date(props.time);
   return (
-    <View style={styles.View.thierMessage}>
-      <Text style={styles.Text.MessageTitle}>{props.friendName}</Text>
+    <View style={styles.View.theirMessage}>
+      {/* <Text style={styles.Text.MessageTitle}>{props.friendName}</Text> */}
       <Text style={styles.Text.MessageBody}>{props.content}</Text>
       <View style={{alignSelf: 'flex-end'}}>
-        <Text>{date[1].substring(0, 5)}</Text>
+        <Text style={styles.Text.theirMessageTime}>
+          {date[1].substring(0, 5)}
+        </Text>
       </View>
     </View>
   );

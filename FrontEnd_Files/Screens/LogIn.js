@@ -43,11 +43,11 @@ const LogIn = ({navigation}) => {
     validateEmail();
   };
   const onSubmitFormHandler = async event => {
-    // console.log('IN HERE');
+    console.log('IN HERE');
     // console.log(email, password, deviceToken);
     try {
       const response = await axios.post(
-        `http://192.168.1.141:3000/auth/login`,
+        `http://192.168.1.103:3000/auth/login`,
         {
           email: email,
           password: password,
@@ -59,7 +59,7 @@ const LogIn = ({navigation}) => {
       } else {
         try {
           const getUser = await axios.get(
-            `http://192.168.1.141:3000/userConfiguration/${response.data.user_id}`,
+            `http://192.168.1.103:3000/userConfiguration/${response.data.user_id}`,
             {
               headers: {
                 Authorization: 'Bearer ' + response.data.token,

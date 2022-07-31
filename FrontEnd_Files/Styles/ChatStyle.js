@@ -24,30 +24,30 @@ const styles = StyleSheet.create({
       overflow: 'scroll',
       top: 30,
     },
-    thierMessage: {
-      padding: 12,
-      fontSize: 16,
-      borderRadius: 6,
-      maxWidth: '60%',
+    theirMessage: {
       backgroundColor: Theme.highLightColor,
       margin: 2,
+      padding: 12,
+      fontSize: 16,
+      borderRadius: 6,
+      maxWidth: '70%',
       marginLeft: 18,
       alignSelf: 'flex-start',
+      // flexDirection: 'row',
     },
     myMessage: {
+      backgroundColor: Theme.backgroundColor,
       margin: 2,
       padding: 12,
       fontSize: 16,
       borderRadius: 6,
-      maxWidth: '60%',
-      alignItems: 'flex-end',
+      maxWidth: '70%',
       marginRight: 18,
       alignSelf: 'flex-end',
-      backgroundColor: Theme.backgroundColor,
     },
     messageFormContainer: {
       width: '100%',
-      bottom: 40,
+      marginBottom: 40,
       paddingHorizontal: 10,
     },
     chatDetailsContainer: {
@@ -116,6 +116,17 @@ const styles = StyleSheet.create({
     MessageBody: {
       fontFamily: Theme.fontFamilyRegular,
       color: Theme.backgroundColor,
+    },
+    myMessageTime: {
+      color: '#FFFFFF',
+      marginLeft: 15,
+      fontSize: 12,
+
+      fontFamily: Theme.fontFamilyRegular,
+    },
+    theirMessageTime: {
+      fontSize: 12,
+      fontFamily: Theme.fontFamilyRegular,
     },
   },
   TInput: {

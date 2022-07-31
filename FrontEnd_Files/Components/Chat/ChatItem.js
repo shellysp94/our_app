@@ -7,9 +7,11 @@ import {View, Text, Pressable, Image} from 'react-native';
 import {Avatar} from 'react-native-paper';
 import styles from '../../Styles/ChatStyle';
 import {useNavigation} from '@react-navigation/native';
-
+import {useSelector} from 'react-redux';
 const ChatItem = props => {
   const data = props.data;
+  const messages = useSelector(state => state.chat.currChat);
+
   const navigation = useNavigation();
   const navi = () => {
     navigation.navigate('Conversation', {

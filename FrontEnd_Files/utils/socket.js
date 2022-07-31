@@ -9,13 +9,15 @@ export function* createWebSocketConnection() {
 
   const token = yield select(getToken);
   console.log('token: ', token);
-  const socket = new WebSocket('ws://192.168.1.141:3000', null, {
+  const socket = new WebSocket('ws://192.168.1.103:3000', null, {
     headers: {
       authorization: 'Bearer ' + token,
     },
   });
   return socket;
 }
+export function* update() { }
+
 
 export function* getSocketSaga() {
   console.log('5');
@@ -34,6 +36,7 @@ export function* getSocketSaga() {
       console.log('7');
       console.log(JSON.parse(event.data));
       //yield put(newMessageWaiting({newMessage: true})); //FIX ME - how to update message from function*
+      //yield put(addMessageToChat(event.data[0])); //FIX ME - how to update message from function*
     };
     socket.onerror = error => {
       console.log(error);

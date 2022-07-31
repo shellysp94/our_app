@@ -17,7 +17,7 @@ const MyFriendRequests = props => {
   const onAccept = async userNum => {
     try {
       await axios.post(
-        `http://192.168.1.141:3000/friendRequest/approve/${user_id}/${userNum}`,
+        `http://192.168.1.103:3000/friendRequest/approve/${user_id}/${userNum}`,
       );
       getMyFriendRequest(); //FIX ME
     } catch (error) {
@@ -28,7 +28,7 @@ const MyFriendRequests = props => {
   const getMyFriendRequest = async () => {
     try {
       const friends = await axios.get(
-        `http://192.168.1.141:3000/friendRequest/recievedRequests/${userConfig.user_id}`,
+        `http://192.168.1.103:3000/friendRequest/recievedRequests/${userConfig.user_id}`,
       );
       if (!friends.data.hasOwnProperty('msg')) {
         setlistOfConf([...friends.data]);

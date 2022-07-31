@@ -12,14 +12,14 @@ const MyMessage = props => {
 
   return (
     <View style={styles.View.myMessage}>
-      <Text style={{...styles.Text.MessageTitle, color: 'white'}}>
+      {/* <Text style={{...styles.Text.MessageTitle, color: 'white'}}>
         {userConfig.first_name} {userConfig.last_name}
-      </Text>
+      </Text> */}
       <Text style={{...styles.Text.MessageBody, color: 'white'}}>
         {props.content}
       </Text>
       <View style={{alignSelf: 'flex-end'}}>
-        <Text>{date[1].substring(0, 5)}</Text>
+        <Text style={styles.Text.myMessageTime}>{date[1].substring(0, 5)}</Text>
       </View>
     </View>
   );

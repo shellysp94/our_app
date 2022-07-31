@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -20,7 +21,7 @@ import MyMessage from '../Components/Chat/MyMessage';
 import TheirMessage from '../Components/Chat/TheirMessage';
 import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
-import {setCurrentChat} from '../store/Slices/chatSlice';
+import {setCurrentChat, newMessageWaiting} from '../store/Slices/chatSlice';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {useNavigation} from '@react-navigation/native';
@@ -32,27 +33,30 @@ const Conversation = ({route}) => {
   const friendName = `${route.params.friendConfig.first_name} ${route.params.friendConfig.last_name}`;
   const myId = useSelector(state => state.configuration.userConfig.user_id);
   const messages = useSelector(state => state.chat.currChat);
-  const dispatch = useDispatch();
 
+  //const messageIsWaiting = useSelector(state => state.chat.messageWaiting);
+  const dispatch = useDispatch();
   const getMessages = async () => {
     //FIX ME there is a problem with update list of open chats
     try {
       const res = await axios.get(
-        `http://192.168.1.141:3000/chats/${myId}/${friendId}/0`,
+        `http://192.168.1.103:3000/chats/${myId}/${friendId}/0`,
       );
-      dispatch(
-        setCurrentChat({
-          currChat: res.data,
-        }),
-      );
-    } catch {
-      alert('in catch');
+      if (!res.data.hasOwnProperty('msg')) {
+        dispatch(
+          setCurrentChat({
+            currChat: res.data,
+          }),
+        );
+      }
+    } catch (error) {
+      alert(error);
     }
   };
 
   useEffect(() => {
     getMessages();
-  }, []); //BUG - fix the dependencies
+  }, []);
 
   return (
     <KeyboardAvoidingView style={styles.View.container}>
@@ -74,30 +78,28 @@ const Conversation = ({route}) => {
       </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.View.chatFeed}>
-          <View style={{height: '88%'}}>
-            <ScrollView style={{height: '70%'}}>
-              {messages.length > 0 ? (
-                messages.map((item, index) => (
-                  <View key={index}>
-                    {myId === item.sender_user_id ? (
-                      <MyMessage
-                        content={item.content}
-                        time={item.creation_date}
-                      />
-                    ) : (
-                      <TheirMessage
-                        friendName={friendName}
-                        content={item.content}
-                        time={item.creation_date}
-                      />
-                    )}
-                  </View>
-                ))
-              ) : (
-                <Text>This is an empty chat</Text>
-              )}
-            </ScrollView>
-          </View>
+          <ScrollView style={{height: '80%'}}>
+            {messages.length > 0 ? (
+              messages.map((item, index) => (
+                <View key={index}>
+                  {myId === item.sender_user_id ? (
+                    <MyMessage
+                      content={item.content}
+                      time={item.creation_date}
+                    />
+                  ) : (
+                    <TheirMessage
+                      friendName={friendName}
+                      content={item.content}
+                      time={item.creation_date}
+                    />
+                  )}
+                </View>
+              ))
+            ) : (
+              <Text>This is an empty chat</Text>
+            )}
+          </ScrollView>
           <View style={styles.View.messageFormContainer}>
             <MessageForm friendID={friendId} />
           </View>

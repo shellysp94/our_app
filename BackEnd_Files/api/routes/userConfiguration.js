@@ -12,11 +12,12 @@ const {
     updateSearchMode
 } = require('../controllers/userConfiguration');
 
-router.get('/:userid',getUserConfiguration); //get user persaonal details by appid (/PersonalDetails/:appid)
+router.get('/:curr_userid/:userid',getUserConfiguration);
+router.get('/:userid',getUserConfiguration); 
 router.get('/',getAllUsersConfiguration);
 router.get('/:userid/:radius',getUsersConfigurationByRadius);
-router.post('/:userid', createUserConfiguration); //post (/PersonalDetails/)
-router.delete('/:userid', deleteUserConfiguration); //delete user persaonal details (/PersonalDetails/:appid)
+router.post('/:userid', createUserConfiguration); 
+router.delete('/:userid', deleteUserConfiguration);
 router.put('/:userid', updateUserConfiguration);
 router.put('/searchMode/:userid', updateSearchMode)
 

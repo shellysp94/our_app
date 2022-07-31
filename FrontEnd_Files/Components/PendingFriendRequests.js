@@ -15,7 +15,7 @@ const PendingFriendRequests = props => {
   const getMyFriendRequest = async () => {
     try {
       const friends = await axios.get(
-        `http://192.168.1.141:3000/friendRequest/sendRequests/${userId}`,
+        `http://192.168.1.103:3000/friendRequest/sendRequests/${userId}`,
       );
       if (!friends.data.hasOwnProperty('msg')) {
         setlistOfConf([...friends.data]);

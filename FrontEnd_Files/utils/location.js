@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
 import {PermissionsAndroid} from 'react-native';
-import {call, put, takeEvery} from 'redux-saga/effects';
+import {call, put} from 'redux-saga/effects';
 import Geolocation from '@react-native-community/geolocation';
 import {setMyLocation} from '../store/Slices/generalSlice';
-import {useDispatch} from 'react-redux';
 
 const options = {
   enableHighAccuracy: true,
@@ -32,17 +30,11 @@ const checkLocationPermission = async () => {
 };
 
 //FIX ME - change accurency to 5 meters
-export function getMyLocation() {
-  console.log('2');
+const getMyLocation = async () => {
   return new Promise((resolve, reject) => {
-    Geolocation.getCurrentPosition((success, error) => {
-      if (error) {
-        reject(error);
-      }
-      resolve(success);
-    });
+    Geolocation.getCurrentPosition(resolve, reject, options);
   });
-}
+};
 
 export function* getCurrentLocationSaga() {
   const locationPermission = yield call(checkLocationPermission);

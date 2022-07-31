@@ -24,25 +24,17 @@ wss.on("connection", (ws, req) => {
 			try {
 				if (rows.length > 0) {
 					userid = rows[0].user_id;
-					jwt.verify(token, publicToken, (err, payload) => {
+					jwt.verify(token, publicToken, async (err, payload) => {
 						if (err) {
 							console.log(`Error: ${err.message}. connection closed`);
 							ws.close();
 						} else {
-							onlineUsers.insertNewOnlineUser(userid, ws);
-							// console.log(`user number ${ userid } connected`);
-							// console.log("from server");
-							// console.log("***********************************************************")
-							// console.log(`user id: ${ userid }`);
-							// console.log("***********************************************************")
-							// console.log(ws);
-
-				
-							// for (i = 0; i < 10; i++)
-							// {
-							// 	ws.send("message from server");
-							// 	console.log('2 sec.');
-							// }	
+							await onlineUsers.insertNewOnlineUser(userid, ws);
+							console.log("--------------------------------------------");
+							console.log("Online users array is now:\n");
+							console.log("--------------------------------------------");
+							console.log(onlineUsers);
+							//console.log(`user number ${userid} connected`);
 						}
 					});
 				} else {

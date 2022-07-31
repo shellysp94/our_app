@@ -40,7 +40,7 @@ const UserItem = props => {
   const createNewChat = async () => {
     try {
       await axios.post(
-        `http://192.168.1.141:3000/chats/${myConfig.user_id}/${config.user_id}`,
+        `http://192.168.1.103:3000/chats/${myConfig.user_id}/${config.user_id}`,
       );
     } catch {
       alert('in catch');

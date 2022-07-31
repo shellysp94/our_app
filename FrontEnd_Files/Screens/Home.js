@@ -17,6 +17,8 @@ const Home = () => {
   const [photos, setPhotos] = useState([]);
   const [visible, setVisible] = useState(false);
 
+  const myLatitude = useSelector(state => state.general.myLatitude);
+  const myLongitude = useSelector(state => state.general.myLongitude);
   const userConfig = useSelector(state => state.configuration.userConfig);
   const fullName = useSelector(state => state.configuration.fullName);
   const searchMode = useSelector(state => state.configuration.searchMode);
@@ -27,7 +29,7 @@ const Home = () => {
   const getPhotos = async () => {
     try {
       const userPhotos = await axios.get(
-        `http://192.168.1.141:3000/userPictures/main/${userConfig.user_id}`,
+        `http://192.168.1.103:3000/userPictures/main/${userConfig.user_id}`,
       );
       setPhotos(userPhotos.data);
       if (userPhotos.data.length === 0) {
@@ -75,6 +77,7 @@ const Home = () => {
   useEffect(() => {
     setVisible(false);
     getPhotos();
+    console.log('myLongitude: ', myLongitude, 'myLatitude:', myLatitude);
   }, []);
 
   return (

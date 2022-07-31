@@ -13,7 +13,7 @@ const UserProfile = props => {
   const config = props.config;
   const [photos, setPhotos] = useState([]);
 
-  const url = 'http://192.168.1.141:3000/userPictures/';
+  const url = 'http://192.168.1.103:3000/userPictures/';
   const getPhotos = async () => {
     try {
       const photos = await axios.get(`${url}${config.user_id}`);

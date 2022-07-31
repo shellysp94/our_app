@@ -4,28 +4,26 @@
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react';
 import {View, Pressable} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import styles from '../../Styles/ChatStyle';
 import axios from 'axios';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TInput from '../TInput';
-
+import {addMessageToChat} from '../../store/Slices/chatSlice';
 const MessageForm = props => {
   const myUserId = useSelector(state => state.configuration.userConfig.user_id);
   const [message, setMessage] = useState('');
-
+  const messages = useSelector(state => state.chat.currChat);
+  const dispatch = useDispatch();
   const HandleSubmit = async () => {
-    console.log('message test: ', message);
-    console.log('myUserId test: ', myUserId);
-    console.log('friendID test: ', props.friendID);
     try {
-      await axios.post(
-        `http://192.168.1.141:3000/messages/${myUserId}/${props.friendID}`,
+      const myMessage = await axios.post(
+        `http://192.168.1.103:3000/messages/${myUserId}/${props.friendID}`,
         {
           content: message,
         },
       );
-
+      dispatch(addMessageToChat({myMessage: myMessage.data[0]}));
       setMessage('');
     } catch (error) {
       alert(error);
@@ -33,7 +31,11 @@ const MessageForm = props => {
   };
 
   return (
-    <View style={{width: '100%', top: 30, flexDirection: 'row'}}>
+    <View
+      style={{
+        marginTop: 10,
+        flexDirection: 'row',
+      }}>
       <View style={{width: '88%'}}>
         <TInput
           style={styles.TInput.messageInput}
