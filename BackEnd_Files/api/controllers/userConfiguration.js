@@ -7,7 +7,7 @@ const mySqlConnection = dbConfig;
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
 const queryUserConfiguration = (arr,curr_userid, callback) => {
-	mySqlConnection.query(`SELECT longitude, latitude from user_configuration where user_id=${curr_userid}`, (newErr,newRows) =>
+	mySqlConnection.query(`SELECT longitude, latitude from user_location where user_id=${curr_userid}`, (newErr,newRows) =>
 	{
 		try
 		{
@@ -16,9 +16,11 @@ const queryUserConfiguration = (arr,curr_userid, callback) => {
 				( 3959 * acos ( cos ( radians(${newRows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
 						radians(${newRows[0].longitude}) ) + sin ( radians(${newRows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS
 						distance
-				FROM user_configuration a 
+				FROM user_location c 
+				RIGHT JOIN user_configuration a 
+				ON c.user_id =  a.user_id 
 				LEFT JOIN user_pictures b 
-				ON a.user_id =  b.user_id 
+				ON c.user_id =  b.user_id 
 				WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
 				ORDER BY first_name asc, last_name asc`,
 				[arr],

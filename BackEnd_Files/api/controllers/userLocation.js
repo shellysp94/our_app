@@ -20,24 +20,24 @@ module.exports =
         });
     },
 
-    insertUserLocation: (req,res) =>
-    {
-        const user_id=req.params.userid;
-        const longitude = req.body.longitude;
-        const latitude = req.body.latitude;
-        mySqlConnection.query(`INSERT INTO user_location (user_id, longitude, latitude) values (?,?,?)`,[user_id,longitude,latitude], (err,rows) =>
-        {
-            try
-            {
-                res.send(`Location added for user ${user_id}`);
-            }
+    // insertUserLocation: (req,res) =>
+    // {
+    //     const user_id=req.params.userid;
+    //     const longitude = req.body.longitude;
+    //     const latitude = req.body.latitude;
+    //     mySqlConnection.query(`INSERT INTO user_location (user_id, longitude, latitude) values (?,?,?)`,[user_id,longitude,latitude], (err,rows) =>
+    //     {
+    //         try
+    //         {
+    //             res.send(`Location added for user ${user_id}`);
+    //         }
 
-            catch(err)
-            {
-                console.log(err.message);
-            }
-        });
-    },
+    //         catch(err)
+    //         {
+    //             console.log(err.message);
+    //         }
+    //     });
+    // },
 
     insertUserLocation: (req,cb) =>
     {
@@ -58,25 +58,25 @@ module.exports =
         });
     },
 
-    updateUserLocation: (req,res) =>
-    {
-        const user_id=req.params.userid;
-        const longitude = req.body.longitude;
-        const latitude = req.body.latitude;
+    // updateUserLocation: (req,res) =>
+    // {
+    //     const user_id=req.params.userid;
+    //     const longitude = req.body.longitude;
+    //     const latitude = req.body.latitude;
 
-        mySqlConnection.query(`UPDATE user_location SET longitude=?, latitude=?`,[longitude,latitude], (err,rows) =>
-        {
-            try
-            {
-                res.send(`Location updated for user ${user_id}`);
-            }
+    //     mySqlConnection.query(`UPDATE user_location SET longitude=?, latitude=?`,[longitude,latitude], (err,rows) =>
+    //     {
+    //         try
+    //         {
+    //             res.send(`Location updated for user ${user_id}`);
+    //         }
 
-            catch(err)
-            {
-                console.log(err.message);
-            }
-        });
-    },
+    //         catch(err)
+    //         {
+    //             console.log(err.message);
+    //         }
+    //     });
+    // },
 
     updateUserLocation: (req,cb) =>
     {
