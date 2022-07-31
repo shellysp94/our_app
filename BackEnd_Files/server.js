@@ -74,8 +74,8 @@ const myQuery = (query) =>
 wss.on("connection", async(ws, req) => {
     try
     {
-		let token = url.parse(req.url, true).query.token;
-        //const token = req.headers.authorization.split(" ")[1];
+		//let token = url.parse(req.url, true).query.token;
+        const token = req.headers.authorization.split(" ")[1];
         let userid;
         const rows = await myQuery(`select user_id from users where token = "${token}"`);
         if (rows.length > 0) 
