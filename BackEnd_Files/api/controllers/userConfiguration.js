@@ -99,13 +99,16 @@ module.exports = {
 		const radius = req.radius_filter;
 
 		mySqlConnection.query(
-			`SELECT longitude, latitude FROM user_configuration WHERE user_id=${user_id}`,
+			`SELECT longitude, latitude FROM user_location WHERE user_id=${user_id}`,
 			(err, rows) => {
 				try {
 					mySqlConnection.query(
-						`SELECT *, ( 3959 * acos ( cos ( radians(${rows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
-						radians(${rows[0].longitude}) ) + sin ( radians(${rows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS
-						distance FROM users_db.user_configuration HAVING ((distance < ${radius}) and (user_id != ${user_id})) ORDER BY distance`,
+						`SELECT b.*, a.longitude, a.latitude, ( 3959 * acos ( cos ( radians(${rows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
+						radians(${rows[0].longitude}) ) + sin ( radians(${rows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS distance 
+						FROM users_db.user_location a
+						left join users_db.user_configuration b
+						on a.user_id = b.user_id
+						HAVING ((distance < ${radius}) and (user_id != ${user_id})) ORDER BY distance`,
 						(newErr, newRows) => {
 							try {
 								return cb(newRows);
@@ -150,12 +153,9 @@ module.exports = {
 					let profession = req.body.profession;
 					let pronoun = req.body.pronoun;
 					let hobbies = req.body.hobbies;
-					let radius = req.body.radius;
-					let longitude = req.body.longitude;
-					let latitude = req.body.latitude;
 
 					mySqlConnection.query(
-						`INSERT INTO user_configuration (user_id, first_name, last_name, date_of_birth, city, gender, phone_number, registration_date, relationship_status, sexual_orientation, profession, pronoun, hobbies, radius, longitude, latitude) VALUES ("${user_id}","${first_name}","${last_name}","${dateOfBirth}","${city}","${gender}","${phoneNumber}","${registerDate}","${relationship_status}","${sexual_orientation}","${profession}","${pronoun}", "${hobbies}" ,"${radius}","${longitude}","${latitude}")`,
+						`INSERT INTO user_configuration (user_id, first_name, last_name, date_of_birth, city, gender, phone_number, registration_date, relationship_status, sexual_orientation, profession, pronoun, hobbies) VALUES ("${user_id}","${first_name}","${last_name}","${dateOfBirth}","${city}","${gender}","${phoneNumber}","${registerDate}","${relationship_status}","${sexual_orientation}","${profession}","${pronoun}", "${hobbies}")`,
 						(err, result) => {
 							if (!err) {
 								res.send("user configuration of user added successfully");
