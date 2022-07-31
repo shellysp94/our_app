@@ -5,6 +5,7 @@ const {sendNotification} = require("../fcm");
 const {admin} = require("../../config/firebase_config")
 
 const {sendNotificationHelper} = require("../../utils/notifications/notifications");
+//const { query } = require("express");
 
 
 // const extractParametersForNotification = (req, newRows) => 
@@ -130,61 +131,142 @@ module.exports = {
 
     getMyFriends: (req,res) =>
     {
-        user_id = req.params.userid;
-        mySqlConnection.query(
-			`SELECT * FROM Connections WHERE (user_A_id = ${user_id} OR user_B_id = ${user_id}) AND connected = 1`,
+        const userid = req.params.userid;
+		const type = req.params.type;
+		const usersToPresent = req.params.usersToPresent;
+		let usersConfigurations = [];
+		let mergeObjects = [];
+
+		mySqlConnection.query(
+			`select distinct user_id, 
+				if((user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
+				if(user_a_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
+				if(user_b_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
+				if((user_a_id != ${userid} and user_b_id != ${userid}) or (user_a_id is null and user_b_id is null), 1, 0) notConnected
+			from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id) 
+			where user_id != ${userid}`,
 			(err, rows) => {
 				try {
-					let userConnectedConnections = [];
-					getConnectionsForConfiguration(user_id, rows, userConnectedConnections);
-					let resultArrayToObject = {
-						params: {userid: String(userConnectedConnections)},
-					};
+					if (parseInt(usersToPresent[0], 10) === 0) {
+						// user asked for all other users
+						for (user = 0; user < rows.length; user++) {
+							usersConfigurations.push(rows[user].user_id);
+						}
+					} else {
+						// user asked for a specific users
+						for (user = 0; user < rows.length; user++) {
+							if (usersToPresent.includes(rows[user].user_id)) {
+								usersConfigurations.push(rows[user].user_id);
+							}
+						}
+					}
 
-                    getUserConfigurationInner(resultArrayToObject,user_id,(config) =>
-                    {
-                            res.send(config);   
-                    });  
+					let resultArrayToObject = {
+						params: {userid: String(usersConfigurations)},
+					};
+					getUserConfigurationInner(
+						resultArrayToObject,
+						(resultFromConfiguration) => {
+							for (user = 0; user < resultFromConfiguration.length; user++) {
+								for (row = 0; row < rows.length; row++) {
+									if (
+										parseInt(resultFromConfiguration[user].user_id, 10) ===
+										parseInt(rows[row].user_id, 10)
+									) {
+										if (parseInt(type, 10) === 1) {
+											// user asked for his friends/requests only
+											if (parseInt(rows[row].notConnected, 10) === 0) {
+												mergeObjects.push(
+													Object.assign(
+														{},
+														resultFromConfiguration[user],
+														rows[row]
+													)
+												);
+											}
+										} else {
+											// user asked for all users in db
+											mergeObjects.push(
+												Object.assign(
+													{},
+													resultFromConfiguration[user],
+													rows[row]
+												)
+											);
+										}
+									}
+								}
+							}
+							res.send(mergeObjects);
+						}
+					);
 				} catch (err) {
 					console.log(err.message);
 				}
 			}
 		);
+        // user_id = req.params.userid;
+        // mySqlConnection.query(
+		// 	`SELECT * FROM Connections WHERE (user_A_id = ${user_id} OR user_B_id = ${user_id}) AND connected = 1`,
+		// 	(err, rows) => {
+		// 		try {
+		// 			let userConnectedConnections = [];
+		// 			getConnectionsForConfiguration(user_id, rows, userConnectedConnections);
+		// 			let resultArrayToObject = {
+		// 				params: {userid: String(userConnectedConnections)},
+		// 			};
+
+        //             getUserConfigurationInner(resultArrayToObject,user_id,(config) =>
+        //             {
+        //                     res.send(config);   
+        //             });  
+		// 		} catch (err) {
+		// 			console.log(err.message);
+		// 		}
+		// 	}
+		// );
     },
 
-    sendFriendRequest: (req,res) =>
+    sendFriendRequest: async (req,res) =>
     {
-        mySqlConnection.query(`insert into connections (user_a_id, user_b_id, creation_date, last_update) values
-        (?,?, curdate(), curdate())`, [req.params.useridA, req.params.useridB], (err,rows)=>
-        {
-            try
-            {
-                sendNotificationHelper(req,res);
-                // mySqlConnection.query(`SELECT b.*, a.device_token
-                // from device_token a
-                // join user_configuration b
-                // on a.user_id = b.user_id
-                // where a.user_id = ? or b.user_id = ?`, [req.params.useridB, req.params.useridA], (newErr, newRows) =>
-                // {
-                //     try
-                //     {
-                //         if(newRows.length > 0)
-                //         {
-                //             valuesForNotification = extractParametersForNotification(req,newRows);
-                //             sendNotification(res, valuesForNotification.deviceTokenToSend, valuesForNotification.titleToSend, valuesForNotification.bodyToSend, valuesForNotification.userIdTosend);
-                //         }
-                //     }
+        const sentReqUser = req.params.useridA;
+        const recievedReqUser = req.params.useridB;
 
-                //     catch(newErr)
-                //     {
-                //         console.log(newErr);
-                //     }
-                // });
+        mySqlConnection.query(`select * from connections where (user_A_id = ${sentReqUser} and user_B_id = ${recievedReqUser}) or (user_A_id = ${recievedReqUser} and user_B_id = ${sentReqUser})`, (err,rows) =>
+        {
+            if(rows.length > 0)
+            {
+                if(rows[0].connected ==1)
+                {
+                    return res.send(`${recievedReqUser} is already your friend`);
+                }
+
+                else if (rows[0].user_A_id == sentReqUser)
+                {
+                    return res.send(`You already sent ${recievedReqUser} a friend request`);
+                }
+
+                else
+                {
+                    return res.send(`${recievedReqUser} sent you already a friend request, you can approve it`);
+                }
             }
 
-            catch(err)
+            else
             {
-                console.log(err);
+                mySqlConnection.query(`insert into connections (user_a_id, user_b_id, creation_date, last_update) values
+                (?,?, curdate(), curdate())`, [req.params.useridA, req.params.useridB], (err,rows)=>
+                {
+                    try
+                    {
+                        sendNotificationHelper(req,res);
+                    }
+        
+                    catch(err)
+                    {
+                        console.log(err);
+                    }
+                });
             }
         });
     },
@@ -226,34 +308,4 @@ module.exports = {
             }
         });
     }
-            
-   /*  approveFriendRequest: (req,res) =>
-    {
-        const approvedUser = req.params.useridA;
-        const sentReqUser = req.params.useridB;
-
-        mySqlConnection.query(`insert into connections (user_a_id, user_b_id, connected, creation_date, last_update) values
-        (?,?,?, curdate(), curdate())`, [approvedUser, sentReqUser, 1], (err,rows)=>
-        {
-            try
-            {
-                mySqlConnection.query(`update connections set connected = 1 where (user_A_id = ? and user_B_id = ?)`,[sentReqUser,approvedUser], (newErr,newRows)=>
-                {
-                    try
-                    {
-                        res.send(`${approvedUser} approved friend request from ${sentReqUser}`);
-                    }
-
-                    catch(newErr)
-                    {
-                        console.log(newErr);
-                    }
-                });
-            }
-            catch(err)
-            {
-                console.log(err);
-            }
-        });
-    } */
 }

@@ -77,9 +77,6 @@ CREATE TABLE user_configuration (
   'blogging', 'interested in medicine and biology', 'learning new languages', 'listening to podcasts', 'playing chess', 'puzzling', 'reading', 'writing',
   'coding', 'hacking', 'playing video games',
   'camping', 'gardening', 'sailing', 'skippering', 'shopping', 'tanning', 'traveling') default 'Hobbies',
-  radius int,
-  longitude DECIMAL(8,6),
-  latitude DECIMAL(8,6),
   PRIMARY KEY (user_id),
   foreign key (user_id) references Users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -114,5 +111,12 @@ CREATE TABLE Filters (
  CREATE TABLE Device_token (
   user_id int not null,
   device_token varchar(500),
+  foreign key (user_id) references Users (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ CREATE TABLE user_location (
+  user_id int not null,
+  longitude DECIMAL(8,6),
+  latitude DECIMAL(8,6),
   foreign key (user_id) references Users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

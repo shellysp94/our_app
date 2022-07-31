@@ -76,6 +76,17 @@ let onlineUsersArray = class {
 			).getAllUserChatRooms()}`
 		);
 	}
+
+	getUserIdAccordingToWebSocket(ws) {
+		let result = -1;
+		this.onlineUsers.forEach((onlineUser) => {
+			if (onlineUser.websocket === ws) {
+				result = onlineUser.user_id;
+			}
+		});
+
+		return result;
+	}
 };
 
 class Singleton {

@@ -15,7 +15,7 @@ const {
 router.get('/:curr_userid/:userid',getUserConfiguration);
 router.get('/:userid',getUserConfiguration); 
 router.get('/',getAllUsersConfiguration);
-router.get('/:userid/:radius',getUsersConfigurationByRadius);
+router.get('/location/:user_id/:radius',getUsersConfigurationByRadius);
 router.post('/:userid', createUserConfiguration); 
 router.delete('/:userid', deleteUserConfiguration);
 router.put('/:userid', updateUserConfiguration);

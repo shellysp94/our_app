@@ -7,7 +7,7 @@ const mySqlConnection = dbConfig;
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
 const queryUserConfiguration = (arr,curr_userid, callback) => {
-	mySqlConnection.query(`SELECT longitude, latitude from user_configuration where user_id=${curr_userid}`, (newErr,newRows) =>
+	mySqlConnection.query(`SELECT longitude, latitude from user_location where user_id=${curr_userid}`, (newErr,newRows) =>
 	{
 		try
 		{
@@ -16,9 +16,11 @@ const queryUserConfiguration = (arr,curr_userid, callback) => {
 				( 3959 * acos ( cos ( radians(${newRows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
 						radians(${newRows[0].longitude}) ) + sin ( radians(${newRows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS
 						distance
-				FROM user_configuration a 
+				FROM user_location c 
+				RIGHT JOIN user_configuration a 
+				ON c.user_id =  a.user_id 
 				LEFT JOIN user_pictures b 
-				ON a.user_id =  b.user_id 
+				ON c.user_id =  b.user_id 
 				WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
 				ORDER BY first_name asc, last_name asc`,
 				[arr],
@@ -99,13 +101,16 @@ module.exports = {
 		const radius = req.radius_filter;
 
 		mySqlConnection.query(
-			`SELECT longitude, latitude FROM user_configuration WHERE user_id=${user_id}`,
+			`SELECT longitude, latitude FROM user_location WHERE user_id=${user_id}`,
 			(err, rows) => {
 				try {
 					mySqlConnection.query(
-						`SELECT *, ( 3959 * acos ( cos ( radians(${rows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
-						radians(${rows[0].longitude}) ) + sin ( radians(${rows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS
-						distance FROM users_db.user_configuration HAVING ((distance < ${radius}) and (user_id != ${user_id})) ORDER BY distance`,
+						`SELECT b.*, a.longitude, a.latitude, ( 3959 * acos ( cos ( radians(${rows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
+						radians(${rows[0].longitude}) ) + sin ( radians(${rows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS distance 
+						FROM users_db.user_location a
+						left join users_db.user_configuration b
+						on a.user_id = b.user_id
+						HAVING ((distance < ${radius}) and (user_id != ${user_id})) ORDER BY distance`,
 						(newErr, newRows) => {
 							try {
 								return cb(newRows);
@@ -150,12 +155,9 @@ module.exports = {
 					let profession = req.body.profession;
 					let pronoun = req.body.pronoun;
 					let hobbies = req.body.hobbies;
-					let radius = req.body.radius;
-					let longitude = req.body.longitude;
-					let latitude = req.body.latitude;
 
 					mySqlConnection.query(
-						`INSERT INTO user_configuration (user_id, first_name, last_name, date_of_birth, city, gender, phone_number, registration_date, relationship_status, sexual_orientation, profession, pronoun, hobbies, radius, longitude, latitude) VALUES ("${user_id}","${first_name}","${last_name}","${dateOfBirth}","${city}","${gender}","${phoneNumber}","${registerDate}","${relationship_status}","${sexual_orientation}","${profession}","${pronoun}", "${hobbies}" ,"${radius}","${longitude}","${latitude}")`,
+						`INSERT INTO user_configuration (user_id, first_name, last_name, date_of_birth, city, gender, phone_number, registration_date, relationship_status, sexual_orientation, profession, pronoun, hobbies) VALUES ("${user_id}","${first_name}","${last_name}","${dateOfBirth}","${city}","${gender}","${phoneNumber}","${registerDate}","${relationship_status}","${sexual_orientation}","${profession}","${pronoun}", "${hobbies}")`,
 						(err, result) => {
 							if (!err) {
 								res.send("user configuration of user added successfully");
@@ -195,12 +197,9 @@ module.exports = {
 		let profession = req.body.profession;
 		let pronoun = req.body.pronoun;
 		let hobbies = req.body.hobbies;
-		let radius = req.body.radius;
-		let longitude = req.body.longitude;
-		let latitude = req.body.latitude;
 
 		mySqlConnection.query(
-			"UPDATE user_configuration SET first_name=?, last_name=?, password=?, dateOfBirth=?, city=?, gender=?, phone_number=?, registration_date=?, relationship_status=?, sexual_orientation=?, profession=?, pronoun=?, hobbies=? ,radius=?, longitude=?, latitude=? WHERE user_id=?",
+			"UPDATE user_configuration SET first_name=?, last_name=?, dateOfBirth=?, city=?, gender=?, phone_number=?, registration_date=?, relationship_status=?, sexual_orientation=?, profession=?, pronoun=?, hobbies=? WHERE user_id=?",
 			[
 				first_name,
 				last_name,
@@ -214,9 +213,6 @@ module.exports = {
 				profession,
 				pronoun,
 				hobbies,
-				radius,
-				longitude,
-				latitude,
 				req.params.user_id,
 			],
 			(err, result) => {
