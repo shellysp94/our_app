@@ -197,12 +197,9 @@ module.exports = {
 		let profession = req.body.profession;
 		let pronoun = req.body.pronoun;
 		let hobbies = req.body.hobbies;
-		let radius = req.body.radius;
-		let longitude = req.body.longitude;
-		let latitude = req.body.latitude;
 
 		mySqlConnection.query(
-			"UPDATE user_configuration SET first_name=?, last_name=?, password=?, dateOfBirth=?, city=?, gender=?, phone_number=?, registration_date=?, relationship_status=?, sexual_orientation=?, profession=?, pronoun=?, hobbies=? ,radius=?, longitude=?, latitude=? WHERE user_id=?",
+			"UPDATE user_configuration SET first_name=?, last_name=?, dateOfBirth=?, city=?, gender=?, phone_number=?, registration_date=?, relationship_status=?, sexual_orientation=?, profession=?, pronoun=?, hobbies=? WHERE user_id=?",
 			[
 				first_name,
 				last_name,
@@ -216,9 +213,6 @@ module.exports = {
 				profession,
 				pronoun,
 				hobbies,
-				radius,
-				longitude,
-				latitude,
 				req.params.user_id,
 			],
 			(err, result) => {
