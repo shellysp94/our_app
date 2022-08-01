@@ -49,6 +49,7 @@ export function* getCurrentLocationSaga() {
         myLongitude: result.coords.longitude,
       }),
     );
+
     console.log('4');
   }
 }

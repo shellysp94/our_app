@@ -54,6 +54,8 @@ const LogIn = ({navigation}) => {
           device_token: deviceToken,
         },
       );
+      console.log('RESPONSE: ', response.data);
+
       if (response.data.hasOwnProperty('msg')) {
         alert(response.data.msg);
       } else {
@@ -66,6 +68,7 @@ const LogIn = ({navigation}) => {
               },
             },
           );
+          console.log('GET CONF: ', getUser.data);
           let details = {
             userConfig: getUser.data[0],
             email: response.data.email,

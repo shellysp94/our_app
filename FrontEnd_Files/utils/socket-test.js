@@ -39,6 +39,10 @@ function socketService(token) {
         console.log('EVENT DATA: ', event.data);
         return emitter({type: newMessageWaiting.type, payload: event.data});
       };
+
+      setInterval(() => {
+        socket.send('32.111,34.222');
+      }, 5000);
     }
 
     // The subscriber must return an unsubscribe function

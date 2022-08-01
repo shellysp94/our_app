@@ -91,10 +91,6 @@ function SignUp() {
     profession: profession,
     pronoun: pronoun,
     hobbies: [...hobbies],
-    //FIX ME
-    radius: 1000,
-    longitude: 31.88,
-    latitude: 24.11,
   };
 
   const AddUserToDB = async event => {
