@@ -11,10 +11,20 @@ const queryUserConfiguration = (arr,curr_userid, callback) => {
 	{
 		try
 		{
+			if(newRows.length === 0)
+			{
+				longitude_var = "Longitude";
+				latitude_var = "Latitude";
+			}
+			else
+			{
+				longitude_var = newRows[0].longitude;
+				latitude_var = newRows[0].latitude;
+			}
 			mySqlConnection.query(
 				`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image,
-				( 3959 * acos ( cos ( radians(${newRows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
-						radians(${newRows[0].longitude}) ) + sin ( radians(${newRows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS
+				( 3959 * acos ( cos ( radians(${latitude_var})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
+						radians(${longitude_var}) ) + sin ( radians(${latitude_var})) * sin( radians( Latitude ) ) ) )*1000 AS
 						distance
 				FROM user_location c 
 				RIGHT JOIN user_configuration a 
@@ -94,7 +104,7 @@ module.exports = {
 		return queryUserConfiguration(arr, curr_userid, (config) => {
 			res.send(config);
 		});
-	},
+	},	
 
 	getUsersConfigurationByRadius: (req, cb) => {
 		const user_id = req.user_id;
