@@ -4,7 +4,6 @@ const router = express.Router();
 const {
 	getUserFriendRequestsSent,
 	getUserFriendRequestsReceived,
-	getMyFriends,
 	sendFriendRequest,
 	approveFriendRequest,
 	declineFriendRequest,
@@ -14,7 +13,6 @@ const {
 
 router.get("/sendRequests/:userid", getUserFriendRequestsSent); //get user friend requests
 router.get("/receivedRequests/:userid", getUserFriendRequestsReceived); //get user friend requests
-//router.get("/myFriends/:userid", getMyFriends); //get user friend requests
 router.post("/send/:useridA/:useridB", sendFriendRequest);
 router.post("/approve/:useridA/:useridB", approveFriendRequest);
 router.delete("/decline/:useridA/:useridB", declineFriendRequest);

@@ -7,24 +7,6 @@ const {
 	sendNotificationHelper,
 } = require("../../utils/notifications/notifications");
 
-// function getConnectionsForConfiguration(user, rows, userConnections) {
-// 	const rowsLength = rows.length;
-
-// 	for (i = 0; i < rowsLength; i++) {
-// 		if (
-// 			!userConnections.includes(rows[i].user_A_id) &&
-// 			rows[i].user_A_id !== parseInt(user, 10)
-// 		) {
-// 			userConnections.push(rows[i].user_A_id);
-// 		} else if (
-// 			!userConnections.includes(rows[i].user_B_id) &&
-// 			rows[i].user_B_id !== parseInt(user, 10)
-// 		) {
-// 			userConnections.push(rows[i].user_B_id);
-// 		}
-// 	}
-// }
-
 getAllUserConnectionsByName = (req, res) => {
 	const user = req.params.userid;
 	const connected = req.params.connected;

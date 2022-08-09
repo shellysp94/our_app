@@ -32,13 +32,14 @@ const queryUserConfiguration = (arr, curr_userid, callback) => {
 				ON c.user_id =  a.user_id 
 				LEFT JOIN user_pictures b 
 				ON c.user_id =  b.user_id 
-				RIGHT JOIN filters f
+				left JOIN filters f
                 ON c.user_id = f.user_id
 				WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
 				ORDER BY first_name asc, last_name asc`,
 					[arr],
 					(err, rows) => {
 						if (!err) {
+							//console.log("I'm from get user configuration 1");
 							if (rows.length > 0) {
 								for (let i = 0; i < rows.length; i++) {
 									if (rows[i].image !== null) {
