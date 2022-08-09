@@ -259,7 +259,9 @@ module.exports = {
                 {
                     try
                     {
-                        sendNotificationHelper(req,res);
+                        titleToSend = `New friend request`;
+                        bodyToSend= `Friend request from `;
+                        sendNotificationHelper(req,res,titleToSend,bodyToSend);
                     }
         
                     catch(err)

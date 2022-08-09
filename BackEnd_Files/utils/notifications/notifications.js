@@ -5,7 +5,7 @@ const {sendNotification} = require("../../api/fcm");
 const {admin} = require("../../config/firebase_config")
 
 
-const sendNotificationHelper = (req,res) =>
+const sendNotificationHelper = (req,res,titleToSend,bodyToSend) =>
 {
     mySqlConnection.query(`SELECT b.*, a.device_token
                 from device_token a
@@ -17,7 +17,7 @@ const sendNotificationHelper = (req,res) =>
                     {
                         if(newRows.length > 0)
                         {
-                            valuesForNotification = extractParametersForNotification(req,newRows);
+                            valuesForNotification = extractParametersForNotification(req,newRows,titleToSend,bodyToSend);
                             sendNotification(res, valuesForNotification.deviceTokenToSend, valuesForNotification.titleToSend, valuesForNotification.bodyToSend, valuesForNotification.userIdTosend);
                         }
                     }
@@ -28,7 +28,7 @@ const sendNotificationHelper = (req,res) =>
                 });
 }
 
-const extractParametersForNotification = (req, newRows) => 
+const extractParametersForNotification = (req, newRows,title,body) => 
 {
     let tokensArr=[]
     for(var i = 0; i<newRows.length; i++)
@@ -43,7 +43,7 @@ const extractParametersForNotification = (req, newRows) =>
             var senderName = newRows[i].first_name +" "+ newRows[i].last_name;
         }
     }
-    const paramsForNotification = {deviceTokenToSend: tokensArr, titleToSend:"New friend request", bodyToSend: `Friend request from ${senderName}`,  userIdTosend: req.params.useridB}
+    const paramsForNotification = {deviceTokenToSend: tokensArr, titleToSend:title, bodyToSend: body + `${senderName}`,  userIdTosend: req.params.useridB}
     return paramsForNotification;
 }
 
