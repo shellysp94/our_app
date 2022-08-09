@@ -1,6 +1,9 @@
 const dbConfig = require("../../config/db_config");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
-const messageFormat = require("../../utils/messagesFormat/messages");
+// const messageFormat = require("../../utils/messagesFormat/messages");
+const {
+	sendNotificationHelper,
+} = require("../../utils/notifications/notifications");
 const mySqlConnection = dbConfig;
 const onlineUsers = new onlineUsersArray().getInstance();
 
@@ -28,8 +31,8 @@ getChatMessages = (req, res) => {
 };
 
 createChatMessage = (req, res) => {
-	const sender = req.params.sender;
-	const receiver = req.params.receiver;
+	const sender = req.params.useridA;
+	const receiver = req.params.useridB;
 	const content = req.body.content;
 	const senderOnlineUser = onlineUsers.getOnlineUser(sender);
 	const receiverOnlineUser = onlineUsers.getOnlineUser(receiver);
@@ -43,6 +46,10 @@ createChatMessage = (req, res) => {
 		`insert into messages (chat_id, creation_date, sender_user_id, receiver_user_id, content) values (${chatID}, current_timestamp(), ${sender}, ${receiver}, "${content}")`,
 		(err, rows) => {
 			try {
+				const titleToSend = "You got a new message";
+				const bodyToSend = "New message from ";
+				sendNotificationHelper(req, res, titleToSend, bodyToSend);
+
 				mySqlConnection.query(
 					`select * from messages where chat_id = ${chatID} order by creation_date desc limit 1`,
 					(err, rows) => {
