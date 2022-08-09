@@ -23,7 +23,7 @@ const queryUserConfiguration = (arr, curr_userid, callback) => {
 					latitude_var = newRows[0].latitude;
 				}
 				mySqlConnection.query(
-					`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image,
+					`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image,f.search_mode,
 				( 3959 * acos ( cos ( radians(${latitude_var})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
 						radians(${longitude_var}) ) + sin ( radians(${latitude_var})) * sin( radians( Latitude ) ) ) )*1000 AS
 						distance
@@ -32,6 +32,8 @@ const queryUserConfiguration = (arr, curr_userid, callback) => {
 				ON c.user_id =  a.user_id 
 				LEFT JOIN user_pictures b 
 				ON c.user_id =  b.user_id 
+				RIGHT JOIN filters f
+                ON c.user_id = f.user_id
 				WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
 				ORDER BY first_name asc, last_name asc`,
 					[arr],
