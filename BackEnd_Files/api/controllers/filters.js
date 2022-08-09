@@ -5,7 +5,7 @@ const {
 	getUserConfigurationInner,
 	getUsersConfigurationByRadius,
 } = require("./userConfiguration");
-const {getAllUserConnectionsType} = require("./connections");
+const {getAllUserConnectionsType} = require("./friendRequest");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
