@@ -140,10 +140,7 @@ module.exports = {
 						}
 					);
 				} catch {
-					console.log(
-						"Im here?!???? ---> get in here when I use this function"
-					);
-					//console.log(err.message);
+					console.log(err.message);
 				}
 			}
 		);
