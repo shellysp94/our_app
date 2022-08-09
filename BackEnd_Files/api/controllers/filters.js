@@ -566,37 +566,34 @@ getUserFilteredUsers = (req, res) => {
 										});
 										//console.log("age", age);
 										const mutualUsers_InterestedIn_Age =
-											mutualUsers_Relationship_InterestedIn.filter(
-												(user) =>
-													age.includes(user) && onlineUsers.includesAUser(user)
-												////////remove the second condition from here!///////
+											mutualUsers_Relationship_InterestedIn.filter((user) =>
+												age.includes(user)
 											);
-										//console.log(mutualUsers_InterestedIn_Age);
 
-										// getUsersConfigurationByRadius(userFilter[0], (response) => {
-										// 	response.forEach((user) => {
-										// 		radius.push(user.user_id);
-										// 	});
-										// 	console.log("radius array:", radius);
+										getUsersConfigurationByRadius(userFilter[0], (response) => {
+											response.forEach((user) => {
+												radius.push(user.user_id);
+											});
+											console.log("radius array:", radius);
 
-										// 	const mutualUsers_Age_Radius =
-										// 		mutualUsers_InterestedIn_Age.filter(
-										// 			(user) =>
-										// 				radius.includes(user) &&
-										// 				onlineUsers.includesAUser(user)
-										// 		);
-										// 	console.log("the mutuals:", mutualUsers_Age_Radius);
+											const mutualUsers_Age_Radius =
+												mutualUsers_InterestedIn_Age.filter(
+													(user) =>
+														radius.includes(user) &&
+														onlineUsers.includesAUser(user)
+												);
+											console.log("the mutuals:", mutualUsers_Age_Radius);
 
-										let resultArrayToObject = {
-											params: {
-												userid: String(req.params.userid),
-												type: String(userFilter[0].friends_only_filter),
-												usersToPresent: mutualUsers_InterestedIn_Age,
-												//usersToPresent: mutualUsers_Age_Radius,
-											},
-										};
+											let resultArrayToObject = {
+												params: {
+													userid: String(req.params.userid),
+													type: String(userFilter[0].friends_only_filter),
+													usersToPresent: mutualUsers_Age_Radius,
+												},
+											};
 
-										getAllUserConnectionsType(resultArrayToObject, res);
+											getAllUserConnectionsType(resultArrayToObject, res);
+										});
 									});
 								}
 							);
@@ -604,7 +601,6 @@ getUserFilteredUsers = (req, res) => {
 					});
 				});
 			});
-			//});
 		}
 	});
 };
