@@ -5,7 +5,9 @@ const {
 	getUserConfigurationInner,
 	getUsersConfigurationByRadius,
 } = require("./userConfiguration");
-const {getAllUserConnectionsType} = require("./connections");
+const {getAllUserConnectionsType} = require("./friendRequest");
+const onlineUsersArray = require("../../utils/users/onlineUsersArray");
+const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
 
 function splitCommas(myQuery, relevantColumn, string) {
@@ -496,6 +498,7 @@ getUserFilteredUsers = (req, res) => {
 	getUserFilter(req, (userFilter) => {
 		if (userFilter.length === 0) {
 			// user don't have filters - return to client all users in db
+			console.log("Without filters!");
 			let getUsersConfigurationsWithoutMyself = {
 				params: {
 					userid: String(req.params.userid),
@@ -574,8 +577,10 @@ getUserFilteredUsers = (req, res) => {
 											console.log("radius array:", radius);
 
 											const mutualUsers_Age_Radius =
-												mutualUsers_InterestedIn_Age.filter((user) =>
-													radius.includes(user)
+												mutualUsers_InterestedIn_Age.filter(
+													(user) =>
+														radius.includes(user) &&
+														onlineUsers.includesAUser(user)
 												);
 											console.log("the mutuals:", mutualUsers_Age_Radius);
 

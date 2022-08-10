@@ -8,7 +8,7 @@ const {
 } = require("../controllers/messages");
 
 router.get("/:chatID/:messagesOffset", getChatMessages);
-router.post("/:sender/:receiver", createChatMessage);
+router.post("/:useridA/:useridB", createChatMessage);
 router.delete("/:chatID", deleteChatMessages);
 
 module.exports = router;
