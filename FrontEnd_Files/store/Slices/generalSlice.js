@@ -26,6 +26,9 @@ export const generalSlice = createSlice({
       console.log('3');
       state.myLatitude = action.payload.myLatitude;
       state.myLongitude = action.payload.myLongitude;
+      console.log(
+        `IN STATE         myLatitude: ${state.myLatitude}, myLongitude: ${state.myLongitude}`,
+      );
     },
   },
 });

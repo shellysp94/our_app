@@ -17,7 +17,6 @@ import Notifications from '../Screens/Notifications';
 import FiltersBar from '../Screens/Filters';
 import Conversation from '../Screens/Conversation';
 import Theme from '../Styles/Theme';
-import {tSObjectKeyword} from '@babel/types';
 
 const MainDrawer = createDrawerNavigator();
 const NearbyPeopleStack = createStackNavigator();
@@ -97,7 +96,7 @@ const DrawerItems = DrawerScreens.map(item => {
       key={item.title}
       component={item.screen}
       options={{
-        drawerLabelStyle: {fontFamily: 'RobotoCondensed-Bold'},
+        drawerLabelStyle: {fontFamily: Theme.fontFamilyBold},
         activeBackgroundColor: {backgroundColor: '#316172'},
         drawerIcon: () => (
           <Ionicons color={Theme.secondColor} name={item.icon} size={22} />

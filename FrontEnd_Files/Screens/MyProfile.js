@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
 // eslint-disable-next-line no-unused-vars
@@ -10,7 +11,6 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
-import DatePicker from 'react-native-datepicker';
 import {Chip} from 'react-native-paper';
 import Hobbies from '../Components/Filters/Hobbies';
 import TInput from '../Components/TInput';
@@ -18,6 +18,9 @@ import styles from '../Styles/MyProfileStyle';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import UpperBar from '../Components/UpperBar';
+import Theme from '../Styles/Theme';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const MyProfile = () => {
   const [edit, setEdit] = useState(false);
@@ -26,27 +29,44 @@ const MyProfile = () => {
   const userConfig = useSelector(state => state.configuration.userConfig);
   const rawText = useSelector(state => state.general.rawText.registration_form);
   const myhobbies = useSelector(state => state.configuration.myHobbies);
+  let birthday = userConfig.date_of_birth;
+
+  birthday = birthday.split('-');
+  console.log('birthday:', birthday);
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+  var year = birthday[0];
+  var month = birthday[1];
+  var day = parseInt(birthday[2].slice(0, 2)) + 1;
+  year = year.toString();
+  const [date, setDate] = useState(new Date(year, month, day));
 
   const getPhotos = async () => {
     try {
       const res = await axios.get(
-        `http://192.168.1.103:3000/userPictures/${userConfig.user_id}`,
+        `http://192.168.1.141:3000/userPictures/${userConfig.user_id}`,
       );
       setPhotos(res.data);
     } catch (error) {
       alert(error);
     }
   };
-
+  const onChangeDate = (event, selectedDate) => {
+    setShow(false);
+    setDate(selectedDate);
+  };
   useEffect(() => {
     getPhotos();
   }, []);
 
   const chipStyle = (value, chip) => {
-    return {margin: 2, backgroundColor: value === chip ? '#48D1CC' : '#EBEBEB'};
+    return {
+      margin: 2,
+      backgroundColor: value === chip ? Theme.highLightColor : '#EBEBEB',
+    };
   };
   const chipTextColor = (value, chip) => {
-    return {color: value === chip ? '#0E6070' : '#2C143E'};
+    return {color: value === chip ? Theme.backgroundColor : '#2C143E'};
   };
   return (
     <SafeAreaView style={styles.SafeAreaView.container}>
@@ -71,9 +91,11 @@ const MyProfile = () => {
             onPress={() => {
               setEdit(!edit);
             }}>
-            <Image
-              style={styles.Image.penPic}
-              source={require('../Images/pencil.png')} //FIX ME - CHANGE TO ICON
+            <Ionicons
+              color={Theme.highLightColor}
+              size={20}
+              // style={styles.Image.myPic}
+              name={'pencil'}
             />
           </Pressable>
         </View>
@@ -186,23 +208,22 @@ const MyProfile = () => {
         </View>
         <View style={styles.View.birthday}>
           <Text style={styles.Text.catagoryText}>birthday🎈🎉✨</Text>
-          <DatePicker
-            style={styles.DatePicker.datePicker}
-            date={userConfig.date_of_birth}
-            mode={'date'}
-            placeholder="enter your birthday🎈🎉✨"
-            format="DD-MM-YYYY"
-            maxDate={userConfig.date_of_birth}
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            customStyles={{
-              dateIcon: styles.dateIcon,
-              dateInput: styles.dateInput,
-            }}
-            // onDateChange={date => {
-            //   setBirthday(date);
-            // }}
-          />
+          <Pressable
+            style={styles.View.viewStyle}
+            onPress={() => setShow(!show)}>
+            <Text style={styles.dateText}>
+              {day}-{month}-{year}
+            </Text>
+            {show && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                onChange={onChangeDate}
+              />
+            )}
+          </Pressable>
         </View>
         <View style={styles.View.hobbies}>
           <Text style={styles.Text.hobbiesText}>My hobbies are:</Text>

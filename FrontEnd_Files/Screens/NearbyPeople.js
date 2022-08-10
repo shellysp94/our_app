@@ -25,12 +25,10 @@ const NearbyPeople = ({navigation}) => {
   const onApplyHandler = useCallback(async () => {
     //BUG not render on filters change. render sometimes onSave code
     try {
-      console.log('IN HERE');
       const people = await axios.post(
-        `http://192.168.1.103:3000/filters/${user_id}`, //NOTICE: use this url or another?
+        `http://192.168.1.141:3000/filters/${user_id}`, //NOTICE: use this url or another?
         filters,
       );
-      console.log(people.data);
       dispatch(updateNearbyPeople({nearbyPeople: people.data}));
     } catch (error) {
       alert(error);
@@ -44,7 +42,7 @@ const NearbyPeople = ({navigation}) => {
   const onFriendRequest = async userNum => {
     try {
       await axios.post(
-        `http://192.168.1.103:3000/friendRequest/send/${user_id}/${userNum}`,
+        `http://192.168.1.141:3000/friendRequest/send/${user_id}/${userNum}`,
       );
       onApplyHandler(); //FIX ME?
     } catch (error) {

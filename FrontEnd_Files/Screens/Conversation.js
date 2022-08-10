@@ -33,16 +33,23 @@ const Conversation = ({route}) => {
   const friendName = `${route.params.friendConfig.first_name} ${route.params.friendConfig.last_name}`;
   const myId = useSelector(state => state.configuration.userConfig.user_id);
   const messages = useSelector(state => state.chat.currChat);
-
-  //const messageIsWaiting = useSelector(state => state.chat.messageWaiting);
   const dispatch = useDispatch();
+
   const getMessages = async () => {
     //FIX ME there is a problem with update list of open chats
     try {
+      console.log(myId, friendId);
       const res = await axios.get(
-        `http://192.168.1.103:3000/chats/${myId}/${friendId}/0`,
+        `http://192.168.1.141:3000/chats/${myId}/${friendId}/0`,
       );
-      if (!res.data.hasOwnProperty('msg')) {
+      console.log(res);
+      if (res.data.hasOwnProperty('msg')) {
+        dispatch(
+          setCurrentChat({
+            currChat: [],
+          }),
+        );
+      } else {
         dispatch(
           setCurrentChat({
             currChat: res.data,

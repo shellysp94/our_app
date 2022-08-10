@@ -15,6 +15,7 @@ import {
 import {Divider} from 'react-native-paper';
 import {useSelector, useDispatch} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Theme from '../../Styles/Theme';
 
 import signUpHobbies from '../../Styles/SignUpHobbies';
 import FiltersHobbies from '../../Styles/FiltersHobbies';
@@ -97,7 +98,11 @@ const Hobbies = props => {
         </View>
         <View style={{justifyContent: 'center'}}>
           <Pressable onPress={() => clearHobbies()}>
-            <Ionicons color={'#1B8AA0'} size={18} name={'trash-outline'} />
+            <Ionicons
+              color={Theme.backgroundColor}
+              size={18}
+              name={'trash-outline'}
+            />
           </Pressable>
         </View>
       </View>

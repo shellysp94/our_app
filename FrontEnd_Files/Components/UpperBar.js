@@ -5,7 +5,7 @@ import React from 'react';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-
+import Theme from '../Styles/Theme';
 const UpperBar = props => {
   const navigation = useNavigation();
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   text: {
     left: 40,
     color: 'white',
-    fontFamily: 'RobotoCondensed-Regular',
+    fontFamily: Theme.fontFamilyRegular,
     fontSize: 20,
   },
 });

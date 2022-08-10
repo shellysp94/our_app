@@ -9,7 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import Theme from '../Styles/Theme';
 import {useSelector} from 'react-redux';
-import {tSObjectKeyword} from '@babel/types';
+import {useNavigation} from '@react-navigation/native';
 
 const UserItem = props => {
   const [visible, setVisible] = useState(false);
@@ -17,7 +17,18 @@ const UserItem = props => {
   const hideModal = () => setVisible(false);
   const config = props.config;
   const myConfig = useSelector(state => state.configuration.userConfig);
+  console.log('friend search mode: ', config.searchMode);
+  const navigation = useNavigation();
 
+  const getIcon = item => {
+    if (item === 'Food') return require('../assets/icons/hamburger.png');
+    if (item === 'Coffee') return require('../assets/icons/coffee-cup.png');
+    if (item === 'Training') return require('../assets/icons/sports.png');
+    if (item === 'Beer') return require('../assets/icons/toast.png');
+    if (item === 'Whatever') return require('../assets/icons/all.png');
+    if (item === 'Study') return require('../assets/icons/education.png');
+    if (item === 'Shopping') return require('../assets/icons/shopping.png');
+  };
   const typeIcon = () => {
     if (props.type === 'notFriend')
       return <Ionicons name="person-add-outline" size={30} />;
@@ -40,19 +51,19 @@ const UserItem = props => {
   const createNewChat = async () => {
     try {
       await axios.post(
-        `http://192.168.1.103:3000/chats/${myConfig.user_id}/${config.user_id}`,
+        `http://192.168.1.141:3000/chats/${myConfig.user_id}/${config.user_id}`,
       );
     } catch {
       alert('in catch');
     }
   };
   const onPressType = type => {
-    console.log(type);
     if (props.type === 'notFriend') {
       props.function(config.user_id);
     } else if (props.type === 'friend') {
       console.log("let's start new chat ");
       createNewChat();
+      navigation.navigate('Chats');
     } else if (props.type === 'requestsUserReceived') {
       props.function(config.user_id);
     } else {
@@ -72,7 +83,7 @@ const UserItem = props => {
       <Pressable style={{flexDirection: 'row'}} onPress={showModal}>
         <View
           style={{
-            paddingRight: 20,
+            paddingRight: 10,
             justifyContent: 'center',
           }}>
           {config.image && (
@@ -84,35 +95,60 @@ const UserItem = props => {
         </View>
         <View
           style={{
-            width: '80%',
-            justifyContent: 'center',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            width: '82%',
           }}>
-          <View style={styles.Details}>
+          <View
+            style={{
+              width: '60%',
+              justifyContent: 'center',
+            }}>
             <View>
-              <Text style={styles.friendName}>
-                {config.first_name} {config.last_name}
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                width: 200,
-              }}>
-              <Text style={styles.friendAge}>age: {config.age}</Text>
-              <Text style={styles.friendAge}>distance: ??</Text>
+              <View>
+                <Text adjustsFontSizeToFit style={styles.friendName}>
+                  {config.first_name} {config.last_name}
+                </Text>
+                {/* <Image
+                  style={{left: 5, height: 20, width: 20, alignSelf: 'center'}}
+                  source={getIcon(config.searchMode)}
+                /> */}
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <Text style={styles.friendAge}>age: {config.age}</Text>
+                <Text style={styles.friendAge}>{config.distance}m</Text>
+              </View>
             </View>
           </View>
           <View
             style={{
-              position: 'absolute',
+              height: '110%',
               flexDirection: 'row',
               alignSelf: 'flex-end',
-              justifyContent: 'center',
             }}>
-            <Pressable onPress={() => onPressType(props.type)}>
+            <Pressable
+              style={{justifyContent: 'center'}}
+              onPress={() => onPressType(props.type)}>
               {typeIcon}
             </Pressable>
+            <View
+              style={{
+                justifyContent: 'flex-end',
+                marginLeft: 10,
+                right: -5,
+                bottom: -5,
+              }}>
+              <Ionicons
+                style={{alignSelf: 'flex-end'}}
+                name="ellipse"
+                size={12}
+                color={'#4cbb17'}
+              />
+            </View>
           </View>
         </View>
       </Pressable>
@@ -127,17 +163,18 @@ const styles = StyleSheet.create({
     width: '95%',
     alignItems: 'center',
     alignSelf: 'center',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
+    paddingVertical: 10,
+    paddingLeft: 10,
+    borderRadius: 10,
+    margin: 3,
   },
   Picture: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
   Details: {
-    paddingRight: 40,
-    alignContent: 'flex-start',
+    // marginRight: 40,
   },
   friendName: {
     fontSize: 22,

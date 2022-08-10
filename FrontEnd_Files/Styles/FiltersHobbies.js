@@ -13,14 +13,12 @@ const styles = StyleSheet.create({
   },
 
   viewStyle: {
-    backgroundColor: Theme.backgroundColor,
+    backgroundColor: Theme.highLightColor,
     padding: 7,
     margin: 5,
     alignSelf: 'center',
     borderRadius: 5,
     width: '75%',
-    borderWidth: 1,
-    borderColor: '#0E6070',
     elevation: 5,
   },
   itemPressable: {
@@ -34,7 +32,7 @@ const styles = StyleSheet.create({
   },
   valueItemText: {
     fontSize: 16,
-    color: '#FFFFFF',
+    color: Theme.backgroundColor,
     fontFamily: Theme.fontFamilyRegular,
   },
 

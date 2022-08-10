@@ -19,13 +19,15 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       backgroundColor: Theme.highLightColor,
       justifyContent: 'center',
+      borderColor: '#FFFFFF',
+      borderWidth: 1,
     },
     trashPressable: {
       justifyContent: 'center',
     },
     requestPressable: {
       width: 180,
-      backgroundColor: Theme.secondColor,
+      backgroundColor: Theme.highLightColor,
       elevation: 10,
       borderRadius: 5,
       justifyContent: 'center',
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
       width: 35,
       height: 35,
       borderRadius: 5,
+      color: Theme.backgroundColor,
     },
   },
   Text: {
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
     },
     requestText: {
       alignSelf: 'center',
-      color: '#FFFFFF',
+      color: Theme.backgroundColor,
       fontFamily: Theme.fontFamilyRegular,
       fontSize: 16,
     },

@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
       right: 10,
       height: 25,
       width: 25,
+      color: Theme.highLightColor,
     },
   },
   Pressable: {
@@ -78,12 +79,23 @@ const styles = StyleSheet.create({
     birthday: {
       marginTop: 30,
       flexDirection: 'column',
-      left: 40,
+      left: 10,
     },
     hobbies: {
       marginTop: 30,
       flexDirection: 'column',
-      left: 20,
+      left: 10,
+    },
+    viewStyle: {
+      backgroundColor: '#EBEBEB', // birthday,hobbies
+      marginLeft: 30,
+      padding: 7,
+      margin: 5,
+      borderRadius: 5,
+      width: '80%',
+      borderWidth: 1,
+      borderColor: 'white',
+      elevation: 5,
     },
   },
 
@@ -116,10 +128,11 @@ const styles = StyleSheet.create({
       marginTop: 15,
       color: '#FFFFFF',
     },
+
     hobbiesText: {
-      color: '#0E6070',
+      color: '#FFFFFF',
       alignSelf: 'flex-start',
-      left: 20,
+      left: 40,
     },
   },
   DatePicker: {

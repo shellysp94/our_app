@@ -16,7 +16,7 @@ const Notifications = () => {
   const showNotifications = async userNum => {
     try {
       const res = await axios.get(
-        `http://192.168.1.103:3000/notifications/${userConfig.user_id}`,
+        `http://192.168.1.141:3000/notifications/${userConfig.user_id}`,
       );
       setNotifications(res.data);
     } catch (error) {

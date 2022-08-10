@@ -5,6 +5,7 @@ import {View, Modal, Pressable, Text, Button} from 'react-native';
 import {useSelector} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from '../../Styles/FiltersStyle';
+import Theme from '../../Styles/Theme';
 
 const searchModeItems = props => {
   const [visible, setVisible] = useState(false);
@@ -43,7 +44,7 @@ const searchModeItems = props => {
           style={styles.FilterItem.center}
           onPress={() => props.function(props.arr[0])}>
           <Ionicons
-            color={'#1B8AA0'}
+            color={Theme.backgroundColor}
             size={18}
             style={styles.FilterItem.trashIcon}
             name={'trash-outline'}

@@ -47,28 +47,26 @@ const LogIn = ({navigation}) => {
     // console.log(email, password, deviceToken);
     try {
       const response = await axios.post(
-        `http://192.168.1.103:3000/auth/login`,
+        `http://192.168.1.141:3000/auth/login`,
         {
           email: email,
           password: password,
           device_token: deviceToken,
         },
       );
-      console.log('RESPONSE: ', response.data);
 
       if (response.data.hasOwnProperty('msg')) {
         alert(response.data.msg);
       } else {
         try {
           const getUser = await axios.get(
-            `http://192.168.1.103:3000/userConfiguration/${response.data.user_id}`,
+            `http://192.168.1.141:3000/userConfiguration/${response.data.user_id}`,
             {
               headers: {
                 Authorization: 'Bearer ' + response.data.token,
               },
             },
           );
-          console.log('GET CONF: ', getUser.data);
           let details = {
             userConfig: getUser.data[0],
             email: response.data.email,
@@ -103,7 +101,12 @@ const LogIn = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.LogInForm}>
-        <Text style={styles.FormItemText}>Welcome</Text>
+        <Text
+          style={{
+            ...styles.FormItemText,
+          }}>
+          Welcome
+        </Text>
         <TInput
           title={'Email'}
           value={email}

@@ -11,6 +11,7 @@ import axios from 'axios';
 import UpperBar from '../Components/UpperBar';
 import {updateSearchMode} from '../store/Slices/configurationSlice';
 import {ScrollView} from 'react-native-gesture-handler';
+import Theme from '../Styles/Theme';
 
 const Home = () => {
   const [expanded, setExpanded] = useState(false);
@@ -29,7 +30,7 @@ const Home = () => {
   const getPhotos = async () => {
     try {
       const userPhotos = await axios.get(
-        `http://192.168.1.103:3000/userPictures/main/${userConfig.user_id}`,
+        `http://192.168.1.141:3000/userPictures/main/${userConfig.user_id}`,
       );
       setPhotos(userPhotos.data);
       if (userPhotos.data.length === 0) {
@@ -61,6 +62,7 @@ const Home = () => {
     return (
       <List.Item
         style={styles.List.searchModeItems}
+        titleStyle={{fontFamily: Theme.fontFamilyRegular}}
         title={item}
         key={index}
         left={props => (
@@ -77,7 +79,6 @@ const Home = () => {
   useEffect(() => {
     setVisible(false);
     getPhotos();
-    console.log('myLongitude: ', myLongitude, 'myLatitude:', myLatitude);
   }, []);
 
   return (
@@ -98,6 +99,7 @@ const Home = () => {
         <ScrollView style={styles.ScrollView.searchModeList}>
           <List.Accordion
             title={searchMode}
+            titleStyle={{fontFamily: Theme.fontFamilyRegular}}
             style={styles.List.selectedSearchMode}
             expanded={expanded}
             onPress={() => setExpanded(!expanded)}

@@ -59,7 +59,7 @@ const AgeItem = props => {
             props.setAge([min, max]);
           }}>
           <Ionicons
-            color={'#1B8AA0'}
+            color={Theme.backgroundColor}
             size={18}
             style={styles.FilterItem.trashIcon}
             name={'trash-outline'}

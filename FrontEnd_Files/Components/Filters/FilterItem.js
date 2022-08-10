@@ -51,7 +51,11 @@ const FilterItem = props => {
         </View>
         <View style={{justifyContent: 'center'}}>
           <Pressable onPress={() => props.function(props.arr[0])}>
-            <Ionicons color={'#1B8AA0'} size={18} name={'trash-outline'} />
+            <Ionicons
+              color={Theme.backgroundColor}
+              size={18}
+              name={'trash-outline'}
+            />
           </Pressable>
         </View>
       </View>

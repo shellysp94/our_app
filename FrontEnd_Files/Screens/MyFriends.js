@@ -34,7 +34,7 @@ const MyFriends = () => {
     try {
       const valToSearch = friendToSearch === '' ? '%20' : friendToSearch;
       const friends = await axios.get(
-        `http://192.168.1.103:3000/connections///byName/${userConfig.user_id}/1/${valToSearch}`,
+        `http://192.168.1.141:3000/connections///byName/${userConfig.user_id}/1/${valToSearch}`,
       );
       dispatch(
         updateMyFriends({
@@ -93,12 +93,16 @@ const MyFriends = () => {
         <Pressable
           style={styles.Pressable.requestPressable}
           onPress={() => setVisibleMyRequests(true)}>
-          <Text style={styles.Text.requestText}>My friend requests</Text>
+          <Text adjustsFontSizeToFit style={styles.Text.requestText}>
+            My friend requests
+          </Text>
         </Pressable>
         <Pressable
           style={styles.Pressable.requestPressable}
           onPress={() => setVisiblePendingRequests(true)}>
-          <Text style={styles.Text.requestText}>Pending friend request</Text>
+          <Text adjustsFontSizeToFit style={styles.Text.requestText}>
+            Pending friend request
+          </Text>
         </Pressable>
       </View>
       <SafeAreaView style={styles.SafeAreaView.listOfConfContainer}>

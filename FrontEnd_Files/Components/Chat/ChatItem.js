@@ -10,8 +10,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 const ChatItem = props => {
   const data = props.data;
-  const messages = useSelector(state => state.chat.currChat);
-
+  console.log('DATA:', data);
   const navigation = useNavigation();
   const navi = () => {
     navigation.navigate('Conversation', {
@@ -30,10 +29,10 @@ const ChatItem = props => {
       </Pressable>
       <View style={styles.View.row}>
         <View style={styles.View.Details}>
-          <Text style={styles.Text.title}>
+          <Text adjustsFontSizeToFit style={styles.Text.title}>
             {data.first_name} {data.last_name}
           </Text>
-          {data.hasOwnProperty('content') ? (
+          {data.content ? (
             <Text style={styles.Text.body}>{data.content}</Text>
           ) : (
             <Text style={{color: 'gray'}}>The chat is empty</Text>

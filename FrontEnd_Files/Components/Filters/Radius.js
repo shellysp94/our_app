@@ -6,6 +6,7 @@ import {View, Text, Modal, Button, Pressable} from 'react-native';
 import RnVerticalSlider from 'rn-vertical-slider';
 import styles from '../../Styles/FiltersStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Theme from '../../Styles/Theme';
 
 const Radius = props => {
   const [visible, setVisible] = useState(false);
@@ -16,7 +17,11 @@ const Radius = props => {
     <View style={styles.FilterItem.viewStyle}>
       <Modal transparent={true} visible={visible}>
         <View style={styles.Modal.Item}>
-          <Text style={{...styles.title, marginBottom: 20}}>
+          <Text
+            style={{
+              ...styles.title,
+              marginBottom: 20,
+            }}>
             Radius: {props.value} m
           </Text>
           <View style={styles.Modal.radiusSliderContainer}>
@@ -50,8 +55,8 @@ const Radius = props => {
           onPress={showModal}>
           <Text
             style={{
-              fontFamily: 'RobotoCondensed-Regular',
-              color: '#FFFFFF',
+              fontFamily: Theme.fontFamilyRegular,
+              color: Theme.backgroundColor,
               fontSize: 16,
             }}>
             {props.value} m
@@ -59,7 +64,7 @@ const Radius = props => {
         </Pressable>
         <Pressable style={styles.center}>
           <Ionicons
-            color={'#1B8AA0'}
+            color={Theme.backgroundColor}
             size={18}
             style={styles.FilterItem.trashIcon}
             name={'trash-outline'}

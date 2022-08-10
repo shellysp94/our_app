@@ -14,13 +14,15 @@ const Chat = () => {
   const myUserId = useSelector(state => state.configuration.userConfig.user_id);
   const chats = useSelector(state => state.chat.OpenChats);
   const dispatch = useDispatch();
-
   const getAllChats = async () => {
     //FIX ME there is a problem with update list of open chats
     try {
+      console.log('***');
       const res = await axios.get(
-        `http://192.168.1.103:3000/chats/${myUserId}`,
+        `http://192.168.1.141:3000/chats/${myUserId}`,
       );
+      console.log('res data', res.data);
+
       dispatch(openChats({OpenChats: res.data}));
     } catch (error) {
       alert(error);
@@ -39,8 +41,9 @@ const Chat = () => {
         My Open Chats
       </Text>
       <View>
-        {chats &&
-          chats.map((item, index) => <ChatItem key={index} data={item} />)}
+        {chats.map((item, index) => (
+          <ChatItem key={index} data={item} />
+        ))}
       </View>
     </View>
   );

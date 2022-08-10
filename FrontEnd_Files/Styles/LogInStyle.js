@@ -51,10 +51,10 @@ const styles = StyleSheet.create({
   },
   FormItemText: {
     color: '#ffffff',
-    fontSize: 50,
+    fontSize: 60,
     alignSelf: 'center',
     marginBottom: 20,
-    fontFamily: Theme.fontFamilyRegular,
+    fontFamily: 'OleoScriptSwashCaps-Regular',
   },
   linkToRegister: {
     alignItems: 'center',

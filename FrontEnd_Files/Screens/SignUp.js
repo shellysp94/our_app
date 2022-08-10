@@ -34,7 +34,7 @@ function SignUp() {
   const [isEmailValid, setEmailValid] = useState(true);
   const dispatch = useDispatch();
 
-  const baseUrl = 'http://192.168.1.103:3000/auth/register';
+  const baseUrl = 'http://192.168.1.141:3000/auth/register';
 
   const hobbies = useSelector(state => state.configuration.myHobbies);
   const rawText = useSelector(state => state.general.rawText.registration_form);

@@ -65,8 +65,12 @@ const CustomFiltersBar = props => {
   return (
     <SafeAreaView style={styles.SafeAreaView.container}>
       <View style={styles.View.headerBlock}>
-        <Ionicons name="search-circle-outline" size={40} color={'#2C143E'} />
-        <Text style={styles.Text.findNewFriendsText}>Find New Friends</Text>
+        <Ionicons
+          name="search-circle-outline"
+          size={40}
+          color={Theme.backgroundColor}
+        />
+        <Text style={styles.Text.findNewFriendsText}>Find new friends</Text>
       </View>
       <DrawerItemList {...props} />
       <View style={styles.View.filtersMenu}>
@@ -126,7 +130,10 @@ const CustomFiltersBar = props => {
             onPress={() => onClear()}
             style={styles.Pressable.trashPressables}>
             <Ionicons
-              style={{alignSelf: 'center', left: 10}}
+              style={{
+                alignSelf: 'center',
+                left: 10,
+              }}
               size={18}
               name={'trash-outline'}
             />

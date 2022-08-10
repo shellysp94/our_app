@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     openFiltersText: {
       fontFamily: Theme.fontFamilyRegular,
       fontSize: 16,
-      left: 13,
+      left: 5,
     },
   },
 

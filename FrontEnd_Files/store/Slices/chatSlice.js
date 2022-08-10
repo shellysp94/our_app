@@ -20,7 +20,7 @@ export const chatSlice = createSlice({
       state.messageWaiting = action.payload.messageWaiting;
     },
     addMessageToChat: (state, action) => {
-      state.currChat.push(action.payload.myMessage);
+      state.currChat.push(action.payload.myMessage); // FIX ME - spread + react.memo
     },
   },
 });
