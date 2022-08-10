@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Dosis&family=Federant&family=Josefin+Sans:wght@100&family=Montserrat+Alternates&family=Montserrat:wght@100;300;400;500;600&family=Quattrocento+Sans&family=Source+Code+Pro&family=Square+Peg&family=Trochut&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="app.css" />
+		<title>Let's API Documentation</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-light" style="background-color: #e3f2fd">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<span id="lets">Let's</span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-12 text-lg-center">
+					- Auth -
+					<div class="row">
+						<div class="col text-center">
+							- Register -
+							<div class="col text-start">
+								URL: localhost:3000/auth/register
+							</div>
+							<div class="col text-start">Method: POST</div>
+							<div class="col text-start">
+								Body: email, password, first_name, last_name, date_of_birth,
+								city, gender, phone_number, relationship_status,
+								sexual_orientation, profession, pronoun, hobbies
+							</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">- Success- "User added"</li>
+								<li class="col text-start">
+									- Fail- "This email already in use"
+								</li>
+							</ul>
+						</div>
+						<div class="col text-center">
+							- Login -
+							<div class="col text-start">URL: localhost:3000/auth/login</div>
+							<div class="col text-start">Method: POST</div>
+							<div class="col text-start">Body: email, password</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">- Success- "User added"</li>
+								<li class="col text-start">- Fail- "User not exist"</li>
+								<li class="col text-start">
+									Valid login return JSON of {user_id, email, token}
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row justify-content-md-center">
+				<div class="col-12 text-lg-center">
+					- Users -
+					<div class="row justify-content-md-center">
+						<div class="col-5 text-center">
+							- Get All Users -
+							<div class="col text-start">URL: localhost:3000/users</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- There are users in DB- JSON with all users
+								</li>
+								<li class="col text-start">
+									- There aren't users in DB- An empty table
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Get one or more user/s -
+							<div class="col text-start">
+								URL: localhost:3000/users/userid,userid,...
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- Desired users are exists- JSON with the users
+								</li>
+								<li class="col text-start">
+									- Desired users aren't exists- JSON with the users
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Delete one user -
+							<div class="col text-start">URL: localhost:3000/users/userid</div>
+							<div class="col text-start">Method: DELETE</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">"User deleted successfully"</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Update user -
+							<div class="col text-start">URL: localhost:3000/users/userid</div>
+							<div class="col text-start">Method: PUT</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">"User updated successfully"</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row justify-content-md-center">
+				<div class="col-12 text-lg-center">
+					- User Configuration -
+					<div class="row justify-content-md-center">
+						<div class="col-5 text-center">
+							- Get one or more user configuration/s -
+							<div class="col text-start">
+								URL: localhost:3000/userConfiguration/userid,userid,...
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- There are user configurations in DB- JSON with all user
+									configurations
+								</li>
+								<li class="col text-start">
+									- There aren't user configurations in DB- An empty table
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Delete user configuration -
+							<div class="col text-start">
+								URL: localhost:3000/userConfiguration/userid
+							</div>
+							<div class="col text-start">Method: DELETE</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									"User configuration deleted successfully"
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row justify-content-md-center">
+				<div class="col-12 text-lg-center">
+					- User Pictures -
+					<div class="row justify-content-md-center">
+						<div class="col-5 text-center">
+							- Get user pictures -
+							<div class="col text-start">
+								URL: localhost:3000/userPictures/userid
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- User have pictures in DB- JSON of user pictures
+								</li>
+								<li class="col text-start">
+									- User don't have pictures in DB- An empty table
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Get user main picture -
+							<div class="col text-start">
+								URL: localhost:3000/userPictures/main/userid
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- User have a main picture in DB- JSON of user main picture
+								</li>
+								<li class="col text-start">
+									- User don't have main picture in DB- An empty table
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Upload user picture -
+							<div class="col text-start">
+								URL: localhost:3000/userPictures/userid
+							</div>
+							<div class="col text-start">Method: POST</div>
+							<div class="col text-start">
+								Body: image (file), main image('0', '1')
+							</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									"Picture of user added successfully"
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Update user picture -
+							<div class="col text-start">
+								URL: localhost:3000/userPictures/userid
+							</div>
+							<div class="col text-start">Method: PUT</div>
+							<div class="col text-start">
+								Body: image (file), main image ('0', '1'), old image (name like
+								in DB)
+							</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">"Picture updated successfully"</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Delete user picture -
+							<div class="col text-start">
+								URL: localhost:3000/userPictures/userid
+							</div>
+							<div class="col text-start">Method: DELETE</div>
+							<div class="col text-start">Body: image (name like in DB)</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">"Picture deleted successfully"</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row justify-content-md-center">
+				<div class="col-12 text-lg-center">
+					- User Location -
+					<div class="row justify-content-md-center">
+						<div class="col-5 text-center">
+							- Get user location -
+							<div class="col text-start">
+								URL: localhost:3000/userLocation/userid
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- User has a location in DB- JSON of the location
+								</li>
+								<li class="col text-start">
+									- User doesn't have a location in DB- An empty table
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Insert user location -
+							<div class="col text-start">
+								URL: localhost:3000/userLocation/userid
+							</div>
+							<div class="col text-start">Method: POST</div>
+							<div class="col text-start">Body: longitude, latitude</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- User added a location for the first time: "User location
+									added"
+								</li>
+								<li class="col text-start">
+									- User updated a location: "User location updated"
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Delete user location -
+							<div class="col text-start">
+								URL: localhost:3000/userLocation/userid
+							</div>
+							<div class="col text-start">Method: DELETE</div>
+							<div class="col text-start">Body: ------</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									"User location deleted successfully"
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row justify-content-md-center">
+				<div class="col-12 text-lg-center">
+					- Friend Request -
+					<div class="row justify-content-md-center">
+						<div class="col-5 text-center">
+							- Get user sent friend requests -
+							<div class="col text-start">
+								URL: localhost:3000/friendRequest/sendRequests/userid
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- User has sent friend requests in DB- JSON of his sent friend
+									requests
+								</li>
+								<li class="col text-start">
+									- User doesn't have sent friend requests in DB- An empty table
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Get user received friend requests -
+							<div class="col text-start">
+								URL: localhost:3000/friendRequest/receivedRequests/userid
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- User has received friend requests in DB- JSON of his
+									received friend requests
+								</li>
+								<li class="col text-start">
+									- User doesn't have received friend requests in DB- An empty
+									table
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Send friend request -
+							<div class="col text-start">
+								URL: localhost:3000/friendRequest/send/sender/receiver
+							</div>
+							<div class="col text-start">Method: POST</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer:
+								<li class="col text-start">
+									Sending FCM notification to the receiver device
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Approve friend request -
+							<div class="col text-start">
+								URL: localhost:3000/friendRequest/approve/receiver/sender
+							</div>
+							<div class="col text-start">Method: POST</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									"receiver (user id) approved friend request from sender (user
+									id)"
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Decline friend request -
+							<div class="col text-start">
+								URL: localhost:3000/friendRequest/decline/receiver/sender
+							</div>
+							<div class="col text-start">Method: DELETE</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									"receiver (user id) decline friend request from sender (user
+									id)"
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Get users filtered by name and connected -
+							<div class="col text-start">
+								URL: localhost:3000/friendRequest/byName/userid/
+								connected/"first name" "last name"
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Parameters (explanation for the parameters in the URL):
+								<li class="col text-start">
+									- connected: connected = 1 return only friends, connected = 0
+									return all users according to the name filter
+								</li>
+								<li class="col text-start">
+									- "first name" "last name": "first name" (e.g "M") return
+									users with first name starts with "M", Same for "last name".
+									"first name" "last name" = " " return users without name
+									filter.
+								</li>
+							</ul>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- There are suitable users- JSON of the users configuration
+								</li>
+								<li class="col text-start">
+									- There aren't suitable users- "There are no suitable users to
+									present"
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Get users by connected type -
+							<div class="col text-start">
+								URL: localhost:3000/friendRequest/byType/userid/type/
+								usersToPresent
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Parameters (explanation for the parameters in the URL):
+								<li class="col text-start">
+									- type: type = 1 user ask for his friends or requests only,
+									type = 0 user ask for all users
+								</li>
+								<li class="col text-start">
+									- usersToPresent: list of users id to present. If the list
+									include only "0" the user ask for all users
+								</li>
+							</ul>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- There are suitable users in the DB- JSON of the users
+									configuration with connection type according to the requesting
+									user id
+								</li>
+								<li class="col text-start">
+									- There aren't suitable users- An empty table
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row justify-content-md-center">
+				<div class="col-12 text-lg-center">
+					- Chats -
+					<div class="row justify-content-md-center">
+						<div class="col-5 text-center">
+							- Create or Update chat between two users -
+							<div class="col text-start">
+								URL: localhost:3000/chats/useridA/useridB
+							</div>
+							<div class="col text-start">Method: POST</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- Users are not friends- "Chat not added. There is no mutual
+									connections between useridA and useridB
+								</li>
+								<li class="col text-start">
+									- Users are already friends
+									<ul class="col text-start">
+										<li class="col text-start">
+											- There is a chat room between them- return the last 50
+											messages of their chat
+										</li>
+										<li class="col text-start">
+											- There isn't chat yet- "Chat between useridA and useridB
+											is now exists, let's talk!"
+										</li>
+									</ul>
+									- User doesn't have a location in DB- An empty table
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Get chat of two users -
+							<div class="col text-start">
+								URL: localhost:3000/chats/useridA/useridB/offset
+							</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- There are chat and messages between the users- return the
+									last 50 messages from offset
+								</li>
+								<li class="col text-start">
+									- There is chat but not messages between the users- "Chat room
+									is empty"
+								</li>
+								<li class="col text-start">
+									- There isn't chat yet- "There is no chat between these users"
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Get a specific user's chats -
+							<div class="col text-start">URL: localhost:3000/chats/userid</div>
+							<div class="col text-start">Method: GET</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								Answer from server:
+								<li class="col text-start">
+									- User has chats- JSON of chats of the user
+								</li>
+								<li class="col text-start">
+									- User doesn't have chats- "User doesn't have chats yet"
+								</li>
+							</ul>
+						</div>
+						<div class="col-5 text-center">
+							- Delete chat between two users -
+							<div class="col text-start">
+								URL: localhost:3000/chats/useridA/useridB
+							</div>
+							<div class="col text-start">Method: DELETE</div>
+							<div class="col text-start">Body: -----</div>
+							<ul class="col text-start">
+								NOTICE --> chat room isn't delete from DB. Only emptied it.
+								Answer from server:
+								<li class="col text-start">"Chat is now empty"</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer class="text-center">THE END</footer>
+		</div>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+			integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>
