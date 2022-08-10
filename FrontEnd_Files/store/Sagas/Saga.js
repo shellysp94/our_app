@@ -31,7 +31,7 @@ export function* rootSaga() {
   // while (true) {
   yield take(changeStatus.type);
 
-  //yield fork(getCurrentLocationSaga);
+  yield fork(getCurrentLocationSaga);
   yield fork(watchSocket); // //yield take(changeStatus.type);
   yield take(changeStatus.type);
 }

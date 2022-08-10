@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 /* eslint-disable no-unused-vars */
 import {PermissionsAndroid} from 'react-native';
 import {call, put, select} from 'redux-saga/effects';
@@ -6,8 +5,6 @@ import Geolocation from '@react-native-community/geolocation';
 import {setMyLocation} from '../store/Slices/generalSlice';
 import axios from 'axios';
 
-const getMyLatitude = state => state.general.myLatitude;
-const getMyLongitude = state => state.general.myLongitude;
 const getUserId = state => state.configuration.userConfig.userId;
 
 const checkLocationPermission = async () => {
@@ -38,22 +35,39 @@ export const getMyLocation = async () => {
     });
   });
 };
+
+const sendLocation = async (myUserId, mylongitude, mylatitude) => {
+  console.log(`myLatitude: ${mylatitude}, myLongitude: ${mylongitude}`);
+  return await axios.post(
+    `http://192.168.1.141:3000/userLocation/${myUserId}`,
+    {
+      longitude: mylongitude,
+      latitude: mylatitude,
+    },
+  );
+};
+
 export function* getCurrentLocationSaga() {
   const locationPermission = yield call(checkLocationPermission);
   const myUserId = yield select(getUserId);
 
   console.log('locationPermission: ', locationPermission);
   if (locationPermission === 'Permission Granted') {
-    setInterval(async () => {
-      console.log('*****');
-      const result = await getMyLocation();
-      console.log(
-        `myLatitude: ${result.coords.latitude}, myLongitude: ${result.coords.longitude}`,
-      );
-      axios.post(`http://192.168.1.141:3000/userLocation/${myUserId}`, {
-        latitude: result.coords.latitude,
-        longitude: result.coords.longitude,
-      });
-    }, 10000);
+    try {
+      setInterval(async () => {
+        console.log('**1**');
+        const result = await getMyLocation();
+
+        // const newLocation = await sendLocation(
+        //   myUserId,
+        //   result.coords.longitude,
+        //   result.coords.latitude,
+        // );
+        // console.log(newLocation.data);
+        // console.log('**2**');
+      }, 10000);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
