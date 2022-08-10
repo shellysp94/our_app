@@ -2,27 +2,28 @@ const dbConfig = require("../../config/db_config");
 const userPictures = require("./userPictures");
 const fs = require("fs");
 const {emitWarning} = require("process");
+const onlineUsersArray = require("../../utils/users/onlineUsersArray");
+const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
-const queryUserConfiguration = (arr,curr_userid, callback) => {
-	mySqlConnection.query(`SELECT longitude, latitude from user_location where user_id=${curr_userid}`, (newErr,newRows) =>
-	{
-		try
-		{
-			if(newRows.length === 0)
-			{
-				longitude_var = "Longitude";
-				latitude_var = "Latitude";
-			}
-			else
-			{
-				longitude_var = newRows[0].longitude;
-				latitude_var = newRows[0].latitude;
-			}
-			mySqlConnection.query(
-				`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image,
+const queryUserConfiguration = (arr, curr_userid, callback) => {
+	let mergeObjects = [];
+
+	mySqlConnection.query(
+		`SELECT longitude, latitude from user_location where user_id=${curr_userid}`,
+		(newErr, newRows) => {
+			try {
+				if (newRows.length === 0) {
+					longitude_var = "Longitude";
+					latitude_var = "Latitude";
+				} else {
+					longitude_var = newRows[0].longitude;
+					latitude_var = newRows[0].latitude;
+				}
+				mySqlConnection.query(
+					`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image,f.search_mode,
 				( 3959 * acos ( cos ( radians(${latitude_var})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
 						radians(${longitude_var}) ) + sin ( radians(${latitude_var})) * sin( radians( Latitude ) ) ) )*1000 AS
 						distance
@@ -31,44 +32,57 @@ const queryUserConfiguration = (arr,curr_userid, callback) => {
 				ON c.user_id =  a.user_id 
 				LEFT JOIN user_pictures b 
 				ON c.user_id =  b.user_id 
+				left JOIN filters f
+                ON c.user_id = f.user_id
 				WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
 				ORDER BY first_name asc, last_name asc`,
-				[arr],
-				(err, rows) => {
-					if (!err) {
-						if (rows.length > 0) {
-							for (let i = 0; i < rows.length; i++) {
-								if (rows[i].image !== null) {
-									rows[i].image = userPictures.getPicNameAndEncode(rows[i].image);
-								} else {
-									if (rows[i].gender == "Man") {
-										rows[i].image =
-											userPictures.getPicNameAndEncode("male_profile.jpg");
-									} else if (rows[i].gender == "Woman") {
-										rows[i].image =
-											userPictures.getPicNameAndEncode("woman_profile.jpg");
-									} else {
+					[arr],
+					(err, rows) => {
+						if (!err) {
+							//console.log("I'm from get user configuration 1");
+							if (rows.length > 0) {
+								for (let i = 0; i < rows.length; i++) {
+									if (rows[i].image !== null) {
 										rows[i].image = userPictures.getPicNameAndEncode(
-											"non_binary_profile.PNG"
+											rows[i].image
 										);
+									} else {
+										if (rows[i].gender == "Man") {
+											rows[i].image =
+												userPictures.getPicNameAndEncode("male_profile.jpg");
+										} else if (rows[i].gender == "Woman") {
+											rows[i].image =
+												userPictures.getPicNameAndEncode("woman_profile.jpg");
+										} else {
+											rows[i].image = userPictures.getPicNameAndEncode(
+												"non_binary_profile.PNG"
+											);
+										}
+									}
+
+									if (
+										onlineUsers.includesAUser(parseInt(rows[i].user_id), 10)
+									) {
+										// This user is Online
+										mergeObjects.push(Object.assign({}, rows[i], {online: 1}));
+									} else {
+										// This user is Offline
+										mergeObjects.push(Object.assign({}, rows[i], {online: 0}));
 									}
 								}
 							}
-						}
-		
-						return callback(rows);
-					} else {
-						console.log(err);
-					}
-				}
-			);
-		}
-		catch(newErr)
-		{
-			console.log(newErr.message);
-		}
-	})
 
+							return callback(mergeObjects);
+						} else {
+							console.log(err);
+						}
+					}
+				);
+			} catch (newErr) {
+				console.log(newErr.message);
+			}
+		}
+	);
 };
 
 module.exports = {
@@ -87,24 +101,21 @@ module.exports = {
 
 	getUserConfigurationInner: (req, curr_userid, cb) => {
 		const arr = req.params.userid.split(",");
-		return queryUserConfiguration(arr,curr_userid, cb);
+		return queryUserConfiguration(arr, curr_userid, cb);
 	},
 
 	getUserConfiguration: (req, res) => {
 		const arr = req.params.userid.split(",");
-		if(!req.params.curr_userid)
-		{
-			curr_userid = arr[0]
-		}
-		else
-		{
+		if (!req.params.curr_userid) {
+			curr_userid = arr[0];
+		} else {
 			curr_userid = req.params.curr_userid;
 		}
-		
+
 		return queryUserConfiguration(arr, curr_userid, (config) => {
 			res.send(config);
 		});
-	},	
+	},
 
 	getUsersConfigurationByRadius: (req, cb) => {
 		const user_id = req.user_id;
