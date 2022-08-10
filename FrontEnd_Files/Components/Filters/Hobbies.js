@@ -57,7 +57,9 @@ const Hobbies = props => {
       <Modal transparent={true} visible={visible}>
         <View style={hobbiesStyle.Item}>
           <View style={{top: 20, alignSelf: 'center', position: 'absolute'}}>
-            <Text style={{fontSize: 18}}>Hobbies</Text>
+            <Text style={{fontSize: 18, fontFamily: Theme.fontFamilyRegular}}>
+              Hobbies
+            </Text>
           </View>
           <ScrollView>
             {[...listOfHobbies].slice(1).map((element, elmIndx) => {
@@ -74,7 +76,9 @@ const Hobbies = props => {
                         style={hobbiesListItemStyle(item)}
                         key={index}
                         onPress={() => addToList(item)}>
-                        <Text>{item}</Text>
+                        <Text style={{fontFamily: Theme.fontFamilyRegular}}>
+                          {item}
+                        </Text>
                       </TouchableOpacity>
                     );
                   })}

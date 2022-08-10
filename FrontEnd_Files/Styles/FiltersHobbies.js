@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   hobbiesCatagoryTitleList: {
     fontWeight: 'bold',
     marginTop: 10,
+    fontFamily: Theme.fontFamilyRegular,
   },
   radiusSliderContainer: {
     flex: 1,

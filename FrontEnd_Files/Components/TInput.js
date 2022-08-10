@@ -16,6 +16,7 @@ const TInput = props => {
           backgroundColor: '#FFFFFF',
           borderRadius: 5,
           color: Theme.backgroundColor,
+          fontFamily: Theme.fontFamilyRegular,
         }}
         value={props.value}
         editable={props.editable}

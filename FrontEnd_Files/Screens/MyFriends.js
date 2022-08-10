@@ -34,7 +34,7 @@ const MyFriends = () => {
     try {
       const valToSearch = friendToSearch === '' ? '%20' : friendToSearch;
       const friends = await axios.get(
-        `http://192.168.1.141:3000/connections///byName/${userConfig.user_id}/1/${valToSearch}`,
+        `http://192.168.1.141:3000/friendRequest/byName/${userConfig.user_id}/1/${valToSearch}`,
       );
       dispatch(
         updateMyFriends({

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-// import Theme from './Theme';
+import Theme from './Theme';
 const styles = StyleSheet.create({
   viewStyle: {
     backgroundColor: '#EBEBEB', // birthday,hobbies
@@ -32,15 +32,19 @@ const styles = StyleSheet.create({
     elevation: 5,
     margin: 10,
     fontSize: 22,
+    fontFamily: Theme.fontFamilyRegular,
     alignSelf: 'center',
   },
   hobbiesCatagoryTitleList: {
-    fontWeight: 'bold',
     marginTop: 10,
+    fontFamily: Theme.fontFamilyBold,
   },
   itemPressable: {
     justifyContent: 'center',
     width: 280,
+  },
+  valueItemText: {
+    fontFamily: Theme.fontFamilyRegular,
   },
 });
 export default styles;

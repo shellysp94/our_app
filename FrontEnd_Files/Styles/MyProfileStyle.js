@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
       height: 35,
       width: '80%',
       marginTop: 10,
+
       marginBottom: 30,
     },
   },
@@ -127,12 +128,17 @@ const styles = StyleSheet.create({
       left: 40,
       marginTop: 15,
       color: '#FFFFFF',
+      fontFamily: Theme.fontFamilyRegular,
     },
 
     hobbiesText: {
       color: '#FFFFFF',
       alignSelf: 'flex-start',
+      fontFamily: Theme.fontFamilyRegular,
       left: 40,
+    },
+    dateText: {
+      fontFamily: Theme.fontFamilyRegular,
     },
   },
   DatePicker: {

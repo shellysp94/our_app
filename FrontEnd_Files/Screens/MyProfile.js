@@ -66,7 +66,10 @@ const MyProfile = () => {
     };
   };
   const chipTextColor = (value, chip) => {
-    return {color: value === chip ? Theme.backgroundColor : '#2C143E'};
+    return {
+      color: value === chip ? Theme.backgroundColor : '#2C143E',
+      fontFamily: Theme.fontFamilyRegular,
+    };
   };
   return (
     <SafeAreaView style={styles.SafeAreaView.container}>
@@ -211,7 +214,7 @@ const MyProfile = () => {
           <Pressable
             style={styles.View.viewStyle}
             onPress={() => setShow(!show)}>
-            <Text style={styles.dateText}>
+            <Text style={styles.Text.dateText}>
               {day}-{month}-{year}
             </Text>
             {show && (

@@ -146,7 +146,7 @@ const UserItem = props => {
                 style={{alignSelf: 'flex-end'}}
                 name="ellipse"
                 size={12}
-                color={'#4cbb17'}
+                color={config.online ? '#4cbb17' : '#E11B1B'}
               />
             </View>
           </View>
