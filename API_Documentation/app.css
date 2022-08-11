@@ -183,7 +183,6 @@ body {
 	color: #abd6fd;
 	box-shadow: 0 0.5em 0.5em -0.4em rgb(150, 210, 243);
 	transform: translateY(-0.4em);
-	cursor: url(myBall.cur);
 }
 
 footer {
