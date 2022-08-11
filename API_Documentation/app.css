@@ -144,20 +144,46 @@ body {
 
 .col-12.text-lg-center {
 	margin: 20px;
-	font-size: 25px;
+	font-size: 30px;
+	font-weight: 500;
 }
 
 .col.text-center,
-.col-5.text-center {
+.col-5.text-center,
+.col-5.text-start {
 	padding: 20px;
 	border: 1px solid white;
 }
 
 .col.text-start,
 .col.text-center,
-.col-5.text-center {
+.col-5.text-center,
+.col-5.text-start {
 	margin: 15px;
 	font-size: 18px;
+}
+
+.col-5.text-center,
+.col-5.text-start {
+	font-size: 22px;
+	font-weight: 500;
+}
+
+.col.text-start,
+.col.text-center {
+	font-weight: 300;
+}
+
+.col.text-start.url {
+	font-size: 22px;
+	font-weight: 400;
+}
+
+.col.text-start.url:hover {
+	color: #abd6fd;
+	box-shadow: 0 0.5em 0.5em -0.4em rgb(150, 210, 243);
+	transform: translateY(-0.4em);
+	cursor: url(myBall.cur);
 }
 
 footer {
