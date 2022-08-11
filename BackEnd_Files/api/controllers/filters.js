@@ -160,6 +160,74 @@ function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, callback) {
 	return callback(sqlQuery);
 }
 
+function getUserFilteredUsers_OnlyOnline_Helper(
+	onlyOnline,
+	withFilters,
+	userid,
+	type,
+	usersToPresent,
+	res
+) {
+	//console.log("only online = " + onlyOnline);
+	console.log("users to present:", usersToPresent);
+	let createdUsersToPresent = [];
+
+	if (parseInt(onlyOnline, 10) === 1) {
+		if (parseInt(withFilters, 10) === 1) {
+			// Return users according to filters but only online users //
+			usersToPresent.forEach((user) => {
+				if (onlineUsers.includesAUser(user)) {
+					createdUsersToPresent.push(user);
+				}
+			});
+			console.log(
+				"CREATED USERS TO PRESENTS --> only online with filters:",
+				createdUsersToPresent
+			);
+		} else {
+			// Return all online users //
+			onlineUsers.getOnlineUsersArray().forEach((onlineUser) => {
+				if (parseInt(onlineUser.user_id, 10) !== parseInt(userid)) {
+					createdUsersToPresent.push(parseInt(onlineUser.user_id, 10));
+				}
+			});
+
+			console.log(
+				"CREATED USERS TO PRESENTS --> only online without any filter:",
+				createdUsersToPresent
+			);
+		}
+	} else {
+		if (parseInt(withFilters, 10) === 1) {
+			// Return users according to filters - online and offline //
+			usersToPresent.forEach((user) => {
+				createdUsersToPresent.push(user);
+			});
+			console.log(
+				"CREATED USERS TO PRESENTS --> online and offline according to filters:",
+				createdUsersToPresent
+			);
+		} else {
+			// Return users without any filters - online and offline //
+			createdUsersToPresent = [0];
+			console.log(
+				"CREATED USERS TO PRESENTS --> online and offline without any filter:",
+				createdUsersToPresent
+			);
+		}
+	}
+
+	let resultArrayToObject = {
+		params: {
+			userid: userid,
+			type: type,
+			usersToPresent: createdUsersToPresent,
+		},
+	};
+
+	getAllUserConnectionsType(resultArrayToObject, res);
+}
+
 getAllFilters = (req, res) => {
 	mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
 		try {
@@ -487,6 +555,8 @@ getUserFriendsThatFilteredFriendsOnly = (req, callback) => {
 };
 
 getUserFilteredUsers = (req, res) => {
+	let onlyOnline = req.params.onlyOnline;
+	let usersToPresent = [];
 	let searchMode = [];
 	let hobbies = [];
 	let gender = [];
@@ -498,15 +568,14 @@ getUserFilteredUsers = (req, res) => {
 	getUserFilter(req, (userFilter) => {
 		if (userFilter.length === 0) {
 			// user don't have filters - return to client all users in db
-			console.log("Without filters!");
-			let getUsersConfigurationsWithoutMyself = {
-				params: {
-					userid: String(req.params.userid),
-					type: String(0),
-					usersToPresent: [0],
-				},
-			};
-			getAllUserConnectionsType(getUsersConfigurationsWithoutMyself, res);
+			getUserFilteredUsers_OnlyOnline_Helper(
+				onlyOnline,
+				0,
+				req.params.userid,
+				0,
+				usersToPresent,
+				res
+			);
 		} else {
 			//console.log("userFilter[0]\n" + JSON.stringify(userFilter[0].user_id));
 			// user have filters
@@ -574,25 +643,24 @@ getUserFilteredUsers = (req, res) => {
 											response.forEach((user) => {
 												radius.push(user.user_id);
 											});
-											console.log("radius array:", radius);
 
 											const mutualUsers_Age_Radius =
-												mutualUsers_InterestedIn_Age.filter(
-													(user) =>
-														radius.includes(user) &&
-														onlineUsers.includesAUser(user)
+												mutualUsers_InterestedIn_Age.filter((user) =>
+													radius.includes(user)
 												);
-											console.log("the mutuals:", mutualUsers_Age_Radius);
-
-											let resultArrayToObject = {
-												params: {
-													userid: String(req.params.userid),
-													type: String(userFilter[0].friends_only_filter),
-													usersToPresent: mutualUsers_Age_Radius,
-												},
-											};
-
-											getAllUserConnectionsType(resultArrayToObject, res);
+											//console.log("the mutuals:", mutualUsers_Age_Radius);
+											console.log(
+												"friends only filter:",
+												userFilter[0].friends_only_filter
+											);
+											getUserFilteredUsers_OnlyOnline_Helper(
+												onlyOnline,
+												1,
+												req.params.userid,
+												userFilter[0].friends_only_filter,
+												mutualUsers_Age_Radius,
+												res
+											);
 										});
 									});
 								}

@@ -33,8 +33,8 @@ router.get("//relationship", getUsersWithCommonRelationshipFilter);
 router.get("//interestedIn", getUsersWithCommonInterestedInFilter);
 router.get("//age", getUsersWithCommonAgeFilter);
 router.get("//friendsOnly/:userid", getUserFriendsThatFilteredFriendsOnly);
-router.get("//filteredUsers/:userid", getUserFilteredUsers);
-router.post("/:userid", createUserFilter); //post a chat (/chats/:useridA/:useridB)
+router.get("//filteredUsers/:userid/:onlyOnline", getUserFilteredUsers);
+router.post("/:userid/:onlyOnline", createUserFilter); //post a chat (/chats/:useridA/:useridB)
 router.put("/update/hobbies/:userid", updateUserHobbiesFilter);
 router.put("/update/gender/:userid", updateUserGenderFilter);
 router.put("/update/relationship/:userid", updateUserRelationshipFilter);
