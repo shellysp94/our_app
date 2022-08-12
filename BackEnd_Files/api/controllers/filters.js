@@ -1,4 +1,3 @@
-const {query, response} = require("express");
 const dbConfig = require("../../config/db_config");
 const {
 	getAllUsersConfiguration,
@@ -24,6 +23,7 @@ function splitCommas(myQuery, relevantColumn, string) {
 		}
 		splittedQuery = splittedQuery.concat(splittedString[comma]);
 	}
+
 	return splittedQuery;
 }
 
@@ -228,6 +228,81 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 	getAllUserConnectionsType(resultArrayToObject, res);
 }
 
+function createSearchModeQuery(searchMode) {
+	console.log("im from  search mode", searchMode);
+	return new Promise((resolve, reject) => {
+		if (searchMode === undefined || searchMode.length <= 0) {
+			reject(`!!SEARCH MODE!!\nSomething wrong. Search mode parameter illegal`);
+		}
+		if (searchMode !== "Whatever") {
+			resolve(`and (search_mode like '${searchMode}')`);
+		} else {
+			resolve("");
+		}
+	});
+}
+
+function createHobbiesQuery(hobbies) {
+	return new Promise((resolve, reject) => {
+		if (hobbies === undefined || hobbies.length <= 0) {
+			reject(`!!HOBBIES!!\nSomething wrong. Hobbies parameter illegal`);
+		}
+		if (hobbies !== "Hobbies") {
+			let sqlQuery = splitCommas(" and (hobbies like ", "hobbies", hobbies);
+			sqlQuery = sqlQuery.concat(")");
+			resolve(sqlQuery);
+		} else {
+			resolve("");
+		}
+	});
+}
+
+function createGenderQuery(gender) {
+	return new Promise((resolve, reject) => {
+		if (gender === undefined || gender.length <= 0) {
+			reject(`!!GENDER!!\nSomething wrong. Gender parameter illegal`);
+		}
+		if (gender === "Men") {
+			resolve(` and (UC.gender like 'Man' and UC.gender not like 'Woman')`);
+		} else if (gender === "Women") {
+			resolve(` and (UC.gender like 'Woman')`);
+		} else {
+			resolve(
+				` and (UC.gender like 'Woman' or UC.gender like 'Man' or UC.gender like 'prefer not to say')`
+			);
+		}
+	});
+}
+
+function createRelationshipQuery(relationship) {
+	return new Promise((resolve, reject) => {
+		if (relationship === undefined || relationship.length <= 0) {
+			reject(
+				`!!RELATIONSHIP!!\nSomething wrong. Relationship parameter illegal`
+			);
+		}
+		if (relationship !== "Relationship") {
+			let sqlQuery = splitCommas(
+				" and (relationship_filter like ",
+				"relationship_filter",
+				relationship
+			);
+			sqlQuery = sqlQuery.concat(
+				splitCommas(
+					" or relationship_status like ",
+					"relationship_status",
+					relationship
+				)
+			);
+
+			sqlQuery = sqlQuery.concat(")");
+			resolve(sqlQuery);
+		} else {
+			resolve("");
+		}
+	});
+}
+
 getAllFilters = (req, res) => {
 	mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
 		try {
@@ -357,110 +432,139 @@ getFriendsOfFriends = (req, res) => {
 	);
 };
 
-getUsersWithCommonSearchMode = (req, callback) => {
-	const searchMode = req.search_mode;
-
-	if (searchMode === "Whatever") {
-		//console.log(req);
-		noFilter(req, (allUsersWithoutMe) => {
-			//console.log(allUsersWithoutMe);
-			return callback(allUsersWithoutMe);
-		});
-	} else {
-		mySqlConnection.query(
-			`select user_id from filters where search_mode like '${searchMode}'`,
-			(err, rows) => {
-				try {
-					return callback(rows);
-				} catch (err) {
-					console.log(err.message);
-				}
-			}
-		);
-	}
-};
-
-getUsersWithCommonHobbiesFilter = (req, callback) => {
-	const hobbiesFilter = req.hobbies_filter;
-
-	if (hobbiesFilter === "Hobbies") {
-		noFilter(req, (allUsersWithoutMe) => {
-			return callback(allUsersWithoutMe);
-		});
-	} else {
-		let sqlQuery = splitCommas(
-			"select uc.user_id from filters f right join user_configuration uc using (user_id) where hobbies like ",
-			"hobbies",
-			hobbiesFilter
-		);
-
-		mySqlConnection.query(sqlQuery, (err, rows) => {
-			try {
-				return callback(rows);
-			} catch (err) {
-				console.log(err.message);
-			}
-		});
-	}
-};
-
-getUsersWithCommonGenderFilter = (req, callback) => {
-	const genderFilter = req.gender_filter;
-
-	if (genderFilter === "Gender" || genderFilter === "All") {
-		noFilter(req, (allUsersWithoutMe) => {
-			return callback(allUsersWithoutMe);
-		});
-	} else {
-		let queryStr;
-		if (genderFilter === "Men") {
-			queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Man' and gender not like 'Woman'`;
-		} else if (genderFilter === "Women") {
-			queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Woman'`;
-		} else {
-			queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Woman' or gender like 'Man'`;
-		}
-
-		mySqlConnection.query(queryStr, (err, rows) => {
-			try {
-				return callback(rows);
-			} catch (err) {
-				console.log(err.message);
-			}
-		});
-	}
-};
-
-getUsersWithCommonRelationshipFilter = (req, callback) => {
-	const relationshipFilter = req.relationship_filter;
-
-	if (relationshipFilter === "Relationship") {
-		noFilter(req, (allUsersWithoutMe) => {
-			return callback(allUsersWithoutMe);
-		});
-	} else {
-		let sqlQuery = splitCommas(
-			"select uc.user_id from filters f right join user_configuration uc using (user_id) where relationship_filter like ",
-			"relationship_filter",
-			relationshipFilter
-		);
-		sqlQuery = sqlQuery.concat(
-			splitCommas(
-				" or relationship_status like ",
-				"relationship_status",
-				relationshipFilter
-			)
-		);
-
-		mySqlConnection.query(sqlQuery, (err, rows) => {
-			try {
-				return callback(rows);
-			} catch (err) {
-				console.log(err.message);
-			}
-		});
-	}
-};
+// function createInterestedInQuery(interestedIn) {
+// 	return new Promise((resolve, reject) => {
+// 		if (interestedIn === undefined || interestedIn.length <= 0) {
+// 			reject(
+// 				`!!INTERESTED IN!!\nSomething wrong. Interested In parameter illegal`
+// 			);
+// 		}
+// 	});
+// }
+// function createAgeQuery(age) {
+// 	return new Promise((resolve, reject) => {
+// 		if (age === undefined || age.length < 0) {
+// 			reject(`!!AGE!!\nSomething wrong. Age parameter illegal`);
+// 		}
+// 		const createdAge = [];
+// 		const from = JSON.parse(age[0]);
+// 		const until = JSON.parse(age[1]);
+// 		if (typeof from === "undefined" || typeof until === "undefined") {
+// 			noFilter(req, (allUsersWithoutMe) => {
+// 				return callback(allUsersWithoutMe);
+// 			});
+// 		} else {
+// 			getAllUsersConfiguration(req, (response) => {
+// 				response.forEach((user) => {
+// 					if (
+// 						parseInt(user.age, 10) >= from &&
+// 						parseInt(user.age, 10) <= until
+// 					) {
+// 						createdAge.push(user);
+// 					}
+// 				});
+// 				return callback(createdAge);
+// 			});
+// 		}
+// 	});
+// }
+// getUsersWithCommonSearchMode = (req, callback) => {
+// 	const searchMode = req.search_mode;
+// 	if (searchMode !== "Whatever") {
+// 		return `and search_mode like '${searchMode}'`;
+// 	}
+// 	if (searchMode === "Whatever") {
+// 		//console.log(req);
+// 		noFilter(req, (allUsersWithoutMe) => {
+// 			//console.log(allUsersWithoutMe);
+// 			return callback(allUsersWithoutMe);
+// 		});
+// 	} else {
+// 		mySqlConnection.query(
+// 			`select user_id from filters where search_mode like '${searchMode}'`,
+// 			(err, rows) => {
+// 				try {
+// 					return callback(rows);
+// 				} catch (err) {
+// 					console.log(err.message);
+// 				}
+// 			}
+// 		);
+// 	}
+// };
+// getUsersWithCommonHobbiesFilter = (req, callback) => {
+// 	const hobbiesFilter = req.hobbies_filter;
+// 	if (hobbiesFilter === "Hobbies") {
+// 		noFilter(req, (allUsersWithoutMe) => {
+// 			return callback(allUsersWithoutMe);
+// 		});
+// 	} else {
+// 		let sqlQuery = splitCommas(
+// 			"select uc.user_id from filters f right join user_configuration uc using (user_id) where hobbies like ",
+// 			"hobbies",
+// 			hobbiesFilter
+// 		);
+// 		mySqlConnection.query(sqlQuery, (err, rows) => {
+// 			try {
+// 				return callback(rows);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		});
+// 	}
+// };
+// getUsersWithCommonGenderFilter = (req, callback) => {
+// 	const genderFilter = req.gender_filter;
+// 	if (genderFilter === "Gender" || genderFilter === "All") {
+// 		noFilter(req, (allUsersWithoutMe) => {
+// 			return callback(allUsersWithoutMe);
+// 		});
+// 	} else {
+// 		let queryStr;
+// 		if (genderFilter === "Men") {
+// 			queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Man' and gender not like 'Woman'`;
+// 		} else if (genderFilter === "Women") {
+// 			queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Woman'`;
+// 		} else {
+// 			queryStr = `SELECT user_id FROM user_configuration WHERE gender like 'Woman' or gender like 'Man'`;
+// 		}
+// 		mySqlConnection.query(queryStr, (err, rows) => {
+// 			try {
+// 				return callback(rows);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		});
+// 	}
+// };
+// getUsersWithCommonRelationshipFilter = (req, callback) => {
+// 	const relationshipFilter = req.relationship_filter;
+// 	if (relationshipFilter === "Relationship") {
+// 		noFilter(req, (allUsersWithoutMe) => {
+// 			return callback(allUsersWithoutMe);
+// 		});
+// 	} else {
+// 		let sqlQuery = splitCommas(
+// 			"select uc.user_id from filters f right join user_configuration uc using (user_id) where relationship_filter like ",
+// 			"relationship_filter",
+// 			relationshipFilter
+// 		);
+// 		sqlQuery = sqlQuery.concat(
+// 			splitCommas(
+// 				" or relationship_status like ",
+// 				"relationship_status",
+// 				relationshipFilter
+// 			)
+// 		);
+// 		mySqlConnection.query(sqlQuery, (err, rows) => {
+// 			try {
+// 				return callback(rows);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		});
+// 	}
+// };
 
 getUsersWithCommonInterestedInFilter = (req, callback) => {
 	let interestedInFilter = req.interested_in_filter;
@@ -557,15 +661,14 @@ getUserFriendsThatFilteredFriendsOnly = (req, callback) => {
 getUserFilteredUsers = (req, res) => {
 	let onlyOnline = req.params.onlyOnline;
 	let usersToPresent = [];
-	let searchMode = [];
-	let hobbies = [];
-	let gender = [];
-	let relationship = [];
+	let mutuals = [];
 	let interestedIn = [];
 	let age = [];
 	let radius = [];
+	let sqlQuery = `select UC.user_id from user_configuration UC left join filters F using(user_id) where (UC.user_id != ${req.params.userid}) `;
+	let resolve;
 
-	getUserFilter(req, (userFilter) => {
+	getUserFilter(req, async (userFilter) => {
 		if (userFilter.length === 0) {
 			// user don't have filters - return to client all users in db
 			getUserFilteredUsers_OnlyOnline_Helper(
@@ -577,98 +680,78 @@ getUserFilteredUsers = (req, res) => {
 				res
 			);
 		} else {
-			//console.log("userFilter[0]\n" + JSON.stringify(userFilter[0].user_id));
-			// user have filters
-			getUsersWithCommonSearchMode(userFilter[0], (response) => {
-				response.forEach((user) => {
-					if (parseInt(req.params.userid, 10) !== parseInt(user.user_id, 10)) {
-						searchMode.push(user.user_id);
-					}
-				});
-				//console.log("search mode:", searchMode);
+			try {
+				resolve = await createSearchModeQuery(userFilter[0].search_mode);
+				sqlQuery = sqlQuery.concat(resolve);
+				console.log(sqlQuery);
+				resolve = await createHobbiesQuery(userFilter[0].hobbies_filter);
+				sqlQuery = sqlQuery.concat(resolve);
+				resolve = await createGenderQuery(userFilter[0].gender_filter);
+				sqlQuery = sqlQuery.concat(resolve);
+				resolve = await createRelationshipQuery(
+					userFilter[0].relationship_filter
+				);
+				sqlQuery = sqlQuery.concat(resolve);
+				//console.log("at the end\n" + sqlQuery);
 
-				getUsersWithCommonHobbiesFilter(userFilter[0], (response) => {
-					response.forEach((user) => {
-						hobbies.push(user.user_id);
-					});
-					//console.log("hobbies:", hobbies);
-					const mutualUsers_SearchMode_Hobbies = searchMode.filter((user) =>
-						hobbies.includes(user)
-					);
-
-					getUsersWithCommonGenderFilter(userFilter[0], (response) => {
-						response.forEach((user) => {
-							gender.push(user.user_id);
-						});
-						//console.log("gender", gender);
-						const mutualUsers_Hobbies_Gender =
-							mutualUsers_SearchMode_Hobbies.filter((user) =>
-								gender.includes(user)
-							);
-
-						getUsersWithCommonRelationshipFilter(userFilter[0], (response) => {
-							response.forEach((user) => {
-								relationship.push(user.user_id);
-							});
-							//console.log("relationship:", relationship);
-							const mutualUsers_Gender_Relationship =
-								mutualUsers_Hobbies_Gender.filter((user) =>
-									relationship.includes(user)
-								);
+				mySqlConnection.query(sqlQuery, (err, rows) => {
+					try {
+						if (rows !== undefined && rows.length > 0) {
+							for (var user of rows) {
+								mutuals.push(user.user_id);
+							}
 
 							getUsersWithCommonInterestedInFilter(
 								userFilter[0],
 								(response) => {
 									response.forEach((user) => {
-										interestedIn.push(user.user_id);
+										if (mutuals.includes(user.user_id)) {
+											interestedIn.push(user.user_id);
+										}
 									});
-									//console.log("interested in:", interestedIn);
-									const mutualUsers_Relationship_InterestedIn =
-										mutualUsers_Gender_Relationship.filter((user) =>
-											interestedIn.includes(user)
-										);
+									console.log("after interested in:", interestedIn);
 
 									getUsersWithCommonAgeFilter(userFilter[0], (response) => {
-										//console.log(userFilter[0]);
 										response.forEach((user) => {
-											age.push(user.user_id);
+											if (interestedIn.includes(user.user_id)) {
+												age.push(user.user_id);
+											}
 										});
-										//console.log("age", age);
-										const mutualUsers_InterestedIn_Age =
-											mutualUsers_Relationship_InterestedIn.filter((user) =>
-												age.includes(user)
-											);
+										console.log("after age:", age);
 
 										getUsersConfigurationByRadius(userFilter[0], (response) => {
 											response.forEach((user) => {
-												radius.push(user.user_id);
+												if (age.includes(user.user_id)) {
+													radius.push(user.user_id);
+												}
 											});
+											console.log("after radius:", radius);
 
-											const mutualUsers_Age_Radius =
-												mutualUsers_InterestedIn_Age.filter((user) =>
-													radius.includes(user)
-												);
-											//console.log("the mutuals:", mutualUsers_Age_Radius);
-											console.log(
-												"friends only filter:",
-												userFilter[0].friends_only_filter
-											);
 											getUserFilteredUsers_OnlyOnline_Helper(
 												onlyOnline,
 												1,
 												req.params.userid,
 												userFilter[0].friends_only_filter,
-												mutualUsers_Age_Radius,
+												radius,
 												res
 											);
 										});
 									});
 								}
 							);
-						});
-					});
+						} else {
+							msgToClient = {
+								msg: "There are no suitable users to display",
+							};
+							return res.send(msgToClient);
+						}
+					} catch (err) {
+						console.log(err.message);
+					}
 				});
-			});
+			} catch (resolve) {
+				console.log(resolve);
+			}
 		}
 	});
 };
@@ -734,125 +817,125 @@ createUserFilter = (req, res) => {
 	);
 };
 
-updateUserHobbiesFilter = (req, res) => {
-	const hobbiesFilter = req.body.hobbies_filter;
-	const userid = req.params.userid;
+// updateUserHobbiesFilter = (req, res) => {
+// 	const hobbiesFilter = req.body.hobbies_filter;
+// 	const userid = req.params.userid;
 
-	mySqlConnection.query(
-		"UPDATE Filters SET hobbies_filter = ? WHERE user_id = ?",
-		[hobbiesFilter, userid],
-		(err, result) => {
-			try {
-				msgToClient = {
-					msg: `User number ${userid} updated hobbies filter to ${hobbiesFilter} successfully`,
-				};
-				return res.send(msgToClient);
-			} catch (err) {
-				console.log(err.message);
-			}
-		}
-	);
-};
+// 	mySqlConnection.query(
+// 		"UPDATE Filters SET hobbies_filter = ? WHERE user_id = ?",
+// 		[hobbiesFilter, userid],
+// 		(err, result) => {
+// 			try {
+// 				msgToClient = {
+// 					msg: `User number ${userid} updated hobbies filter to ${hobbiesFilter} successfully`,
+// 				};
+// 				return res.send(msgToClient);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		}
+// 	);
+// };
 
-updateUserGenderFilter = (req, res) => {
-	const genderFilter = req.body.gender_filter;
-	const userid = req.params.userid;
+// updateUserGenderFilter = (req, res) => {
+// 	const genderFilter = req.body.gender_filter;
+// 	const userid = req.params.userid;
 
-	mySqlConnection.query(
-		"UPDATE Filters SET gender_filter = ? WHERE user_id = ?",
-		[genderFilter, userid],
-		(err, result) => {
-			try {
-				msgToClient = {
-					msg: `User number ${userid} updated gender filter to ${genderFilter} successfully`,
-				};
-				return res.send(msgToClient);
-			} catch (err) {
-				console.log(err.message);
-			}
-		}
-	);
-};
+// 	mySqlConnection.query(
+// 		"UPDATE Filters SET gender_filter = ? WHERE user_id = ?",
+// 		[genderFilter, userid],
+// 		(err, result) => {
+// 			try {
+// 				msgToClient = {
+// 					msg: `User number ${userid} updated gender filter to ${genderFilter} successfully`,
+// 				};
+// 				return res.send(msgToClient);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		}
+// 	);
+// };
 
-updateUserRelationshipFilter = (req, res) => {
-	const relationshipFilter = req.body.relationship_filter;
-	const userid = req.params.userid;
+// updateUserRelationshipFilter = (req, res) => {
+// 	const relationshipFilter = req.body.relationship_filter;
+// 	const userid = req.params.userid;
 
-	mySqlConnection.query(
-		"UPDATE Filters SET relationship_filter = ? WHERE user_id = ?",
-		[relationshipFilter, userid],
-		(err, result) => {
-			try {
-				msgToClient = {
-					msg: `User number ${userid} updated relationship filter to ${relationshipFilter} successfully`,
-				};
-				return res.send(msgToClient);
-			} catch (err) {
-				console.log(err.message);
-			}
-		}
-	);
-};
+// 	mySqlConnection.query(
+// 		"UPDATE Filters SET relationship_filter = ? WHERE user_id = ?",
+// 		[relationshipFilter, userid],
+// 		(err, result) => {
+// 			try {
+// 				msgToClient = {
+// 					msg: `User number ${userid} updated relationship filter to ${relationshipFilter} successfully`,
+// 				};
+// 				return res.send(msgToClient);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		}
+// 	);
+// };
 
-updateUserInterestedInFilter = (req, res) => {
-	const interestedInFilter = req.body.interested_in_filter;
-	const userid = req.params.userid;
+// updateUserInterestedInFilter = (req, res) => {
+// 	const interestedInFilter = req.body.interested_in_filter;
+// 	const userid = req.params.userid;
 
-	mySqlConnection.query(
-		"UPDATE Filters SET interested_in_filter = ? WHERE user_id = ?",
-		[interestedInFilter, userid],
-		(err, result) => {
-			try {
-				msgToClient = {
-					msg: `User number ${userid} updated interested in filter to ${interestedInFilter} successfully`,
-				};
-				return res.send(msgToClient);
-			} catch (err) {
-				console.log(err.message);
-			}
-		}
-	);
-};
+// 	mySqlConnection.query(
+// 		"UPDATE Filters SET interested_in_filter = ? WHERE user_id = ?",
+// 		[interestedInFilter, userid],
+// 		(err, result) => {
+// 			try {
+// 				msgToClient = {
+// 					msg: `User number ${userid} updated interested in filter to ${interestedInFilter} successfully`,
+// 				};
+// 				return res.send(msgToClient);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		}
+// 	);
+// };
 
-updateUserAgeFilter = (req, res) => {
-	const ageFilter = req.body.age_filter;
-	const userid = req.params.userid;
+// updateUserAgeFilter = (req, res) => {
+// 	const ageFilter = req.body.age_filter;
+// 	const userid = req.params.userid;
 
-	mySqlConnection.query(
-		"UPDATE Filters SET age_filter = ? WHERE user_id = ?",
-		[ageFilter, userid],
-		(err, result) => {
-			try {
-				msgToClient = {
-					msg: `User number ${userid} updated age filter to ${ageFilter} successfully`,
-				};
-				return res.send(msgToClient);
-			} catch (err) {
-				console.log(err.message);
-			}
-		}
-	);
-};
+// 	mySqlConnection.query(
+// 		"UPDATE Filters SET age_filter = ? WHERE user_id = ?",
+// 		[ageFilter, userid],
+// 		(err, result) => {
+// 			try {
+// 				msgToClient = {
+// 					msg: `User number ${userid} updated age filter to ${ageFilter} successfully`,
+// 				};
+// 				return res.send(msgToClient);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		}
+// 	);
+// };
 
-updateUserFriendsOnlyFilter = (req, res) => {
-	const userid = req.params.userid;
-	const friendsOnly = req.params.friendsOnly;
+// updateUserFriendsOnlyFilter = (req, res) => {
+// 	const userid = req.params.userid;
+// 	const friendsOnly = req.params.friendsOnly;
 
-	mySqlConnection.query(
-		"UPDATE Filters SET friends_only_filter = ? WHERE user_id = ?",
-		[friendsOnly, userid],
-		(err, result) => {
-			try {
-				msgToClient = {
-					msg: `User number ${userid} updated friends only filter to ${friendsOnly} successfully`,
-				};
-				return res.send(msgToClient);
-			} catch (err) {
-				console.log(err.message);
-			}
-		}
-	);
-};
+// 	mySqlConnection.query(
+// 		"UPDATE Filters SET friends_only_filter = ? WHERE user_id = ?",
+// 		[friendsOnly, userid],
+// 		(err, result) => {
+// 			try {
+// 				msgToClient = {
+// 					msg: `User number ${userid} updated friends only filter to ${friendsOnly} successfully`,
+// 				};
+// 				return res.send(msgToClient);
+// 			} catch (err) {
+// 				console.log(err.message);
+// 			}
+// 		}
+// 	);
+// };
 
 deleteUserFilter = (req, res) => {
 	const userid = req.params.userid;
@@ -877,20 +960,20 @@ module.exports = {
 	getAllFilters: getAllFilters,
 	getUserFilter: getUserFilter,
 	getFriendsOfFriends: getFriendsOfFriends,
-	getUsersWithCommonSearchMode: getUsersWithCommonSearchMode,
-	getUsersWithCommonHobbiesFilter: getUsersWithCommonHobbiesFilter,
-	getUsersWithCommonGenderFilter: getUsersWithCommonGenderFilter,
-	getUsersWithCommonRelationshipFilter: getUsersWithCommonRelationshipFilter,
+	//getUsersWithCommonSearchMode: getUsersWithCommonSearchMode,
+	//getUsersWithCommonHobbiesFilter: getUsersWithCommonHobbiesFilter,
+	//getUsersWithCommonGenderFilter: getUsersWithCommonGenderFilter,
+	//getUsersWithCommonRelationshipFilter: getUsersWithCommonRelationshipFilter,
 	getUsersWithCommonInterestedInFilter: getUsersWithCommonInterestedInFilter,
 	getUsersWithCommonAgeFilter: getUsersWithCommonAgeFilter,
 	getUserFriendsThatFilteredFriendsOnly: getUserFriendsThatFilteredFriendsOnly,
 	getUserFilteredUsers: getUserFilteredUsers,
 	createUserFilter: createUserFilter,
-	updateUserHobbiesFilter: updateUserHobbiesFilter,
-	updateUserGenderFilter: updateUserGenderFilter,
-	updateUserRelationshipFilter: updateUserRelationshipFilter,
-	updateUserInterestedInFilter: updateUserInterestedInFilter,
-	updateUserAgeFilter: updateUserAgeFilter,
-	updateUserFriendsOnlyFilter: updateUserFriendsOnlyFilter,
+	// updateUserHobbiesFilter: updateUserHobbiesFilter,
+	// updateUserGenderFilter: updateUserGenderFilter,
+	// updateUserRelationshipFilter: updateUserRelationshipFilter,
+	// updateUserInterestedInFilter: updateUserInterestedInFilter,
+	// updateUserAgeFilter: updateUserAgeFilter,
+	// updateUserFriendsOnlyFilter: updateUserFriendsOnlyFilter,
 	deleteUserFilter: deleteUserFilter,
 };
