@@ -105,11 +105,6 @@ getAllUserConnectionsType = (req, res) => {
 				let resultArrayToObject = {
 					params: {userid: String(usersConfigurations)},
 				};
-				// console.log(
-				// 	"which users to sent the inner get user configuration:",
-				// 	usersConfigurations
-				// );
-				// console.log("-------The result from the ugly query:-------\n" + rows);
 				getUserConfigurationInner(
 					resultArrayToObject,
 					userid,
