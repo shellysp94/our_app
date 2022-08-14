@@ -27,7 +27,7 @@ function splitCommas(myQuery, relevantColumn, string) {
 	return splittedQuery;
 }
 
-function noFilter(req, callback) {
+function noFilter(req, cb) {
 	let allUsersWithoutMe = [];
 	getAllUsersConfiguration(req, (allUsers) => {
 		allUsers.forEach((user) => {
@@ -35,14 +35,14 @@ function noFilter(req, callback) {
 				allUsersWithoutMe.push(user);
 			}
 		});
-		return callback(allUsersWithoutMe);
+		return cb(allUsersWithoutMe);
 	});
 }
 
 function interestedInFilteringHelper(
 	currentUserGender,
 	currentUserSexualOrientation,
-	callback
+	cb
 ) {
 	let sqlQuery;
 
@@ -63,14 +63,14 @@ function interestedInFilteringHelper(
 			sqlQuery = "hello - switch case --> default";
 	}
 
-	return callback(sqlQuery);
+	return cb(sqlQuery);
 }
 
 function createSqlQueryForInterestedInFiltering(
 	interestedInFilter,
 	currentUserGender,
 	currentUserSexualOrientation,
-	callback
+	cb
 ) {
 	let filters = interestedInFilter.split(",");
 	let friendshipFilters = filters.filter(
@@ -141,10 +141,10 @@ function createSqlQueryForInterestedInFiltering(
 			}
 		);
 	}
-	return callback(sqlQuery);
+	return cb(sqlQuery);
 }
 
-function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, callback) {
+function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, cb) {
 	arrayLength = myFriendsUserid.length;
 
 	for (user = 0; user < arrayLength; user++) {
@@ -160,7 +160,7 @@ function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, callback) {
 	}
 	sqlQuery = sqlQuery.concat(")");
 
-	return callback(sqlQuery);
+	return cb(sqlQuery);
 }
 
 function getUserFilteredUsers_OnlyOnline_Helper(
@@ -359,7 +359,7 @@ getAllFilters = (req, res) => {
 	});
 };
 
-getUserFilter = (req, callback) => {
+getUserFilter = (req, cb) => {
 	const userid = req.params.userid;
 
 	mySqlConnection.query(
@@ -367,7 +367,7 @@ getUserFilter = (req, callback) => {
 		[userid],
 		(err, rows) => {
 			try {
-				return callback(rows);
+				return cb(rows);
 			} catch (err) {
 				console.log(err.message);
 			}
@@ -478,14 +478,14 @@ getFriendsOfFriends = (req, res) => {
 	);
 };
 
-getUsersWithCommonAgeFilter = (req, callback) => {
+getUsersWithCommonAgeFilter = (req, cb) => {
 	const age = [];
 	const from = JSON.parse(req.age_filter)[0];
 	const until = JSON.parse(req.age_filter)[1];
 
-	if (typeof from === "undefined" || typeof until === "undefined") {
+	if (from === undefined || until === undefined) {
 		noFilter(req, (allUsersWithoutMe) => {
-			return callback(allUsersWithoutMe);
+			return cb(allUsersWithoutMe);
 		});
 	} else {
 		getAllUsersConfiguration(req, (response) => {
@@ -494,12 +494,12 @@ getUsersWithCommonAgeFilter = (req, callback) => {
 					age.push(user);
 				}
 			});
-			return callback(age);
+			return cb(age);
 		});
 	}
 };
 
-getUserFriendsThatFilteredFriendsOnly = (req, callback) => {
+getUserFriendsThatFilteredFriendsOnly = (req, cb) => {
 	const userid = req.user_id;
 
 	mySqlConnection.query(
@@ -522,7 +522,7 @@ getUserFriendsThatFilteredFriendsOnly = (req, callback) => {
 						usersFriendsOnly.push(rows[user].user_B_id);
 					}
 				}
-				return callback(usersFriendsOnly);
+				return cb(usersFriendsOnly);
 			} catch (err) {
 				console.log(err.message);
 			}
