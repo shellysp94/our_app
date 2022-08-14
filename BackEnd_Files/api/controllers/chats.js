@@ -1,11 +1,11 @@
 const dbConfig = require("../../config/db_config");
 const {getUserConfigurationInner} = require("./userConfiguration");
 const {getChatMessages, deleteChatMessages} = require("./messages");
-const mySqlConnection = dbConfig;
 const chatRoomsArray = require("../../utils/chatRooms/chatRoomsArray");
-const chatRooms = new chatRoomsArray().getInstance();
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
+const chatRooms = new chatRoomsArray().getInstance();
+const mySqlConnection = dbConfig;
 
 getAllChats = (req, res) => {
 	mySqlConnection.query("SELECT * from Chats", (err, rows) => {
@@ -16,6 +16,7 @@ getAllChats = (req, res) => {
 		}
 	});
 };
+
 getSpecificUserChats = (req, res) => {
 	const userid = req.params.userid;
 	let mergeObjects = [];
@@ -24,7 +25,7 @@ getSpecificUserChats = (req, res) => {
 		`select user_a_id, user_b_id from chats where user_a_id = ${userid} or user_b_id = ${userid}`,
 		(err, rows) => {
 			try {
-				if (typeof rows !== "undefined" && rows.length > 0) {
+				if (rows !== undefined && rows.length > 0) {
 					let openChatUsers = [];
 					for (let user = 0; user < rows.length; user++) {
 						if (parseInt(rows[user].user_a_id, 10) !== parseInt(userid, 10)) {
@@ -53,7 +54,7 @@ getSpecificUserChats = (req, res) => {
 								order by creation_date desc limit 1`,
 									(err, rows) => {
 										try {
-											if (typeof rows !== "undefined" && rows.length > 0) {
+											if (rows !== undefined && rows.length > 0) {
 												for (user = 0; user < rows.length; user++) {
 													if (
 														parseInt(
@@ -84,7 +85,6 @@ getSpecificUserChats = (req, res) => {
 												);
 											}
 											if (relevant + 1 === relevantUsersConfiguration.length) {
-												//console.log(mergeObjects);
 												res.send(mergeObjects);
 											}
 										} catch (err) {
@@ -139,6 +139,7 @@ getUsersChat = (req, res) => {
 		}
 	);
 };
+
 createUsersChat = (req, res) => {
 	const userIdA = req.params.useridA;
 	const userIdB = req.params.useridB;
@@ -256,6 +257,7 @@ createUsersChat = (req, res) => {
 		}
 	);
 };
+
 deleteUsersChat = (req, res) => {
 	const userIdA = req.params.useridA;
 	const userIdB = req.params.useridB;
@@ -287,9 +289,9 @@ deleteUsersChat = (req, res) => {
 };
 
 module.exports = {
-	getAllChats: getAllChats,
-	getSpecificUserChats: getSpecificUserChats,
-	getUsersChat: getUsersChat,
-	createUsersChat: createUsersChat,
-	deleteUsersChat: deleteUsersChat,
+	getAllChats,
+	getSpecificUserChats,
+	getUsersChat,
+	createUsersChat,
+	deleteUsersChat,
 };
