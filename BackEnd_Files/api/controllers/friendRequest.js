@@ -20,7 +20,6 @@ getAllUserConnectionsByName = (req, res) => {
 		//User try to search first name AND last name.
 		firstName = fullName[0];
 		lastName = fullName[2];
-		//console.log("first name:", firstName, "last name:", lastName);
 		sqlQuery = sqlQuery.concat(
 			` (first_name like "${firstName}%" and last_name like "${lastName}%")`
 		);
@@ -38,7 +37,7 @@ getAllUserConnectionsByName = (req, res) => {
 
 	mySqlConnection.query(sqlQuery, (err, rows) => {
 		try {
-			if (typeof rows !== "undefined") {
+			if (rows !== undefined) {
 				if (rows.length === 0) {
 					msgToClient = {
 						msg: `There are no suitable connections`,
@@ -105,11 +104,7 @@ getAllUserConnectionsType = (req, res) => {
 				let resultArrayToObject = {
 					params: {userid: String(usersConfigurations)},
 				};
-				// console.log(
-				// 	"which users to sent the inner get user configuration:",
-				// 	usersConfigurations
-				// );
-				// console.log("-------The result from the ugly query:-------\n" + rows);
+
 				getUserConfigurationInner(
 					resultArrayToObject,
 					userid,
@@ -175,6 +170,7 @@ getUserFriendRequestsReceived = (req, res) => {
 						params: {userid: String(usersArr)},
 					};
 
+					//TODO - convert to API call instead of cb
 					getUserConfigurationInner(resultArrayToObject, user_id, (config) => {
 						res.send(config);
 					});
@@ -210,6 +206,7 @@ getUserFriendRequestsSent = (req, res) => {
 						params: {userid: String(usersArr)},
 					};
 
+					//TODO - convert to API call instead of cb
 					getUserConfigurationInner(resultArrayToObject, user_id, (config) => {
 						res.send(config);
 					});
@@ -229,34 +226,54 @@ sendFriendRequest = async (req, res) => {
 
 	mySqlConnection.query(
 		`select * from connections where (user_A_id = ${sentReqUser} and user_B_id = ${recievedReqUser}) or (user_A_id = ${recievedReqUser} and user_B_id = ${sentReqUser})`,
-		(err, rows) => {
-			if (rows.length > 0) {
-				if (rows[0].connected == 1) {
-					return res.send(`${recievedReqUser} is already your friend`);
-				} else if (rows[0].user_A_id == sentReqUser) {
-					return res.send(
-						`You already sent ${recievedReqUser} a friend request`
-					);
-				} else {
-					return res.send(
-						`${recievedReqUser} sent you already a friend request, you can approve it`
+		(err, rows) => 
+		{
+			try
+			{
+				if (rows.length > 0) 
+				{
+					if (rows[0].connected == 1) 
+					{
+						return res.send(`${recievedReqUser} is already your friend`);
+					} 
+					else if (rows[0].user_A_id == sentReqUser) 
+					{
+						return res.send(
+							`You already sent ${recievedReqUser} a friend request`
+						);
+					} 
+					else 
+					{
+						return res.send(
+							`${recievedReqUser} sent you already a friend request, you can approve it`
+						);
+					}
+				} 
+				else 
+				{
+					mySqlConnection.query(
+						`insert into connections (user_a_id, user_b_id, creation_date, last_update) values
+					(?,?, curdate(), curdate())`,
+						[req.params.useridA, req.params.useridB],
+						(err, rows) => {
+							try 
+							{
+								titleToSend = `New friend request`;
+								bodyToSend = `Friend request from `;
+								sendNotificationHelper(req, res, titleToSend, bodyToSend);
+							} 
+							catch (err) 
+							{
+								console.log(err);
+							}
+						}
 					);
 				}
-			} else {
-				mySqlConnection.query(
-					`insert into connections (user_a_id, user_b_id, creation_date, last_update) values
-                (?,?, curdate(), curdate())`,
-					[req.params.useridA, req.params.useridB],
-					(err, rows) => {
-						try {
-							titleToSend = `New friend request`;
-							bodyToSend = `Friend request from `;
-							sendNotificationHelper(req, res, titleToSend, bodyToSend);
-						} catch (err) {
-							console.log(err);
-						}
-					}
-				);
+			}
+
+			catch(err)
+			{
+				console.log(err.message);
 			}
 		}
 	);
@@ -273,7 +290,7 @@ approveFriendRequest = (req, res) => {
 			try {
 				res.send(`${approvedUser} approved friend request from ${sentReqUser}`);
 			} catch (err) {
-				console.log(newErr);
+				console.log(err.message);
 			}
 		}
 	);
@@ -296,11 +313,11 @@ declineFriendRequest = (req, res) => {
 };
 
 module.exports = {
-	getUserFriendRequestsSent: getUserFriendRequestsSent,
-	getUserFriendRequestsReceived: getUserFriendRequestsReceived,
-	sendFriendRequest: sendFriendRequest,
-	approveFriendRequest: approveFriendRequest,
-	declineFriendRequest: declineFriendRequest,
-	getAllUserConnectionsByName: getAllUserConnectionsByName,
-	getAllUserConnectionsType: getAllUserConnectionsType,
+	getUserFriendRequestsSent,
+	getUserFriendRequestsReceived,
+	sendFriendRequest,
+	approveFriendRequest,
+	declineFriendRequest,
+	getAllUserConnectionsByName,
+	getAllUserConnectionsType,
 };

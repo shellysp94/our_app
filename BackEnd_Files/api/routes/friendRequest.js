@@ -11,8 +11,8 @@ const {
 	getAllUserConnectionsType,
 } = require("../controllers/friendRequest");
 
-router.get("/sendRequests/:userid", getUserFriendRequestsSent); //get user friend requests
-router.get("/receivedRequests/:userid", getUserFriendRequestsReceived); //get user friend requests
+router.get("/sendRequests/:userid", getUserFriendRequestsSent);
+router.get("/receivedRequests/:userid", getUserFriendRequestsReceived);
 router.post("/send/:useridA/:useridB", sendFriendRequest);
 router.post("/approve/:useridA/:useridB", approveFriendRequest);
 router.delete("/decline/:useridA/:useridB", declineFriendRequest);
