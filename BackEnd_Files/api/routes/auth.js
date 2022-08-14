@@ -6,7 +6,7 @@ const {
     register
 } = require('../controllers/auth');
 
-router.post('/login',login); //get user by appid (/users/:appid)
-router.post('/register', register); //post (/users/)
+router.post('/login',login);
+router.post('/register', register);
 
 module.exports=router;
