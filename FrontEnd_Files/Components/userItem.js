@@ -17,7 +17,6 @@ const UserItem = props => {
   const hideModal = () => setVisible(false);
   const config = props.config;
   const myConfig = useSelector(state => state.configuration.userConfig);
-  console.log('friend search mode: ', config.searchMode);
   const navigation = useNavigation();
 
   const getIcon = item => {
@@ -51,7 +50,7 @@ const UserItem = props => {
   const createNewChat = async () => {
     try {
       await axios.post(
-        `http://192.168.1.141:3000/chats/${myConfig.user_id}/${config.user_id}`,
+        `http://172.20.10.4:3000/chats/${myConfig.user_id}/${config.user_id}`,
       );
     } catch {
       alert('in catch');
@@ -105,14 +104,14 @@ const UserItem = props => {
               justifyContent: 'center',
             }}>
             <View>
-              <View>
+              <View style={{flexDirection: 'row'}}>
                 <Text adjustsFontSizeToFit style={styles.friendName}>
                   {config.first_name} {config.last_name}
                 </Text>
-                {/* <Image
+                <Image
                   style={{left: 5, height: 20, width: 20, alignSelf: 'center'}}
-                  source={getIcon(config.searchMode)}
-                /> */}
+                  source={getIcon(config.search_mode)}
+                />
               </View>
               <View
                 style={{
@@ -120,7 +119,9 @@ const UserItem = props => {
                   justifyContent: 'space-between',
                 }}>
                 <Text style={styles.friendAge}>age: {config.age}</Text>
-                <Text style={styles.friendAge}>{config.distance}m</Text>
+                <Text style={styles.friendAge}>
+                  {parseInt(config.distance, 10)}m
+                </Text>
               </View>
             </View>
           </View>

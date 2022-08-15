@@ -9,7 +9,7 @@ export function* createWebSocketConnection() {
 
   const token = yield select(getToken);
   console.log('token: ', token);
-  const socket = new WebSocket('ws://192.168.1.141:3000', null, {
+  const socket = new WebSocket('ws://172.20.10.4:3000', null, {
     headers: {
       authorization: 'Bearer ' + token,
     },

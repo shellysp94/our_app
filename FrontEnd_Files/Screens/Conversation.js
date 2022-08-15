@@ -38,9 +38,8 @@ const Conversation = ({route}) => {
   const getMessages = async () => {
     //FIX ME there is a problem with update list of open chats
     try {
-      console.log(myId, friendId);
       const res = await axios.get(
-        `http://192.168.1.141:3000/chats/${myId}/${friendId}/0`,
+        `http://172.20.10.4:3000/chats/${myId}/${friendId}/0`,
       );
       console.log(res);
       if (res.data.hasOwnProperty('msg')) {

@@ -39,6 +39,7 @@ const sendNotificationHelper = (req, res, titleToSend, bodyToSend) => {
 };
 
 const extractParametersForNotification = (req, newRows, title, body) => {
+
 	let tokensArr = [];
 	for (var i = 0; i < newRows.length; i++) {
 		if (newRows[i].user_id == req.params.useridB) {
@@ -47,6 +48,8 @@ const extractParametersForNotification = (req, newRows, title, body) => {
 
 		if (newRows[i].user_id == req.params.useridA) {
 			var senderName = newRows[i].first_name + " " + newRows[i].last_name;
+
+			console.log("sender:" + senderName);
 		}
 	}
 	const paramsForNotification = {
@@ -56,6 +59,10 @@ const extractParametersForNotification = (req, newRows, title, body) => {
 		bodyToSend: body.concat(senderName),
 		userIdTosend: req.params.useridB,
 	};
+	//delete after test
+	console.log("params:" + JSON.stringify(paramsForNotification,null,2));
+	//delete after test
+
 	return paramsForNotification;
 };
 

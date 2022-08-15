@@ -30,7 +30,7 @@ const Home = () => {
   const getPhotos = async () => {
     try {
       const userPhotos = await axios.get(
-        `http://192.168.1.141:3000/userPictures/main/${userConfig.user_id}`,
+        `http://172.20.10.4:3000/userPictures/main/${userConfig.user_id}`,
       );
       setPhotos(userPhotos.data);
       if (userPhotos.data.length === 0) {

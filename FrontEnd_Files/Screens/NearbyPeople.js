@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
@@ -26,7 +27,7 @@ const NearbyPeople = ({navigation}) => {
     //BUG not render on filters change. render sometimes onSave code
     try {
       const people = await axios.post(
-        `http://192.168.1.141:3000/filters/${user_id}`, //NOTICE: use this url or another?
+        `http://172.20.10.4:3000/filters/${user_id}`, //NOTICE: use this url or another?
         filters,
       );
       dispatch(updateNearbyPeople({nearbyPeople: people.data}));
@@ -42,7 +43,7 @@ const NearbyPeople = ({navigation}) => {
   const onFriendRequest = async userNum => {
     try {
       await axios.post(
-        `http://192.168.1.141:3000/friendRequest/send/${user_id}/${userNum}`,
+        `http://172.20.10.4:3000/friendRequest/send/${user_id}/${userNum}`,
       );
       onApplyHandler(); //FIX ME?
     } catch (error) {
@@ -69,7 +70,7 @@ const NearbyPeople = ({navigation}) => {
           type={'requestsUserSent'}
         />
       );
-    } else if (item.requestsUserRecieved === 1) {
+    } else if (item.requestsUserReceived === 1) {
       return (
         <UserItem
           key={index}
@@ -107,7 +108,9 @@ const NearbyPeople = ({navigation}) => {
       <View>
         <ScrollView style={styles.ScrollView.scroll}>
           {nearbyPeople.map((item, index) => mappingUsers(item, index))}
-          {Object.keys(nearbyPeople).length === 0 && <Text>No people</Text>}
+          {Object.keys(nearbyPeople).length === 0 && (
+            <Text style={{color: 'white'}}>No people</Text>
+          )}
         </ScrollView>
       </View>
     </View>

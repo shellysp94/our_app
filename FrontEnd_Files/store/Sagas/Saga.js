@@ -11,7 +11,7 @@ export function* helloApp() {
 }
 
 const getData = async () => {
-  return await axios.get(`http://192.168.1.141:3000/dataFromSetsToClient`);
+  return await axios.get(`http://172.20.10.4:3000/dataFromSetsToClient`);
 };
 
 export function* getConstants() {

@@ -16,6 +16,7 @@ const initialState = {
     age_filter: [],
     friends_only_filter: 0,
     radius_filter: 500,
+    online_filter: 0,
   },
 };
 

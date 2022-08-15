@@ -41,7 +41,7 @@ const UplaodImageModal = props => {
     try {
       if (image1 !== {}) {
         await axios.post(
-          `http://192.168.1.141:3000/userPictures/${conf.user_id}`,
+          `http://172.20.10.4:3000/userPictures/${conf.user_id}`,
           {
             base64image: image1.base64,
             main_image: '1',
@@ -56,7 +56,7 @@ const UplaodImageModal = props => {
       if (image2 !== {}) {
         //FIX ME - maybe image1 is not main image
         await axios.post(
-          `http://192.168.1.141:3000/userPictures/${conf.user_id}`,
+          `http://172.20.10.4:3000/userPictures/${conf.user_id}`,
           {
             base64image: image2.base64,
             main_image: '0',
@@ -65,7 +65,7 @@ const UplaodImageModal = props => {
       }
       if (image3 !== {}) {
         await axios.post(
-          `http://192.168.1.141:3000/userPictures/${conf.user_id}`,
+          `http://172.20.10.4:3000/userPictures/${conf.user_id}`,
           {
             base64image: image3.base64,
             main_image: '0',

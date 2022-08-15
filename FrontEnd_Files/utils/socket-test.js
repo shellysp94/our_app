@@ -9,7 +9,7 @@ const getMyID = state => state.configuration.userConfig.user_id;
 
 function socketService(token) {
   return eventChannel(emitter => {
-    const socket = new WebSocket('ws://192.168.1.141:3000', null, {
+    const socket = new WebSocket('ws://172.20.10.4:3000', null, {
       headers: {
         authorization: 'Bearer ' + token,
       },

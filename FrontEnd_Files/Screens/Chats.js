@@ -19,9 +19,8 @@ const Chat = () => {
     try {
       console.log('***');
       const res = await axios.get(
-        `http://192.168.1.141:3000/chats/${myUserId}`,
+        `http://172.20.10.4:3000/chats/${myUserId}`,
       );
-      console.log('res data', res.data);
 
       dispatch(openChats({OpenChats: res.data}));
     } catch (error) {

@@ -18,7 +18,7 @@ const MessageForm = props => {
   const HandleSubmit = async () => {
     try {
       const myMessage = await axios.post(
-        `http://192.168.1.141:3000/messages/${myUserId}/${props.friendID}`,
+        `http://172.20.10.4:3000/messages/${myUserId}/${props.friendID}`,
         {
           content: message,
         },

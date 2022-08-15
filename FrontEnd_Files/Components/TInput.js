@@ -21,7 +21,7 @@ const TInput = props => {
         value={props.value}
         editable={props.editable}
         placeholder={props.title}
-        secureTextEntry={props.type === 'password' ? true : false}
+        secureTextEntry={props.secureTextEntry}
         outlineColor={'#13869D'}
         underlineColor="#13869D"
         label={props.name}

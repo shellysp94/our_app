@@ -39,7 +39,7 @@ export const getMyLocation = async () => {
 const sendLocation = async (myUserId, mylongitude, mylatitude) => {
   console.log(`myLatitude: ${mylatitude}, myLongitude: ${mylongitude}`);
   return await axios.post(
-    `http://192.168.1.141:3000/userLocation/${myUserId}`,
+    `http://172.20.10.4:3000/userLocation/${myUserId}`,
     {
       longitude: mylongitude,
       latitude: mylatitude,
@@ -55,7 +55,6 @@ export function* getCurrentLocationSaga() {
   if (locationPermission === 'Permission Granted') {
     try {
       setInterval(async () => {
-        console.log('**1**');
         const result = await getMyLocation();
 
         // const newLocation = await sendLocation(

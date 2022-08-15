@@ -25,6 +25,13 @@ const styles = StyleSheet.create({
       top: 10,
       left: 20,
     },
+    OnlineOnlyBlock: {
+      alignSelf: 'flex-start',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      top: 10,
+      left: 20,
+    },
     applyBlock: {
       top: 20,
       width: 100,

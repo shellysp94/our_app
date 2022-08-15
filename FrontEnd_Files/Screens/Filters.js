@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
@@ -35,9 +36,10 @@ const CustomFiltersBar = props => {
     stateFilters.relationship_filter,
   );
   const [searchMode, setSearchMode] = useState(stateSearchMode);
-  const [isSwitchOn, setIsSwitchOn] = useState(
+  const [isOnlyFriendOn, setIsOnlyFriendOn] = useState(
     stateFilters.friends_only_filter,
   );
+  const [isOnlineOn, setIsOnlineOn] = useState(stateFilters.online_filter);
 
   const dispatch = useDispatch();
   let hobbies = [];
@@ -48,7 +50,7 @@ const CustomFiltersBar = props => {
     gender_filter: gender,
     relationship_filter: relationship,
     interested_in_filter: interestedIn,
-    friends_only_filter: isSwitchOn,
+    friends_only_filter: isOnlyFriendOn,
     radius_filter: 500,
   };
 
@@ -59,7 +61,8 @@ const CustomFiltersBar = props => {
   };
   const onClear = () => {
     dispatch(clearFilters()); // the conponent isnt renders
-    setIsSwitchOn(0);
+    setIsOnlyFriendOn(0);
+    setIsOnlineOn(0);
   };
 
   return (
@@ -107,11 +110,23 @@ const CustomFiltersBar = props => {
         />
         <View style={styles.View.freindsOnlyBlock}>
           <Switch
-            value={isSwitchOn}
-            onValueChange={() => setIsSwitchOn(!isSwitchOn)}
+            value={isOnlyFriendOn}
+            onValueChange={() => setIsOnlyFriendOn(!isOnlyFriendOn)}
             color={Theme.backgroundColor}
           />
-          <Text style={styles.Text.friendsOnlyText}>Friends Only</Text>
+          <Text adjustsFontSizeToFit style={styles.Text.friendsOnlyText}>
+            Friends Only
+          </Text>
+        </View>
+        <View style={styles.View.OnlineOnlyBlock}>
+          <Switch
+            value={isOnlineOn}
+            onValueChange={() => setIsOnlineOn(!isOnlineOn)}
+            color={Theme.backgroundColor}
+          />
+          <Text adjustsFontSizeToFit style={styles.Text.friendsOnlyText}>
+            Online People Only
+          </Text>
         </View>
         <View style={styles.View.applyBlock}>
           <Pressable

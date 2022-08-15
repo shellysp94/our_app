@@ -46,21 +46,18 @@ const LogIn = ({navigation}) => {
     console.log('IN HERE');
     // console.log(email, password, deviceToken);
     try {
-      const response = await axios.post(
-        `http://192.168.1.141:3000/auth/login`,
-        {
-          email: email,
-          password: password,
-          device_token: deviceToken,
-        },
-      );
+      const response = await axios.post(`http://172.20.10.4:3000/auth/login`, {
+        email: email,
+        password: password,
+        device_token: deviceToken,
+      });
 
       if (response.data.hasOwnProperty('msg')) {
         alert(response.data.msg);
       } else {
         try {
           const getUser = await axios.get(
-            `http://192.168.1.141:3000/userConfiguration/${response.data.user_id}`,
+            `http://172.20.10.4:3000/userConfiguration/${response.data.user_id}`,
             {
               headers: {
                 Authorization: 'Bearer ' + response.data.token,
