@@ -142,6 +142,7 @@ module.exports = {
 						}
 					);
 				} catch {
+					console.log(err);
 					console.log(err.message);
 				}
 			}
