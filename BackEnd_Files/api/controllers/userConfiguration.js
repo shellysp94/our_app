@@ -1,14 +1,12 @@
 const dbConfig = require("../../config/db_config");
 const userPictures = require("./userPictures");
-const fs = require("fs");
-const {emitWarning} = require("process");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
-const queryUserConfiguration = (arr, curr_userid, callback) => {
+const queryUserConfiguration = (arr, curr_userid, cb) => {
 	let mergeObjects = [];
 
 	mySqlConnection.query(
@@ -38,41 +36,28 @@ const queryUserConfiguration = (arr, curr_userid, callback) => {
 				ORDER BY first_name asc, last_name asc`,
 					[arr],
 					(err, rows) => {
-						if (!err) 
-						{
-							//console.log("I'm from get user configuration 1");
-							if (rows.length > 0) 
-							{
-								for (let i = 0; i < rows.length; i++) 
-								{
-									if (rows[i].image !== null) 
-									{
+						if (!err) {
+							if (rows.length > 0) {
+								for (let i = 0; i < rows.length; i++) {
+									if (rows[i].image !== null) {
 										rows[i].image = userPictures.getPicNameAndEncode(
 											rows[i].image
 										);
-									} 
-									else 
-									{
-										if (rows[i].gender == "Man") 
-										{
+									} else {
+										if (rows[i].gender == "Man") {
 											rows[i].image =
 												userPictures.getPicNameAndEncode("male_profile.jpg");
-										} 
-										else if (rows[i].gender == "Woman") 
-										{
+										} else if (rows[i].gender == "Woman") {
 											rows[i].image =
 												userPictures.getPicNameAndEncode("woman_profile.jpg");
-										} 
-										else 
-										{
+										} else {
 											rows[i].image = userPictures.getPicNameAndEncode(
 												"non_binary_profile.PNG"
 											);
 										}
 									}
 
-									if(rows[i].search_mode == null)
-									{
+									if (rows[i].search_mode == null) {
 										rows[i].search_mode = "Whatever";
 									}
 
@@ -88,7 +73,7 @@ const queryUserConfiguration = (arr, curr_userid, callback) => {
 								}
 							}
 
-							return callback(mergeObjects);
+							return cb(mergeObjects);
 						} else {
 							console.log(err);
 						}
@@ -164,7 +149,6 @@ module.exports = {
 	},
 
 	createUserConfiguration: (req, res) => {
-		/////////////
 		mySqlConnection.query(
 			`SELECT user_id from users where email=?`,
 			[req.body.email],
