@@ -14,10 +14,13 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 		`SELECT longitude, latitude from user_location where user_id=${curr_userid}`,
 		(err, rows) => {
 			try {
-				if (newRows.length === 0) {
+				if (newRows.length === 0) 
+				{
 					longitude_var = "Longitude";
 					latitude_var = "Latitude";
-				} else {
+				} 
+				else 
+				{
 					longitude_var = newRows[0].longitude;
 					latitude_var = newRows[0].latitude;
 				}
@@ -282,3 +285,13 @@ updateSearchMode = (req, res) => {
 	);
 }
 
+module.exports = {
+	getAllUsersConfiguration,
+	getUserConfigurationInner,
+	getUserConfiguration,
+	getUsersConfigurationByRadius,
+	createUserConfiguration,
+	deleteUserConfiguration,
+	updateUserConfiguration,
+	updateSearchMode
+}
