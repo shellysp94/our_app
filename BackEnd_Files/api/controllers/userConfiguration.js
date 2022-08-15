@@ -37,15 +37,10 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 				ORDER BY first_name asc, last_name asc`,
 					[arr],
 					(err, rows) => {
-						if (!err) 
-						{
-							//console.log("I'm from get user configuration 1");
-							if (rows.length > 0) 
-							{
-								for (let i = 0; i < rows.length; i++) 
-								{
-									if (rows[i].image !== null) 
-									{
+						if (!err) {
+							if (rows.length > 0) {
+								for (let i = 0; i < rows.length; i++) {
+									if (rows[i].image !== null) {
 										rows[i].image = userPictures.getPicNameAndEncode(
 											rows[i].image
 										);
@@ -61,9 +56,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 										{
 											rows[i].image =
 												userPictures.getPicNameAndEncode("woman_profile.jpg");
-										} 
-										else 
-										{
+										} else {
 											rows[i].image = userPictures.getPicNameAndEncode(
 												"non_binary_profile.PNG"
 											);

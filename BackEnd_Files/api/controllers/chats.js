@@ -209,6 +209,7 @@ createUsersChat = (req, res) => {
 															msgToClient = {
 																msg: `Chat room between users ${userIdA} and ${userIdB} created.`,
 															};
+
 															return res.send(msgToClient);
 														} catch (err) {
 															console.log(err.message);

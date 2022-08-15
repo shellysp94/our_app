@@ -104,7 +104,6 @@ getAllUserConnectionsType = (req, res) => {
 				let resultArrayToObject = {
 					params: {userid: String(usersConfigurations)},
 				};
-
 				getUserConfigurationInner(
 					resultArrayToObject,
 					userid,

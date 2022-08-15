@@ -262,5 +262,3 @@ module.exports = {
 		res.send(constants);
 	},
 };
-
-//module.exports = {returnAllFiltersInSet};
