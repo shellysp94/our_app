@@ -39,7 +39,86 @@ function noFilter(req, cb) {
 	});
 }
 
-function interestedInFilteringHelper(
+//////////////////////////////////////////// Search Mode Helper /////////////////////////////////////////////
+function createSearchModeQuery(searchMode) {
+	return new Promise((resolve, reject) => {
+		if (searchMode === undefined || searchMode.length <= 0) {
+			reject(`!!SEARCH MODE!!\nSomething wrong. Search mode parameter illegal`);
+		}
+		if (searchMode !== "Whatever") {
+			resolve(`and (search_mode like '${searchMode}')`);
+		} else {
+			resolve("");
+		}
+	});
+}
+
+//////////////////////////////////////////// Hobbies Helper /////////////////////////////////////////////
+function createHobbiesQuery(hobbies) {
+	return new Promise((resolve, reject) => {
+		if (hobbies === undefined || hobbies.length <= 0) {
+			reject(`!!HOBBIES!!\nSomething wrong. Hobbies parameter illegal`);
+		}
+		if (hobbies !== "Hobbies") {
+			let sqlQuery = splitCommas(" and (hobbies like ", "hobbies", hobbies);
+			sqlQuery = sqlQuery.concat(")");
+			resolve(sqlQuery);
+		} else {
+			resolve("");
+		}
+	});
+}
+
+//////////////////////////////////////////// Gender Helper /////////////////////////////////////////////
+function createGenderQuery(gender) {
+	return new Promise((resolve, reject) => {
+		if (gender === undefined || gender.length <= 0) {
+			reject(`!!GENDER!!\nSomething wrong. Gender parameter illegal`);
+		}
+		if (gender === "Men") {
+			resolve(` and (UC.gender like 'Man' and UC.gender not like 'Woman')`);
+		} else if (gender === "Women") {
+			resolve(` and (UC.gender like 'Woman')`);
+		} else {
+			resolve(
+				` and (UC.gender like 'Woman' or UC.gender like 'Man' or UC.gender like 'prefer not to say')`
+			);
+		}
+	});
+}
+
+//////////////////////////////////////////// Relationship Helper /////////////////////////////////////////////
+function createRelationshipQuery(relationship) {
+	return new Promise((resolve, reject) => {
+		if (relationship === undefined || relationship.length <= 0) {
+			reject(
+				`!!RELATIONSHIP!!\nSomething wrong. Relationship parameter illegal`
+			);
+		}
+		if (relationship !== "Relationship") {
+			let sqlQuery = splitCommas(
+				" and (relationship_filter like ",
+				"relationship_filter",
+				relationship
+			);
+			sqlQuery = sqlQuery.concat(
+				splitCommas(
+					" or relationship_status like ",
+					"relationship_status",
+					relationship
+				)
+			);
+
+			sqlQuery = sqlQuery.concat(")");
+			resolve(sqlQuery);
+		} else {
+			resolve("");
+		}
+	});
+}
+
+//////////////////////////////////////////// Interested In Helpers /////////////////////////////////////////////
+function interestedInHelper_AccordingToGenderAndSexualOrientation(
 	currentUserGender,
 	currentUserSexualOrientation,
 	cb
@@ -66,7 +145,7 @@ function interestedInFilteringHelper(
 	return cb(sqlQuery);
 }
 
-function createSqlQueryForInterestedInFiltering(
+function interestedInHelper_AccordingToUserInterestedInChosen(
 	interestedInFilter,
 	currentUserGender,
 	currentUserSexualOrientation,
@@ -89,11 +168,10 @@ function createSqlQueryForInterestedInFiltering(
 	let sqlQuery;
 	if (friendshipFilters.length > 0 && relationshipFilters.length > 0) {
 		// Both - friendship AND relationship filters
-		interestedInFilteringHelper(
+		interestedInHelper_AccordingToGenderAndSexualOrientation(
 			currentUserGender,
 			currentUserSexualOrientation,
 			(toConcatSqlQuery) => {
-				//sqlQuery = sqlQuery.concat(" and (");
 				sqlQuery = " and (";
 				sqlQuery = sqlQuery.concat(toConcatSqlQuery);
 				sqlQuery = sqlQuery.concat(
@@ -124,7 +202,7 @@ function createSqlQueryForInterestedInFiltering(
 		sqlQuery = sqlQuery.concat(")");
 	} else if (friendshipFilters.length === 0 && relationshipFilters.length > 0) {
 		// Only relationship filters
-		interestedInFilteringHelper(
+		interestedInHelper_AccordingToGenderAndSexualOrientation(
 			currentUserGender,
 			currentUserSexualOrientation,
 			(toConcatSqlQuery) => {
@@ -144,6 +222,74 @@ function createSqlQueryForInterestedInFiltering(
 	return cb(sqlQuery);
 }
 
+function createInterestedInQuery(req) {
+	let interestedIn = req.interested_in_filter;
+	let currentUserId = req.user_id;
+
+	return new Promise((resolve, reject) => {
+		if (interestedIn === undefined || interestedIn.length <= 0) {
+			reject(
+				`!!INTERESTED IN!!\nSomething went wrong. Interested In parameter illegal`
+			);
+		}
+		if (interestedIn !== "Interested in") {
+			mySqlConnection.query(
+				`select gender, sexual_orientation from user_configuration where user_id = ${currentUserId}`,
+				(err, rows) => {
+					try {
+						let currentUserGender = rows[0].gender;
+						let currentUserSexualOrientation = rows[0].sexual_orientation;
+						interestedInHelper_AccordingToUserInterestedInChosen(
+							interestedIn,
+							currentUserGender,
+							currentUserSexualOrientation,
+							(sqlQuery) => {
+								if (sqlQuery.length <= 0) {
+									reject(
+										`!!INTERESTED IN!!\nSomething went wrong. Interested In parameter illegal`
+									);
+								} else {
+									resolve(sqlQuery);
+								}
+							}
+						);
+					} catch (err) {
+						console.log(err);
+						reject(
+							`!!INTERESTED IN!!\nSomething went wrong. Interested In parameter illegal`
+						);
+					}
+				}
+			);
+		} else {
+			resolve("");
+		}
+	});
+}
+
+//////////////////////////////////////////// Age Helper /////////////////////////////////////////////
+getUsersWithCommonAgeFilter = (req, cb) => {
+	const age = [];
+	const from = JSON.parse(req.age_filter)[0];
+	const until = JSON.parse(req.age_filter)[1];
+
+	if (from === undefined || until === undefined) {
+		noFilter(req, (allUsersWithoutMe) => {
+			return cb(allUsersWithoutMe);
+		});
+	} else {
+		getAllUsersConfiguration(req, (response) => {
+			response.forEach((user) => {
+				if (parseInt(user.age, 10) >= from && parseInt(user.age, 10) <= until) {
+					age.push(user);
+				}
+			});
+			return cb(age);
+		});
+	}
+};
+
+//////////////////////////////////////////// Friends Of Friends Helper /////////////////////////////////////////////
 function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, cb) {
 	arrayLength = myFriendsUserid.length;
 
@@ -163,6 +309,7 @@ function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, cb) {
 	return cb(sqlQuery);
 }
 
+//////////////////////////////////////////// Only Online Users Helper /////////////////////////////////////////////
 function getUserFilteredUsers_OnlyOnline_Helper(
 	onlyOnline,
 	withFilters,
@@ -171,7 +318,6 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 	usersToPresent,
 	res
 ) {
-	console.log("users to present:", usersToPresent);
 	let createdUsersToPresent = [];
 
 	if (parseInt(onlyOnline, 10) === 1) {
@@ -182,10 +328,6 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 					createdUsersToPresent.push(user);
 				}
 			});
-			console.log(
-				"CREATED USERS TO PRESENTS --> only online with filters:",
-				createdUsersToPresent
-			);
 		} else {
 			// Return all online users //
 			onlineUsers.getOnlineUsersArray().forEach((onlineUser) => {
@@ -193,11 +335,6 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 					createdUsersToPresent.push(parseInt(onlineUser.user_id, 10));
 				}
 			});
-
-			console.log(
-				"CREATED USERS TO PRESENTS --> only online without any filter:",
-				createdUsersToPresent
-			);
 		}
 	} else {
 		if (parseInt(withFilters, 10) === 1) {
@@ -205,17 +342,9 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 			usersToPresent.forEach((user) => {
 				createdUsersToPresent.push(user);
 			});
-			console.log(
-				"CREATED USERS TO PRESENTS --> online and offline according to filters:",
-				createdUsersToPresent
-			);
 		} else {
 			// Return users without any filters - online and offline //
 			createdUsersToPresent = [0];
-			console.log(
-				"CREATED USERS TO PRESENTS --> online and offline without any filter:",
-				createdUsersToPresent
-			);
 		}
 	}
 
@@ -230,125 +359,7 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 	getAllUserConnectionsType(resultArrayToObject, res);
 }
 
-function createSearchModeQuery(searchMode) {
-	return new Promise((resolve, reject) => {
-		if (searchMode === undefined || searchMode.length <= 0) {
-			reject(`!!SEARCH MODE!!\nSomething wrong. Search mode parameter illegal`);
-		}
-		if (searchMode !== "Whatever") {
-			resolve(`and (search_mode like '${searchMode}')`);
-		} else {
-			resolve("");
-		}
-	});
-}
-
-function createHobbiesQuery(hobbies) {
-	return new Promise((resolve, reject) => {
-		if (hobbies === undefined || hobbies.length <= 0) {
-			reject(`!!HOBBIES!!\nSomething wrong. Hobbies parameter illegal`);
-		}
-		if (hobbies !== "Hobbies") {
-			let sqlQuery = splitCommas(" and (hobbies like ", "hobbies", hobbies);
-			sqlQuery = sqlQuery.concat(")");
-			resolve(sqlQuery);
-		} else {
-			resolve("");
-		}
-	});
-}
-
-function createGenderQuery(gender) {
-	return new Promise((resolve, reject) => {
-		if (gender === undefined || gender.length <= 0) {
-			reject(`!!GENDER!!\nSomething wrong. Gender parameter illegal`);
-		}
-		if (gender === "Men") {
-			resolve(` and (UC.gender like 'Man' and UC.gender not like 'Woman')`);
-		} else if (gender === "Women") {
-			resolve(` and (UC.gender like 'Woman')`);
-		} else {
-			resolve(
-				` and (UC.gender like 'Woman' or UC.gender like 'Man' or UC.gender like 'prefer not to say')`
-			);
-		}
-	});
-}
-
-function createRelationshipQuery(relationship) {
-	return new Promise((resolve, reject) => {
-		if (relationship === undefined || relationship.length <= 0) {
-			reject(
-				`!!RELATIONSHIP!!\nSomething wrong. Relationship parameter illegal`
-			);
-		}
-		if (relationship !== "Relationship") {
-			let sqlQuery = splitCommas(
-				" and (relationship_filter like ",
-				"relationship_filter",
-				relationship
-			);
-			sqlQuery = sqlQuery.concat(
-				splitCommas(
-					" or relationship_status like ",
-					"relationship_status",
-					relationship
-				)
-			);
-
-			sqlQuery = sqlQuery.concat(")");
-			resolve(sqlQuery);
-		} else {
-			resolve("");
-		}
-	});
-}
-
-function createInterestedInQuery(req) {
-	let interestedIn = req.interested_in_filter;
-	let currentUserId = req.user_id;
-
-	return new Promise((resolve, reject) => {
-		if (interestedIn === undefined || interestedIn.length <= 0) {
-			reject(
-				`!!INTERESTED IN!!\nSomething went wrong. Interested In parameter illegal`
-			);
-		}
-		if (interestedIn !== "Interested in") {
-			mySqlConnection.query(
-				`select gender, sexual_orientation from user_configuration where user_id = ${currentUserId}`,
-				(err, rows) => {
-					try {
-						let currentUserGender = rows[0].gender;
-						let currentUserSexualOrientation = rows[0].sexual_orientation;
-						createSqlQueryForInterestedInFiltering(
-							interestedIn,
-							currentUserGender,
-							currentUserSexualOrientation,
-							(sqlQuery) => {
-								if (sqlQuery.length <= 0) {
-									reject(
-										`!!INTERESTED IN!!\nSomething went wrong. Interested In parameter illegal`
-									);
-								} else {
-									resolve(sqlQuery);
-								}
-							}
-						);
-					} catch (err) {
-						console.log(err);
-						reject(
-							`The third reject --> !!INTERESTED IN!!\nSomething went wrong. Interested In parameter illegal`
-						);
-					}
-				}
-			);
-		} else {
-			resolve("");
-		}
-	});
-}
-
+//////////////////////////////////////////// Filter's API /////////////////////////////////////////////
 getAllFilters = (req, res) => {
 	mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
 		try {
@@ -386,7 +397,7 @@ getFriendsOfFriends = (req, res) => {
 		`select user_a_id, user_b_id from connections where (user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1`,
 		(err, rows) => {
 			try {
-				if (typeof rows !== "undefined" && rows.length > 0) {
+				if (rows !== undefined && rows.length > 0) {
 					for (row = 0; row < rows.length; row++) {
 						if (parseInt(rows[row].user_a_id, 10) !== parseInt(userid, 10)) {
 							myFriendsUserid.push(parseInt(rows[row].user_a_id, 10));
@@ -395,13 +406,9 @@ getFriendsOfFriends = (req, res) => {
 						}
 					}
 					createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, (response) => {
-						// console.log(
-						// 	"the response from friends of friends create query functions:\n" +
-						// 		response
-						// );
 						mySqlConnection.query(response, (err, rows) => {
 							try {
-								if (typeof rows !== "undefined" && rows.length > 0) {
+								if (rows !== undefined && rows.length > 0) {
 									for (
 										myFriendOfFriend = 0;
 										myFriendOfFriend < rows.length;
@@ -478,58 +485,6 @@ getFriendsOfFriends = (req, res) => {
 	);
 };
 
-getUsersWithCommonAgeFilter = (req, cb) => {
-	const age = [];
-	const from = JSON.parse(req.age_filter)[0];
-	const until = JSON.parse(req.age_filter)[1];
-
-	if (from === undefined || until === undefined) {
-		noFilter(req, (allUsersWithoutMe) => {
-			return cb(allUsersWithoutMe);
-		});
-	} else {
-		getAllUsersConfiguration(req, (response) => {
-			response.forEach((user) => {
-				if (parseInt(user.age, 10) >= from && parseInt(user.age, 10) <= until) {
-					age.push(user);
-				}
-			});
-			return cb(age);
-		});
-	}
-};
-
-getUserFriendsThatFilteredFriendsOnly = (req, cb) => {
-	const userid = req.user_id;
-
-	mySqlConnection.query(
-		`select * from filters join connections on (filters.user_id = connections.user_A_id or filters.user_id = connections.user_B_id) 
-      where user_id = ${userid} and connected = 1`,
-		(err, rows) => {
-			try {
-				let usersFriendsOnly = [];
-				for (user = 0; user < rows.length; user++) {
-					if (
-						!usersFriendsOnly.includes(rows[user].user_A_id) &&
-						rows[user].user_A_id !== parseInt(userid, 10)
-					) {
-						usersFriendsOnly.push(rows[user].user_A_id);
-					}
-					if (
-						!usersFriendsOnly.includes(rows[user].user_B_id) &&
-						rows[user].user_B_id !== parseInt(userid, 10)
-					) {
-						usersFriendsOnly.push(rows[user].user_B_id);
-					}
-				}
-				return cb(usersFriendsOnly);
-			} catch (err) {
-				console.log(err.message);
-			}
-		}
-	);
-};
-
 getUserFilteredUsers = (req, res) => {
 	let onlyOnline = req.params.onlyOnline;
 	let usersToPresent = [];
@@ -554,7 +509,6 @@ getUserFilteredUsers = (req, res) => {
 			try {
 				resolve = await createSearchModeQuery(userFilter[0].search_mode);
 				sqlQuery = sqlQuery.concat(resolve);
-				console.log(sqlQuery);
 				resolve = await createHobbiesQuery(userFilter[0].hobbies_filter);
 				sqlQuery = sqlQuery.concat(resolve);
 				resolve = await createGenderQuery(userFilter[0].gender_filter);
@@ -565,9 +519,6 @@ getUserFilteredUsers = (req, res) => {
 				sqlQuery = sqlQuery.concat(resolve);
 				resolve = await createInterestedInQuery(userFilter[0]);
 				sqlQuery = sqlQuery.concat(resolve);
-				console.log(
-					"THE QUERY FROM GET FILTERS (UNTIL INTERESTED IN):\n" + sqlQuery
-				);
 
 				mySqlConnection.query(sqlQuery, (err, rows) => {
 					try {
@@ -575,7 +526,6 @@ getUserFilteredUsers = (req, res) => {
 							for (var user of rows) {
 								mutuals.push(user.user_id);
 							}
-							console.log("mutuals are:", mutuals);
 
 							getUsersWithCommonAgeFilter(userFilter[0], (response) => {
 								response.forEach((user) => {
@@ -583,7 +533,6 @@ getUserFilteredUsers = (req, res) => {
 										age.push(user.user_id);
 									}
 								});
-								console.log("after age:", age);
 
 								getUsersConfigurationByRadius(userFilter[0], (response) => {
 									response.forEach((user) => {
@@ -591,7 +540,6 @@ getUserFilteredUsers = (req, res) => {
 											radius.push(user.user_id);
 										}
 									});
-									console.log("after radius:", radius);
 
 									getUserFilteredUsers_OnlyOnline_Helper(
 										onlyOnline,
@@ -627,9 +575,9 @@ createUserFilter = (req, res) => {
 	const genderFilter = req.body.gender_filter;
 	const relationshipFilter = req.body.relationship_filter;
 	const interestedInFilter = req.body.interested_in_filter;
-	let ageFilter = req.body.age_filter;
 	const radiusFilter = req.body.radius_filter;
 	const friendsOnly = req.body.friends_only_filter;
+	let ageFilter = req.body.age_filter;
 
 	if (ageFilter.length === 0) {
 		ageFilter = "[]";
@@ -648,7 +596,7 @@ createUserFilter = (req, res) => {
       relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', radius_filter = ${radiusFilter}, friends_only_filter = ${friendsOnly}`,
 		(err, rows) => {
 			try {
-				if (typeof rows === "undefined") {
+				if (rows === undefined) {
 					msgToClient = {
 						msg: `Something went wrong. Filter wasn't add to database or wasn't update in the database`,
 					};
@@ -686,9 +634,7 @@ module.exports = {
 	getAllFilters,
 	getUserFilter,
 	getFriendsOfFriends,
-	getUserFriendsThatFilteredFriendsOnly,
 	getUserFilteredUsers,
 	createUserFilter,
 	deleteUserFilter,
-	//getUsersWithCommonAgeFilter
 };

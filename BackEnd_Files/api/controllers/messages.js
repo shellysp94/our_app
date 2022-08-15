@@ -15,7 +15,7 @@ getChatMessages = (req, res) => {
 		`select * from (select * from messages where chat_id = ${chatID} limit 50 offset ${messagesOffset}) as T1 order by creation_date asc`,
 		(err, rows) => {
 			try {
-				if (typeof rows === "undefined" || rows.length === 0) {
+				if (rows === undefined || rows.length === 0) {
 					msgToClient = {
 						msg: `Chat room number ${chatID} is empty.`,
 					};
@@ -53,7 +53,7 @@ createChatMessage = (req, res) => {
 				mySqlConnection.query(
 					`select * from messages where chat_id = ${chatID} order by creation_date desc limit 1`,
 					(err, rows) => {
-						if (typeof rows === "undefined" || rows.length === 0) {
+						if (rows === undefined || rows.length === 0) {
 							msgToClient = {
 								msg: `Something went wrong! Message don't added and don't sent.`,
 							};
@@ -63,15 +63,7 @@ createChatMessage = (req, res) => {
 							// message from sender to receiver in their chat room insert to the database
 							// need to send the message to these users (sender and receiver)
 
-							// const message = messageFormat(
-							// 	sender,
-							// 	receiver,
-							// 	senderOnlineUser.getUserName(),
-							// 	content
-							// );
-							//console.log(message);
-
-							if (typeof receiverOnlineUser !== "undefined") {
+							if (receiverOnlineUser !== undefined) {
 								// sender and receiver are online - should send each of them the message in their chat room
 								senderOnlineUser.websocket.send(JSON.stringify(rows[0]));
 								receiverOnlineUser.websocket.send(JSON.stringify(rows[0]));

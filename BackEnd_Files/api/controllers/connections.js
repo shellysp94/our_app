@@ -120,10 +120,10 @@ deleteUsersConnection = (req, res) => {
 };
 
 module.exports = {
-	getAllConnections: getAllConnections,
-	getAllConnectedConnections: getAllUserConnectedConnections,
-	getUsersConnection: getUsersConnection,
-	getAllUserConnections: getAllUserConnections,
-	getAllUserConnectedConnections: getAllUserConnectedConnections,
-	deleteUsersConnection: deleteUsersConnection,
+	getAllConnections,
+	getUsersConnection,
+	getAllUserConnections,
+	getAllConnectedConnections,
+	getAllUserConnectedConnections,
+	deleteUsersConnection,
 };

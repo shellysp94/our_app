@@ -38,7 +38,7 @@ getAllUserConnectionsByName = (req, res) => {
 
 	mySqlConnection.query(sqlQuery, (err, rows) => {
 		try {
-			if (typeof rows !== "undefined") {
+			if (rows !== undefined) {
 				if (rows.length === 0) {
 					msgToClient = {
 						msg: `There are no suitable connections`,
@@ -291,11 +291,11 @@ declineFriendRequest = (req, res) => {
 };
 
 module.exports = {
-	getUserFriendRequestsSent: getUserFriendRequestsSent,
-	getUserFriendRequestsReceived: getUserFriendRequestsReceived,
-	sendFriendRequest: sendFriendRequest,
-	approveFriendRequest: approveFriendRequest,
-	declineFriendRequest: declineFriendRequest,
-	getAllUserConnectionsByName: getAllUserConnectionsByName,
-	getAllUserConnectionsType: getAllUserConnectionsType,
+	getUserFriendRequestsSent,
+	getUserFriendRequestsReceived,
+	sendFriendRequest,
+	approveFriendRequest,
+	declineFriendRequest,
+	getAllUserConnectionsByName,
+	getAllUserConnectionsType,
 };
