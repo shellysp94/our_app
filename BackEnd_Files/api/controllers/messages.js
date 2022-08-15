@@ -1,11 +1,8 @@
-const dbConfig = require("../../config/db_config");
+const {sendNotificationHelper} = require("../../utils/notifications/notifications");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
-// const messageFormat = require("../../utils/messagesFormat/messages");
-const {
-	sendNotificationHelper,
-} = require("../../utils/notifications/notifications");
-const mySqlConnection = dbConfig;
+const dbConfig = require("../../config/db_config");
 const onlineUsers = new onlineUsersArray().getInstance();
+const mySqlConnection = dbConfig;
 
 getChatMessages = (req, res) => {
 	const chatID = req.params.chatID;

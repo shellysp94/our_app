@@ -1,5 +1,6 @@
 const dbConfig = require("../../config/db_config");
 const userPictures = require("./userPictures");
+const fs = require("fs");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
@@ -11,7 +12,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 
 	mySqlConnection.query(
 		`SELECT longitude, latitude from user_location where user_id=${curr_userid}`,
-		(newErr, newRows) => {
+		(err, rows) => {
 			try {
 				if (newRows.length === 0) {
 					longitude_var = "Longitude";
@@ -79,8 +80,8 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 						}
 					}
 				);
-			} catch (newErr) {
-				console.log(newErr.message);
+			} catch (err) {
+				console.log(err.message);
 			}
 		}
 	);
@@ -105,13 +106,13 @@ module.exports = {
 		return queryUserConfiguration(arr, curr_userid, cb);
 	},
 
-	getUserConfiguration: (req, res) => {
-		const arr = req.params.userid.split(",");
-		if (!req.params.curr_userid) {
-			curr_userid = arr[0];
-		} else {
-			curr_userid = req.params.curr_userid;
-		}
+getUserConfiguration = (req, res) => {
+	const arr = req.params.userid.split(",");
+	if (!req.params.curr_userid) {
+		curr_userid = arr[0];
+	} else {
+		curr_userid = req.params.curr_userid;
+	}
 
 		return queryUserConfiguration(arr, curr_userid, (config) => {
 			res.send(config);
@@ -142,7 +143,6 @@ module.exports = {
 						}
 					);
 				} catch {
-					console.log(err);
 					console.log(err.message);
 				}
 			}

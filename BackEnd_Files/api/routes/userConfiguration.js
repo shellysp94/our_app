@@ -19,6 +19,6 @@ router.get('/location/:user_id/:radius',getUsersConfigurationByRadius);
 router.post('/:userid', createUserConfiguration); 
 router.delete('/:userid', deleteUserConfiguration);
 router.put('/:userid', updateUserConfiguration);
-router.put('/searchMode/:userid', updateSearchMode)
+router.put('/searchMode/:userid', updateSearchMode) //NOTE - delete later
 
 module.exports = router;

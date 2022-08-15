@@ -9,7 +9,7 @@ const {
 	deleteUsersChat,
 } = require("../controllers/chats");
 
-router.get("/", getAllChats);
+router.get("/", getAllChats); //NOTE - not in use, delete later
 router.get("/:userid", getSpecificUserChats);
 router.get("/:useridA/:useridB/:offset", getUsersChat);
 router.post("/:useridA/:useridB", createUsersChat);
