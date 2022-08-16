@@ -5,24 +5,8 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
 const path = require("path");
-const swaggerUI = require("swagger-ui-express");
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerSpec = {
-	definition: {
-		openapi: "3.0.0",
-		info: {
-			title: "Let's API",
-			version: "1.0.0"
-		},
-		servers: [
-			{
-				url: "http://localhost:3000"
-			}
-		]
-	},
-	apis: [`${path.join(__dirname, "./routes/*.js")}`],
-};
-
+// const swaggerUi = require("swagger-ui-express"),
+// 	swaggerDocument = require("./swagger.json");
 
 module.exports = {
 	app: app,
@@ -34,9 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use("/images", express.static("./images"));
-app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
-//routes
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const usersRoutes = require("./api/routes/users");
 const userConfigurationRoutes = require("./api/routes/userConfiguration");
@@ -65,3 +48,25 @@ app.use("/notifications", notificationsRoutes);
 app.use("/dataFromSetsToClient", dataFromSetsToClientRoute);
 app.use("/friendRequest", friendRequestRoute);
 app.use("/userLocation", userLocation);
+
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+const options = {
+	definition: {
+		openapi: "3.0.0",
+		info: {
+			title: "Library API",
+			version: "1.0.0",
+			description: "A simple Express Library API",
+		},
+		servers: [
+			{
+				url: "http://localhost:3000",
+			},
+		],
+	},
+	apis: [`${path.join(__dirname, "./routes/*.js")}`],
+};
+
+const specs = swaggerJsDoc(options);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
