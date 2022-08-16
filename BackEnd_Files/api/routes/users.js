@@ -10,6 +10,7 @@ const {
 } = require('../controllers/users');
 
 
+
 router.get('/',getAllUsers); //get all users (/users/)
 router.get('/:userid',getOneUser); //get user by userid (/users/:appid)
 router.delete('/:userid', deleteUser) //delete user (/users/:appid)

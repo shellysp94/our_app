@@ -4,6 +4,26 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
+const path = require("path");
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerSpec = {
+	definition: {
+		openapi: "3.0.0",
+		info: {
+			title: "Let's API",
+			version: "1.0.0"
+		},
+		servers: [
+			{
+				url: "http://localhost:3000"
+			}
+		]
+	},
+	apis: [`${path.join(__dirname, "./routes/*.js")}`],
+};
+
+
 module.exports = {
 	app: app,
 	jwt: jwt,
@@ -14,8 +34,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use("/images", express.static("./images"));
+app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
 //routes
+
 const usersRoutes = require("./api/routes/users");
 const userConfigurationRoutes = require("./api/routes/userConfiguration");
 const userPicturesRoutes = require("./api/routes/userPictures");
