@@ -1,9 +1,12 @@
 {
-	"swagger": "2.0",
+	"openapi": "3.0.0",
 	"info": {
-		"version": "1.0.0",
 		"title": "Let's API",
-		"description": "Our final project - Let's App API"
+		"version": "1.0.0",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {}
 	},
 	"host": "localhost:3000",
 	"basePath": "/",
@@ -57,94 +60,312 @@
 			"description": "User's Filters CRUD"
 		}
 	],
-	"schemes": ["http"],
-	"consumes": ["application/json"],
-	"produces": ["application/json"],
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {
+			"userid": {
+				"description": "A uniq identify for a user",
+				"type": "number",
+				"format": "integer"
+			},
+			"onlyOnline": {
+				"description": "Sign from the client.\n0 = return online and offline users\n1 = return only online users",
+				"type": "number",
+				"format": "boolean"
+			}
+		},
+		"requestBodies": {
+			"filters_Request_Body": {
+				"properties": {
+					"search_mode_filter": {
+						"type": "string"
+					},
+					"hobbies_filter": {
+						"type": "string"
+					},
+					"gender_filter": {
+						"type": "string"
+					},
+					"relationship_filter": {
+						"type": "string"
+					},
+					"interested_in_filter": {
+						"type": "string"
+					},
+					"age_filter": {
+						"type": "array",
+						"items": {
+							"type": "number",
+							"format": "integer"
+						}
+					},
+					"radius_filter": {
+						"type": "number",
+						"format": "integer"
+					},
+					"friends_only_filter": {
+						"type": "number",
+						"format": "boolean"
+					}
+				},
+				"required": [
+					"search_mode_filter",
+					"hobbies_filter",
+					"gender_filter",
+					"relationship_filter",
+					"interested_in_filter",
+					"age_filter",
+					"radius_filter",
+					"friends_only_filter"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"responses": {
+			"Get_UserConfigurationResponse": {
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"first_name": {
+						"type": "string"
+					},
+					"last_name": {
+						"type": "string"
+					},
+					"date_of_birth": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"city": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string"
+					},
+					"phone_number": {
+						"type": "string"
+					},
+					"registration_date": {
+						"type": "string",
+						"description": "Registration date",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"relationship_status": {
+						"type": "string"
+					},
+					"sexual_orientation": {
+						"type": "string"
+					},
+					"profession": {
+						"type": "string"
+					},
+					"pronoun": {
+						"type": "string"
+					},
+					"hobbies": {
+						"type": "string"
+					},
+					"age": {
+						"type": "number",
+						"format": "integer"
+					},
+					"image": {
+						"type": "string"
+					},
+					"search_mode": {
+						"type": "string"
+					},
+					"distance": {
+						"type": "number",
+						"format": "integer"
+					},
+					"online": {
+						"type": "number",
+						"format": "boolean"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Post_FiltersResponse": {
+				"properties": {
+					"name": "Suitable users' configuration",
+					"schema": {
+						"$ref": "#/components/responses/Get_UserConfigurationResponse"
+					}
+				},
+				"type": "array",
+				"additionalProperties": false
+			},
+			"Error": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double"
+					},
+					"msg": {
+						"type": "string"
+					}
+				},
+				"required": ["code", "msg"],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"schemas": {},
+		"securitySchemes": {}
+	},
 	"paths": {
-		"/auth/register": {
+		"/filters/{userid}/{onlyOnline}": {
 			"post": {
-				"summary": "Create a new user",
-				"tags": ["Auth"],
+				"operationId": "HandlePost",
+				"description": "Create or update user's filters",
+				"tags": ["Filters"],
+				"parameters": [
+					{
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"name": "online only",
+						"schema": {
+							"$ref": "#/components/parameters/onlyOnline"
+						}
+					}
+				],
 				"requestBody": {
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/definitions/register"
+								"$ref": "#/components/requestBodies/filters_Request_Body"
 							}
 						}
 					}
 				},
-
-				"produces": ["application/json"],
 				"responses": {
 					"200": {
-						"description": "New user is created"
+						"description": "Ok --> There are suitable users by the chosen filters to display.\nReturn an array of these users' configuration",
+						"name": "There are suitable users by the chosen filters to display.\nReturn an array of these users' configuration",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+								}
+							}
+						}
+					},
+					"201": {
+						"description": "Ok --> There aren't suitable users by the chosen filters to display.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"message": "There are no suitable users to display"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
 					}
 				}
 			}
 		},
-		"/auth/login": {
-			"post": {
-				"tags": ["Auth"],
-				"description": "User login to app",
-				"parameters": [
-					{
-						"name": "user",
-						"in": "body",
-						"description": "User that we want to create",
-						"schema": {
-							"$ref": "#/definitions/login"
-						}
-					}
-				],
+		"/get-example": {
+			"get": {
+				"operationId": "HandleGet",
 				"responses": {
 					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/user"
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				},
+				"tags": ["Basic"],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/post-example": {
+			"post": {
+				"operationId": "HandlePost",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				},
+				"tags": ["Users"],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/responses/Error"
+							}
 						}
 					}
 				}
 			}
 		}
 	},
-	"definitions": {
-		"user": {
-			"required": ["user_id", "email", "password", "token"],
-			"properties": {
-				"user_id": {
-					"type": "integer",
-					"uniqueItems": true
-				},
-				"email": {
-					"type": "string"
-				},
-				"password": {
-					"type": "string"
-				},
-				"token": {
-					"type": "string"
-				}
-			}
-		},
-		"register": {
-			"required": ["ADD USER CONFIGURATION DETAILS"],
-			"properties": {
-				"ADD USER CONFIGURATION DETAILS": {
-					"type": "string"
-				}
-			}
-		},
-		"login": {
-			"required": ["email", "password"],
-			"properties": {
-				"email": {
-					"type": "string"
-				},
-				"password": {
-					"type": "string"
-				}
-			}
+	"servers": [
+		{
+			"url": "/swagger-api"
 		}
-	}
+	]
 }

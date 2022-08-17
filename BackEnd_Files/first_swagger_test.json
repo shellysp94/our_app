@@ -1,0 +1,150 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Let's API",
+		"description": "Our final project - Let's App API"
+	},
+	"host": "localhost:3000",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "Auth",
+			"description": "Auth CRUD"
+		},
+		{
+			"name": "Users",
+			"description": "Users CRUD"
+		},
+		{
+			"name": "User Configuration",
+			"description": "User's Configuration CRUD"
+		},
+		{
+			"name": "User Location",
+			"description": "User's Location CRUD"
+		},
+		{
+			"name": "User Pictures",
+			"description": "User's Pictures CRUD"
+		},
+		{
+			"name": "Device Token",
+			"description": "User's Device Token CRUD"
+		},
+		{
+			"name": "User's Status",
+			"description": "User's Status CRUD"
+		},
+		{
+			"name": "Notifications",
+			"description": "Notifications CRUD"
+		},
+		{
+			"name": "Connections",
+			"description": "Connections CRUD"
+		},
+		{
+			"name": "Chats",
+			"description": "Chats CRUD"
+		},
+		{
+			"name": "Messages",
+			"description": "Chat's Messages CRUD"
+		},
+		{
+			"name": "Filters",
+			"description": "User's Filters CRUD"
+		}
+	],
+	"schemes": ["http"],
+	"consumes": ["application/json"],
+	"produces": ["application/json"],
+	"paths": {
+		"/auth/register": {
+			"post": {
+				"summary": "Create a new user",
+				"tags": ["Auth"],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/definitions/register"
+							}
+						}
+					}
+				},
+
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "New user is created"
+					}
+				}
+			}
+		},
+		"/auth/login": {
+			"post": {
+				"tags": ["Auth"],
+				"description": "User login to app",
+				"parameters": [
+					{
+						"name": "user",
+						"in": "body",
+						"description": "User that we want to create",
+						"schema": {
+							"$ref": "#/definitions/login"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/user"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"user": {
+			"required": ["user_id", "email", "password", "token"],
+			"properties": {
+				"user_id": {
+					"type": "integer",
+					"uniqueItems": true
+				},
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"token": {
+					"type": "string"
+				}
+			}
+		},
+		"register": {
+			"required": ["ADD USER CONFIGURATION DETAILS"],
+			"properties": {
+				"ADD USER CONFIGURATION DETAILS": {
+					"type": "string"
+				}
+			}
+		},
+		"login": {
+			"required": ["email", "password"],
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
