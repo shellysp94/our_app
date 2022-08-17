@@ -236,12 +236,14 @@
 				"tags": ["Filters"],
 				"parameters": [
 					{
+						"required": true,
 						"name": "user id",
 						"schema": {
 							"$ref": "#/components/parameters/userid"
 						}
 					},
 					{
+						"required": true,
 						"name": "online only",
 						"schema": {
 							"$ref": "#/components/parameters/onlyOnline"
@@ -249,6 +251,7 @@
 					}
 				],
 				"requestBody": {
+					"required": true,
 					"content": {
 						"application/json": {
 							"schema": {
