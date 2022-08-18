@@ -70,7 +70,7 @@
 				"format": "integer"
 			},
 			"onlyOnline": {
-				"description": "Sign from the client.\n0 = return online and offline users\n1 = return only online users",
+				"description": "Sign from the client. 0 = return online and offline users, 1 = return only online users",
 				"type": "number",
 				"format": "boolean"
 			}
@@ -201,14 +201,69 @@
 				"additionalProperties": false
 			},
 			"Post_FiltersResponse": {
-				"properties": {
-					"name": "Suitable users' configuration",
-					"schema": {
-						"$ref": "#/components/responses/Get_UserConfigurationResponse"
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"schema": {
+							"$ref": "#/components/responses/Get_UserConfigurationResponse"
+						}
+					}
+				}
+			},
+			"Get_FiltersResponse": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"search_mode": {
+							"type": "string"
+						},
+						"hobbies_filter": {
+							"type": "string"
+						},
+						"gender_filter": {
+							"type": "string"
+						},
+						"relationship_filter": {
+							"type": "string"
+						},
+						"interested_in_filter": {
+							"type": "string"
+						},
+						"age_filter": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"format": "integer"
+							}
+						},
+						"radius_filter": {
+							"type": "number",
+							"format": "integer"
+						},
+						"friends_only_filter": {
+							"type": "number",
+							"format": "boolean"
+						}
 					}
 				},
-				"type": "array",
-				"additionalProperties": false
+				"properties": {
+					"name": "Users' Filters in DB"
+				}
+			},
+			"MsgToClient": {
+				"properties": {
+					"msg": {
+						"type": "string"
+					}
+				},
+				"required": ["msg"],
+				"type": "object"
 			},
 			"Error": {
 				"properties": {
@@ -221,17 +276,46 @@
 					}
 				},
 				"required": ["code", "msg"],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			}
 		},
 		"schemas": {},
 		"securitySchemes": {}
 	},
 	"paths": {
+		"/filters": {
+			"get": {
+				"operationId": "Filters-GeneralGet",
+				"description": "Get all filters in DB",
+				"tags": ["Filters"],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_FiltersResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/filters/{userid}/{onlyOnline}": {
 			"post": {
-				"operationId": "HandlePost",
+				"operationId": "Filters-Post",
 				"description": "Create or update user's filters",
 				"tags": ["Filters"],
 				"parameters": [
@@ -263,11 +347,10 @@
 				"responses": {
 					"200": {
 						"description": "Ok --> There are suitable users by the chosen filters to display.\nReturn an array of these users' configuration",
-						"name": "There are suitable users by the chosen filters to display.\nReturn an array of these users' configuration",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+									"$ref": "#/components/responses/Post_FiltersResponse"
 								}
 							}
 						}
@@ -277,7 +360,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"message": "There are no suitable users to display"
+									"$ref": "#/components/responses/MsgToClient"
 								}
 							}
 						}
@@ -289,76 +372,6 @@
 								"schema": {
 									"$ref": "#/components/responses/Error"
 								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/get-example": {
-			"get": {
-				"operationId": "HandleGet",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Error"
-								}
-							}
-						}
-					},
-					"500": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Error"
-								}
-							}
-						}
-					}
-				},
-				"tags": ["Basic"],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/post-example": {
-			"post": {
-				"operationId": "HandlePost",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Error"
-								}
-							}
-						}
-					},
-					"500": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Error"
-								}
-							}
-						}
-					}
-				},
-				"tags": ["Users"],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/responses/Error"
 							}
 						}
 					}
