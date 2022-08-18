@@ -119,8 +119,7 @@
 					"radius_filter",
 					"friends_only_filter"
 				],
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
 			}
 		},
 		"responses": {
@@ -197,8 +196,98 @@
 						"format": "boolean"
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
+				"type": "object"
+			},
+			"Get_ConnectionByTypeResponse": {
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"first_name": {
+						"type": "string"
+					},
+					"last_name": {
+						"type": "string"
+					},
+					"date_of_birth": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"city": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string"
+					},
+					"phone_number": {
+						"type": "string"
+					},
+					"registration_date": {
+						"type": "string",
+						"description": "Registration date",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"relationship_status": {
+						"type": "string"
+					},
+					"sexual_orientation": {
+						"type": "string"
+					},
+					"profession": {
+						"type": "string"
+					},
+					"pronoun": {
+						"type": "string"
+					},
+					"hobbies": {
+						"type": "string"
+					},
+					"age": {
+						"type": "number",
+						"format": "integer"
+					},
+					"image": {
+						"type": "string"
+					},
+					"search_mode": {
+						"type": "string"
+					},
+					"distance": {
+						"type": "number",
+						"format": "integer"
+					},
+					"online": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"mutualConnections": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"requestsUserSent": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"requestsUserReceived": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"notConnected": {
+						"type": "number",
+						"format": "boolean"
+					}
+				},
+				"type": "object"
 			},
 			"Post_FiltersResponse": {
 				"type": "array",
@@ -211,7 +300,7 @@
 					}
 				}
 			},
-			"Get_FiltersResponse": {
+			"Get_General_FiltersResponse": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -256,6 +345,17 @@
 					"name": "Users' Filters in DB"
 				}
 			},
+			"Get_FilteredUsers_FiltersResponse": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"schema": {
+							"$ref": "#/components/responses/Get_ConnectionByTypeResponse"
+						}
+					}
+				}
+			},
 			"MsgToClient": {
 				"properties": {
 					"msg": {
@@ -283,7 +383,7 @@
 		"securitySchemes": {}
 	},
 	"paths": {
-		"/filters": {
+		"filters/": {
 			"get": {
 				"operationId": "Filters-GeneralGet",
 				"description": "Get all filters in DB",
@@ -295,7 +395,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Get_FiltersResponse"
+									"$ref": "#/components/responses/Get_General_FiltersResponse"
 								}
 							}
 						}
@@ -313,7 +413,62 @@
 				}
 			}
 		},
-		"/filters/{userid}/{onlyOnline}": {
+		"filters/filteredUsers/{userid}/{onlyOnline}": {
+			"get": {
+				"operationId": "Filters-FilteredUsers",
+				"description": "Get users' configuration by user's chosen filters",
+				"tags": ["Filters"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "online only",
+						"schema": {
+							"$ref": "#/components/parameters/onlyOnline"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok --> There are suitable users by the chosen filters to display. Return an array of these users' configuration",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_FilteredUsers_FiltersResponse"
+								}
+							}
+						}
+					},
+					"201": {
+						"description": "Ok --> There aren't suitable users by the chosen filters to display",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"filters/{userid}/{onlyOnline}": {
 			"post": {
 				"operationId": "Filters-Post",
 				"description": "Create or update user's filters",
@@ -346,7 +501,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok --> There are suitable users by the chosen filters to display.\nReturn an array of these users' configuration",
+						"description": "Ok --> There are suitable users by the chosen filters to display. Return an array of these users' configuration",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -356,7 +511,45 @@
 						}
 					},
 					"201": {
-						"description": "Ok --> There aren't suitable users by the chosen filters to display.",
+						"description": "Ok --> There aren't suitable users by the chosen filters to display",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"filters/{userid}": {
+			"delete": {
+				"operationId": "Filters-Delete",
+				"description": "Delete user's filters from DB",
+				"tags": ["Filters"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
