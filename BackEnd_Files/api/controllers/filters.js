@@ -363,8 +363,10 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 getAllFilters = (req, res) => {
 	mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
 		try {
+			console.log("success", res.statusCode);
 			res.send(rows);
 		} catch (err) {
+			console.log(res.statusCode);
 			console.log(err.message);
 		}
 	});
@@ -434,10 +436,6 @@ getFriendsOfFriends = (req, res) => {
 										}
 									}
 								}
-								console.log("my friends user id:\n" + myFriendsUserid);
-								console.log(
-									"my friends of friends user id:\n" + myFriendsOfFriendsUserid
-								);
 
 								let myFriendsRequest = {
 									params: {
@@ -451,6 +449,7 @@ getFriendsOfFriends = (req, res) => {
 								};
 								getUserConfigurationInner(
 									myFriendsRequest,
+									userid,
 									(myFriendsConfigurations) => {
 										Object.assign(myFriends_myFriendsOfFriends, {
 											myFriends: myFriendsConfigurations,
@@ -458,6 +457,7 @@ getFriendsOfFriends = (req, res) => {
 
 										getUserConfigurationInner(
 											myFriendsOfFriendsRequest,
+											userid,
 											(myFriendsOfFriendsConfigurations) => {
 												Object.assign(myFriends_myFriendsOfFriends, {
 													myFriendsOfFriends: myFriendsOfFriendsConfigurations,
@@ -476,6 +476,7 @@ getFriendsOfFriends = (req, res) => {
 					msgToClient = {
 						msg: `user ${userid} does not have friends yet`,
 					};
+					res.statusCode = 201;
 					return res.send(msgToClient);
 				}
 			} catch (err) {
