@@ -10,7 +10,7 @@ const sendNotificationHelper = (req, res, titleToSend, bodyToSend) => {
 	mySqlConnection.query(
 		`SELECT b.*, a.device_token
                 from device_token a
-                join user_configuration b
+                right join user_configuration b
                 on a.user_id = b.user_id
                 where a.user_id = ? or b.user_id = ?`,
 		[req.params.useridB, req.params.useridA],

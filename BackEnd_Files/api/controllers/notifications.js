@@ -42,63 +42,20 @@ module.exports = {
 		);
 	},
 
-	getAllNotificationsSendingFrom: (req, res) => {
-		const userid = req.params.userid;
-		mySqlConnection.query(
-			"select * from Notifications where sent_from = ?",
-			[userid],
-			(err, rows) => {
-				try {
-					res.send(rows);
-				} catch (err) {
-					console.log(err.message);
-				}
-			}
-		);
-	},
-
-	createUserNotification: (req, res) => {
-		const userid = req.params.userid;
-		const content = req.body.content;
-		const sentFrom = req.params.sentFrom;
-		const currentDate = new Date();
-		mySqlConnection.query(
-			"INSERT INTO Notifications (user_id, content, sent_from, creation_date) values (?, ?, ?, ?)",
-			[userid, content, sentFrom, currentDate],
-			(err, result) => {
-				try {
-					msgToClient = {
-						msg: `Notification for user ${userid} added successfully`,
-					};
-					return res.send(msgToClient);
-				} catch (err) {
-					console.log(err.message);
-				}
-			}
-		);
-	},
-
 	updateSeenStatusNotification: (req, res) => {
-		let update = "seen";
-		const notificationID = req.params.notificationID;
-		const seen = req.params.seen;
-		mySqlConnection.query(
-			"UPDATE Notifications SET seen = ? WHERE notification_id = ?",
-			[seen, notificationID],
-			(err, result) => {
-				try {
-					if (seen === "0") {
-						update = "unseen";
-					}
-					msgToClient = {
-						msg: `Notification number ${notificationID} update to ${update} successfully`,
-					};
-					return res.send(msgToClient);
-				} catch (err) {
-					console.log(err.message);
-				}
+		notification_id = req.params.notification_id;
+		mySqlConnection.query(`UPDATE notifications SET seen = 1 WHERE notification_id = ${notification_id}`, (err,rows) =>
+		{
+			try
+			{
+				res.status(201).json({message: `notification id ${notification_id} seen`})
 			}
-		);
+			catch(err)
+			{
+				console.log(err.message);
+			}
+		})
+		
 	},
 
 	deleteUserSeenNotifications: (req, res) => {
@@ -118,4 +75,22 @@ module.exports = {
 			}
 		);
 	},
+
+	createUserNotification: (req,cb) =>
+	{
+		sqlQuery = `insert into notifications (notification_id, user_id, content, title, creation_date) values (${req.body.notification_id},${req.body.user_id},'${req.body.content}','${req.body.title}',CURRENT_TIMESTAMP())`;
+
+		mySqlConnection.query(sqlQuery, (err,rows) =>
+		{
+			try
+			{
+				cb(`${titleToSend} sent`);
+			}
+
+			catch(err)
+			{
+				console.log(err);
+			}
+		});
+	}
 };
