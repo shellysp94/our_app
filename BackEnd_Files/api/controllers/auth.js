@@ -54,21 +54,54 @@ login = async (req, res) => {
 								(err, results) => {
 									try 
 									{
-										//insert the token to device_token table
-										mySqlConnection.query(
-											"insert into device_token (user_id, device_token) values (?,?)",
-											[user_id_from_query, req.body.device_token],
-											(err, results) => {
-												try 
+										mySqlConnection.query(`select * 
+										from users a
+										right join users_db.device_token b
+										on a.user_id = b.user_id
+										where a.email = "${email}"`, (err,rows) =>
+										{
+											try
+											{
+												if(rows.length > 0)
 												{
-													return res.send(userCred);
-												} 
-												catch(err) 
-												{
-													console.log(err.message);
+													mySqlConnection.query(`UPDATE users_db.device_token SET device_token = "${req.body.device_token}" WHERE user_id=${rows[0].user_id}`, (err,rows) =>
+													{
+														try
+														{
+															return res.send(userCred);
+														}
+														catch(err)
+														{
+															console.log(err.message);
+														}
+													})
 												}
+												else
+												{
+												//insert the token to device_token table
+												mySqlConnection.query(
+													"insert into device_token (user_id, device_token) values (?,?)",
+													[user_id_from_query, req.body.device_token],
+													(err, results) => {
+														try 
+														{
+															return res.send(userCred);
+														} 
+														catch(err) 
+														{
+															console.log(err.message);
+														}
+													}
+												);
+												}
+
 											}
-										);
+											catch(err)
+											{
+												console.log(err.message);
+											}
+										});
+										
 									} 
 									catch(err) 
 									{
