@@ -1,4 +1,6 @@
-const {sendNotificationHelper} = require("../../utils/notifications/notifications");
+const {
+	sendNotificationHelper,
+} = require("../../utils/notifications/notifications");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const dbConfig = require("../../config/db_config");
 const onlineUsers = new onlineUsersArray().getInstance();
@@ -13,10 +15,7 @@ getChatMessages = (req, res) => {
 		(err, rows) => {
 			try {
 				if (rows === undefined || rows.length === 0) {
-					msgToClient = {
-						msg: `Chat room number ${chatID} is empty.`,
-					};
-					return res.send(msgToClient);
+					return res.send(rows);
 				} else {
 					res.send(rows);
 				}
@@ -36,53 +35,49 @@ createChatMessage = (req, res) => {
 	const currentChatRoom = onlineUsers
 		.getOnlineUser(senderOnlineUser.user_id)
 		.getAUserChatRoom(receiver)[0];
-	const chatID = currentChatRoom.chat_id;
-	console.log("honey im here! (create message)");
 
-	mySqlConnection.query(
-		`insert into messages (chat_id, creation_date, sender_user_id, receiver_user_id, content) values (${chatID}, current_timestamp(), ${sender}, ${receiver}, "${content}")`,
-		(err, rows) => {
-			try {
-				const titleToSend = "You got a new message";
-				const bodyToSend = "New message from ";
-				sendNotificationHelper(req, res, titleToSend, bodyToSend);
+	if (senderOnlineUser === undefined || currentChatRoom === undefined) {
+		res.statusCode = 404;
+		res.send("ERROR! Something went wrong! **Post Message Request**");
+	} else {
+		const chatID = currentChatRoom.chat_id;
 
-				mySqlConnection.query(
-					`select * from messages where chat_id = ${chatID} order by creation_date desc limit 1`,
-					(err, rows) => {
-						if (rows === undefined || rows.length === 0) {
-							msgToClient = {
-								msg: `Something went wrong! Message don't added and don't sent.`,
-							};
-							return res.send(msgToClient);
-						} else {
-							console.log("The row from DB:\n" + JSON.stringify(rows[0]));
-							// message from sender to receiver in their chat room insert to the database
-							// need to send the message to these users (sender and receiver)
+		mySqlConnection.query(
+			`insert into messages (chat_id, creation_date, sender_user_id, receiver_user_id, content) values (${chatID}, current_timestamp(), ${sender}, ${receiver}, "${content}")`,
+			(err, rows) => {
+				try {
+					const titleToSend = "You got a new message";
+					const bodyToSend = "New message from ";
+					sendNotificationHelper(req, res, titleToSend, bodyToSend);
 
-							if (receiverOnlineUser !== undefined) {
-								// sender and receiver are online - should send each of them the message in their chat room
-								senderOnlineUser.websocket.send(JSON.stringify(rows[0]));
-								receiverOnlineUser.websocket.send(JSON.stringify(rows[0]));
-							} else {
-								// message from sender to receiver insert to the database and save in the relevant chat room
-								// but the receiver is offline now, so should send notification to the receiver that he has a new message!
-								senderOnlineUser.websocket.send(JSON.stringify(rows[0]));
-								console.log(
-									`user number ${sender} sent a message to user number ${receiver}.\nthe message is: ${JSON.stringify(
-										rows[0]
-									)}`
-								);
+					mySqlConnection.query(
+						`select * from messages where chat_id = ${chatID} order by creation_date desc limit 1`,
+						(err, rows) => {
+							try {
+								if (rows !== undefined && rows.length > 0) {
+									if (receiverOnlineUser !== undefined) {
+										// Sender and Receiver are online. Both got the message on WS
+										senderOnlineUser.websocket.send(JSON.stringify(rows[0]));
+										receiverOnlineUser.websocket.send(JSON.stringify(rows[0]));
+									} else {
+										// Only sender is online and got the message on WS
+										senderOnlineUser.websocket.send(JSON.stringify(rows[0]));
+									}
+									res.send(rows);
+								} else {
+									console.log(err.message);
+								}
+							} catch (err) {
+								console.log(err.message);
 							}
 						}
-						res.send(rows);
-					}
-				);
-			} catch (err) {
-				console.log(err.message);
+					);
+				} catch (err) {
+					console.log(err.message);
+				}
 			}
-		}
-	);
+		);
+	}
 };
 
 deleteChatMessages = (req, res) => {
@@ -90,10 +85,14 @@ deleteChatMessages = (req, res) => {
 	mySqlConnection.query(
 		`delete from messages where chat_id = ${chatID}`,
 		(err, rows) => {
-			msgToClient = {
-				msg: `Chat room number ${chatID} is empty`,
-			};
-			return res.send(msgToClient);
+			try {
+				msgToClient = {
+					msg: `Chat room number ${chatID} is empty`,
+				};
+				return res.send(msgToClient);
+			} catch (err) {
+				console.log(err.message);
+			}
 		}
 	);
 };
