@@ -96,10 +96,11 @@ getSpecificUserChats = (req, res) => {
 						}
 					);
 				} else {
-					msgToClient = {
-						msg: `User number ${userid} has no chats yet`,
-					};
-					return res.send(msgToClient);
+					// msgToClient = {
+					// 	msg: `User number ${userid} has no chats yet`,
+					// };
+					// return res.send(msgToClient);
+					return res.send(rows);
 				}
 			} catch (err) {
 				console.log(err.message);
