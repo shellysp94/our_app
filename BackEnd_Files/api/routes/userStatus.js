@@ -1,14 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-	getUserStatus,
-	createOrUpdateUserStatus,
-	deleteUserStatus,
-} = require("../controllers/userStatus");
+const {getUserStatus, updateUserStatus} = require("../controllers/userStatus");
 
 router.get("/:userid", getUserStatus);
-router.post("/:userid", createOrUpdateUserStatus);
-router.put("/:userid", deleteUserStatus);
+router.post("/:userid", updateUserStatus);
 
 module.exports = router;

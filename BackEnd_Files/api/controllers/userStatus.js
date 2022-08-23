@@ -1,21 +1,14 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 
-// CREATE TABLE user_status (
-// 	user_id int not null,
-// 	last_update datetime not null,
-// 	content varchar(50) default null,
-// 	foreign key (user_id) references Users (user_id)
-// ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-
 getUserStatus = (req, res) => {
 	const userid = req.params.userid;
 
 	mySqlConnection.query(
-		`select * from user_configuration UC right join user_status US using(user_id) where UC.user_id = ${userid}`,
+		`select * from user_status where user_id = ${userid}`,
 		(err, rows) => {
 			try {
-				return res.send(rows);
+				res.send(rows);
 			} catch (err) {
 				console.log(err.message);
 			}
@@ -23,17 +16,17 @@ getUserStatus = (req, res) => {
 	);
 };
 
-createOrUpdateUserStatus = (req, res) => {
+updateUserStatus = (req, res) => {
 	const userid = req.params.userid;
-	const content = req.body.content;
+	const status = req.body.status;
 
 	mySqlConnection.query(
-		`insert into user_status (user_id, last_update, content) values (${userid}, current_timestamp(), "${content}") 
-	on duplicate key update user_id = ${userid}, last_update = current_timestamp(), content = "${content}"`,
+		`insert into user_status (user_id, status_last_update, user_status) values (${userid}, current_timestamp(), "${status}") 
+		on duplicate key update user_id = ${userid}, status_last_update = current_timestamp(), user_status = "${status}"`,
 		(err, rows) => {
 			try {
-				///////////////////// check what's happened when I insert the status????
-				if (rows !== undefined && rows.length > 0) {
+				if (rows.affectedRows >= 1) {
+					getUserStatus(req, res);
 				} else {
 					res.statusCode = 404;
 					res.send(
@@ -47,24 +40,7 @@ createOrUpdateUserStatus = (req, res) => {
 	);
 };
 
-deleteUserStatus = (req, res) => {
-	const userid = req.params.userid;
-
-	mySqlConnection.query(
-		`update (last_update, content) on user_status where user_id = ${userid} values 
-	(last_update = current_timestamp(), content = "")`,
-		(err, rows) => {
-			try {
-				//Same as post ??? Or just return a message that the status is now an empty string ???
-			} catch (err) {
-				console.log(err);
-			}
-		}
-	);
-};
-
 module.exports = {
 	getUserStatus,
-	createOrUpdateUserStatus,
-	deleteUserStatus,
+	updateUserStatus,
 };
