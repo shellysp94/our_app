@@ -363,10 +363,8 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 getAllFilters = (req, res) => {
 	mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
 		try {
-			console.log("success", res.statusCode);
 			res.send(rows);
 		} catch (err) {
-			console.log(res.statusCode);
 			console.log(err.message);
 		}
 	});
@@ -473,11 +471,7 @@ getFriendsOfFriends = (req, res) => {
 						});
 					});
 				} else {
-					msgToClient = {
-						msg: `user ${userid} does not have friends yet`,
-					};
-					res.statusCode = 201;
-					return res.send(msgToClient);
+					return res.send(rows);
 				}
 			} catch (err) {
 				console.log(err.message);
@@ -553,10 +547,7 @@ getUserFilteredUsers = (req, res) => {
 								});
 							});
 						} else {
-							msgToClient = {
-								msg: "There are no suitable users to display",
-							};
-							return res.send(msgToClient);
+							return res.send(rows);
 						}
 					} catch (err) {
 						console.log(err.message);
@@ -597,14 +588,7 @@ createUserFilter = (req, res) => {
       relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', radius_filter = ${radiusFilter}, friends_only_filter = ${friendsOnly}`,
 		(err, rows) => {
 			try {
-				if (rows === undefined) {
-					msgToClient = {
-						msg: `Something went wrong. Filter wasn't add to database or wasn't update in the database`,
-					};
-					return res.send(msgToClient);
-				} else {
-					getUserFilteredUsers(req, res);
-				}
+				getUserFilteredUsers(req, res);
 			} catch (err) {
 				console.log(err.message);
 			}
