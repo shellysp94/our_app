@@ -125,7 +125,10 @@ getUsersChat = (req, res) => {
 							messagesOffset: String(messagesOffset),
 						},
 					};
-					getChatMessages(desiredChatRoom, res);
+
+					getChatMessages(desiredChatRoom, (response) => {
+						res.send(response);
+					});
 				}
 			} catch (err) {
 				console.log(err.message);
@@ -239,7 +242,10 @@ createUsersChat = (req, res) => {
 										messagesOffset: String(0),
 									},
 								};
-								getChatMessages(desiredChatRoom, res);
+
+								getChatMessages(desiredChatRoom, (response) => {
+									res.send(response);
+								});
 							} catch (err) {
 								console.log(err.message);
 							}
@@ -274,7 +280,10 @@ deleteUsersChat = (req, res) => {
 							chatID: String(chatID),
 						},
 					};
-					deleteChatMessages(desiredChatRoom, res);
+
+					deleteChatMessages(desiredChatRoom, (response) => {
+						res.send(response);
+					});
 				}
 			} catch (err) {
 				console.log(err.message);

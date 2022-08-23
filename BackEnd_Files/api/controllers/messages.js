@@ -6,7 +6,7 @@ const dbConfig = require("../../config/db_config");
 const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
 
-getChatMessages = (req, res) => {
+getChatMessages = (req, cb) => {
 	const chatID = req.params.chatID;
 	const messagesOffset = req.params.messagesOffset;
 
@@ -14,7 +14,7 @@ getChatMessages = (req, res) => {
 		`select * from (select * from messages where chat_id = ${chatID} limit 50 offset ${messagesOffset}) as T1 order by creation_date asc`,
 		(err, rows) => {
 			try {
-				return res.send(rows);
+				return cb(rows);
 			} catch (err) {
 				console.log(err.message);
 			}
@@ -76,8 +76,9 @@ createChatMessage = (req, res) => {
 	}
 };
 
-deleteChatMessages = (req, res) => {
+deleteChatMessages = (req, cb) => {
 	const chatID = req.params.chatID;
+
 	mySqlConnection.query(
 		`delete from messages where chat_id = ${chatID}`,
 		(err, rows) => {
@@ -85,7 +86,7 @@ deleteChatMessages = (req, res) => {
 				msgToClient = {
 					msg: `Chat room number ${chatID} is empty`,
 				};
-				return res.send(msgToClient);
+				return cb(msgToClient);
 			} catch (err) {
 				console.log(err.message);
 			}
