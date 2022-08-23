@@ -96,10 +96,6 @@ getSpecificUserChats = (req, res) => {
 						}
 					);
 				} else {
-					// msgToClient = {
-					// 	msg: `User number ${userid} has no chats yet`,
-					// };
-					// return res.send(msgToClient);
 					return res.send(rows);
 				}
 			} catch (err) {
@@ -120,10 +116,7 @@ getUsersChat = (req, res) => {
 		(err, rows) => {
 			try {
 				if (rows.length === 0) {
-					msgToClient = {
-						msg: `There is no chat between these two users`,
-					};
-					return res.send(msgToClient);
+					return res.send(rows);
 				} else {
 					const chatID = rows[0].chat_id;
 					let desiredChatRoom = {
