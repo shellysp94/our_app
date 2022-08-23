@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const {
-	getChatMessages,
-	createChatMessage,
-	deleteChatMessages,
-} = require("../controllers/messages");
+	getUserStatus,
+	createOrUpdateUserStatus,
+	deleteUserStatus,
+} = require("../controllers/userStatus");
 
-router.get("/:chatID/:messagesOffset", getChatMessages); //TODO - convert to cb
-router.post("/:useridA/:useridB", createChatMessage);
-router.delete("/:chatID", deleteChatMessages); //TODO - convert to cb
+router.get("/:userid", getUserStatus);
+router.post("/:userid", createOrUpdateUserStatus);
+router.put("/:userid", deleteUserStatus);
 
 module.exports = router;

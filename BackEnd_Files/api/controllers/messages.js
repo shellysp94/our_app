@@ -14,11 +14,7 @@ getChatMessages = (req, res) => {
 		`select * from (select * from messages where chat_id = ${chatID} limit 50 offset ${messagesOffset}) as T1 order by creation_date asc`,
 		(err, rows) => {
 			try {
-				if (rows === undefined || rows.length === 0) {
-					return res.send(rows);
-				} else {
-					res.send(rows);
-				}
+				return res.send(rows);
 			} catch (err) {
 				console.log(err.message);
 			}
