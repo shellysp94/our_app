@@ -8,7 +8,7 @@ getUserStatus = (req, res) => {
 		`select * from user_status where user_id = ${userid}`,
 		(err, rows) => {
 			try {
-				res.send(rows);
+				res.send(rows[0]);
 			} catch (err) {
 				console.log(err.message);
 			}

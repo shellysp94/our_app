@@ -120,6 +120,15 @@
 					"friends_only_filter"
 				],
 				"type": "object"
+			},
+			"userStatus_Request_Body": {
+				"properties": {
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": ["status"],
+				"type": "object"
 			}
 		},
 		"responses": {
@@ -356,6 +365,35 @@
 					}
 				}
 			},
+			"Get_User_Status_Response": {
+				"type": "object",
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"status_last_update": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"user_status": {
+						"type": "string"
+					}
+				}
+			},
+			"Post_User_Status_Response": {
+				"properties": {
+					"schema": {
+						"$ref": "#/components/responses/Get_User_Status_Response"
+					}
+				},
+				"type": "object"
+			},
 			"MsgToClient": {
 				"properties": {
 					"msg": {
@@ -369,7 +407,7 @@
 				"properties": {
 					"code": {
 						"type": "number",
-						"format": "double"
+						"example": 404
 					},
 					"msg": {
 						"type": "string"
@@ -391,7 +429,7 @@
 				"parameters": [],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -436,21 +474,11 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok --> There are suitable users by the chosen filters to display. Return an array of these users' configuration",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/responses/Get_FilteredUsers_FiltersResponse"
-								}
-							}
-						}
-					},
-					"201": {
-						"description": "Ok --> There aren't suitable users by the chosen filters to display",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/MsgToClient"
 								}
 							}
 						}
@@ -501,7 +529,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok --> There are suitable users by the chosen filters to display. Return an array of these users' configuration",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -510,8 +538,36 @@
 							}
 						}
 					},
-					"201": {
-						"description": "Ok --> There aren't suitable users by the chosen filters to display",
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"filters/{userid}": {
+			"delete": {
+				"operationId": "Filters-Delete",
+				"description": "Delete a user's filters from DB",
+				"tags": ["Filters"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -533,11 +589,11 @@
 				}
 			}
 		},
-		"filters/{userid}": {
-			"delete": {
-				"operationId": "Filters-Delete",
-				"description": "Delete user's filters from DB",
-				"tags": ["Filters"],
+		"userStatus/{userid}": {
+			"get": {
+				"operationId": "UserStatus-Get",
+				"description": "Get a user's status",
+				"tags": ["User's Status"],
 				"parameters": [
 					{
 						"required": true,
@@ -553,7 +609,53 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/MsgToClient"
+									"$ref": "#/components/responses/Get_User_Status_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"operationId": "UserStatus-Post",
+				"description": "Create or update user's status. For delete user's status use this request and send status = \"\"",
+				"tags": ["User's Status"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/requestBodies/userStatus_Request_Body"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Post_User_Status_Response"
 								}
 							}
 						}
