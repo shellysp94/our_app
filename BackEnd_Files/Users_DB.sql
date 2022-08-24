@@ -111,6 +111,7 @@ CREATE TABLE Filters (
  CREATE TABLE Device_token (
   user_id int not null,
   device_token varchar(500),
+  primary key (user_id),
   foreign key (user_id) references Users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
