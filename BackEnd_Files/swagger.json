@@ -75,54 +75,14 @@
 			"notification_id":{
 				"description": "A uniq identify for a notification",
 				"type": "string"
+			},
+			"offset": {
+				"description": "Offset that determines from which messages will be sent 50 messages each time",
+				"type": "number",
+				"format": "integer"
 			}
 		},
 		"requestBodies": {
-			"filters_Request_Body": {
-				"properties": {
-					"search_mode_filter": {
-						"type": "string"
-					},
-					"hobbies_filter": {
-						"type": "string"
-					},
-					"gender_filter": {
-						"type": "string"
-					},
-					"relationship_filter": {
-						"type": "string"
-					},
-					"interested_in_filter": {
-						"type": "string"
-					},
-					"age_filter": {
-						"type": "array",
-						"items": {
-							"type": "number",
-							"format": "integer"
-						}
-					},
-					"radius_filter": {
-						"type": "number",
-						"format": "integer"
-					},
-					"friends_only_filter": {
-						"type": "number",
-						"format": "boolean"
-					}
-				},
-				"required": [
-					"search_mode_filter",
-					"hobbies_filter",
-					"gender_filter",
-					"relationship_filter",
-					"interested_in_filter",
-					"age_filter",
-					"radius_filter",
-					"friends_only_filter"
-				],
-				"type": "object"
-			},
 			"auth_login_body":{
 				"properties": {
 					"email": {
@@ -359,10 +319,74 @@
 					"main_image"
 				],
 				"type": "object"
+			},
+			"filters_Request_Body": {
+				"properties": {
+					"search_mode_filter": {
+						"type": "string"
+					},
+					"hobbies_filter": {
+						"type": "string"
+					},
+					"gender_filter": {
+						"type": "string"
+					},
+					"relationship_filter": {
+						"type": "string"
+					},
+					"interested_in_filter": {
+						"type": "string"
+					},
+					"age_filter": {
+						"type": "array",
+						"items": {
+							"type": "number",
+							"format": "integer"
+						}
+					},
+					"radius_filter": {
+						"type": "number",
+						"format": "integer"
+					},
+					"friends_only_filter": {
+						"type": "number",
+						"format": "boolean"
+					}
+				},
+				"required": [
+					"search_mode_filter",
+					"hobbies_filter",
+					"gender_filter",
+					"relationship_filter",
+					"interested_in_filter",
+					"age_filter",
+					"radius_filter",
+					"friends_only_filter"
+				],
+				"type": "object"
+			},
+			"userStatus_Request_Body": {
+				"properties": {
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": ["status"],
+				"type": "object"
+			},
+			"messages_Request_Body": {
+				"properties": {
+					"content": {
+						"type": "string"
+					}
+				},
+				"required": ["content"],
+				"type": "object"
 			}
+
 		},
 		"responses": {
-			"Get_UserConfigurationResponse": {
+			"Get_UserConfiguration_Response": {
 				"properties": {
 					"user_id": {
 						"type": "number",
@@ -426,6 +450,9 @@
 					"search_mode": {
 						"type": "string"
 					},
+					"user_status":{
+						"type": "string"
+					},
 					"distance": {
 						"type": "number",
 						"format": "integer"
@@ -437,7 +464,7 @@
 				},
 				"type": "object"
 			},
-			"Get_ConnectionByTypeResponse": {
+			"Get_ConnectionByType_Response": {
 				"properties": {
 					"user_id": {
 						"type": "number",
@@ -528,7 +555,7 @@
 				},
 				"type": "object"
 			},
-			"Post_FiltersResponse": {
+			"Post_Filters_Response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -539,7 +566,7 @@
 					}
 				}
 			},
-			"Get_General_FiltersResponse": {
+			"Get_General_Filters_Response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -579,12 +606,9 @@
 							"format": "boolean"
 						}
 					}
-				},
-				"properties": {
-					"name": "Users' Filters in DB"
 				}
 			},
-			"Get_FilteredUsers_FiltersResponse": {
+			"Get_FilteredUsers_Filters_Response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -594,28 +618,6 @@
 						}
 					}
 				}
-			},
-			"MsgToClient": {
-				"properties": {
-					"msg": {
-						"type": "string"
-					}
-				},
-				"required": ["msg"],
-				"type": "object"
-			},
-			"Error": {
-				"properties": {
-					"code": {
-						"type": "number",
-						"format": "double"
-					},
-					"msg": {
-						"type": "string"
-					}
-				},
-				"required": ["code", "msg"],
-				"type": "object"
 			},
 			"login_response": {
 				"properties": {
@@ -735,200 +737,299 @@
 				"properties": {
 					"name": "user pictures in DB"
 				}
+			},
+			"Get_User_Status_Response": {
+				"type": "object",
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"status_last_update": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"user_status": {
+						"type": "string"
+					}
+				}
+			},
+			"Post_User_Status_Response": {
+				"properties": {
+					"schema": {
+						"$ref": "#/components/responses/Get_User_Status_Response"
+					}
+				},
+				"type": "object"
+			},
+			"Post_Messages_Response": {
+				"type": "object",
+				"properties": {
+					"chat_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"creation_date": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"sender_user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"receiver_user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"content": {
+						"type": "string"
+					}
+				}
+			},
+			"Get_A_Chat_Room_Details": {
+				"type": "object",
+				"properties": {
+					"chat_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"creation_date": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"last_login": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"user_A_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"user_B_id": {
+						"type": "number",
+						"format": "integer"
+					}
+				}
+			},
+			"Get_A_User_Chat_Rooms": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"first_name": {
+							"type": "string"
+						},
+						"last_name": {
+							"type": "string"
+						},
+						"date_of_birth": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"city": {
+							"type": "string"
+						},
+						"gender": {
+							"type": "string"
+						},
+						"phone_number": {
+							"type": "string"
+						},
+						"registration_date": {
+							"type": "string",
+							"description": "Registration date",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"relationship_status": {
+							"type": "string"
+						},
+						"sexual_orientation": {
+							"type": "string"
+						},
+						"profession": {
+							"type": "string"
+						},
+						"pronoun": {
+							"type": "string"
+						},
+						"hobbies": {
+							"type": "string"
+						},
+						"age": {
+							"type": "number",
+							"format": "integer"
+						},
+						"image": {
+							"type": "string"
+						},
+						"search_mode": {
+							"type": "string"
+						},
+						"distance": {
+							"type": "number",
+							"format": "integer"
+						},
+						"online": {
+							"type": "number",
+							"format": "boolean"
+						},
+						"chat_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"creation_date": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"sender_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"receiver_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"content": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"Get_Users_Chat_Messages": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"chat_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"creation_date": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"sender_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"receiver_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"content": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"Get_General_Chats_Response": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"schema": {
+							"$ref": "#/components/responses/Get_A_Chat_Room_Details"
+						}
+					}
+				}
+			},
+			"Create_Chat_Response": {
+				"type": "object",
+				"properties": {
+					"Users are friends and don't have chat yet": {
+						"$ref": "#/components/responses/MsgToClient"
+					},
+					"Users are friends and already have chat WITH messages in it": {
+						"$ref": "#/components/responses/Get_Users_Chat_Messages"
+					},
+					"Users are friends and already have chat WITHOUT messages in it": {
+						"$ref": "#/components/responses/MsgToClient"
+					},
+					"Users aren't friends yet": {
+						"$ref": "#/components/responses/MsgToClient"
+					}
+				}
+			},
+			"MsgToClient": {
+				"properties": {
+					"msg": {
+						"type": "string"
+					}
+				},
+				"required": ["msg"],
+				"type": "object"
+			},
+			"Error": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"example": 404
+					},
+					"msg": {
+						"type": "string"
+					}
+				},
+				"required": ["code", "msg"],
+				"type": "object"
 			}
 		},
 		"schemas": {},
-		"securitySchemes": {}
+		"securitySchemes": {
+			"jwt": {
+				"type": "http",
+				"scheme": "bearer",
+				"in": "header",
+				"bearerFormat": "JWT"
+			  }
+		},
+		"security": [{
+			"jwt": []
+		  }]
 	},
 	"paths": {
-		"filters/": {
-			"get": {
-				"operationId": "Filters-GeneralGet",
-				"description": "Get all filters in DB",
-				"tags": ["Filters"],
-				"parameters": [],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Get_General_FiltersResponse"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Error"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"filters/filteredUsers/{userid}/{onlyOnline}": {
-			"get": {
-				"operationId": "Filters-FilteredUsers",
-				"description": "Get users' configuration by user's chosen filters",
-				"tags": ["Filters"],
-				"parameters": [
-					{
-						"required": true,
-						"name": "user id",
-						"schema": {
-							"$ref": "#/components/parameters/userid"
-						}
-					},
-					{
-						"required": true,
-						"name": "online only",
-						"schema": {
-							"$ref": "#/components/parameters/onlyOnline"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Ok --> There are suitable users by the chosen filters to display. Return an array of these users' configuration",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Get_FilteredUsers_FiltersResponse"
-								}
-							}
-						}
-					},
-					"201": {
-						"description": "Ok --> There aren't suitable users by the chosen filters to display",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/MsgToClient"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Error"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"filters/{userid}/{onlyOnline}": {
-			"post": {
-				"operationId": "Filters-Post",
-				"description": "Create or update user's filters",
-				"tags": ["Filters"],
-				"parameters": [
-					{
-						"required": true,
-						"name": "user id",
-						"schema": {
-							"$ref": "#/components/parameters/userid"
-						}
-					},
-					{
-						"required": true,
-						"name": "online only",
-						"schema": {
-							"$ref": "#/components/parameters/onlyOnline"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/requestBodies/filters_Request_Body"
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "Ok --> There are suitable users by the chosen filters to display. Return an array of these users' configuration",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Post_FiltersResponse"
-								}
-							}
-						}
-					},
-					"201": {
-						"description": "Ok --> There aren't suitable users by the chosen filters to display",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/MsgToClient"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Error"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"filters/{userid}": {
-			"delete": {
-				"operationId": "Filters-Delete",
-				"description": "Delete user's filters from DB",
-				"tags": ["Filters"],
-				"parameters": [
-					{
-						"required": true,
-						"name": "user id",
-						"schema": {
-							"$ref": "#/components/parameters/userid"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/MsgToClient"
-								}
-							}
-						}
-					},
-					"404": {
-						"description": "Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/responses/Error"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
 		"auth/login":{
 			"post": {
 				"operationId": "login-Post",
@@ -946,7 +1047,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok --> Successful login. Return user id, email and jwt token",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -985,7 +1086,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1005,7 +1106,7 @@
 				"parameters": [],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1032,6 +1133,10 @@
 				"operationId": "Users-specificUser",
 				"description": "Get specific users details",
 				"tags": ["Users"],
+				"security": 
+				{
+					"jwt": []
+				},
 				"parameters": [
 					{
 						"required": true,
@@ -1043,7 +1148,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1079,7 +1184,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1125,7 +1230,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1136,10 +1241,6 @@
 					}
 				}
 			}
-				
-			
-		
-
 		},
 		"userLocation/{userid}":{
 			"get": {
@@ -1157,7 +1258,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1193,7 +1294,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1259,7 +1360,7 @@
 				"parameters": [],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1297,7 +1398,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1333,7 +1434,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1371,7 +1472,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1409,7 +1510,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1438,11 +1539,11 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+									"$ref": "#/components/responses/Get_UserConfiguration_Response"
 								}
 							}
 						}
@@ -1474,7 +1575,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1520,7 +1621,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1556,7 +1657,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1591,11 +1692,11 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+									"$ref": "#/components/responses/Get_UserConfiguration_Response"
 								}
 							}
 						}
@@ -1629,11 +1730,11 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+									"$ref": "#/components/responses/Get_UserConfiguration_Response"
 								}
 							}
 						}
@@ -1667,11 +1768,11 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+									"$ref": "#/components/responses/Get_UserConfiguration_Response"
 								}
 							}
 						}
@@ -1712,7 +1813,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1747,7 +1848,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1782,7 +1883,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1810,7 +1911,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1856,7 +1957,7 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1892,7 +1993,522 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"filters/": {
+			"get": {
+				"operationId": "Filters-GeneralGet",
+				"description": "Get all filters in DB",
+				"tags": ["Filters"],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_General_Filters_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"filters/filteredUsers/{userid}/{onlyOnline}": {
+			"get": {
+				"operationId": "Filters-FilteredUsers",
+				"description": "Get users' configuration by user's chosen filters",
+				"tags": ["Filters"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "online only",
+						"schema": {
+							"$ref": "#/components/parameters/onlyOnline"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_FilteredUsers_Filters_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"filters/{userid}/{onlyOnline}": {
+			"post": {
+				"operationId": "Filters-Post",
+				"description": "Create or update user's filters",
+				"tags": ["Filters"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "online only",
+						"schema": {
+							"$ref": "#/components/parameters/onlyOnline"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/requestBodies/filters_Request_Body"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Post_Filters_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"filters/{userid}": {
+			"delete": {
+				"operationId": "Filters-Delete",
+				"description": "Delete a user's filters from DB",
+				"tags": ["Filters"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"userStatus/{userid}": {
+			"get": {
+				"operationId": "UserStatus-Get",
+				"description": "Get a user's status",
+				"tags": ["User's Status"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_User_Status_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"operationId": "UserStatus-Post",
+				"description": "Create or update user's status. For delete user's status use this request and send status = \"\"",
+				"tags": ["User's Status"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/requestBodies/userStatus_Request_Body"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Post_User_Status_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"messages/{useridA}/{useridB}": {
+			"post": {
+				"operationId": "Messages-Post",
+				"description": "Send a message on two users' chat room. Sender (user id A) HAS to be connected to WS",
+				"tags": ["Messages"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "sender (useridA)",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "receiver (useridB)",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/requestBodies/messages_Request_Body"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Post_Messages_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"chats/": {
+			"get": {
+				"operationId": "Chats-GeneralGet",
+				"description": "Get all chats in DB",
+				"tags": ["Chats"],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_General_Chats_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"chats/{userid}": {
+			"get": {
+				"operationId": "Chats-Get-User-ChatRooms",
+				"description": "Get all user's chat rooms",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_A_User_Chat_Rooms"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"chats/{useridA}/{useridB}/{offset}": {
+			"get": {
+				"operationId": "Chats-Get-Users-Chat-Messages",
+				"description": "Get two users' 50 chat's messages from offset",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "offset",
+						"schema": {
+							"$ref": "#/components/parameters/offset"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_Users_Chat_Messages"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"chats/{useridA}/{useridB}": {
+			"post": {
+				"operationId": "Chats-Delete",
+				"description": "Delete all chat's messages",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Create_Chat_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Chats-Delete",
+				"description": "Delete all chat's messages",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
