@@ -4,8 +4,25 @@ const dbConfig = require("../../config/db_config");
 const {createUserConfiguration} = require("./userConfiguration");
 const publicToken = require("../../config/auth_config");
 const bcrypt = require("bcrypt");
+const { response } = require("express");
 const mySqlConnection = dbConfig;
 
+function updateDevicetoken (user_id_from_query,device_token,userCred,cb)
+{
+	mySqlConnection.query(`insert into device_token (user_id, device_token) values (${user_id_from_query},"${device_token}")
+	ON duplicate key update user_id=${user_id_from_query},device_token="${device_token}"`,
+	(err,rows) =>
+	{
+		try
+		{
+			return cb(userCred);
+		}
+		catch(err)
+		{
+			console.log(err.message);
+		}
+	})
+}
 
 login = async (req, res) => {
 	// Read username and password from request body
@@ -62,39 +79,10 @@ login = async (req, res) => {
 										{
 											try
 											{
-												if(rows.length > 0)
+												updateDevicetoken(user_id_from_query,req.body.device_token,userCred, (response)=>
 												{
-													mySqlConnection.query(`UPDATE users_db.device_token SET device_token = "${req.body.device_token}" WHERE user_id=${rows[0].user_id}`, (err,rows) =>
-													{
-														try
-														{
-															return res.send(userCred);
-														}
-														catch(err)
-														{
-															console.log(err.message);
-														}
-													})
-												}
-												else
-												{
-												//insert the token to device_token table
-												mySqlConnection.query(
-													"insert into device_token (user_id, device_token) values (?,?)",
-													[user_id_from_query, req.body.device_token],
-													(err, results) => {
-														try 
-														{
-															return res.send(userCred);
-														} 
-														catch(err) 
-														{
-															console.log(err.message);
-														}
-													}
-												);
-												}
-
+													res.send(response);
+												})
 											}
 											catch(err)
 											{
