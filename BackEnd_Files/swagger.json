@@ -66,6 +66,20 @@
 				"description": "Sign from the client. 0 = return online and offline users, 1 = return only online users",
 				"type": "number",
 				"format": "boolean"
+			},
+			"radius": {
+				"description": "A radius parameter for display relevant users in the area",
+				"type": "number",
+				"format": "integer"
+			},
+			"notification_id": {
+				"description": "A uniq identify for a notification",
+				"type": "string"
+			},
+			"offset": {
+				"description": "Offset that determines from which messages will be sent 50 messages each time",
+				"type": "number",
+				"format": "integer"
 			}
 		},
 		"requestBodies": {
@@ -585,14 +599,377 @@
 					}
 				}
 			},
-			"Get_FilteredUsers_FiltersResponse": {
+			"login_response": {
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"email": {
+						"type": "string"
+					},
+					"token": {
+						"type": "string"
+					}
+				},
+				"type": "object"
+			},
+			"users_getAllUsers_response": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"email": {
+							"type": "string"
+						},
+						"password": {
+							"type": "string"
+						},
+						"token": {
+							"type": "string"
+						}
+					}
+				},
+				"properties": {
+					"name": "Users in DB"
+				}
+			},
+			"location_get_response": {
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"longitude": {
+						"type": "number",
+						"format": "decimal",
+						"example": "32.123456"
+					},
+					"latitude": {
+						"type": "number",
+						"format": "decimal",
+						"example": "32.123456"
+					}
+				},
+				"type": "object"
+			},
+			"notifications_get_response": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"notification_id": {
+							"type": "string"
+						},
+						"user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"content": {
+							"type": "string"
+						},
+						"title": {
+							"type": "string"
+						},
+						"creation_date": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "1994-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"seen": {
+							"type": "number",
+							"format": "boolean"
+						}
+					}
+				},
+				"properties": {
+					"name": "Notifications in DB"
+				}
+			},
+			"userPictures_get_response": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"notification_id": {
+							"type": "string"
+						},
+						"user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"image": {
+							"type": "string"
+						},
+						"main_image": {
+							"type": "string"
+						}
+					}
+				},
+				"properties": {
+					"name": "user pictures in DB"
+				}
+			},
+			"Get_User_Status_Response": {
+				"type": "object",
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"status_last_update": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"user_status": {
+						"type": "string"
+					}
+				}
+			},
+			"Post_User_Status_Response": {
+				"properties": {
+					"schema": {
+						"$ref": "#/components/responses/Get_User_Status_Response"
+					}
+				},
+				"type": "object"
+			},
+			"Post_Messages_Response": {
+				"type": "object",
+				"properties": {
+					"chat_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"creation_date": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"sender_user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"receiver_user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"content": {
+						"type": "string"
+					}
+				}
+			},
+			"Get_A_Chat_Room_Details": {
+				"type": "object",
+				"properties": {
+					"chat_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"creation_date": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"last_login": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"user_A_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"user_B_id": {
+						"type": "number",
+						"format": "integer"
+					}
+				}
+			},
+			"Get_A_User_Chat_Rooms": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"first_name": {
+							"type": "string"
+						},
+						"last_name": {
+							"type": "string"
+						},
+						"date_of_birth": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"city": {
+							"type": "string"
+						},
+						"gender": {
+							"type": "string"
+						},
+						"phone_number": {
+							"type": "string"
+						},
+						"registration_date": {
+							"type": "string",
+							"description": "Registration date",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"relationship_status": {
+							"type": "string"
+						},
+						"sexual_orientation": {
+							"type": "string"
+						},
+						"profession": {
+							"type": "string"
+						},
+						"pronoun": {
+							"type": "string"
+						},
+						"hobbies": {
+							"type": "string"
+						},
+						"age": {
+							"type": "number",
+							"format": "integer"
+						},
+						"image": {
+							"type": "string"
+						},
+						"search_mode": {
+							"type": "string"
+						},
+						"distance": {
+							"type": "number",
+							"format": "integer"
+						},
+						"online": {
+							"type": "number",
+							"format": "boolean"
+						},
+						"chat_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"creation_date": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"sender_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"receiver_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"content": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"Get_Users_Chat_Messages": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"chat_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"creation_date": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"sender_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"receiver_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"content": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"Get_General_Chats_Response": {
 				"type": "array",
 				"items": {
 					"type": "object",
 					"properties": {
 						"schema": {
-							"$ref": "#/components/responses/Get_ConnectionByTypeResponse"
+							"$ref": "#/components/responses/Get_A_Chat_Room_Details"
 						}
+					}
+				}
+			},
+			"Create_Chat_Response": {
+				"type": "object",
+				"properties": {
+					"Users are friends and don't have chat yet": {
+						"$ref": "#/components/responses/MsgToClient"
+					},
+					"Users are friends and already have chat WITH messages in it": {
+						"$ref": "#/components/responses/Get_Users_Chat_Messages"
+					},
+					"Users are friends and already have chat WITHOUT messages in it": {
+						"$ref": "#/components/responses/MsgToClient"
+					},
+					"Users aren't friends yet": {
+						"$ref": "#/components/responses/MsgToClient"
 					}
 				}
 			},
@@ -2045,15 +2422,22 @@
 				}
 			}
 		},
-		"filters/{userid}": {
-			"delete": {
-				"operationId": "Filters-Delete",
-				"description": "Delete user's filters from DB",
-				"tags": ["Filters"],
+		"chats/{useridA}/{useridB}": {
+			"post": {
+				"operationId": "Chats-Delete",
+				"description": "Delete all chat's messages",
+				"tags": ["Chats"],
 				"parameters": [
 					{
 						"required": true,
-						"name": "user id",
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
 						"schema": {
 							"$ref": "#/components/parameters/userid"
 						}
@@ -2061,7 +2445,50 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Create_Chat_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "Chats-Delete",
+				"description": "Delete all chat's messages",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
 						"content": {
 							"application/json": {
 								"schema": {
