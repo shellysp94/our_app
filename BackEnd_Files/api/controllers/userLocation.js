@@ -21,8 +21,7 @@ insertUserLocation = (req, res) => {
 	const latitude = req.body.latitude;
 	mySqlConnection.query(
 		`insert into user_location (user_id, longitude, latitude) values (${user_id}, ${longitude}, ${latitude})
-            on duplicate key update user_id = ${user_id}, longitude = ${longitude}, latitude = ${latitude}
-    `,
+            on duplicate key update user_id = ${user_id}, longitude = ${longitude}, latitude = ${latitude}`,
 		(err, rows) => {
 			try {
 				res.send(`Location updated for user ${user_id}`);
