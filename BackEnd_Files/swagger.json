@@ -29,10 +29,6 @@
 			"description": "User's Pictures CRUD"
 		},
 		{
-			"name": "Device Token",
-			"description": "User's Device Token CRUD"
-		},
-		{
 			"name": "User's Status",
 			"description": "User's Status CRUD"
 		},
@@ -335,6 +331,32 @@
 					"profession",
 					"pronoun",
 					"hobbies"
+				],
+				"type": "object"
+			},
+			"userPictures_delete_body":{
+				"properties": {
+					"image": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"image"
+				],
+				"type": "object"
+			},
+			"userPictures_post_body":{
+				"properties": {
+					"base64image": {
+						"type": "string"
+					},
+					"main_image": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"base64image",
+					"main_image"
 				],
 				"type": "object"
 			}
@@ -688,6 +710,30 @@
 				},
 				"properties": {
 					"name": "Notifications in DB"
+				}
+			},
+			"userPictures_get_response":{
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"notification_id": {
+							"type": "string"
+						},
+						"user_id": {
+							"type": "number",
+							"format":"integer"
+						},
+						"image": {
+							"type": "string"
+						},
+						"main_image": {
+							"type": "string"
+						}
+					}
+				},
+				"properties": {
+					"name": "user pictures in DB"
 				}
 			}
 		},
@@ -1347,6 +1393,35 @@
 				}
 			}
 		},
+		"notifications/{notification_id}":{
+			"put":{
+				"operationId": "notifications-Put",
+				"description": "update notification seen details",
+				"tags": ["Notifications"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "notifications id",
+						"schema": {
+							"$ref": "#/components/parameters/notification_id"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					}
+				}
+			}
+
+		},
 		"userConfiguration/{userid}":{
 			"get": {
 				"operationId": "location-getUserConfiguration",
@@ -1493,7 +1568,7 @@
 				}
 			}
 		},
-		"userConfiguration/{userid}/{userid}":{
+		"userConfiguration/{curr_userid}/{userid}":{
 			"get": {
 				"operationId": "userConfiguration-Get",
 				"description": "Get users' configuration",
@@ -1521,6 +1596,307 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"friendRequest/sendRequests/{userid}":{
+			"get": {
+				"operationId": "FriendRequest-getSentRequests",
+				"description": "Get user's sent friend requests",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"friendRequest/receivedRequests/{userid}":{
+			"get": {
+				"operationId": "FriendRequest-getReceivedRequests",
+				"description": "Get user's received friend requests",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_UserConfigurationResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"friendRequest/send/{useridA}/{useridB}":{
+			"post":{
+				"operationId": "friendRequest-Post",
+				"description": "send friend request",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"friendRequest/approve/{useridA}/{useridB}":{
+			"post":{
+				"operationId": "friendRequest-Post",
+				"description": "approve friend request",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"friendRequest/decline/{useridA}/{useridB}":{
+			"post":{
+				"operationId": "friendRequest-Post",
+				"description": "decline friend request",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"userPictures/{userid}":{
+			"get": {
+				"operationId": "userPictures-getUserPicture",
+				"description": "Get user's pictures",
+				"tags": ["User Pictures"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/userPictures_get_response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post":{
+				"operationId": "userPictures-Post",
+				"description": "insert user picture",
+				"tags": ["User Pictures"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/requestBodies/userPictures_post_body"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "UserPictures-Delete",
+				"description": "Delete user picture from DB",
+				"tags": ["User Pictures"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/requestBodies/userPictures_delete_body"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
 								}
 							}
 						}

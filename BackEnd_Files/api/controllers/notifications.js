@@ -48,7 +48,7 @@ module.exports = {
 		{
 			try
 			{
-				res.status(201).json({message: `notification id ${notification_id} seen`})
+				res.send(`notification id ${notification_id} seen`);
 			}
 			catch(err)
 			{
