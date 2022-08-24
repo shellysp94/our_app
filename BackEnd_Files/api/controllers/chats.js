@@ -96,10 +96,7 @@ getSpecificUserChats = (req, res) => {
 						}
 					);
 				} else {
-					msgToClient = {
-						msg: `User number ${userid} has no chats yet`,
-					};
-					return res.send(msgToClient);
+					return res.send(rows);
 				}
 			} catch (err) {
 				console.log(err.message);
@@ -119,10 +116,7 @@ getUsersChat = (req, res) => {
 		(err, rows) => {
 			try {
 				if (rows.length === 0) {
-					msgToClient = {
-						msg: `There is no chat between these two users`,
-					};
-					return res.send(msgToClient);
+					return res.send(rows);
 				} else {
 					const chatID = rows[0].chat_id;
 					let desiredChatRoom = {
@@ -131,7 +125,10 @@ getUsersChat = (req, res) => {
 							messagesOffset: String(messagesOffset),
 						},
 					};
-					getChatMessages(desiredChatRoom, res);
+
+					getChatMessages(desiredChatRoom, (response) => {
+						res.send(response);
+					});
 				}
 			} catch (err) {
 				console.log(err.message);
@@ -245,7 +242,10 @@ createUsersChat = (req, res) => {
 										messagesOffset: String(0),
 									},
 								};
-								getChatMessages(desiredChatRoom, res);
+
+								getChatMessages(desiredChatRoom, (response) => {
+									res.send(response);
+								});
 							} catch (err) {
 								console.log(err.message);
 							}
@@ -280,7 +280,10 @@ deleteUsersChat = (req, res) => {
 							chatID: String(chatID),
 						},
 					};
-					deleteChatMessages(desiredChatRoom, res);
+
+					deleteChatMessages(desiredChatRoom, (response) => {
+						res.send(response);
+					});
 				}
 			} catch (err) {
 				console.log(err.message);

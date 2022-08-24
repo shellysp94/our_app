@@ -84,7 +84,7 @@ module.exports = {
 		{
 			try
 			{
-				cb(`${titleToSend} sent`);
+				cb(`${req.body.title} sent`);
 			}
 
 			catch(err)

@@ -123,7 +123,8 @@ CREATE TABLE Filters (
 
  CREATE TABLE user_status (
   user_id int not null,
-  last_update datetime not null,
-  content varchar(50) default null,
+  status_last_update datetime not null,
+  user_status varchar(50) default null,
+  primary key (user_id),
   foreign key (user_id) references Users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

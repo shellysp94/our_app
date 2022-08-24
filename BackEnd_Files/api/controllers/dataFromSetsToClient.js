@@ -118,15 +118,16 @@ const getAllConstants = (req, res) => {
 
 		filters: {
 			Search_Mode: [
-				"Whatever",
 				"Chill",
 				"Jam",
 				"Study",
 				"Grab_A_Bite",
+				"Surprise",
 				"Hike",
 				"Party",
 				"Gaming",
 				"Workout",
+				"Whatever",
 			],
 
 			Gender: ["Gender", "Men", "Women", "All"],
@@ -141,6 +142,18 @@ const getAllConstants = (req, res) => {
 				"Study buddy",
 				"Work buddy",
 			],
+		},
+		Search_Mode_Sentences: {
+			Chill: "Let's Chill?",
+			Jam: "Let's Jam?",
+			Study: "Let's Study?",
+			Grab_A_Bite: "Let's Grab A Bite?",
+			Surprise: "Surprise Me!",
+			Hike: "Let's Hike?",
+			Party: "Let's Party?",
+			Gaming: "Let's Play?",
+			Workout: "Let's Workout?",
+			Whatever: "Let's!",
 		},
 	};
 	res.send(constants);
