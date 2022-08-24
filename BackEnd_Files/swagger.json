@@ -628,6 +628,23 @@
 					}
 				}
 			},
+			"Create_Chat_Response": {
+				"type": "object",
+				"properties": {
+					"Users are friends and don't have chat yet": {
+						"$ref": "#/components/responses/MsgToClient"
+					},
+					"Users are friends and already have chat WITH messages in it": {
+						"$ref": "#/components/responses/Get_Users_Chat_Messages"
+					},
+					"Users are friends and already have chat WITHOUT messages in it": {
+						"$ref": "#/components/responses/MsgToClient"
+					},
+					"Users aren't friends yet": {
+						"$ref": "#/components/responses/MsgToClient"
+					}
+				}
+			},
 			"MsgToClient": {
 				"properties": {
 					"msg": {
@@ -1083,6 +1100,49 @@
 			}
 		},
 		"chats/{useridA}/{useridB}": {
+			"post": {
+				"operationId": "Chats-Delete",
+				"description": "Delete all chat's messages",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/useridA"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/useridB"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Create_Chat_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			},
 			"delete": {
 				"operationId": "Chats-Delete",
 				"description": "Delete all chat's messages",
