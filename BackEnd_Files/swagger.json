@@ -73,6 +73,25 @@
 				"description": "Sign from the client. 0 = return online and offline users, 1 = return only online users",
 				"type": "number",
 				"format": "boolean"
+			},
+			"useridA": {
+				"description": "User ID of user A",
+				"type": "user id",
+				"schema": {
+					"$ref": "#/components/parameters/userid"
+				}
+			},
+			"useridB": {
+				"description": "User ID of user B",
+				"type": "user id",
+				"schema": {
+					"$ref": "#/components/parameters/userid"
+				}
+			},
+			"offset": {
+				"description": "Offset that determines from which messages will be sent 50 messages each time",
+				"type": "number",
+				"format": "integer"
 			}
 		},
 		"requestBodies": {
@@ -128,6 +147,15 @@
 					}
 				},
 				"required": ["status"],
+				"type": "object"
+			},
+			"messages_Request_Body": {
+				"properties": {
+					"content": {
+						"type": "string"
+					}
+				},
+				"required": ["content"],
 				"type": "object"
 			}
 		},
@@ -298,7 +326,7 @@
 				},
 				"type": "object"
 			},
-			"Post_FiltersResponse": {
+			"Post_Filters_Response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -309,7 +337,7 @@
 					}
 				}
 			},
-			"Get_General_FiltersResponse": {
+			"Get_General_Filters_Response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -349,12 +377,9 @@
 							"format": "boolean"
 						}
 					}
-				},
-				"properties": {
-					"name": "Users' Filters in DB"
 				}
 			},
-			"Get_FilteredUsers_FiltersResponse": {
+			"Get_FilteredUsers_Filters_Response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -393,6 +418,215 @@
 					}
 				},
 				"type": "object"
+			},
+			"Post_Messages_Response": {
+				"type": "object",
+				"properties": {
+					"chat_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"creation_date": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"sender_user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"receiver_user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"content": {
+						"type": "string"
+					}
+				}
+			},
+			"Get_A_Chat_Room_Details": {
+				"type": "object",
+				"properties": {
+					"chat_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"creation_date": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"last_login": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"user_A_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"user_B_id": {
+						"type": "number",
+						"format": "integer"
+					}
+				}
+			},
+			"Get_A_User_Chat_Rooms": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"first_name": {
+							"type": "string"
+						},
+						"last_name": {
+							"type": "string"
+						},
+						"date_of_birth": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"city": {
+							"type": "string"
+						},
+						"gender": {
+							"type": "string"
+						},
+						"phone_number": {
+							"type": "string"
+						},
+						"registration_date": {
+							"type": "string",
+							"description": "Registration date",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"relationship_status": {
+							"type": "string"
+						},
+						"sexual_orientation": {
+							"type": "string"
+						},
+						"profession": {
+							"type": "string"
+						},
+						"pronoun": {
+							"type": "string"
+						},
+						"hobbies": {
+							"type": "string"
+						},
+						"age": {
+							"type": "number",
+							"format": "integer"
+						},
+						"image": {
+							"type": "string"
+						},
+						"search_mode": {
+							"type": "string"
+						},
+						"distance": {
+							"type": "number",
+							"format": "integer"
+						},
+						"online": {
+							"type": "number",
+							"format": "boolean"
+						},
+						"chat_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"creation_date": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"sender_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"receiver_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"content": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"Get_Users_Chat_Messages": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"chat_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"creation_date": {
+							"type": "string",
+							"description": "Date of birth",
+							"example": "2017-01-01",
+							"format": "date",
+							"pattern": "YYYY-MM-DD",
+							"minLength": 0,
+							"maxLength": 10
+						},
+						"sender_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"receiver_user_id": {
+							"type": "number",
+							"format": "integer"
+						},
+						"content": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"Get_General_Chats_Response": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"schema": {
+							"$ref": "#/components/responses/Get_A_Chat_Room_Details"
+						}
+					}
+				}
 			},
 			"MsgToClient": {
 				"properties": {
@@ -433,7 +667,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Get_General_FiltersResponse"
+									"$ref": "#/components/responses/Get_General_Filters_Response"
 								}
 							}
 						}
@@ -478,7 +712,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Get_FilteredUsers_FiltersResponse"
+									"$ref": "#/components/responses/Get_FilteredUsers_Filters_Response"
 								}
 							}
 						}
@@ -533,7 +767,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/responses/Post_FiltersResponse"
+									"$ref": "#/components/responses/Post_Filters_Response"
 								}
 							}
 						}
@@ -656,6 +890,226 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/responses/Post_User_Status_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"messages/{useridA}/{useridB}": {
+			"post": {
+				"operationId": "Messages-Post",
+				"description": "Send a message on two users' chat room. Sender (user id A) HAS to be connected to WS",
+				"tags": ["Messages"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "sender (useridA)",
+						"schema": {
+							"$ref": "#/components/parameters/useridA"
+						}
+					},
+					{
+						"required": true,
+						"name": "receiver (useridB)",
+						"schema": {
+							"$ref": "#/components/parameters/useridB"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/requestBodies/messages_Request_Body"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Post_Messages_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"chats/": {
+			"get": {
+				"operationId": "Chats-GeneralGet",
+				"description": "Get all chats in DB",
+				"tags": ["Chats"],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_General_Chats_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"chats/{userid}": {
+			"get": {
+				"operationId": "Chats-Get-User-ChatRooms",
+				"description": "Get all user's chat rooms",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_A_User_Chat_Rooms"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"chats/{useridA}/{useridB}/{offset}": {
+			"get": {
+				"operationId": "Chats-Get-Users-Chat-Messages",
+				"description": "Get two users' 50 chat's messages from offset",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/useridA"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/useridB"
+						}
+					},
+					{
+						"required": true,
+						"name": "offset",
+						"schema": {
+							"$ref": "#/components/parameters/offset"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_Users_Chat_Messages"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"chats/{useridA}/{useridB}": {
+			"delete": {
+				"operationId": "Chats-Delete",
+				"description": "Delete all chat's messages",
+				"tags": ["Chats"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id A",
+						"schema": {
+							"$ref": "#/components/parameters/useridA"
+						}
+					},
+					{
+						"required": true,
+						"name": "user id B",
+						"schema": {
+							"$ref": "#/components/parameters/useridB"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/MsgToClient"
 								}
 							}
 						}
