@@ -225,53 +225,37 @@ sendFriendRequest = async (req, res) => {
 
 	mySqlConnection.query(
 		`select * from connections where (user_A_id = ${sentReqUser} and user_B_id = ${recievedReqUser}) or (user_A_id = ${recievedReqUser} and user_B_id = ${sentReqUser})`,
-		(err, rows) => 
-		{
-			try
-			{
-				if (rows.length > 0) 
-				{
-					if (rows[0].connected == 1) 
-					{
+		(err, rows) => {
+			try {
+				if (rows.length > 0) {
+					if (rows[0].connected == 1) {
 						return res.send(`${recievedReqUser} is already your friend`);
-					} 
-					else if (rows[0].user_A_id == sentReqUser) 
-					{
+					} else if (rows[0].user_A_id == sentReqUser) {
 						return res.send(
 							`You already sent ${recievedReqUser} a friend request`
 						);
-					} 
-					else 
-					{
+					} else {
 						return res.send(
 							`${recievedReqUser} sent you already a friend request, you can approve it`
 						);
 					}
-				} 
-				else 
-				{
+				} else {
 					mySqlConnection.query(
 						`insert into connections (user_a_id, user_b_id, creation_date, last_update) values
 					(?,?, curdate(), curdate())`,
 						[req.params.useridA, req.params.useridB],
 						(err, rows) => {
-							try 
-							{
+							try {
 								titleToSend = `New friend request`;
 								bodyToSend = `Friend request from `;
 								sendNotificationHelper(req, res, titleToSend, bodyToSend);
-							} 
-							catch (err) 
-							{
+							} catch (err) {
 								console.log(err);
 							}
 						}
 					);
 				}
-			}
-
-			catch(err)
-			{
+			} catch (err) {
 				console.log(err.message);
 			}
 		}

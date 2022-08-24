@@ -80,6 +80,15 @@
 				"description": "Offset that determines from which messages will be sent 50 messages each time",
 				"type": "number",
 				"format": "integer"
+			},
+			"byType": {
+				"description": "What's user's type do you want to get (mutual connection only, or all of users)",
+				"type": "number",
+				"format": "boolean"
+			},
+			"byName": {
+				"description": "First Name and Last Name to search",
+				"type": "string"
 			}
 		},
 		"requestBodies": {
@@ -444,97 +453,6 @@
 				},
 				"type": "object"
 			},
-			"Get_ConnectionByType_Response": {
-				"properties": {
-					"user_id": {
-						"type": "number",
-						"format": "integer"
-					},
-					"first_name": {
-						"type": "string"
-					},
-					"last_name": {
-						"type": "string"
-					},
-					"date_of_birth": {
-						"type": "string",
-						"description": "Date of birth",
-						"example": "2017-01-01",
-						"format": "date",
-						"pattern": "YYYY-MM-DD",
-						"minLength": 0,
-						"maxLength": 10
-					},
-					"city": {
-						"type": "string"
-					},
-					"gender": {
-						"type": "string"
-					},
-					"phone_number": {
-						"type": "string"
-					},
-					"registration_date": {
-						"type": "string",
-						"description": "Registration date",
-						"example": "2017-01-01",
-						"format": "date",
-						"pattern": "YYYY-MM-DD",
-						"minLength": 0,
-						"maxLength": 10
-					},
-					"relationship_status": {
-						"type": "string"
-					},
-					"sexual_orientation": {
-						"type": "string"
-					},
-					"profession": {
-						"type": "string"
-					},
-					"pronoun": {
-						"type": "string"
-					},
-					"hobbies": {
-						"type": "string"
-					},
-					"age": {
-						"type": "number",
-						"format": "integer"
-					},
-					"image": {
-						"type": "string"
-					},
-					"search_mode": {
-						"type": "string"
-					},
-					"distance": {
-						"type": "number",
-						"format": "integer"
-					},
-					"online": {
-						"type": "number",
-						"format": "boolean"
-					},
-					"mutualConnections": {
-						"type": "number",
-						"format": "boolean"
-					},
-					"requestsUserSent": {
-						"type": "number",
-						"format": "boolean"
-					},
-					"requestsUserReceived": {
-						"type": "number",
-						"format": "boolean"
-					},
-					"notConnected": {
-						"type": "number",
-						"format": "boolean"
-					}
-				},
-				"type": "object"
-			},
 			"Post_Filters_Response": {
 				"type": "array",
 				"items": {
@@ -878,6 +796,9 @@
 						"search_mode": {
 							"type": "string"
 						},
+						"user_status": {
+							"type": "string"
+						},
 						"distance": {
 							"type": "number",
 							"format": "integer"
@@ -972,6 +893,100 @@
 						"$ref": "#/components/responses/MsgToClient"
 					}
 				}
+			},
+			"Get_Connections_ByType_Response": {
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"first_name": {
+						"type": "string"
+					},
+					"last_name": {
+						"type": "string"
+					},
+					"date_of_birth": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"city": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string"
+					},
+					"phone_number": {
+						"type": "string"
+					},
+					"registration_date": {
+						"type": "string",
+						"description": "Registration date",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"relationship_status": {
+						"type": "string"
+					},
+					"sexual_orientation": {
+						"type": "string"
+					},
+					"profession": {
+						"type": "string"
+					},
+					"pronoun": {
+						"type": "string"
+					},
+					"hobbies": {
+						"type": "string"
+					},
+					"age": {
+						"type": "number",
+						"format": "integer"
+					},
+					"image": {
+						"type": "string"
+					},
+					"search_mode": {
+						"type": "string"
+					},
+					"user_status": {
+						"type": "string"
+					},
+					"distance": {
+						"type": "number",
+						"format": "integer"
+					},
+					"online": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"mutualConnections": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"requestsUserSent": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"requestsUserReceived": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"notConnected": {
+						"type": "number",
+						"format": "boolean"
+					}
+				},
+				"type": "object"
 			},
 			"MsgToClient": {
 				"properties": {
@@ -1868,6 +1883,114 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/responses/MsgToClient"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"friendRequest/byType/{userid}/{type}/{usersToPresent}": {
+			"get": {
+				"operationId": "friendRequest-Get-ByType",
+				"description": "Get users' configuration by their connected type relative to me (the userid)",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "type",
+						"description": "0 will return all users, 1 will return only my friends or users I sent or received a friend request",
+						"schema": {
+							"$ref": "#/components/parameters/byType"
+						}
+					},
+					{
+						"required": true,
+						"name": "users to present",
+						"description": "An array of users' ID to display. Separated by commas",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_Connections_ByType_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"friendRequest/byName/{userid}/{connected}/{name}": {
+			"get": {
+				"operationId": "friendRequest-Get-ByName",
+				"description": "Get users' configuration by user's chosen first/last name",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "connected",
+						"description": "0 will return all users (online and offline), 1 will return only online users",
+						"schema": {
+							"$ref": "#/components/parameters/onlyOnline"
+						}
+					},
+					{
+						"required": true,
+						"name": "name",
+						"description": "For first name enter \"a letter/s\" ,for last name enter \"(space) letter/s\". For both first and last enter \"first name letter/s last name letter/s\" If you don't want to filtered users by their name, enter only one space for this parameter. ",
+						"schema": {
+							"$ref": "#/components/parameters/name"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_Connections_ByType_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
 								}
 							}
 						}
