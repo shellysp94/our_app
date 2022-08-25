@@ -121,7 +121,7 @@ const getAllConstants = (req, res) => {
 				"Chill",
 				"Jam",
 				"Study",
-				"Grab_A_Bite",
+				"Grab A Bite",
 				"Surprise",
 				"Hike",
 				"Party",
@@ -153,7 +153,7 @@ const getAllConstants = (req, res) => {
 			Party: "Let's Party?",
 			Gaming: "Let's Play?",
 			Workout: "Let's Workout?",
-			Whatever: "Let's!",
+			Whatever: "Doesn't matter as long as we do it together!",
 		},
 	};
 	res.send(constants);
