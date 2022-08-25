@@ -143,7 +143,7 @@ const getAllConstants = (req, res) => {
 				"Work buddy",
 			],
 		},
-		Search_Mode_Sentences: {
+		"Search Mode Sentences": {
 			Chill: "Let's Chill?",
 			Jam: "Let's Jam?",
 			Study: "Let's Study?",
