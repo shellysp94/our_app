@@ -147,7 +147,7 @@ const getAllConstants = (req, res) => {
 			Chill: "Let's Chill?",
 			Jam: "Let's Jam?",
 			Study: "Let's Study?",
-			Grab_A_Bite: "Let's Grab A Bite?",
+			"Grab A Bite": "Let's Grab A Bite?",
 			Surprise: "Surprise Me!",
 			Hike: "Let's Hike?",
 			Party: "Let's Party?",
