@@ -128,12 +128,21 @@ getUsersConfigurationByRadius = (req, cb) => {
 	mySqlConnection.query(
 		`SELECT longitude, latitude FROM user_location WHERE user_id=${user_id}`,
 		(err, rows) => {
-			try {
+			try
+			{
+				 if (rows.length === 0) {
+					 longitude_var = "Longitude";
+					 latitude_var = "Latitude";
+				 } else {
+					 longitude_var = rows[0].longitude;
+					 latitude_var = rows[0].latitude;
+				 }
+	
 				mySqlConnection.query(
-					`SELECT b.*, a.longitude, a.latitude, ( 3959 * acos ( cos ( radians(${rows[0].latitude})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
-					radians(${rows[0].longitude}) ) + sin ( radians(${rows[0].latitude})) * sin( radians( Latitude ) ) ) )*1000 AS distance 
-					FROM users_db.user_location a
-					left join users_db.user_configuration b
+					`SELECT distinct b.*, a.longitude, a.latitude, ( 3959 * acos ( cos ( radians(${latitude_var})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
+					radians(${longitude_var}) ) + sin ( radians(${latitude_var})) * sin( radians( Latitude ) ) ) )*1000 AS distance 
+					FROM user_configuration b 
+					left join user_location a
 					on a.user_id = b.user_id
 					HAVING ((distance < ${radius}) and (user_id != ${user_id})) ORDER BY distance`,
 					(err, rows) => {
@@ -144,7 +153,7 @@ getUsersConfigurationByRadius = (req, cb) => {
 						}
 					}
 				);
-			} catch {
+			} catch(err) {
 				console.log(err.message);
 			}
 		}
