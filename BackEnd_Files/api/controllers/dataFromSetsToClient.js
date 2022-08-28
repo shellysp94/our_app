@@ -121,7 +121,7 @@ const getAllConstants = (req, res) => {
 				"Chill",
 				"Jam",
 				"Study",
-				"Grab_A_Bite",
+				"Grab A Bite",
 				"Surprise",
 				"Hike",
 				"Party",
@@ -143,17 +143,17 @@ const getAllConstants = (req, res) => {
 				"Work buddy",
 			],
 		},
-		Search_Mode_Sentences: {
+		"Search Mode Sentences": {
 			Chill: "Let's Chill?",
 			Jam: "Let's Jam?",
 			Study: "Let's Study?",
-			Grab_A_Bite: "Let's Grab A Bite?",
+			"Grab A Bite": "Let's Grab A Bite?",
 			Surprise: "Surprise Me!",
 			Hike: "Let's Hike?",
 			Party: "Let's Party?",
 			Gaming: "Let's Play?",
 			Workout: "Let's Workout?",
-			Whatever: "Let's!",
+			Whatever: "Doesn't matter as long as we do it together!",
 		},
 	};
 	res.send(constants);
@@ -163,20 +163,23 @@ getUsersAccordingToChosenExperiences = (req, res) => {
 	const userid = req.params.userid;
 	let searchMode, currentUser;
 	const users = {
-		Whatever: {},
-		Chill: {},
-		Jam: {},
-		Study: {},
-		Grab_A_Bite: {},
-		Hike: {},
-		Party: {},
-		Gaming: {},
-		Workout: {},
+		Whatever: [],
+		Chill: [],
+		Jam: [],
+		Study: [],
+		Grab_A_Bite: [],
+		Hike: [],
+		Party: [],
+		Gaming: [],
+		Workout: [],
 	};
 
+	// initializing the online users' ID array without myself
 	let onlineUsersId = [];
 	onlineUsers.getOnlineUsersArray().forEach((onlineUser) => {
-		onlineUsersId.push(onlineUser.user_id);
+		if (parseInt(onlineUser.user_id, 10) !== parseInt(userid, 10)) {
+			onlineUsersId.push(onlineUser.user_id);
+		}
 	});
 
 	let useridArray = {
@@ -189,8 +192,11 @@ getUsersAccordingToChosenExperiences = (req, res) => {
 		for (user = 0; user < response.length; user++) {
 			if (response[user].online === 1) {
 				searchMode = response[user].search_mode;
+				if (searchMode === "Grab A Bite") {
+					searchMode = "Grab_A_Bite";
+				}
 				currentUser = response[user];
-				users[searchMode][currentUser.user_id] = currentUser;
+				users[searchMode].push(currentUser);
 			}
 		}
 

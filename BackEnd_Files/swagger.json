@@ -67,12 +67,12 @@
 				"type": "number",
 				"format": "boolean"
 			},
-			"radius":{
+			"radius": {
 				"description": "A radius parameter for display relevant users in the area",
 				"type": "number",
 				"format": "integer"
 			},
-			"notification_id":{
+			"notification_id": {
 				"description": "A uniq identify for a notification",
 				"type": "string"
 			},
@@ -80,10 +80,19 @@
 				"description": "Offset that determines from which messages will be sent 50 messages each time",
 				"type": "number",
 				"format": "integer"
+			},
+			"byType": {
+				"description": "What's user's type do you want to get (mutual connection only, or all of users)",
+				"type": "number",
+				"format": "boolean"
+			},
+			"byName": {
+				"description": "First Name and Last Name to search",
+				"type": "string"
 			}
 		},
 		"requestBodies": {
-			"auth_login_body":{
+			"auth_login_body": {
 				"properties": {
 					"email": {
 						"type": "string"
@@ -95,14 +104,10 @@
 						"type": "string"
 					}
 				},
-				"required": [
-					"email",
-					"password",
-					"device_token"
-				],
+				"required": ["email", "password", "device_token"],
 				"type": "object"
 			},
-			"auth_register_body":{
+			"auth_register_body": {
 				"properties": {
 					"email": {
 						"type": "string"
@@ -167,7 +172,7 @@
 				],
 				"type": "object"
 			},
-			"users_update_body":{
+			"users_update_body": {
 				"properties": {
 					"email": {
 						"type": "string"
@@ -176,13 +181,10 @@
 						"type": "string"
 					}
 				},
-				"required": [
-					"email",
-					"password"
-				],
+				"required": ["email", "password"],
 				"type": "object"
 			},
-			"userLocation_update_body":{
+			"userLocation_update_body": {
 				"properties": {
 					"longitude": {
 						"type": "number",
@@ -195,13 +197,10 @@
 						"example": "32.123456"
 					}
 				},
-				"required": [
-					"longitude",
-					"latitude"
-				],
+				"required": ["longitude", "latitude"],
 				"type": "object"
 			},
-			"notifications_update_body":{
+			"notifications_update_body": {
 				"properties": {
 					"notification_id": {
 						"type": "string"
@@ -229,15 +228,11 @@
 						"type": "number",
 						"format": "boolean"
 					}
-
 				},
-				"required": [
-					"longitude",
-					"latitude"
-				],
+				"required": ["longitude", "latitude"],
 				"type": "object"
 			},
-			"userConfiguration_update_body":{
+			"userConfiguration_update_body": {
 				"properties": {
 					"first_name": {
 						"type": "string"
@@ -294,18 +289,16 @@
 				],
 				"type": "object"
 			},
-			"userPictures_delete_body":{
+			"userPictures_delete_body": {
 				"properties": {
 					"image": {
 						"type": "string"
 					}
 				},
-				"required": [
-					"image"
-				],
+				"required": ["image"],
 				"type": "object"
 			},
-			"userPictures_post_body":{
+			"userPictures_post_body": {
 				"properties": {
 					"base64image": {
 						"type": "string"
@@ -314,10 +307,7 @@
 						"type": "string"
 					}
 				},
-				"required": [
-					"base64image",
-					"main_image"
-				],
+				"required": ["base64image", "main_image"],
 				"type": "object"
 			},
 			"filters_Request_Body": {
@@ -383,7 +373,6 @@
 				"required": ["content"],
 				"type": "object"
 			}
-
 		},
 		"responses": {
 			"Get_UserConfiguration_Response": {
@@ -450,7 +439,7 @@
 					"search_mode": {
 						"type": "string"
 					},
-					"user_status":{
+					"user_status": {
 						"type": "string"
 					},
 					"distance": {
@@ -458,97 +447,6 @@
 						"format": "integer"
 					},
 					"online": {
-						"type": "number",
-						"format": "boolean"
-					}
-				},
-				"type": "object"
-			},
-			"Get_ConnectionByType_Response": {
-				"properties": {
-					"user_id": {
-						"type": "number",
-						"format": "integer"
-					},
-					"first_name": {
-						"type": "string"
-					},
-					"last_name": {
-						"type": "string"
-					},
-					"date_of_birth": {
-						"type": "string",
-						"description": "Date of birth",
-						"example": "2017-01-01",
-						"format": "date",
-						"pattern": "YYYY-MM-DD",
-						"minLength": 0,
-						"maxLength": 10
-					},
-					"city": {
-						"type": "string"
-					},
-					"gender": {
-						"type": "string"
-					},
-					"phone_number": {
-						"type": "string"
-					},
-					"registration_date": {
-						"type": "string",
-						"description": "Registration date",
-						"example": "2017-01-01",
-						"format": "date",
-						"pattern": "YYYY-MM-DD",
-						"minLength": 0,
-						"maxLength": 10
-					},
-					"relationship_status": {
-						"type": "string"
-					},
-					"sexual_orientation": {
-						"type": "string"
-					},
-					"profession": {
-						"type": "string"
-					},
-					"pronoun": {
-						"type": "string"
-					},
-					"hobbies": {
-						"type": "string"
-					},
-					"age": {
-						"type": "number",
-						"format": "integer"
-					},
-					"image": {
-						"type": "string"
-					},
-					"search_mode": {
-						"type": "string"
-					},
-					"distance": {
-						"type": "number",
-						"format": "integer"
-					},
-					"online": {
-						"type": "number",
-						"format": "boolean"
-					},
-					"mutualConnections": {
-						"type": "number",
-						"format": "boolean"
-					},
-					"requestsUserSent": {
-						"type": "number",
-						"format": "boolean"
-					},
-					"requestsUserReceived": {
-						"type": "number",
-						"format": "boolean"
-					},
-					"notConnected": {
 						"type": "number",
 						"format": "boolean"
 					}
@@ -634,7 +532,7 @@
 				},
 				"type": "object"
 			},
-			"users_getAllUsers_response":{
+			"users_getAllUsers_response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -658,7 +556,7 @@
 					"name": "Users in DB"
 				}
 			},
-			"location_get_response":{
+			"location_get_response": {
 				"properties": {
 					"user_id": {
 						"type": "number",
@@ -677,7 +575,7 @@
 				},
 				"type": "object"
 			},
-			"notifications_get_response":{
+			"notifications_get_response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -687,7 +585,7 @@
 						},
 						"user_id": {
 							"type": "number",
-							"format":"integer"
+							"format": "integer"
 						},
 						"content": {
 							"type": "string"
@@ -714,7 +612,7 @@
 					"name": "Notifications in DB"
 				}
 			},
-			"userPictures_get_response":{
+			"userPictures_get_response": {
 				"type": "array",
 				"items": {
 					"type": "object",
@@ -724,7 +622,7 @@
 						},
 						"user_id": {
 							"type": "number",
-							"format":"integer"
+							"format": "integer"
 						},
 						"image": {
 							"type": "string"
@@ -898,6 +796,9 @@
 						"search_mode": {
 							"type": "string"
 						},
+						"user_status": {
+							"type": "string"
+						},
 						"distance": {
 							"type": "number",
 							"format": "integer"
@@ -993,6 +894,100 @@
 					}
 				}
 			},
+			"Get_Connections_ByType_Response": {
+				"properties": {
+					"user_id": {
+						"type": "number",
+						"format": "integer"
+					},
+					"first_name": {
+						"type": "string"
+					},
+					"last_name": {
+						"type": "string"
+					},
+					"date_of_birth": {
+						"type": "string",
+						"description": "Date of birth",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"city": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string"
+					},
+					"phone_number": {
+						"type": "string"
+					},
+					"registration_date": {
+						"type": "string",
+						"description": "Registration date",
+						"example": "2017-01-01",
+						"format": "date",
+						"pattern": "YYYY-MM-DD",
+						"minLength": 0,
+						"maxLength": 10
+					},
+					"relationship_status": {
+						"type": "string"
+					},
+					"sexual_orientation": {
+						"type": "string"
+					},
+					"profession": {
+						"type": "string"
+					},
+					"pronoun": {
+						"type": "string"
+					},
+					"hobbies": {
+						"type": "string"
+					},
+					"age": {
+						"type": "number",
+						"format": "integer"
+					},
+					"image": {
+						"type": "string"
+					},
+					"search_mode": {
+						"type": "string"
+					},
+					"user_status": {
+						"type": "string"
+					},
+					"distance": {
+						"type": "number",
+						"format": "integer"
+					},
+					"online": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"mutualConnections": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"requestsUserSent": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"requestsUserReceived": {
+						"type": "number",
+						"format": "boolean"
+					},
+					"notConnected": {
+						"type": "number",
+						"format": "boolean"
+					}
+				},
+				"type": "object"
+			},
 			"MsgToClient": {
 				"properties": {
 					"msg": {
@@ -1023,14 +1018,16 @@
 				"scheme": "bearer",
 				"in": "header",
 				"bearerFormat": "JWT"
-			  }
+			}
 		},
-		"security": [{
-			"jwt": []
-		  }]
+		"security": [
+			{
+				"jwt": []
+			}
+		]
 	},
 	"paths": {
-		"auth/login":{
+		"auth/login": {
 			"post": {
 				"operationId": "login-Post",
 				"description": "User login",
@@ -1069,7 +1066,7 @@
 				}
 			}
 		},
-		"auth/register":{
+		"auth/register": {
 			"post": {
 				"operationId": "register-Post",
 				"description": "User registeration",
@@ -1098,7 +1095,7 @@
 				}
 			}
 		},
-		"users/":{
+		"users/": {
 			"get": {
 				"operationId": "Users-GeneralGet",
 				"description": "Get all users in DB",
@@ -1128,13 +1125,12 @@
 				}
 			}
 		},
-		"users/{userid}":{
+		"users/{userid}": {
 			"get": {
 				"operationId": "Users-specificUser",
 				"description": "Get specific users details",
 				"tags": ["Users"],
-				"security": 
-				{
+				"security": {
 					"jwt": []
 				},
 				"parameters": [
@@ -1205,7 +1201,7 @@
 					}
 				}
 			},
-			"put":{
+			"put": {
 				"operationId": "user-Put",
 				"description": "update user details",
 				"tags": ["Users"],
@@ -1242,7 +1238,7 @@
 				}
 			}
 		},
-		"userLocation/{userid}":{
+		"userLocation/{userid}": {
 			"get": {
 				"operationId": "location-userLocation",
 				"description": "Get user's location",
@@ -1315,7 +1311,7 @@
 					}
 				}
 			},
-			"post":{
+			"post": {
 				"operationId": "userLocation-Post",
 				"description": "insert and update user location",
 				"tags": ["User Location"],
@@ -1352,7 +1348,7 @@
 				}
 			}
 		},
-		"notifications/":{
+		"notifications/": {
 			"get": {
 				"operationId": "Notifications-GeneralGet",
 				"description": "Get all notifications in DB",
@@ -1382,7 +1378,7 @@
 				}
 			}
 		},
-		"notifications/{userid}":{
+		"notifications/{userid}": {
 			"get": {
 				"operationId": "Notifications-getNotifications",
 				"description": "Get  user's notifications",
@@ -1456,7 +1452,7 @@
 				}
 			}
 		},
-		"notifications/unseen/{userid}":{
+		"notifications/unseen/{userid}": {
 			"get": {
 				"operationId": "Notifications-getUnseenNotifications",
 				"description": "Get user's unseen notifications",
@@ -1494,8 +1490,8 @@
 				}
 			}
 		},
-		"notifications/{notification_id}":{
-			"put":{
+		"notifications/{notification_id}": {
+			"put": {
 				"operationId": "notifications-Put",
 				"description": "update notification seen details",
 				"tags": ["Notifications"],
@@ -1521,9 +1517,8 @@
 					}
 				}
 			}
-
 		},
-		"userConfiguration/{userid}":{
+		"userConfiguration/{userid}": {
 			"get": {
 				"operationId": "location-getUserConfiguration",
 				"description": "Get user's configuration",
@@ -1596,7 +1591,7 @@
 					}
 				}
 			},
-			"post":{
+			"post": {
 				"operationId": "userConfiguration-Post",
 				"description": "insert user configuration",
 				"tags": ["User Configuration"],
@@ -1632,7 +1627,7 @@
 					}
 				}
 			},
-			"put":{
+			"put": {
 				"operationId": "userConfiguration-put",
 				"description": "update user configuration",
 				"tags": ["User Configuration"],
@@ -1669,7 +1664,7 @@
 				}
 			}
 		},
-		"userConfiguration/{curr_userid}/{userid}":{
+		"userConfiguration/{curr_userid}/{userid}": {
 			"get": {
 				"operationId": "userConfiguration-Get",
 				"description": "Get users' configuration",
@@ -1714,7 +1709,7 @@
 				}
 			}
 		},
-		"friendRequest/sendRequests/{userid}":{
+		"friendRequest/sendRequests/{userid}": {
 			"get": {
 				"operationId": "FriendRequest-getSentRequests",
 				"description": "Get user's sent friend requests",
@@ -1752,7 +1747,7 @@
 				}
 			}
 		},
-		"friendRequest/receivedRequests/{userid}":{
+		"friendRequest/receivedRequests/{userid}": {
 			"get": {
 				"operationId": "FriendRequest-getReceivedRequests",
 				"description": "Get user's received friend requests",
@@ -1790,8 +1785,8 @@
 				}
 			}
 		},
-		"friendRequest/send/{useridA}/{useridB}":{
-			"post":{
+		"friendRequest/send/{useridA}/{useridB}": {
+			"post": {
 				"operationId": "friendRequest-Post",
 				"description": "send friend request",
 				"tags": ["Connections"],
@@ -1825,8 +1820,8 @@
 				}
 			}
 		},
-		"friendRequest/approve/{useridA}/{useridB}":{
-			"post":{
+		"friendRequest/approve/{useridA}/{useridB}": {
+			"post": {
 				"operationId": "friendRequest-Post",
 				"description": "approve friend request",
 				"tags": ["Connections"],
@@ -1860,8 +1855,8 @@
 				}
 			}
 		},
-		"friendRequest/decline/{useridA}/{useridB}":{
-			"post":{
+		"friendRequest/decline/{useridA}/{useridB}": {
+			"post": {
 				"operationId": "friendRequest-Post",
 				"description": "decline friend request",
 				"tags": ["Connections"],
@@ -1895,7 +1890,115 @@
 				}
 			}
 		},
-		"userPictures/{userid}":{
+		"friendRequest/byType/{userid}/{type}/{usersToPresent}": {
+			"get": {
+				"operationId": "friendRequest-Get-ByType",
+				"description": "Get users' configuration by their connected type relative to me (the userid)",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "type",
+						"description": "0 will return all users, 1 will return only my friends or users I sent or received a friend request",
+						"schema": {
+							"$ref": "#/components/parameters/byType"
+						}
+					},
+					{
+						"required": true,
+						"name": "users to present",
+						"description": "An array of users' ID to display. Separated by commas",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_Connections_ByType_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"friendRequest/byName/{userid}/{connected}/{name}": {
+			"get": {
+				"operationId": "friendRequest-Get-ByName",
+				"description": "Get users' configuration by user's chosen first/last name",
+				"tags": ["Connections"],
+				"parameters": [
+					{
+						"required": true,
+						"name": "user id",
+						"schema": {
+							"$ref": "#/components/parameters/userid"
+						}
+					},
+					{
+						"required": true,
+						"name": "connected",
+						"description": "0 will return all users (online and offline), 1 will return only online users",
+						"schema": {
+							"$ref": "#/components/parameters/onlyOnline"
+						}
+					},
+					{
+						"required": true,
+						"name": "name",
+						"description": "For first name enter \"a letter/s\" ,for last name enter \"(space) letter/s\". For both first and last enter \"first name letter/s last name letter/s\" If you don't want to filtered users by their name, enter only one space for this parameter. ",
+						"schema": {
+							"$ref": "#/components/parameters/name"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Get_Connections_ByType_Response"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/responses/Error"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"userPictures/{userid}": {
 			"get": {
 				"operationId": "userPictures-getUserPicture",
 				"description": "Get user's pictures",
@@ -1932,7 +2035,7 @@
 					}
 				}
 			},
-			"post":{
+			"post": {
 				"operationId": "userPictures-Post",
 				"description": "insert user picture",
 				"tags": ["User Pictures"],
@@ -2530,7 +2633,6 @@
 				}
 			}
 		}
-
 	},
 	"servers": [
 		{

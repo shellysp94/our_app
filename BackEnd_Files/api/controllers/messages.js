@@ -59,7 +59,7 @@ createChatMessage = (req, res) => {
 										// Only sender is online and got the message on WS
 										senderOnlineUser.websocket.send(JSON.stringify(rows[0]));
 									}
-									res.send(rows);
+									res.send(rows[0]);
 								} else {
 									console.log(err.message);
 								}

@@ -83,7 +83,7 @@ CREATE TABLE user_configuration (
 
 CREATE TABLE Filters (
   user_id int not null,
-  search_mode enum('Whatever', 'Chill', 'Jam', 'Study', 'Grab_A_Bite', 'Hike', 'Party', 'Gaming', 'Workout') default 'Whatever',
+  search_mode enum('Whatever', 'Chill', 'Jam', 'Study', 'Grab A Bite', 'Hike', 'Party', 'Gaming', 'Workout') default 'Whatever',
   hobbies_filter set('Hobbies', 'basketball', 'beach volleyball', 'crossfit', 'dancing', 'football/soccer', 'gym workout', 'hiking', 'pilates', 'running', 'slacklining', 'surfing', 'swimming', 'tennis', 'yoga',
   'baking', 'cooking', 'eating outside', 'interested in culinary', 'interested in nutrition',
   'playing drums', 'playing guitar', 'playing in a band', 'playing piano', 'playing synthesizer', 'singing',
@@ -126,7 +126,7 @@ CREATE TABLE Filters (
  CREATE TABLE user_status (
   user_id int not null,
   status_last_update datetime not null,
-  user_status varchar(50) default null,
+  user_status varchar(50) default "",
   primary key (user_id),
   foreign key (user_id) references Users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
