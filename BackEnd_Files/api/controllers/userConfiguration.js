@@ -11,7 +11,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 	let mergeObjects = [];
 
 	mySqlConnection.query(
-		`SELECT distinct longitude, latitude from user_location where user_id=${curr_userid}`,
+		`SELECT longitude, latitude from user_location where user_id=${curr_userid}`,
 		(err, rows) => {
 			try {
 				if (rows.length === 0) {
