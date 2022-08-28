@@ -11,7 +11,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 	let mergeObjects = [];
 
 	mySqlConnection.query(
-		`SELECT longitude, latitude from user_location where user_id=${curr_userid}`,
+		`SELECT distinct longitude, latitude from user_location where user_id=${curr_userid}`,
 		(err, rows) => {
 			try {
 				if (rows.length === 0) {
@@ -21,18 +21,21 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 					longitude_var = rows[0].longitude;
 					latitude_var = rows[0].latitude;
 				}
+				
 				mySqlConnection.query(
-					`SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image,f.search_mode,
+					`SELECT distinct a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image,f.search_mode,s.user_status,
 				( 3959 * acos ( cos ( radians(${latitude_var})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
 						radians(${longitude_var}) ) + sin ( radians(${latitude_var})) * sin( radians( Latitude ) ) ) )*1000 AS
 						distance
-				FROM user_location c 
-				RIGHT JOIN user_configuration a 
-				ON c.user_id =  a.user_id 
+				FROM user_configuration a 
+				RIGHT JOIN user_location c
+				ON a.user_id =  a.user_id 
 				LEFT JOIN user_pictures b 
-				ON c.user_id =  b.user_id 
+				ON a.user_id =  b.user_id 
 				left JOIN filters f
-                ON c.user_id = f.user_id
+                ON a.user_id = f.user_id
+				left join user_status s
+				ON a.user_id = s.user_id
 				WHERE a.user_id IN (?) and (b.main_image = '1' or b.main_image is null)
 				ORDER BY first_name asc, last_name asc`,
 					[arr],
