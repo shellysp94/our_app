@@ -223,11 +223,14 @@ updateUserConfiguration = (req, res) => {
 	let user_id = req.params.userid;
 	let first_name = req.body.first_name;
 	let last_name = req.body.last_name;
-	let dateOfBirth = formatYmd(new Date(req.body.dateOfBirth));
+	let year = req.body.date_of_birth.substring(6, 10);
+	let month = req.body.date_of_birth.substring(3, 5);
+	let day = req.body.date_of_birth.substring(0, 2);
+	let dateOfBirthStr = year + "-" + month + "-" + day;
+	let dateOfBirth = formatYmd(new Date(dateOfBirthStr));
 	let city = req.body.city;
 	let gender = req.body.gender;
-	let phoneNumber = req.body.phoneNumber;
-	let registerDate = formatYmd(new Date());
+	let phoneNumber = req.body.phone_number;
 	let relationship_status = req.body.relationship_status;
 	let sexual_orientation = req.body.sexual_orientation;
 	let profession = req.body.profession;
@@ -235,22 +238,7 @@ updateUserConfiguration = (req, res) => {
 	let hobbies = req.body.hobbies;
 
 	mySqlConnection.query(
-		"UPDATE user_configuration SET first_name=?, last_name=?, dateOfBirth=?, city=?, gender=?, phone_number=?, registration_date=?, relationship_status=?, sexual_orientation=?, profession=?, pronoun=?, hobbies=? WHERE user_id=?",
-		[
-			first_name,
-			last_name,
-			dateOfBirth,
-			city,
-			gender,
-			phoneNumber,
-			registerDate,
-			relationship_status,
-			sexual_orientation,
-			profession,
-			pronoun,
-			hobbies,
-			req.params.user_id,
-		],
+		`UPDATE user_configuration SET first_name='${first_name}', last_name='${last_name}', date_of_birth='${dateOfBirth}', city='${city}', gender=${gender}, phone_number='${phoneNumber}', relationship_status=${relationship_status}, sexual_orientation=${sexual_orientation}, profession='${profession}', pronoun='${pronoun}', hobbies='${hobbies}' WHERE user_id=${user_id}`,
 		(err, result) => {
 			if (!err) {
 				res.send("user configuration updated successfully");
@@ -261,30 +249,6 @@ updateUserConfiguration = (req, res) => {
 	);
 };
 
-updateSearchMode = (req, res) => {
-	let searchMode = req.body.search_mode;
-	mySqlConnection.query(
-		"SELECT * from user_configuration where user_id=?",
-		req.params.userid,
-		(err, rows) => {
-			if (!err) {
-				if (rows.length > 0) {
-					mySqlConnection.query(
-						"UPDATE user_configuration SET search_mode=? WHERE user_id=?",
-						[searchMode, req.params.userid],
-						(err, results) => {
-							if (!err) {
-								res.send("Search mode updated");
-							} else {
-								console.log(err);
-							}
-						}
-					);
-				}
-			}
-		}
-	);
-};
 
 module.exports = {
 	getAllUsersConfiguration,
@@ -293,6 +257,5 @@ module.exports = {
 	getUsersConfigurationByRadius,
 	createUserConfiguration,
 	deleteUserConfiguration,
-	updateUserConfiguration,
-	updateSearchMode,
+	updateUserConfiguration
 };
