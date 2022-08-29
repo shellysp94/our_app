@@ -192,9 +192,6 @@ getUsersAccordingToChosenExperiences = (req, res) => {
 		for (user = 0; user < response.length; user++) {
 			if (response[user].online === 1) {
 				searchMode = response[user].search_mode;
-				// if (searchMode === "Grab A Bite") {
-				// 	searchMode = "Grab_A_Bite";
-				// }
 				currentUser = response[user];
 				users[searchMode].push(currentUser);
 			}
