@@ -130,7 +130,7 @@ const getAllConstants = (req, res) => {
 				"Whatever",
 			],
 
-			Gender: ["Gender", "Men", "Women", "All"],
+			Gender: ["Gender", "Men", "Women", "prefer not to say", "All"],
 
 			Interested_in: [
 				"Interested in",
