@@ -101,7 +101,7 @@ const getAllConstants = (req, res) => {
 				],
 			},
 			{
-				type: "Technology",
+				type: "Tech",
 				lst: ["coding", "hacking", "playing video games"],
 			},
 			{
