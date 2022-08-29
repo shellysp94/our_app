@@ -83,6 +83,8 @@ const getAllConstants = (req, res) => {
 					"home decorating",
 					"juggling",
 					"painting",
+					"graffiti painting",
+					"shooting",
 				],
 			},
 			{
