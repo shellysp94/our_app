@@ -103,7 +103,7 @@ const getAllConstants = (req, res) => {
 				lst: ["coding", "hacking", "playing video games"],
 			},
 			{
-				type: "Outside",
+				type: "Outdoor",
 				lst: [
 					"camping",
 					"gardening",
@@ -115,7 +115,7 @@ const getAllConstants = (req, res) => {
 				],
 			},
 			{
-				type: "Inside",
+				type: "Indoor",
 				lst: ["shopping", "museums", "theaters", "movies"],
 			},
 		],
