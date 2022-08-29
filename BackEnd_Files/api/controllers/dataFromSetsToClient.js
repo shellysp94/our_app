@@ -111,7 +111,7 @@ const getAllConstants = (req, res) => {
 					"skippering",
 					"tanning",
 					"traveling",
-					"picnic",
+					"having a picnic",
 				],
 			},
 			{

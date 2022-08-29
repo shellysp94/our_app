@@ -76,7 +76,7 @@ CREATE TABLE user_configuration (
   'acting', 'fashion designing', 'handicraft', 'home decorating', 'juggling', 'painting',
   'blogging', 'interested in medicine and biology', 'learning new languages', 'listening to podcasts', 'playing chess', 'puzzling', 'reading', 'writing',
   'coding', 'hacking', 'playing video games',
-  'camping', 'gardening', 'sailing', 'skippering', 'tanning', 'traveling', 'picnic',
+  'camping', 'gardening', 'sailing', 'skippering', 'tanning', 'traveling', 'having a picnic',
   'shopping', 'museums', 'theaters', 'movies') default 'Hobbies',
   PRIMARY KEY (user_id),
   foreign key (user_id) references Users (user_id)
