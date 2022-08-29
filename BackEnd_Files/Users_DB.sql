@@ -76,7 +76,8 @@ CREATE TABLE user_configuration (
   'acting', 'fashion designing', 'handicraft', 'home decorating', 'juggling', 'painting',
   'blogging', 'interested in medicine and biology', 'learning new languages', 'listening to podcasts', 'playing chess', 'puzzling', 'reading', 'writing',
   'coding', 'hacking', 'playing video games',
-  'camping', 'gardening', 'sailing', 'skippering', 'shopping', 'tanning', 'traveling') default 'Hobbies',
+  'camping', 'gardening', 'sailing', 'skippering', 'tanning', 'traveling',
+  'shopping', 'museums', 'theaters', 'movies') default 'Hobbies',
   PRIMARY KEY (user_id),
   foreign key (user_id) references Users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
