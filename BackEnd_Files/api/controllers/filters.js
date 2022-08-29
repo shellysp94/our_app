@@ -348,10 +348,6 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 		}
 	}
 
-	console.log(
-		"Filters ---> from helper of only online\n" + createdUsersToPresent
-	);
-
 	let resultArrayToObject = {
 		params: {
 			userid: userid,
@@ -539,7 +535,6 @@ getUserFilteredUsers = (req, res) => {
 											radius.push(user.user_id);
 										}
 									});
-									console.log(radius);
 
 									getUserFilteredUsers_OnlyOnline_Helper(
 										onlyOnline,
