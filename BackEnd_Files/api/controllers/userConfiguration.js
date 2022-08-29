@@ -21,7 +21,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 					longitude_var = rows[0].longitude;
 					latitude_var = rows[0].latitude;
 				}
-				
+
 				mySqlConnection.query(
 					`SELECT distinct a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age, b.image,f.search_mode,s.user_status,
 				( 3959 * acos ( cos ( radians(${latitude_var})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
@@ -29,7 +29,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 						distance
 				FROM user_configuration a 
 				RIGHT JOIN user_location c
-				ON a.user_id =  a.user_id 
+				ON a.user_id =  c.user_id 
 				LEFT JOIN user_pictures b 
 				ON a.user_id =  b.user_id 
 				left JOIN filters f
@@ -40,6 +40,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 				ORDER BY first_name asc, last_name asc`,
 					[arr],
 					(err, rows) => {
+						console.log(rows);
 						if (!err) {
 							if (rows.length > 0) {
 								for (let i = 0; i < rows.length; i++) {
@@ -128,16 +129,15 @@ getUsersConfigurationByRadius = (req, cb) => {
 	mySqlConnection.query(
 		`SELECT longitude, latitude FROM user_location WHERE user_id=${user_id}`,
 		(err, rows) => {
-			try
-			{
-				 if (rows.length === 0) {
-					 longitude_var = "Longitude";
-					 latitude_var = "Latitude";
-				 } else {
-					 longitude_var = rows[0].longitude;
-					 latitude_var = rows[0].latitude;
-				 }
-	
+			try {
+				if (rows.length === 0) {
+					longitude_var = "Longitude";
+					latitude_var = "Latitude";
+				} else {
+					longitude_var = rows[0].longitude;
+					latitude_var = rows[0].latitude;
+				}
+
 				mySqlConnection.query(
 					`SELECT distinct b.*, a.longitude, a.latitude, ( 3959 * acos ( cos ( radians(${latitude_var})) * cos( radians( Latitude ) ) * cos( radians( Longitude ) - 
 					radians(${longitude_var}) ) + sin ( radians(${latitude_var})) * sin( radians( Latitude ) ) ) )*1000 AS distance 
@@ -153,7 +153,7 @@ getUsersConfigurationByRadius = (req, cb) => {
 						}
 					}
 				);
-			} catch(err) {
+			} catch (err) {
 				console.log(err.message);
 			}
 		}
@@ -249,7 +249,6 @@ updateUserConfiguration = (req, res) => {
 	);
 };
 
-
 module.exports = {
 	getAllUsersConfiguration,
 	getUserConfigurationInner,
@@ -257,5 +256,5 @@ module.exports = {
 	getUsersConfigurationByRadius,
 	createUserConfiguration,
 	deleteUserConfiguration,
-	updateUserConfiguration
+	updateUserConfiguration,
 };
