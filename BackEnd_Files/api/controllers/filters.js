@@ -600,14 +600,13 @@ deleteUserFilter = (req, res) => {
 	const userid = req.params.userid;
 
 	mySqlConnection.query(
-		"delete from Filters where user_id = ?",
-		[userid],
-		(err, result) => {
+		`delete from filters where user_id = ${userid}`,
+		(err, rows) => {
 			try {
 				msgToClient = {
 					msg: `User number ${userid} filter deleted successfully`,
 				};
-				return res.send(msgToClient);
+				res.send(msgToClient);
 			} catch (err) {
 				console.log(err.message);
 			}
