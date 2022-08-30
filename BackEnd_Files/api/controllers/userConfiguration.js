@@ -28,7 +28,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 						radians(${longitude_var}) ) + sin ( radians(${latitude_var})) * sin( radians( Latitude ) ) ) )*1000 AS
 						distance
 				FROM user_configuration a 
-				RIGHT JOIN user_location c
+				LEFT JOIN user_location c
 				ON a.user_id =  c.user_id 
 				LEFT JOIN user_pictures b 
 				ON a.user_id =  b.user_id 
@@ -40,7 +40,6 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 				ORDER BY first_name asc, last_name asc`,
 					[arr],
 					(err, rows) => {
-						console.log(rows);
 						if (!err) {
 							if (rows.length > 0) {
 								for (let i = 0; i < rows.length; i++) {
