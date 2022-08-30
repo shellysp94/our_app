@@ -96,8 +96,8 @@ CREATE TABLE Filters (
   gender_filter set('Gender', 'Men', 'Women', 'All') default 'Gender',
   relationship_filter set('Relationship', 'Divorced', 'Engaged', 'In a relationship', 'In an open relationship', 'Married', 'Single' , 'Widowed') default 'Relationship',
   interested_in_filter set('Interested in', 'Friends','Hookup', 'Long term relationship', 'Short term relationship', 'Sport buddy', 'Study buddy', 'Work buddy') default 'Interested in',
-  age_filter JSON,
-  radius_filter int,
+  age_filter JSON default (JSON_ARRAY()),
+  radius_filter int default 500,
   friends_only_filter tinyint not null default '0',
   primary key (user_id),
   foreign key (user_id) references Users (user_id)

@@ -1,9 +1,9 @@
-const dbConfig = require("../../config/db_config");
-const userPictures = require("./userPictures");
-const fs = require("fs");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
+const dbConfig = require("../../config/db_config");
+const userPictures = require("./userPictures");
 const mySqlConnection = dbConfig;
+const fs = require("fs");
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
@@ -159,49 +159,101 @@ getUsersConfigurationByRadius = (req, cb) => {
 	);
 };
 
-createUserConfiguration = (req, res) => {
-	/////////////
-	mySqlConnection.query(
-		`SELECT user_id from users where email=?`,
-		[req.body.email],
-		(err, rows) => {
-			if (err) {
-				console.log(err);
-			} else {
-				user_id = rows[0].user_id;
-				let first_name = req.body.first_name;
-				let last_name = req.body.last_name;
+createUserConfiguration = (req, user_id) => {
+	return new Promise((resolve, reject) => {
+		let first_name = req.body.first_name;
+		let last_name = req.body.last_name;
 
-				//date of birth handle
-				let year = req.body.date_of_birth.substring(6, 10);
-				let month = req.body.date_of_birth.substring(3, 5);
-				let day = req.body.date_of_birth.substring(0, 2);
-				let dateOfBirthStr = year + "-" + month + "-" + day;
-				let dateOfBirth = formatYmd(new Date(dateOfBirthStr));
+		//date of birth handle
+		let year = req.body.date_of_birth.substring(6, 10);
+		let month = req.body.date_of_birth.substring(3, 5);
+		let day = req.body.date_of_birth.substring(0, 2);
+		let dateOfBirthStr = year + "-" + month + "-" + day;
+		let dateOfBirth = formatYmd(new Date(dateOfBirthStr));
 
-				let city = req.body.city;
-				let gender = req.body.gender;
-				let phoneNumber = req.body.phone_number;
-				let registerDate = formatYmd(new Date());
-				let relationship_status = req.body.relationship_status;
-				let sexual_orientation = req.body.sexual_orientation;
-				let profession = req.body.profession;
-				let pronoun = req.body.pronoun;
-				let hobbies = req.body.hobbies;
+		let city = req.body.city;
+		let gender = req.body.gender;
+		let phoneNumber = req.body.phone_number;
+		let registerDate = formatYmd(new Date());
+		let relationship_status = req.body.relationship_status;
+		let sexual_orientation = req.body.sexual_orientation;
+		let profession = req.body.profession;
+		let pronoun = req.body.pronoun;
+		let hobbies = req.body.hobbies;
 
-				mySqlConnection.query(
-					`INSERT INTO user_configuration (user_id, first_name, last_name, date_of_birth, city, gender, phone_number, registration_date, relationship_status, sexual_orientation, profession, pronoun, hobbies) VALUES ("${user_id}","${first_name}","${last_name}","${dateOfBirth}","${city}","${gender}","${phoneNumber}","${registerDate}","${relationship_status}","${sexual_orientation}","${profession}","${pronoun}", "${hobbies}")`,
-					(err, result) => {
-						try {
-							res.send("user configuration of user added successfully");
-						} catch (err) {
-							console.log(err.message);
-						}
+		mySqlConnection.query(
+			`INSERT INTO user_configuration (user_id, first_name, last_name, date_of_birth, city, gender, phone_number, registration_date, relationship_status, sexual_orientation, profession, pronoun, hobbies) VALUES ("${user_id}","${first_name}","${last_name}","${dateOfBirth}","${city}","${gender}","${phoneNumber}","${registerDate}","${relationship_status}","${sexual_orientation}","${profession}","${pronoun}", "${hobbies}")`,
+			async (err, rows) => {
+				try {
+					if (rows.affectedRows < 1) {
+						reject(
+							`Something wrong! User Configuration for new user $ didn't added successfully`
+						);
+					} else {
+						resolve(`User Configuration, `);
 					}
-				);
+				} catch (err) {
+					reject(
+						`Something wrong! User Configuration row for a new user didn't added successfully\nError message: `,
+						err.message
+					);
+				}
 			}
-		}
-	);
+		);
+
+		// let msgToClient;
+		// let resolve;
+
+		// mySqlConnection.query(
+		// 	`SELECT user_id from users where email=?`,
+		// 	[req.body.email],
+		// 	(err, rows) => {
+		// 		if (err) {
+		// 			console.log(err);
+		// 		} else {
+		// 			user_id = rows[0].user_id;
+		// 			let first_name = req.body.first_name;
+		// 			let last_name = req.body.last_name;
+
+		// 			//date of birth handle
+		// 			let year = req.body.date_of_birth.substring(6, 10);
+		// 			let month = req.body.date_of_birth.substring(3, 5);
+		// 			let day = req.body.date_of_birth.substring(0, 2);
+		// 			let dateOfBirthStr = year + "-" + month + "-" + day;
+		// 			let dateOfBirth = formatYmd(new Date(dateOfBirthStr));
+
+		// 			let city = req.body.city;
+		// 			let gender = req.body.gender;
+		// 			let phoneNumber = req.body.phone_number;
+		// 			let registerDate = formatYmd(new Date());
+		// 			let relationship_status = req.body.relationship_status;
+		// 			let sexual_orientation = req.body.sexual_orientation;
+		// 			let profession = req.body.profession;
+		// 			let pronoun = req.body.pronoun;
+		// 			let hobbies = req.body.hobbies;
+
+		// 			mySqlConnection.query(
+		// 				`INSERT INTO user_configuration (user_id, first_name, last_name, date_of_birth, city, gender, phone_number, registration_date, relationship_status, sexual_orientation, profession, pronoun, hobbies) VALUES ("${user_id}","${first_name}","${last_name}","${dateOfBirth}","${city}","${gender}","${phoneNumber}","${registerDate}","${relationship_status}","${sexual_orientation}","${profession}","${pronoun}", "${hobbies}")`,
+		// 				async (err, rows) => {
+		// 					try {
+		// 						if (rows.affectedRows >= 1) {
+		// 							msgToClient = `User id ${user_id} added successfully User Configuration, `;
+		// 							resolve = await filtersInsertDefaultRow(user_id);
+		// 							msgToClient = msgToClient.concat(resolve);
+		// 							resolve = await statusInsertDefaultRow(user_id);
+		// 							msgToClient = msgToClient.concat(resolve);
+
+		// 							res.send(msgToClient);
+		// 						}
+		// 					} catch (err) {
+		// 						console.log(err.message);
+		// 					}
+		// 				}
+		// 			);
+		// 		}
+		// 	}
+		// );
+	});
 };
 
 deleteUserConfiguration = (req, res) => {

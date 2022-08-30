@@ -359,7 +359,34 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 	getAllUserConnectionsType(resultArrayToObject, res);
 }
 
-//////////////////////////////////////////// Filter's API /////////////////////////////////////////////
+////////////////////////////////////// Filters' default insert ////////////////////////////////////////
+filtersInsertDefaultRow = (userid) => {
+	return new Promise((resolve, reject) => {
+		if (parseInt(userid, 10) <= 0) {
+			reject(
+				`Something wrong! Filters default row for a new user didn't added successfully`
+			);
+		} else {
+			mySqlConnection.query(
+				`insert into filters (user_id) values (${userid})`,
+				(err, rows) => {
+					try {
+						if (rows.affectedRows >= 1) {
+							resolve(`User Filters, `);
+						}
+					} catch (err) {
+						reject(
+							`Something wrong! Filters default row for a new user didn't added successfully\nError message: `,
+							err.message
+						);
+					}
+				}
+			);
+		}
+	});
+};
+
+//////////////////////////////////////////// Filters' API /////////////////////////////////////////////
 getAllFilters = (req, res) => {
 	mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
 		try {
@@ -621,4 +648,5 @@ module.exports = {
 	getUserFilteredUsers,
 	createUserFilter,
 	deleteUserFilter,
+	filtersInsertDefaultRow,
 };

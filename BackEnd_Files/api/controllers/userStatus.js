@@ -1,6 +1,32 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 
+statusInsertDefaultRow = (userid) => {
+	return new Promise((resolve, reject) => {
+		if (parseInt(userid, 10) <= 0) {
+			reject(
+				`Something wrong! Status default row for a new user didn't added successfully`
+			);
+		} else {
+			mySqlConnection.query(
+				`insert into user_status (user_id, status_last_update) values (${userid}, current_timestamp())`,
+				(err, rows) => {
+					try {
+						if (rows.affectedRows >= 1) {
+							resolve(`and User Status`);
+						}
+					} catch (err) {
+						reject(
+							`Something wrong! Status default row for a new user didn't added successfully\nError message: `,
+							err.message
+						);
+					}
+				}
+			);
+		}
+	});
+};
+
 getUserStatus = (req, res) => {
 	const userid = req.params.userid;
 
@@ -43,4 +69,5 @@ updateUserStatus = (req, res) => {
 module.exports = {
 	getUserStatus,
 	updateUserStatus,
+	statusInsertDefaultRow,
 };
