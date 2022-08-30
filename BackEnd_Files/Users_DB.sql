@@ -85,10 +85,10 @@ CREATE TABLE user_configuration (
 CREATE TABLE Filters (
   user_id int not null,
   search_mode enum('Whatever', 'Chill', 'Jam', 'Study', 'Grab A Bite', 'Hike', 'Party', 'Gaming', 'Workout') default 'Whatever',
-  hobbies set('Hobbies', 'basketball', 'beach volleyball', 'crossfit', 'dancing', 'football/soccer', 'gym workout', 'hiking', 'pilates', 'running', 'slacklining', 'surfing', 'swimming', 'tennis', 'yoga',
+  hobbies_filter set('Hobbies', 'basketball', 'beach volleyball', 'crossfit', 'dancing', 'football/soccer', 'gym workout', 'hiking', 'pilates', 'running', 'slacklining', 'surfing', 'swimming', 'tennis', 'yoga',
   'baking', 'cooking', 'eating outside', 'interested in culinary', 'interested in nutrition',
   'playing drums', 'playing guitar', 'playing in a band', 'playing piano', 'playing synthesizer', 'singing',
-  'acting', 'fashion designing', 'handicraft', 'home decorating', 'juggling', 'painting', 'graffiti painting', 'shooting',
+  'acting', 'fashion designing', 'handicraft', 'home decorating', 'juggling', 'painting', 'graffiti painting',  'shooting',
   'blogging', 'interested in medicine and biology', 'learning new languages', 'listening to podcasts', 'playing chess', 'puzzling', 'reading', 'writing',
   'coding', 'hacking', 'playing video games',
   'camping', 'gardening', 'sailing', 'skippering', 'tanning', 'traveling', 'having a picnic',
