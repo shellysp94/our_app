@@ -11,12 +11,12 @@ const {
     updateUserConfiguration
 } = require('../controllers/userConfiguration');
 
-router.get('/:curr_userid/:userid',getUserConfiguration);
-router.get('/:userid',getUserConfiguration); 
-router.get('/',getAllUsersConfiguration);
-router.get('/location/:user_id/:radius',getUsersConfigurationByRadius);
-router.post('/:userid', createUserConfiguration); 
-router.delete('/:userid', deleteUserConfiguration);
-router.put('/:userid', updateUserConfiguration);
+router.get('/:curr_userid/:userid',verifyToken,getUserConfiguration);
+router.get('/:userid',verifyToken,getUserConfiguration); 
+router.get('/',verifyToken,getAllUsersConfiguration);
+router.get('/location/:user_id/:radius',verifyToken,getUsersConfigurationByRadius);
+router.post('/:userid',verifyToken, createUserConfiguration); 
+router.delete('/:userid',verifyToken, deleteUserConfiguration);
+router.put('/:userid',verifyToken, updateUserConfiguration);
 
 module.exports = router;

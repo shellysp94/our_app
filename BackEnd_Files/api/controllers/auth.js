@@ -166,7 +166,7 @@ verifyToken = (req, res, next) => {
 
 	jwt.verify(token, publicToken, (err, payload) => {
 		if (err) {
-			return res.send("Not valid token");
+			return res.status(401).send("Not valid token");
 		}
 
 		req.payload = payload;

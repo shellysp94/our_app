@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const {verifyToken} = require("../controllers/auth");
 
 const {
     getUserLocation,
@@ -7,8 +8,8 @@ const {
     deleteUserLocation
 } = require('../controllers/userLocation');
 
-router.get('/:userid', getUserLocation);
-router.post('/:userid',insertUserLocation); 
-router.delete('/:userid', deleteUserLocation);
+router.get('/:userid',verifyToken, getUserLocation);
+router.post('/:userid',verifyToken,insertUserLocation); 
+router.delete('/:userid',verifyToken, deleteUserLocation);
 
 module.exports=router;

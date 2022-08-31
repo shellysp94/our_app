@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {verifyToken} = require("../controllers/auth");
 
 const {
 	getUserFriendRequestsSent,
@@ -11,12 +12,12 @@ const {
 	declineFriendRequest,
 } = require("../controllers/friendRequest");
 
-router.get("/sendRequests/:userid", getUserFriendRequestsSent);
-router.get("/receivedRequests/:userid", getUserFriendRequestsReceived);
-router.get("/byName/:userid/:connected/:name", getAllUserConnectionsByName);
-router.get("/byType/:userid/:type/:usersToPresent", getAllUserConnectionsType);
-router.post("/send/:useridA/:useridB", sendFriendRequest);
+router.get("/sendRequests/:userid",verifyToken, getUserFriendRequestsSent);
+router.get("/receivedRequests/:userid",verifyToken, getUserFriendRequestsReceived);
+router.get("/byName/:userid/:connected/:name",verifyToken, getAllUserConnectionsByName);
+router.get("/byType/:userid/:type/:usersToPresent",verifyToken, getAllUserConnectionsType);
+router.post("/send/:useridA/:useridB",verifyToken, sendFriendRequest);
 router.post("/approve/:useridA/:useridB", approveFriendRequest);
-router.delete("/decline/:useridA/:useridB", declineFriendRequest);
+router.delete("/decline/:useridA/:useridB",verifyToken, declineFriendRequest);
 
 module.exports = router;

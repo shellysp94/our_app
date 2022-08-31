@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {verifyToken} = require("../controllers/auth");
 
 const {
 	getAllFilters,
@@ -10,11 +11,11 @@ const {
 	deleteUserFilter,
 } = require("../controllers/filters");
 
-router.get("/", getAllFilters);
-router.get("/:userid", getUserFilter);
-router.get("/filteredUsers/:userid/:onlyOnline", getUserFilteredUsers);
-router.get("/friendsOfFriends/:userid", getFriendsOfFriends);
-router.post("/:userid/:onlyOnline", createUserFilter);
-router.delete("/:userid", deleteUserFilter);
+router.get("/",verifyToken, getAllFilters);
+router.get("/:userid",verifyToken, getUserFilter);
+router.get("/filteredUsers/:userid/:onlyOnline",verifyToken, getUserFilteredUsers);
+router.get("/friendsOfFriends/:userid",verifyToken, getFriendsOfFriends);
+router.post("/:userid/:onlyOnline",verifyToken, createUserFilter);
+router.delete("/:userid",verifyToken, deleteUserFilter);
 
 module.exports = router;

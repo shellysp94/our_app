@@ -4,7 +4,6 @@ const mySqlConnection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "password",
-    //database: "users_db_updated"
     database: "users_db"
 });
 

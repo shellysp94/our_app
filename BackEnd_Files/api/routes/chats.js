@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {verifyToken} = require("../controllers/auth");
 
 const {
 	getAllChats,
@@ -9,10 +10,10 @@ const {
 	deleteUsersChat,
 } = require("../controllers/chats");
 
-router.get("/", getAllChats); //NOTE - not in use, delete later
-router.get("/:userid", getSpecificUserChats);
-router.get("/:useridA/:useridB/:offset", getUsersChat);
-router.post("/:useridA/:useridB", createUsersChat);
-router.delete("/:useridA/:useridB", deleteUsersChat);
+router.get("/",verifyToken, getAllChats); //NOTE - not in use, delete later
+router.get("/:userid",verifyToken, getSpecificUserChats);
+router.get("/:useridA/:useridB/:offset",verifyToken, getUsersChat);
+router.post("/:useridA/:useridB",verifyToken, createUsersChat);
+router.delete("/:useridA/:useridB",verifyToken, deleteUsersChat);
 
 module.exports = router;

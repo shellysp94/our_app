@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {verifyToken} = require("../controllers/auth");
 
 const {
   getAllNotifications,
@@ -9,10 +10,10 @@ const {
   deleteUserSeenNotifications,
 } = require("../controllers/notifications");
 
-router.get("/", getAllNotifications);
-router.get("/:userid", getUserNotifications);
-router.get("/unseen/:userid", getUserUnseenNotifications);
-router.put("/:notification_id", updateSeenStatusNotification);
-router.delete("/:userid", deleteUserSeenNotifications);
+router.get("/",verifyToken, getAllNotifications);
+router.get("/:userid",verifyToken, getUserNotifications);
+router.get("/unseen/:userid",verifyToken, getUserUnseenNotifications);
+router.put("/:notification_id",verifyToken, updateSeenStatusNotification);
+router.delete("/:userid",verifyToken, deleteUserSeenNotifications);
 
 module.exports = router;
