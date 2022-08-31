@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\danit\\changeUI\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-tr\\values-tr.xml",
+            "outputFile": "C:\\Users\\danit\\our_app\\FrontEnd_Files\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-tr\\values-tr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\danit\\.gradle\\caches\\transforms-3\\5a71c8c3af7d887598359e23d5b6b787\\transformed\\core-1.6.0\\res\\values-tr\\values-tr.xml",

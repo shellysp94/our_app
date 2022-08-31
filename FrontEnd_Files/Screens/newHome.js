@@ -23,7 +23,7 @@ const Home = () => {
   const myLongitude = useSelector(state => state.general.myLongitude);
   const myLatitude = useSelector(state => state.general.myLatitude);
   const text = useSelector(state => state.general.rawText);
-  const data = text.filters.Search_Mode;
+  const data = text?.filters.Search_Mode;
   const myUserId = useSelector(state => state.configuration.userConfig.user_id);
   const users = useSelector(state => state.people.usersBySearchModes);
   const HobText = text['Search Mode Sentences'];
