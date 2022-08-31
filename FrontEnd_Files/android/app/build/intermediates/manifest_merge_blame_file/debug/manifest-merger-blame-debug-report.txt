@@ -1,0 +1,387 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.finalproject"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="31" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:5:6-78
+11-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:5:23-76
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:4:5-67
+12-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:4:22-64
+13    <uses-permission android:name="android.permission.CAMERA" />
+13-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:6:5-65
+13-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:6:22-62
+14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+14-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:7:5-80
+14-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:7:22-78
+15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+15-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:8:5-80
+15-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:8:22-77
+16    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+16-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:9:5-82
+16-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:9:22-79
+17    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+17-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:10:5-78
+17-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:10:22-76
+18    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+18-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:11:5-80
+18-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:11:22-78
+19    <uses-permission android:name="android.permission.ACCESSCOARSELOCATION" />
+19-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:12:5-78
+19-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:12:22-76
+20    <uses-permission android:name="android.permission.ACCESSFINELOCATION" />
+20-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:13:3-74
+20-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:13:20-72
+21    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+21-->[com.facebook.flipper:flipper:0.125.0] C:\Users\danit\.gradle\caches\transforms-3\b24649aa5fbdef18d352a14cc6c09833\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:5-76
+21-->[com.facebook.flipper:flipper:0.125.0] C:\Users\danit\.gradle\caches\transforms-3\b24649aa5fbdef18d352a14cc6c09833\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:22-73
+22    <uses-permission android:name="android.permission.WAKE_LOCK" />
+22-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-68
+22-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-65
+23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+23-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-79
+23-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-76
+24    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+24-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:28:5-82
+24-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:28:22-79
+25    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+25-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:25:5-79
+25-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:25:22-76
+26    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+26-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:26:5-110
+26-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:26:22-107
+27
+28    <application
+28-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:15:5-36:19
+29        android:name="com.finalproject.MainApplication"
+29-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:16:7-38
+30        android:allowBackup="false"
+30-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:20:7-34
+31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+31-->[androidx.core:core:1.6.0] C:\Users\danit\.gradle\caches\transforms-3\5a71c8c3af7d887598359e23d5b6b787\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+32        android:debuggable="true"
+33        android:icon="@mipmap/ic_launcher"
+33-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:18:7-41
+34        android:label="@string/app_name"
+34-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:17:7-39
+35        android:requestLegacyExternalStorage="true"
+35-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:22:7-50
+36        android:roundIcon="@mipmap/ic_launcher_round"
+36-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:19:7-52
+37        android:theme="@style/AppTheme"
+37-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:21:7-38
+38        android:usesCleartextTraffic="true" >
+38-->C:\Users\danit\changeUI\android\app\src\debug\AndroidManifest.xml:8:9-44
+39        <activity
+39-->C:\Users\danit\changeUI\android\app\src\debug\AndroidManifest.xml:11:9-111
+40            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+40-->C:\Users\danit\changeUI\android\app\src\debug\AndroidManifest.xml:11:19-83
+41            android:exported="false" />
+41-->C:\Users\danit\changeUI\android\app\src\debug\AndroidManifest.xml:11:84-108
+42        <activity
+42-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:24:7-35:18
+43            android:name="com.finalproject.MainActivity"
+43-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:25:9-37
+44            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+44-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:27:9-118
+45            android:exported="true"
+45-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:30:9-32
+46            android:label="@string/app_name"
+46-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:26:9-41
+47            android:launchMode="singleTask"
+47-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:28:9-40
+48            android:windowSoftInputMode="adjustPan" >
+48-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:29:9-48
+49            <intent-filter>
+49-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:31:9-34:25
+50                <action android:name="android.intent.action.MAIN" />
+50-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:32:13-65
+50-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:32:21-62
+51
+52                <category android:name="android.intent.category.LAUNCHER" />
+52-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:33:13-73
+52-->C:\Users\danit\changeUI\android\app\src\main\AndroidManifest.xml:33:23-70
+53            </intent-filter>
+54        </activity>
+55
+56        <service android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService" />
+56-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-111
+56-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:18-108
+57        <service
+57-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:9-21:19
+58            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
+58-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-95
+59            android:exported="false" >
+59-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-37
+60            <intent-filter>
+60-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-20:29
+61                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+61-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:17-78
+61-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:25-75
+62            </intent-filter>
+63        </service>
+64
+65        <receiver
+65-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:23:9-30:20
+66            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
+66-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-96
+67            android:exported="true"
+67-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:25:13-36
+68            android:permission="com.google.android.c2dm.permission.SEND" >
+68-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-73
+69            <intent-filter>
+69-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-29:29
+70                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+70-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:17-81
+70-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:25-78
+71            </intent-filter>
+72        </receiver>
+73
+74        <meta-data
+74-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:32:9-34:36
+75            android:name="firebase_messaging_auto_init_enabled"
+75-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:33:13-64
+76            android:value="true" />
+76-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:34:13-33
+77        <meta-data
+77-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:35:9-37:32
+78            android:name="com.google.firebase.messaging.default_notification_channel_id"
+78-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:36:13-89
+79            android:value="" />
+79-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:37:13-29
+80        <meta-data
+80-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:38:9-40:47
+81            android:name="com.google.firebase.messaging.default_notification_color"
+81-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:39:13-84
+82            android:resource="@color/white" />
+82-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:40:13-44
+83        <meta-data
+83-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-12:36
+84            android:name="app_data_collection_default_enabled"
+84-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-63
+85            android:value="true" />
+85-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-33
+86
+87        <service
+87-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-18:19
+88            android:name="com.google.firebase.components.ComponentDiscoveryService"
+88-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:18-89
+89            android:directBootAware="true"
+89-->[com.google.firebase:firebase-common:20.1.1] C:\Users\danit\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:35:13-43
+90            android:exported="false" >
+90-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:54:13-37
+91            <meta-data
+91-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:85
+92                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
+92-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-120
+93                android:value="com.google.firebase.components.ComponentRegistrar" />
+93-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-82
+94            <meta-data
+94-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:55:13-57:85
+95                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+95-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:56:17-119
+96                android:value="com.google.firebase.components.ComponentRegistrar" />
+96-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:57:17-82
+97            <meta-data
+97-->[com.google.firebase:firebase-datatransport:18.1.4] C:\Users\danit\.gradle\caches\transforms-3\fe78cab7a32a86d4721fa5e466d7837c\transformed\jetified-firebase-datatransport-18.1.4\AndroidManifest.xml:28:13-30:85
+98                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+98-->[com.google.firebase:firebase-datatransport:18.1.4] C:\Users\danit\.gradle\caches\transforms-3\fe78cab7a32a86d4721fa5e466d7837c\transformed\jetified-firebase-datatransport-18.1.4\AndroidManifest.xml:29:17-115
+99                android:value="com.google.firebase.components.ComponentRegistrar" />
+99-->[com.google.firebase:firebase-datatransport:18.1.4] C:\Users\danit\.gradle\caches\transforms-3\fe78cab7a32a86d4721fa5e466d7837c\transformed\jetified-firebase-datatransport-18.1.4\AndroidManifest.xml:30:17-82
+100            <meta-data
+100-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:31:13-33:85
+101                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+101-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:32:17-139
+102                android:value="com.google.firebase.components.ComponentRegistrar" />
+102-->[com.google.android.gms:play-services-measurement-api:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\5a7cf027c2376b4d9940c01e3fba452d\transformed\jetified-play-services-measurement-api-21.0.0\AndroidManifest.xml:33:17-82
+103            <meta-data
+103-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\danit\.gradle\caches\transforms-3\d26db6f9c05b0da451da0c062362d8a4\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:18:13-20:85
+104                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+104-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\danit\.gradle\caches\transforms-3\d26db6f9c05b0da451da0c062362d8a4\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:19:17-127
+105                android:value="com.google.firebase.components.ComponentRegistrar" />
+105-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\danit\.gradle\caches\transforms-3\d26db6f9c05b0da451da0c062362d8a4\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:20:17-82
+106        </service>
+107
+108        <provider
+108-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:20:9-24:38
+109            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
+109-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-88
+110            android:authorities="com.finalproject.reactnativefirebaseappinitprovider"
+110-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-86
+111            android:exported="false"
+111-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-37
+112            android:initOrder="99" />
+112-->[:react-native-firebase_app] C:\Users\danit\changeUI\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-35
+113        <provider
+113-->[:react-native-image-picker] C:\Users\danit\changeUI\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+114            android:name="com.imagepicker.ImagePickerProvider"
+114-->[:react-native-image-picker] C:\Users\danit\changeUI\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-63
+115            android:authorities="com.finalproject.imagepickerprovider"
+115-->[:react-native-image-picker] C:\Users\danit\changeUI\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-71
+116            android:exported="false"
+116-->[:react-native-image-picker] C:\Users\danit\changeUI\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+117            android:grantUriPermissions="true" >
+117-->[:react-native-image-picker] C:\Users\danit\changeUI\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+118            <meta-data
+118-->[:react-native-image-picker] C:\Users\danit\changeUI\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:70
+119                android:name="android.support.FILE_PROVIDER_PATHS"
+119-->[:react-native-image-picker] C:\Users\danit\changeUI\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+120                android:resource="@xml/imagepicker_provider_paths" />
+120-->[:react-native-image-picker] C:\Users\danit\changeUI\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-67
+121        </provider>
+122
+123        <receiver
+123-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:31:9-38:20
+124            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+124-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:32:13-78
+125            android:exported="true"
+125-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:33:13-36
+126            android:permission="com.google.android.c2dm.permission.SEND" >
+126-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:34:13-73
+127            <intent-filter>
+127-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-29:29
+128                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+128-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:17-81
+128-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:28:25-78
+129            </intent-filter>
+130        </receiver>
+131        <!--
+132             FirebaseMessagingService performs security checks at runtime,
+133             but set to not exported to explicitly avoid allowing another app to call it.
+134        -->
+135        <service
+135-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:44:9-51:19
+136            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+136-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:45:13-82
+137            android:directBootAware="true"
+137-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:46:13-43
+138            android:exported="false" >
+138-->[com.google.firebase:firebase-messaging:23.0.5] C:\Users\danit\.gradle\caches\transforms-3\0fe4f03c44e12e56468e3ff54f60581b\transformed\jetified-firebase-messaging-23.0.5\AndroidManifest.xml:47:13-37
+139            <intent-filter android:priority="-500" >
+139-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-20:29
+140                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+140-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:17-78
+140-->[:react-native-firebase_messaging] C:\Users\danit\changeUI\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:25-75
+141            </intent-filter>
+142        </service>
+143        <service
+143-->[com.google.android.datatransport:transport-backend-cct:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\b615a3518dc0d987ae3cededac3fafc5\transformed\jetified-transport-backend-cct-3.1.5\AndroidManifest.xml:29:9-35:19
+144            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+144-->[com.google.android.datatransport:transport-backend-cct:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\b615a3518dc0d987ae3cededac3fafc5\transformed\jetified-transport-backend-cct-3.1.5\AndroidManifest.xml:30:13-103
+145            android:exported="false" >
+145-->[com.google.android.datatransport:transport-backend-cct:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\b615a3518dc0d987ae3cededac3fafc5\transformed\jetified-transport-backend-cct-3.1.5\AndroidManifest.xml:31:13-37
+146            <meta-data
+146-->[com.google.android.datatransport:transport-backend-cct:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\b615a3518dc0d987ae3cededac3fafc5\transformed\jetified-transport-backend-cct-3.1.5\AndroidManifest.xml:32:13-34:39
+147                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+147-->[com.google.android.datatransport:transport-backend-cct:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\b615a3518dc0d987ae3cededac3fafc5\transformed\jetified-transport-backend-cct-3.1.5\AndroidManifest.xml:33:17-94
+148                android:value="cct" />
+148-->[com.google.android.datatransport:transport-backend-cct:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\b615a3518dc0d987ae3cededac3fafc5\transformed\jetified-transport-backend-cct-3.1.5\AndroidManifest.xml:34:17-36
+149        </service>
+150        <service
+150-->[com.google.android.datatransport:transport-runtime:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\736af74e9b8424cc53b277a12fd8ec85\transformed\jetified-transport-runtime-3.1.5\AndroidManifest.xml:26:9-30:19
+151            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+151-->[com.google.android.datatransport:transport-runtime:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\736af74e9b8424cc53b277a12fd8ec85\transformed\jetified-transport-runtime-3.1.5\AndroidManifest.xml:27:13-117
+152            android:exported="false"
+152-->[com.google.android.datatransport:transport-runtime:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\736af74e9b8424cc53b277a12fd8ec85\transformed\jetified-transport-runtime-3.1.5\AndroidManifest.xml:28:13-37
+153            android:permission="android.permission.BIND_JOB_SERVICE" >
+153-->[com.google.android.datatransport:transport-runtime:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\736af74e9b8424cc53b277a12fd8ec85\transformed\jetified-transport-runtime-3.1.5\AndroidManifest.xml:29:13-69
+154        </service>
+155
+156        <receiver
+156-->[com.google.android.datatransport:transport-runtime:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\736af74e9b8424cc53b277a12fd8ec85\transformed\jetified-transport-runtime-3.1.5\AndroidManifest.xml:32:9-34:40
+157            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+157-->[com.google.android.datatransport:transport-runtime:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\736af74e9b8424cc53b277a12fd8ec85\transformed\jetified-transport-runtime-3.1.5\AndroidManifest.xml:33:13-132
+158            android:exported="false" />
+158-->[com.google.android.datatransport:transport-runtime:3.1.5] C:\Users\danit\.gradle\caches\transforms-3\736af74e9b8424cc53b277a12fd8ec85\transformed\jetified-transport-runtime-3.1.5\AndroidManifest.xml:34:13-37
+159
+160        <provider
+160-->[com.google.firebase:firebase-common:20.1.1] C:\Users\danit\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:26:9-31:39
+161            android:name="com.google.firebase.provider.FirebaseInitProvider"
+161-->[com.google.firebase:firebase-common:20.1.1] C:\Users\danit\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:27:13-77
+162            android:authorities="com.finalproject.firebaseinitprovider"
+162-->[com.google.firebase:firebase-common:20.1.1] C:\Users\danit\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:28:13-72
+163            android:directBootAware="true"
+163-->[com.google.firebase:firebase-common:20.1.1] C:\Users\danit\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:29:13-43
+164            android:exported="false"
+164-->[com.google.firebase:firebase-common:20.1.1] C:\Users\danit\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:30:13-37
+165            android:initOrder="100" />
+165-->[com.google.firebase:firebase-common:20.1.1] C:\Users\danit\.gradle\caches\transforms-3\90b0264a270d302f6511f9161eff0e3e\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:31:13-36
+166
+167        <activity
+167-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:23:9-27:75
+168            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+168-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:24:13-93
+169            android:excludeFromRecents="true"
+169-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:25:13-46
+170            android:exported="false"
+170-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:26:13-37
+171            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+171-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:27:13-72
+172        <!--
+173            Service handling Google Sign-In user revocation. For apps that do not integrate with
+174            Google Sign-In, this service will never be started.
+175        -->
+176        <service
+176-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:33:9-37:51
+177            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+177-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:34:13-89
+178            android:exported="true"
+178-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:35:13-36
+179            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+179-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:36:13-107
+180            android:visibleToInstantApps="true" />
+180-->[com.google.android.gms:play-services-auth:20.1.0] C:\Users\danit\.gradle\caches\transforms-3\85248a897a1c60a468c4eab6b47c6ef1\transformed\jetified-play-services-auth-20.1.0\AndroidManifest.xml:37:13-48
+181
+182        <activity
+182-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\danit\.gradle\caches\transforms-3\a7da0ffaf9626d3a8436822864204695\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+183            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+183-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\danit\.gradle\caches\transforms-3\a7da0ffaf9626d3a8436822864204695\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+184            android:exported="false"
+184-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\danit\.gradle\caches\transforms-3\a7da0ffaf9626d3a8436822864204695\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+185            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+185-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\danit\.gradle\caches\transforms-3\a7da0ffaf9626d3a8436822864204695\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+186
+187        <receiver
+187-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:29:9-33:20
+188            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+188-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:30:13-85
+189            android:enabled="true"
+189-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:31:13-35
+190            android:exported="false" >
+190-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:32:13-37
+191        </receiver>
+192
+193        <service
+193-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:35:9-38:40
+194            android:name="com.google.android.gms.measurement.AppMeasurementService"
+194-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:36:13-84
+195            android:enabled="true"
+195-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:37:13-35
+196            android:exported="false" />
+196-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:38:13-37
+197        <service
+197-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:39:9-43:72
+198            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+198-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:40:13-87
+199            android:enabled="true"
+199-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:41:13-35
+200            android:exported="false"
+200-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:42:13-37
+201            android:permission="android.permission.BIND_JOB_SERVICE" />
+201-->[com.google.android.gms:play-services-measurement:21.0.0] C:\Users\danit\.gradle\caches\transforms-3\47839aacd1a36294bbea069597e954b9\transformed\jetified-play-services-measurement-21.0.0\AndroidManifest.xml:43:13-69
+202
+203        <meta-data
+203-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\danit\.gradle\caches\transforms-3\6dadbc8dcf8ca64485f05cdeae89eefb\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+204            android:name="com.google.android.gms.version"
+204-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\danit\.gradle\caches\transforms-3\6dadbc8dcf8ca64485f05cdeae89eefb\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+205            android:value="@integer/google_play_services_version" />
+205-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\danit\.gradle\caches\transforms-3\6dadbc8dcf8ca64485f05cdeae89eefb\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+206    </application>
+207
+208</manifest>
