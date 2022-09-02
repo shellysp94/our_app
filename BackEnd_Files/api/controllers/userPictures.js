@@ -9,7 +9,7 @@ function getPicNameAndEncode(imageName) {
 	finalFilePath = dirnametemp + "images\\" + imageName;
 	//encode image as base 64
 	var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
-
+    console.log('file path:', finalFilePath);
 	return imageAsBase64;
 }
 
