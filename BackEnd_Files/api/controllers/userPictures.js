@@ -11,7 +11,6 @@ function getPicNameAndEncode(imageName) {
     //ec2
     finalFilePath = dirnametemp + "images//" + imageName;
 	//encode image as base 64
-    console.log('file path:', finalFilePath);
 	var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
 	return imageAsBase64;
 }

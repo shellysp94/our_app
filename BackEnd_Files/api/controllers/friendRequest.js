@@ -77,13 +77,6 @@ getAllUserConnectionsType = (req, res) => {
 	let usersConfigurations = [];
 	let mergeObjects = [];
 
-	console.log(`select distinct user_id, 
-	if((user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
-	if(user_A_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
-	if(user_B_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
-	if((user_A_id != ${userid} and user_B_id != ${userid}) or (user_A_id is null and user_B_id is null), 1, 0) notConnected
-from Connections right join user_configuration on(user_id = user_A_id or user_id = user_B_id) 
-group by (user_id) having user_id != ${userid}`);
 	mySqlConnection.query(
 		`select distinct user_id, 
 				if((user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
@@ -94,18 +87,14 @@ group by (user_id) having user_id != ${userid}`);
 			group by (user_id) having user_id != ${userid}`,
 		(err, rows) => {
 			try {
-				console.log("rows in by type:\n" + rows);
 				if (parseInt(usersToPresent[0], 10) === 0) {
 					// user asked for all other users
-					console.log("by type first rows (if):\n" + rows);
 					for (user = 0; user < rows.length; user++) {
 						usersConfigurations.push(rows[user].user_id);
 					}
-					console.log("users configurations:", usersConfigurations);
 				} else {
 					// user asked for a specific users
 					for (user = 0; user < rows.length; user++) {
-						console.log("by type first rows (else):\n" + rows);
 						if (usersToPresent.includes(rows[user].user_id)) {
 							usersConfigurations.push(rows[user].user_id);
 						}
@@ -121,7 +110,6 @@ group by (user_id) having user_id != ${userid}`);
 					(resultFromConfiguration) => {
 						for (user = 0; user < resultFromConfiguration.length; user++) {
 							for (row = 0; row < rows.length; row++) {
-								console.log("by type seconds rows:\n" + rows);
 								if (
 									parseInt(resultFromConfiguration[user].user_id, 10) ===
 									parseInt(rows[row].user_id, 10)
@@ -260,7 +248,7 @@ sendFriendRequest = async (req, res) => {
 							try {
 								titleToSend = `New friend request`;
 								bodyToSend = `Friend request from `;
-								sendNotificationHelper(req, res, titleToSend, bodyToSend);
+								//sendNotificationHelper(req, res, titleToSend, bodyToSend);
 							} catch (err) {
 								console.log(err);
 							}
