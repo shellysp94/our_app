@@ -160,7 +160,7 @@ verifyToken = (req, res, next) => {
 	const authHeader = req.headers["authorization"];
 	const token = authHeader && authHeader.split(" ")[1];
 	if (token == null) {
-		return res.send("No token sent");
+		return res.status(401).send("No token sent");
 	}
 
 	jwt.verify(token, publicToken, (err, payload) => {
