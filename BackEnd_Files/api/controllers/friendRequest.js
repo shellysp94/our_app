@@ -77,6 +77,8 @@ getAllUserConnectionsType = (req, res) => {
 	let usersConfigurations = [];
 	let mergeObjects = [];
 
+	console.log("im in the by type query");
+
 	mySqlConnection.query(
 		`select distinct user_id, 
 				if((user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
@@ -87,12 +89,14 @@ getAllUserConnectionsType = (req, res) => {
 			group by (user_id) having user_id != ${userid}`,
 		(err, rows) => {
 			try {
+				console.log("rows in by type:\n" + rows);
 				if (parseInt(usersToPresent[0], 10) === 0) {
 					// user asked for all other users
 					console.log("by type first rows (if):\n" + rows);
 					for (user = 0; user < rows.length; user++) {
 						usersConfigurations.push(rows[user].user_id);
 					}
+					console.log("users configurations:", usersConfigurations);
 				} else {
 					// user asked for a specific users
 					for (user = 0; user < rows.length; user++) {
