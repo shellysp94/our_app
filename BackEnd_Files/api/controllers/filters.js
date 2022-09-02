@@ -516,6 +516,7 @@ getUserFilteredUsers = (req, res) => {
 				resolve = await createInterestedInQuery(userFilter[0]);
 				sqlQuery = sqlQuery.concat(resolve);
 
+				console.log("mysql query:\n" + sqlQuery);
 				mySqlConnection.query(sqlQuery, (err, rows) => {
 					try {
 						if (rows !== undefined && rows.length > 0) {
