@@ -13,10 +13,9 @@ module.exports = {
 	},
 
 	getOneUser: (req, res) => {
-		//mySqlConnection.query("SELECT * from users WHERE user_id= ?",[req.params.userid], (err,rows)=>{
 		const arr = req.params.userid.split(",");
 		mySqlConnection.query(
-			"SELECT * from users WHERE user_id IN (?)",
+			"SELECT * from Users WHERE user_id IN (?)",
 			[arr],
 			(err, rows) => {
 				if (!err) {
@@ -44,7 +43,7 @@ module.exports = {
 
 	deleteUser: (req, res) => {
 		mySqlConnection.query(
-			"DELETE FROM users WHERE user_id=?",
+			"DELETE FROM Users WHERE user_id=?",
 			req.params.userid,
 			(err, resuls) => {
 				if (!err) {
@@ -62,7 +61,7 @@ module.exports = {
 		let hashedPassword = bcrypt.hash(req.body.password, 10);
 
 		mySqlConnection.query(
-			"UPDATE users SET email=?, password=? WHERE user_id=?",
+			"UPDATE Users SET email=?, password=? WHERE user_id=?",
 			[email, hashedPassword, user_id],
 			(err, result) => {
 				if (!err) {
