@@ -320,7 +320,6 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 	res
 ) {
 	let createdUsersToPresent = [];
-	console.log("im in getUserFilteredUsers_OnlyOnline_Helper function");
 
 	if (parseInt(onlyOnline, 10) === 1) {
 		if (parseInt(withFilters, 10) === 1) {
@@ -345,12 +344,16 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 	} else {
 		if (parseInt(withFilters, 10) === 1) {
 			// Return users according to filters - online and offline //
+			console.log("users to present:", usersToPresent);
 			usersToPresent.forEach((user) => {
 				createdUsersToPresent.push(user);
 			});
+			console.log("created users to present:", createdUsersToPresent);
 		} else {
 			// Return users without any filters - online and offline //
+			console.log("im in the else");
 			createdUsersToPresent = [0];
+			console.log(createdUsersToPresent);
 		}
 	}
 
