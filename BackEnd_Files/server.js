@@ -30,7 +30,7 @@ wss.on("connection", async (ws, req) => {
 		const token = req.headers.authorization.split(" ")[1];
 		let userid;
 		const rows = await myQuery(
-			`select user_id from users where token = "${token}"`
+			`select user_id from Users where token = "${token}"`
 		);
 		if (rows.length > 0) {
 			userid = rows[0].user_id;
@@ -58,7 +58,6 @@ wss.on("connection", async (ws, req) => {
 	ws.on("message", (message) => {
 		//console.log(`Received message => ${message} `);
 		updateLocation(onlineUsers, message, ws);
-
 	});
 
 	ws.on("close", () => {
