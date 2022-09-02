@@ -10,7 +10,7 @@ const {
 	getUsersByRadius,
 } = require("../controllers/users");
 
-router.get("/",verifyToken, getAllUsers); //get all users (/users/)
+router.get("/", getAllUsers); //get all users (/users/)
 router.get("/:userid",verifyToken, getOneUser); //get user by userid (/users/:appid)
 router.delete("/:userid",verifyToken, deleteUser); //delete user (/users/:appid)
 router.put("/:userid",verifyToken, updateUser);

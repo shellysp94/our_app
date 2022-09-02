@@ -17,7 +17,7 @@ router.get("/receivedRequests/:userid",verifyToken, getUserFriendRequestsReceive
 router.get("/byName/:userid/:connected/:name",verifyToken, getAllUserConnectionsByName);
 router.get("/byType/:userid/:type/:usersToPresent",verifyToken, getAllUserConnectionsType);
 router.post("/send/:useridA/:useridB",verifyToken, sendFriendRequest);
-router.post("/approve/:useridA/:useridB", approveFriendRequest);
+router.post("/approve/:useridA/:useridB",verifyToken, approveFriendRequest);
 router.delete("/decline/:useridA/:useridB",verifyToken, declineFriendRequest);
 
 module.exports = router;

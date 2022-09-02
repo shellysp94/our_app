@@ -11,7 +11,7 @@ const {
 	deleteUserFilter,
 } = require("../controllers/filters");
 
-router.get("/",verifyToken, getAllFilters);
+router.get("/", getAllFilters);
 router.get("/:userid",verifyToken, getUserFilter);
 router.get("/filteredUsers/:userid/:onlyOnline",verifyToken, getUserFilteredUsers);
 router.get("/friendsOfFriends/:userid",verifyToken, getFriendsOfFriends);

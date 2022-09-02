@@ -168,9 +168,26 @@ verifyToken = (req, res, next) => {
 		if (err) {
 			return res.status(401).send("Not valid token");
 		}
-
-		req.payload = payload;
-		next();
+		else //valid token
+		{
+			const user_id = req.params.userid || req.params.useridA
+			mySqlConnection.query(`select token from users where user_id = ${user_id}`, (err,rows)=>
+			{
+				try
+				{
+					if(rows.length === 0 || rows[0].token !== token) //valid token but not token of user request
+					{
+						return res.status(401).send("Not valid token");
+					}
+					req.payload = payload;
+					next();
+				}
+				catch(err)
+				{
+					console.log(err.message);
+				}
+			})
+		}
 	});
 }
 

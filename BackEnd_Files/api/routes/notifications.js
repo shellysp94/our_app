@@ -10,7 +10,7 @@ const {
   deleteUserSeenNotifications,
 } = require("../controllers/notifications");
 
-router.get("/",verifyToken, getAllNotifications);
+router.get("/", getAllNotifications);
 router.get("/:userid",verifyToken, getUserNotifications);
 router.get("/unseen/:userid",verifyToken, getUserUnseenNotifications);
 router.put("/:notification_id",verifyToken, updateSeenStatusNotification);

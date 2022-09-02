@@ -13,7 +13,7 @@ const {
 
 router.get('/:curr_userid/:userid',verifyToken,getUserConfiguration);
 router.get('/:userid',verifyToken,getUserConfiguration); 
-router.get('/',verifyToken,getAllUsersConfiguration);
+router.get('/',getAllUsersConfiguration);
 router.get('/location/:user_id/:radius',verifyToken,getUsersConfigurationByRadius);
 router.post('/:userid',verifyToken, createUserConfiguration); 
 router.delete('/:userid',verifyToken, deleteUserConfiguration);
