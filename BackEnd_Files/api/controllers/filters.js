@@ -519,6 +519,7 @@ getUserFilteredUsers = (req, res) => {
 				console.log("mysql query:\n" + sqlQuery);
 				mySqlConnection.query(sqlQuery, (err, rows) => {
 					try {
+						console.log("rows from filters get:\n" + rows);
 						if (rows !== undefined && rows.length > 0) {
 							for (var user of rows) {
 								mutuals.push(user.user_id);
