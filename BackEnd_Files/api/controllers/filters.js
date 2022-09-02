@@ -324,18 +324,22 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 	if (parseInt(onlyOnline, 10) === 1) {
 		if (parseInt(withFilters, 10) === 1) {
 			// Return users according to filters but only online users //
+			console.log("**IF** users to present", usersToPresent);
 			usersToPresent.forEach((user) => {
 				if (onlineUsers.includesAUser(user)) {
 					createdUsersToPresent.push(user);
 				}
 			});
+			console.log("**IF** created users to present", createdUsersToPresent);
 		} else {
 			// Return all online users //
+			console.log("**ELSE** users to present", usersToPresent);
 			onlineUsers.getOnlineUsersArray().forEach((onlineUser) => {
 				if (parseInt(onlineUser.user_id, 10) !== parseInt(userid)) {
 					createdUsersToPresent.push(parseInt(onlineUser.user_id, 10));
 				}
 			});
+			console.log("**ELSE** created users to present", createdUsersToPresent);
 		}
 	} else {
 		if (parseInt(withFilters, 10) === 1) {
