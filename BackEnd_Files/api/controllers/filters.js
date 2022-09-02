@@ -320,6 +320,7 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 	res
 ) {
 	let createdUsersToPresent = [];
+	console.log("im in getUserFilteredUsers_OnlyOnline_Helper function");
 
 	if (parseInt(onlyOnline, 10) === 1) {
 		if (parseInt(withFilters, 10) === 1) {
