@@ -9,7 +9,7 @@ const mySqlConnection = dbConfig;
 
 function updateDevicetoken (user_id_from_query,device_token,userCred,cb)
 {
-	mySqlConnection.query(`insert into device_token (user_id, device_token) values (${user_id_from_query},"${device_token}")
+	mySqlConnection.query(`insert into Device_token (user_id, device_token) values (${user_id_from_query},"${device_token}")
 	ON duplicate key update user_id=${user_id_from_query},device_token="${device_token}"`,
 	(err,rows) =>
 	{
@@ -30,7 +30,7 @@ login = async (req, res) => {
 	const password = req.body.password;
 
 	mySqlConnection.query(
-		"SELECT* from users WHERE email=?",
+		"SELECT* from Users WHERE email=?",
 		[email],
 		(err, rows) => {
 			if (rows.length === 0) 
@@ -66,14 +66,14 @@ login = async (req, res) => {
 							};
 	
 							mySqlConnection.query(
-								"UPDATE users SET token=? WHERE email=?",
+								"UPDATE Users SET token=? WHERE email=?",
 								[accessToken, email],
 								(err, results) => {
 									try 
 									{
 										mySqlConnection.query(`select * 
-										from users a
-										right join users_db.device_token b
+										from Users a
+										right join Device_token b
 										on a.user_id = b.user_id
 										where a.email = "${email}"`, (err,rows) =>
 										{
@@ -118,7 +118,7 @@ login = async (req, res) => {
 
 register =  (req, res) => {
 	mySqlConnection.query(
-		"SELECT* from users WHERE email=?",
+		"SELECT* from Users WHERE email=?",
 		[req.body.email],
 		async (err, rows) => 
 		{
@@ -132,7 +132,7 @@ register =  (req, res) => {
 	
 				let hashedPassword = await bcrypt.hash(req.body.password, 10);
 				mySqlConnection.query(
-					"INSERT INTO users SET ?",
+					"INSERT INTO Users SET ?",
 					{email: req.body.email, password: hashedPassword},
 					(err, results) => 
 					{
@@ -156,7 +156,6 @@ register =  (req, res) => {
 }
 
 
-//check if need to convert to try-catch
 verifyToken = (req, res, next) => {
 	const authHeader = req.headers["authorization"];
 	const token = authHeader && authHeader.split(" ")[1];

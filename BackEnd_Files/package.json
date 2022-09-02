@@ -12,6 +12,7 @@
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"body-parser": "^1.19.2",
+		"dotenv": "^16.0.2",
 		"express": "^4.17.3",
 		"express-handlebars": "^6.0.2",
 		"firebase": "^9.8.1",

@@ -30,9 +30,9 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 				FROM user_configuration a 
 				LEFT JOIN user_location c
 				ON a.user_id =  c.user_id 
-				LEFT JOIN user_pictures b 
+				LEFT JOIN User_pictures b 
 				ON a.user_id =  b.user_id 
-				left JOIN filters f
+				left JOIN Filters f
                 ON a.user_id = f.user_id
 				left join user_status s
 				ON a.user_id = s.user_id
@@ -162,7 +162,7 @@ getUsersConfigurationByRadius = (req, cb) => {
 createUserConfiguration = (req, res) => {
 	/////////////
 	mySqlConnection.query(
-		`SELECT user_id from users where email=?`,
+		`SELECT user_id from Users where email=?`,
 		[req.body.email],
 		(err, rows) => {
 			if (err) {

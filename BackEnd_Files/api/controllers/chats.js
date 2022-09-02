@@ -22,7 +22,7 @@ getSpecificUserChats = (req, res) => {
 	let mergeObjects = [];
 
 	mySqlConnection.query(
-		`select user_a_id, user_b_id from chats where user_a_id = ${userid} or user_b_id = ${userid}`,
+		`select user_A_id, user_B_id from Chats where user_A_id = ${userid} or user_B_id = ${userid}`,
 		(err, rows) => {
 			try {
 				if (rows !== undefined && rows.length > 0) {
@@ -48,7 +48,7 @@ getSpecificUserChats = (req, res) => {
 								relevant++
 							) {
 								mySqlConnection.query(
-									`select * from messages where
+									`select * from Messages where
 								(sender_user_id = ${userid} and receiver_user_id = ${relevantUsersConfiguration[relevant].user_id}) or
 								(sender_user_id = ${relevantUsersConfiguration[relevant].user_id} and receiver_user_id = ${userid})
 								order by creation_date desc limit 1`,
@@ -142,24 +142,24 @@ createUsersChat = (req, res) => {
 	const userIdB = req.params.useridB;
 
 	mySqlConnection.query(
-		`select chat_id from chats where (user_A_id = ${userIdA} and user_B_id = ${userIdB}) or (user_A_id = ${userIdB} and user_B_id = ${userIdA})`,
+		`select chat_id from Chats where (user_A_id = ${userIdA} and user_B_id = ${userIdB}) or (user_A_id = ${userIdB} and user_B_id = ${userIdA})`,
 		(err, rows) => {
 			try {
 				if (rows.length === 0) {
 					// there is no chat of these users --> should create a new chat for them.
 					mySqlConnection.query(
-						`select * from connections 
-						where (((user_A_id = ${userIdA} and user_B_id = ${userIdB}) or (user_a_id = ${userIdB} and user_b_id = ${userIdA})) 
+						`select * from Connections 
+						where (((user_A_id = ${userIdA} and user_B_id = ${userIdB}) or (user_A_id = ${userIdB} and user_B_id = ${userIdA})) 
 						and connected = 1)`,
 						(err, rows) => {
 							try {
 								if (rows.length > 0) {
 									mySqlConnection.query(
-										`insert into chats (create_date, last_login, user_A_id, user_B_id) values (curdate(), curdate(), ${userIdA}, ${userIdB})`,
+										`insert into Chats (create_date, last_login, user_A_id, user_B_id) values (curdate(), curdate(), ${userIdA}, ${userIdB})`,
 										(err, rows) => {
 											try {
 												mySqlConnection.query(
-													`select chat_id from chats where user_A_id = ${userIdA} and user_B_id = ${userIdB}`,
+													`select chat_id from Chats where user_A_id = ${userIdA} and user_B_id = ${userIdB}`,
 													(err, rows) => {
 														try {
 															chatRooms.insertNewChatRoom(
@@ -232,7 +232,7 @@ createUsersChat = (req, res) => {
 				} else {
 					const chatID = rows[0].chat_id;
 					mySqlConnection.query(
-						`update chats set last_login = curdate() where chat_id = ${chatID}`,
+						`update Chats set last_login = curdate() where chat_id = ${chatID}`,
 						(err, rows) => {
 							try {
 								console.log("im from updating", chatRooms);
@@ -264,8 +264,8 @@ deleteUsersChat = (req, res) => {
 	const userIdB = req.params.useridB;
 
 	mySqlConnection.query(
-		`select chat_id from chats where (user_a_id = ${userIdA} and user_b_id = ${userIdB})
-					or (user_a_id = ${userIdB} and user_b_id = ${userIdA})`,
+		`select chat_id from Chats where (user_A_id = ${userIdA} and user_B_id = ${userIdB})
+					or (user_A_id = ${userIdB} and user_B_id = ${userIdA})`,
 		(err, rows) => {
 			try {
 				if (rows.length === 0) {

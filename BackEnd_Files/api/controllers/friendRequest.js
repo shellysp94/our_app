@@ -13,7 +13,7 @@ getAllUserConnectionsByName = (req, res) => {
 	let fullName = req.params.name.split(/(\s+)/);
 	let firstName, lastName;
 
-	let sqlQuery = `select distinct user_id from user_configuration left join connections on(user_id = user_a_id or user_id = user_b_id)
+	let sqlQuery = `select distinct user_id from user_configuration left join Connections on(user_id = user_A_id or user_id = user_B_id)
 		where user_id != ${user} and`;
 
 	if (fullName.length > 1) {
@@ -31,7 +31,7 @@ getAllUserConnectionsByName = (req, res) => {
 
 	if (parseInt(connected, 10) === 1) {
 		sqlQuery = sqlQuery.concat(
-			` and (user_a_id = ${user} or user_b_id = ${user}) and connected = 1`
+			` and (user_A_id = ${user} or user_B_id = ${user}) and connected = 1`
 		);
 	}
 
@@ -79,11 +79,11 @@ getAllUserConnectionsType = (req, res) => {
 
 	mySqlConnection.query(
 		`select distinct user_id, 
-				if((user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
-				if(user_a_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
-				if(user_b_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
-				if((user_a_id != ${userid} and user_b_id != ${userid}) or (user_a_id is null and user_b_id is null), 1, 0) notConnected
-			from connections right join user_configuration on(user_id = user_a_id or user_id = user_b_id) 
+				if((user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
+				if(user_A_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
+				if(user_B_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
+				if((user_A_id != ${userid} and user_B_id != ${userid}) or (user_A_id is null and user_B_id is null), 1, 0) notConnected
+			from Connections right join user_configuration on(user_id = user_A_id or user_id = user_B_id) 
 			group by (user_id) having user_id != ${userid}`,
 		(err, rows) => {
 			try {
@@ -152,7 +152,7 @@ getUserFriendRequestsReceived = (req, res) => {
 	user_id = req.params.userid;
 	mySqlConnection.query(
 		`SELECT b.*
-        from connections a
+        from Connections a
         join user_configuration b
         on a.user_A_id = b.user_id
         where a.user_B_id = ? and a.connected =0;`,
@@ -188,7 +188,7 @@ getUserFriendRequestsSent = (req, res) => {
 
 	mySqlConnection.query(
 		`SELECT b.*
-        from connections a
+        from Connections a
         join user_configuration b
         on a.user_B_id = b.user_id
         where a.user_A_id = ? and a.connected =0;`,
@@ -224,7 +224,7 @@ sendFriendRequest = async (req, res) => {
 	const recievedReqUser = req.params.useridB;
 
 	mySqlConnection.query(
-		`select * from connections where (user_A_id = ${sentReqUser} and user_B_id = ${recievedReqUser}) or (user_A_id = ${recievedReqUser} and user_B_id = ${sentReqUser})`,
+		`select * from Connections where (user_A_id = ${sentReqUser} and user_B_id = ${recievedReqUser}) or (user_A_id = ${recievedReqUser} and user_B_id = ${sentReqUser})`,
 		(err, rows) => {
 			try {
 				if (rows.length > 0) {
@@ -241,14 +241,14 @@ sendFriendRequest = async (req, res) => {
 					}
 				} else {
 					mySqlConnection.query(
-						`insert into connections (user_a_id, user_b_id, creation_date, last_update) values
+						`insert into Connections (user_A_id, user_B_id, creation_date, last_update) values
 					(?,?, curdate(), curdate())`,
 						[req.params.useridA, req.params.useridB],
 						(err, rows) => {
 							try {
 								titleToSend = `New friend request`;
 								bodyToSend = `Friend request from `;
-								sendNotificationHelper(req, res, titleToSend, bodyToSend);
+								//sendNotificationHelper(req, res, titleToSend, bodyToSend);
 							} catch (err) {
 								console.log(err);
 							}
@@ -267,7 +267,7 @@ approveFriendRequest = (req, res) => {
 	const sentReqUser = req.params.useridB;
 
 	mySqlConnection.query(
-		`update connections set connected = 1 where (user_A_id = ? and user_B_id = ?)`,
+		`update Connections set connected = 1 where (user_A_id = ? and user_B_id = ?)`,
 		[sentReqUser, approvedUser],
 		(err, rows) => {
 			try {
@@ -284,7 +284,7 @@ declineFriendRequest = (req, res) => {
 	const sentReqUser = req.params.useridB;
 
 	mySqlConnection.query(
-		`DELETE FROM connections WHERE user_A_id =${sentReqUser} and user_B_id =${declinedUser}`,
+		`DELETE FROM Connections WHERE user_A_id =${sentReqUser} and user_B_id =${declinedUser}`,
 		(err, rows) => {
 			try {
 				res.send(`${declinedUser} declined friend request from ${sentReqUser}`);

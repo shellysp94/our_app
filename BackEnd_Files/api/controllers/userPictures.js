@@ -6,10 +6,12 @@ const fs = require("fs");
 
 function getPicNameAndEncode(imageName) {
 	dirnametemp = __dirname.substring(0, __dirname.length - 15);
-	finalFilePath = dirnametemp + "images\\" + imageName;
+    //local host
+	//finalFilePath = dirnametemp + "images\\" + imageName;
+    //ec2
+    finalFilePath = dirnametemp + "images//" + imageName;
 	//encode image as base 64
 	var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
-
 	return imageAsBase64;
 }
 
@@ -17,7 +19,7 @@ module.exports={
     getPicNameAndEncode,
 
        getUserPictures: (req,res) => {
-        mySqlConnection.query("SELECT* from user_pictures WHERE user_id=?",[req.params.userid], (err,rows)=>{
+        mySqlConnection.query("SELECT* from User_pictures WHERE user_id=?",[req.params.userid], (err,rows)=>{
             if(!err)
             {
                 if(rows.length > 0)
@@ -76,7 +78,7 @@ module.exports={
 
     getUserMainPicture: (req, res) =>
     {
-        mySqlConnection.query("SELECT* from user_pictures WHERE user_id=? AND main_image='1'", [req.params.userid], (err,rows) =>
+        mySqlConnection.query("SELECT* from User_pictures WHERE user_id=? AND main_image='1'", [req.params.userid], (err,rows) =>
         {
             if(!err)
             {
@@ -90,7 +92,7 @@ module.exports={
     },
     
     deleteUserPicture: (req,res) => {
-        mySqlConnection.query("DELETE FROM user_pictures WHERE user_id=? AND image=?",[req.params.userid,req.body.image], (err,resuls)=>{
+        mySqlConnection.query("DELETE FROM User_pictures WHERE user_id=? AND image=?",[req.params.userid,req.body.image], (err,resuls)=>{
             if(!err)
             {
                 fileName = req.body.image;
@@ -123,7 +125,7 @@ module.exports={
         image = req.file.path.substring(7);
         main_image = req.body.main_image;
 
-        mySqlConnection.query("UPDATE user_pictures SET image=?, main_image=? WHERE user_id=? and image=?", [image,main_image,user_id,old_image], (err,result)=> {
+        mySqlConnection.query("UPDATE User_pictures SET image=?, main_image=? WHERE user_id=? and image=?", [image,main_image,user_id,old_image], (err,result)=> {
             if (!err)
             {
                 dirnametemp = __dirname.substring(0,__dirname.length-15);
@@ -153,7 +155,7 @@ module.exports={
         {
             let user_id= req.params.userid;
             main_image = req.body.main_image;
-            mySqlConnection.query(`SELECT* FROM user_pictures WHERE user_id=? AND main_image='1'`, [user_id], (err,rows) =>
+            mySqlConnection.query(`SELECT* FROM User_pictures WHERE user_id=? AND main_image='1'`, [user_id], (err,rows) =>
             {
                 if(!err)
                 {
@@ -168,7 +170,7 @@ module.exports={
                         const imgdata = req.body.base64image;
                         const base64Data = imgdata.replace(/^data:([A-Za-z-+/]+);base64,/,'');
                         fs.writeFileSync(pathName, base64Data, {encoding: 'base64'});
-                        mySqlConnection.query(`INSERT INTO user_pictures (user_id, image, main_image) VALUES ("${user_id}","${pathName.substring(9)}","${main_image}")`,(err,result)=> 
+                        mySqlConnection.query(`INSERT INTO User_pictures (user_id, image, main_image) VALUES ("${user_id}","${pathName.substring(9)}","${main_image}")`,(err,result)=> 
                         {
                             if(!err)
                             {

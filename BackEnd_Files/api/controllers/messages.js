@@ -11,7 +11,7 @@ getChatMessages = (req, cb) => {
 	const messagesOffset = req.params.messagesOffset;
 
 	mySqlConnection.query(
-		`select * from (select * from messages where chat_id = ${chatID} limit 50 offset ${messagesOffset}) as T1 order by creation_date asc`,
+		`select * from (select * from Messages where chat_id = ${chatID} limit 50 offset ${messagesOffset}) as T1 order by creation_date asc`,
 		(err, rows) => {
 			try {
 				return cb(rows);
@@ -39,15 +39,15 @@ createChatMessage = (req, res) => {
 		const chatID = currentChatRoom.chat_id;
 
 		mySqlConnection.query(
-			`insert into messages (chat_id, creation_date, sender_user_id, receiver_user_id, content) values (${chatID}, current_timestamp(), ${sender}, ${receiver}, "${content}")`,
+			`insert into Messages (chat_id, creation_date, sender_user_id, receiver_user_id, content) values (${chatID}, current_timestamp(), ${sender}, ${receiver}, "${content}")`,
 			(err, rows) => {
 				try {
 					const titleToSend = "You got a new message";
 					const bodyToSend = "New message from ";
-					sendNotificationHelper(req, res, titleToSend, bodyToSend);
+					//sendNotificationHelper(req, res, titleToSend, bodyToSend);
 
 					mySqlConnection.query(
-						`select * from messages where chat_id = ${chatID} order by creation_date desc limit 1`,
+						`select * from Messages where chat_id = ${chatID} order by creation_date desc limit 1`,
 						(err, rows) => {
 							try {
 								if (rows !== undefined && rows.length > 0) {
@@ -80,7 +80,7 @@ deleteChatMessages = (req, cb) => {
 	const chatID = req.params.chatID;
 
 	mySqlConnection.query(
-		`delete from messages where chat_id = ${chatID}`,
+		`delete from Messages where chat_id = ${chatID}`,
 		(err, rows) => {
 			try {
 				msgToClient = {
