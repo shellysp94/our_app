@@ -105,7 +105,7 @@ deleteUsersConnection = (req, res) => {
 
 	mySqlConnection.query(
 		`
-		delete from connections where ((user_a_id = ${user_A} and user_b_id = ${user_B}) or (user_a_id = ${user_B} and user_b_id = ${user_A}))`,
+		delete from Connections where ((user_A_id = ${user_A} and user_B_id = ${user_B}) or (user_A_id = ${user_B} and user_B_id = ${user_A}))`,
 		(err, rows) => {
 			try {
 				msgToClient = {

@@ -139,7 +139,8 @@ function interestedInHelper_AccordingToGenderAndSexualOrientation(
 			sqlQuery = `(sexual_orientation like 'Asexual')`;
 			break;
 		default:
-			sqlQuery = "hello - switch case --> default";
+			sqlQuery =
+				"ILLEGAL function 'interestedInHelper_AccordingToGenderAndSexualOrientation' - switch case --> default";
 	}
 
 	return cb(sqlQuery);
@@ -296,11 +297,11 @@ function createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, cb) {
 	for (user = 0; user < arrayLength; user++) {
 		if (user === 0) {
 			sqlQuery = sqlQuery.concat(
-				`user_a_id = ${myFriendsUserid[user]} or user_b_id = ${myFriendsUserid[user]}`
+				`user_A_id = ${myFriendsUserid[user]} or user_B_id = ${myFriendsUserid[user]}`
 			);
 		} else {
 			sqlQuery = sqlQuery.concat(
-				` or user_a_id = ${myFriendsUserid[user]} or user_b_id = ${myFriendsUserid[user]}`
+				` or user_A_id = ${myFriendsUserid[user]} or user_B_id = ${myFriendsUserid[user]}`
 			);
 		}
 	}
@@ -391,10 +392,10 @@ getFriendsOfFriends = (req, res) => {
 	let myFriends_myFriendsOfFriends = {};
 	let myFriendsUserid = [];
 	let myFriendsOfFriendsUserid = [];
-	let sqlQuery = `select * from connections where connected = 1 and (user_a_id != ${userid} and user_b_id != ${userid}) and (`;
+	let sqlQuery = `select * from Connections where connected = 1 and (user_A_id != ${userid} and user_B_id != ${userid}) and (`;
 
 	mySqlConnection.query(
-		`select user_a_id, user_b_id from connections where (user_a_id = ${userid} or user_b_id = ${userid}) and connected = 1`,
+		`select user_A_id, user_B_id from Connections where (user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1`,
 		(err, rows) => {
 			try {
 				if (rows !== undefined && rows.length > 0) {
@@ -486,7 +487,7 @@ getUserFilteredUsers = (req, res) => {
 	let mutuals = [];
 	let age = [];
 	let radius = [];
-	let sqlQuery = `select UC.user_id from user_configuration UC left join filters F using(user_id) where (UC.user_id != ${req.params.userid}) `;
+	let sqlQuery = `select UC.user_id from user_configuration UC left join Filters F using(user_id) where (UC.user_id != ${req.params.userid}) `;
 	let resolve;
 
 	getUserFilter(req, async (userFilter) => {
