@@ -540,6 +540,7 @@ getUserFilteredUsers = (req, res) => {
 									});
 
 									console.log("after radius users:", radius);
+									console.log("check");
 
 									getUserFilteredUsers_OnlyOnline_Helper(
 										onlyOnline,
