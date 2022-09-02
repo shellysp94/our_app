@@ -89,6 +89,7 @@ getAllUserConnectionsType = (req, res) => {
 			try {
 				if (parseInt(usersToPresent[0], 10) === 0) {
 					// user asked for all other users
+
 					for (user = 0; user < rows.length; user++) {
 						usersConfigurations.push(rows[user].user_id);
 					}

@@ -516,10 +516,8 @@ getUserFilteredUsers = (req, res) => {
 				resolve = await createInterestedInQuery(userFilter[0]);
 				sqlQuery = sqlQuery.concat(resolve);
 
-				console.log("mysql query:\n" + sqlQuery);
 				mySqlConnection.query(sqlQuery, (err, rows) => {
 					try {
-						console.log("rows from filters get:\n" + rows);
 						if (rows !== undefined && rows.length > 0) {
 							for (var user of rows) {
 								mutuals.push(user.user_id);
@@ -538,9 +536,6 @@ getUserFilteredUsers = (req, res) => {
 											radius.push(user.user_id);
 										}
 									});
-
-									console.log("after radius users:", radius);
-									console.log("check");
 
 									getUserFilteredUsers_OnlyOnline_Helper(
 										onlyOnline,
