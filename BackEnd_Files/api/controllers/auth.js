@@ -156,7 +156,6 @@ register =  (req, res) => {
 }
 
 
-//check if need to convert to try-catch
 verifyToken = (req, res, next) => {
 	const authHeader = req.headers["authorization"];
 	const token = authHeader && authHeader.split(" ")[1];
