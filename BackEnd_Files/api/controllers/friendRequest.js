@@ -77,8 +77,13 @@ getAllUserConnectionsType = (req, res) => {
 	let usersConfigurations = [];
 	let mergeObjects = [];
 
-	console.log("im in the by type query");
-
+	console.log(`select distinct user_id, 
+	if((user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
+	if(user_A_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
+	if(user_B_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
+	if((user_A_id != ${userid} and user_B_id != ${userid}) or (user_A_id is null and user_B_id is null), 1, 0) notConnected
+from Connections right join user_configuration on(user_id = user_A_id or user_id = user_B_id) 
+group by (user_id) having user_id != ${userid}`);
 	mySqlConnection.query(
 		`select distinct user_id, 
 				if((user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1, 1, 0) mutualConnections,

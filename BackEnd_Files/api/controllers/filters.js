@@ -356,7 +356,6 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 			usersToPresent: createdUsersToPresent,
 		},
 	};
-	console.log("result array to object before by type:", resultArrayToObject);
 
 	getAllUserConnectionsType(resultArrayToObject, res);
 }
