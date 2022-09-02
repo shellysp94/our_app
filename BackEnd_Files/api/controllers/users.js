@@ -3,7 +3,7 @@ const mySqlConnection = dbConfig;
 
 module.exports = {
 	getAllUsers: (req, res) => {
-		mySqlConnection.query("SELECT* from users", (err, rows) => {
+		mySqlConnection.query("SELECT* from Users", (err, rows) => {
 			if (!err) {
 				res.send(rows);
 			} else {
