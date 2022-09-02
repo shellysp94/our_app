@@ -89,13 +89,14 @@ getAllUserConnectionsType = (req, res) => {
 			try {
 				if (parseInt(usersToPresent[0], 10) === 0) {
 					// user asked for all other users
-
+					console.log("by type first rows (if):\n" + rows);
 					for (user = 0; user < rows.length; user++) {
 						usersConfigurations.push(rows[user].user_id);
 					}
 				} else {
 					// user asked for a specific users
 					for (user = 0; user < rows.length; user++) {
+						console.log("by type first rows (else):\n" + rows);
 						if (usersToPresent.includes(rows[user].user_id)) {
 							usersConfigurations.push(rows[user].user_id);
 						}
@@ -111,6 +112,7 @@ getAllUserConnectionsType = (req, res) => {
 					(resultFromConfiguration) => {
 						for (user = 0; user < resultFromConfiguration.length; user++) {
 							for (row = 0; row < rows.length; row++) {
+								console.log("by type seconds rows:\n" + rows);
 								if (
 									parseInt(resultFromConfiguration[user].user_id, 10) ===
 									parseInt(rows[row].user_id, 10)
