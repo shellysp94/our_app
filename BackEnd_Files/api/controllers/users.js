@@ -24,9 +24,9 @@ module.exports = {
       (err, rows) => {
         try {
           res.send(rows);
-        } catch {
+        } catch (err) {
           //console.log(err);
-          logger.error("This is an err log");
+          logger.error("This is an err log", err);
         }
       }
     );
