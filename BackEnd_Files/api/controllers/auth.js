@@ -137,6 +137,8 @@ register = (req, res) => {
 };
 
 verifyToken = (req, res, next) => {
+  console.log("req:", req.params);
+  console.log("req:", req.headers);
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) {
