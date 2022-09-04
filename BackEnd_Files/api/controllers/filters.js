@@ -591,6 +591,10 @@ createUserFilter = (req, res) => {
     ageFilter = ageFilter.concat("]");
   }
 
+  console.log(`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, radius_filter, friends_only_filter) 
+  values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${radiusFilter}, ${friendsOnly}) 
+  ON DUPLICATE KEY UPDATE user_id = ${userid}, search_mode = '${searchMode}', hobbies_filter = '${hobbiesFilter}', gender_filter = '${genderFilter}', 
+  relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', radius_filter = ${radiusFilter}, friends_only_filter = ${friendsOnly}`);
   mySqlConnection.query(
     `INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, radius_filter, friends_only_filter) 
       values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${radiusFilter}, ${friendsOnly}) 
