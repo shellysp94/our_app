@@ -141,6 +141,7 @@ verifyToken = (req, res, next) => {
   console.log("req:", req.headers);
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
+  console.log("token:", token);
   if (token == null) {
     return res.status(401).send("No token sent");
   }
@@ -152,7 +153,7 @@ verifyToken = (req, res, next) => {
     else {
       const user_id = req.params.userid || req.params.useridA;
       mySqlConnection.query(
-        `select token from users where user_id = ${user_id}`,
+        `select token from Users where user_id = ${user_id}`,
         (err, rows) => {
           try {
             if (rows.length === 0 || rows[0].token !== token) {
