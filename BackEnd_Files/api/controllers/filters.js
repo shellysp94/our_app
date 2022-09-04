@@ -343,15 +343,10 @@ function getUserFilteredUsers_OnlyOnline_Helper(
     }
   } else {
     if (parseInt(withFilters, 10) === 1) {
-      console.log("only online ELSE --> users to present", usersToPresent);
       // Return users according to filters - online and offline //
       usersToPresent.forEach((user) => {
         createdUsersToPresent.push(user);
       });
-      console.log(
-        "only online ELSE --> created users to present",
-        createdUsersToPresent
-      );
     } else {
       // Return users without any filters - online and offline //
       createdUsersToPresent = [0];
