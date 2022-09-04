@@ -4,7 +4,13 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const expressWinston = require('express-winston')
+const logger = require('./utils/logger');
 
+app.use(expressWinston.logger({
+    winstonInstance: logger,
+    statusLevels: true
+}))
 module.exports = {
 	app: app,
 	jwt: jwt,
