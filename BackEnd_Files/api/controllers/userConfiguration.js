@@ -15,6 +15,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
     `SELECT longitude, latitude from user_location where user_id=${curr_userid}`,
     (err, rows) => {
       try {
+        console.log("location rows", rows);
         if (rows.length === 0) {
           longitude_var = "Longitude";
           latitude_var = "Latitude";
