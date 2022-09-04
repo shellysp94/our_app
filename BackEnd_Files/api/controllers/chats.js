@@ -158,61 +158,65 @@ createUsersChat = (req, res) => {
 										`insert into Chats (create_date, last_login, user_A_id, user_B_id) values (curdate(), curdate(), ${userIdA}, ${userIdB})`,
 										(err, rows) => {
 											try {
-												mySqlConnection.query(
-													`select chat_id from Chats where user_A_id = ${userIdA} and user_B_id = ${userIdB}`,
-													(err, rows) => {
-														try {
-															chatRooms.insertNewChatRoom(
-																rows[0].chat_id,
-																parseInt(userIdA, 10),
-																parseInt(userIdB, 10)
-															);
-															const currentChatRoom = chatRooms.getChatRoom(
-																rows[0].chat_id
-															);
-
-															console.log("create a new chat -->");
-
-															if (onlineUsers.includesAUser(userIdA)) {
-																onlineUsers.updateChatRoomOfUser(
-																	userIdA,
-																	currentChatRoom
+												if (rows.affectedRows >= 1) {
+													mySqlConnection.query(
+														`select chat_id from Chats where user_A_id = ${userIdA} and user_B_id = ${userIdB}`,
+														(err, rows) => {
+															try {
+																chatRooms.insertNewChatRoom(
+																	rows[0].chat_id,
+																	parseInt(userIdA, 10),
+																	parseInt(userIdB, 10)
+																);
+																const currentChatRoom = chatRooms.getChatRoom(
+																	rows[0].chat_id
 																);
 
-																console.log(
-																	`user id ${userIdA} chat rooms:\n${JSON.stringify(
-																		onlineUsers
-																			.getOnlineUser(userIdA)
-																			.getAllUserChatRooms()
-																	)}`
-																);
+																console.log("create a new chat -->");
+
+																if (onlineUsers.includesAUser(userIdA)) {
+																	onlineUsers.updateChatRoomOfUser(
+																		userIdA,
+																		currentChatRoom
+																	);
+
+																	console.log(
+																		`user id ${userIdA} chat rooms:\n${JSON.stringify(
+																			onlineUsers
+																				.getOnlineUser(userIdA)
+																				.getAllUserChatRooms()
+																		)}`
+																	);
+																}
+
+																if (onlineUsers.includesAUser(userIdB)) {
+																	onlineUsers.updateChatRoomOfUser(
+																		userIdB,
+																		currentChatRoom
+																	);
+
+																	console.log(
+																		`user id ${userIdB} chat rooms:\n${JSON.stringify(
+																			onlineUsers
+																				.getOnlineUser(userIdB)
+																				.getAllUserChatRooms()
+																		)}`
+																	);
+																}
+
+																msgToClient = {
+																	msg: `Chat room between users ${userIdA} and ${userIdB} created.`,
+																};
+
+																return res.send(msgToClient);
+															} catch (err) {
+																console.log(err.message);
 															}
-
-															if (onlineUsers.includesAUser(userIdB)) {
-																onlineUsers.updateChatRoomOfUser(
-																	userIdB,
-																	currentChatRoom
-																);
-
-																console.log(
-																	`user id ${userIdB} chat rooms:\n${JSON.stringify(
-																		onlineUsers
-																			.getOnlineUser(userIdB)
-																			.getAllUserChatRooms()
-																	)}`
-																);
-															}
-
-															msgToClient = {
-																msg: `Chat room between users ${userIdA} and ${userIdB} created.`,
-															};
-
-															return res.send(msgToClient);
-														} catch (err) {
-															console.log(err.message);
 														}
-													}
-												);
+													);
+												} else {
+													console.log("Chat not added successfully - error!");
+												}
 											} catch (err) {
 												console.log(err.message);
 											}
@@ -235,17 +239,20 @@ createUsersChat = (req, res) => {
 						`update Chats set last_login = curdate() where chat_id = ${chatID}`,
 						(err, rows) => {
 							try {
-								console.log("im from updating", chatRooms);
-								let desiredChatRoom = {
-									params: {
-										chatID: String(chatID),
-										messagesOffset: String(0),
-									},
-								};
+								if (rows.affectedRows >= 1) {
+									console.log("im from updating", chatRooms);
+									let desiredChatRoom = {
+										params: {
+											chatID: String(chatID),
+											messagesOffset: String(0),
+										},
+									};
 
-								getChatMessages(desiredChatRoom, (response) => {
-									res.send(response);
-								});
+									getChatMessages(desiredChatRoom, (response) => {
+										res.send(response);
+									});
+								} else {
+								}
 							} catch (err) {
 								console.log(err.message);
 							}
