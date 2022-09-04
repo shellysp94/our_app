@@ -6,6 +6,7 @@ const publicToken = require("../../config/auth_config");
 const bcrypt = require("bcrypt");
 const {response} = require("express");
 const mySqlConnection = dbConfig;
+const logger = require("../../utils/logger");
 
 function updateDevicetoken(user_id_from_query, device_token, userCred, cb) {
 	mySqlConnection.query(
@@ -13,20 +14,16 @@ function updateDevicetoken(user_id_from_query, device_token, userCred, cb) {
 	ON duplicate key update user_id=${user_id_from_query},device_token="${device_token}"`,
 		(err, rows) => {
 			try {
-				if (rows.affectedRows >= 1) {
-					return cb(userCred);
-				} else {
-					return new Error("updated device token - error");
-				}
+				return cb(userCred);
 			} catch (err) {
-				logger.error("updated device token - error", {err});
-				//console.log(err.message);
+				console.log(err.message);
 			}
 		}
 	);
 }
 
 login = async (req, res) => {
+	logger.info("This is an info log");
 	// Read username and password from request body
 	const email = req.body.email;
 	const password = req.body.password;
@@ -106,11 +103,13 @@ login = async (req, res) => {
 };
 
 register = (req, res) => {
+	logger.info("This is an info log");
 	mySqlConnection.query(
 		"SELECT* from Users WHERE email=?",
 		[req.body.email],
 		async (err, rows) => {
 			try {
+				//logger.info("This is an info log");
 				if (rows.length > 0) {
 					msgToClient = {msg: "This email already in use"};
 					return res.send(msgToClient);
@@ -124,7 +123,9 @@ register = (req, res) => {
 						try {
 							createUserConfiguration(req, res);
 						} catch (err) {
-							console.log(err.message);
+							logger.error("This is an err log");
+
+							//console.log(err.message);
 						}
 					}
 				);
@@ -136,8 +137,11 @@ register = (req, res) => {
 };
 
 verifyToken = (req, res, next) => {
+	console.log("req:", req.params);
+	console.log("req:", req.headers);
 	const authHeader = req.headers["authorization"];
 	const token = authHeader && authHeader.split(" ")[1];
+	console.log("token:", token);
 	if (token == null) {
 		return res.status(401).send("No token sent");
 	}
@@ -149,7 +153,7 @@ verifyToken = (req, res, next) => {
 		else {
 			const user_id = req.params.userid || req.params.useridA;
 			mySqlConnection.query(
-				`select token from users where user_id = ${user_id}`,
+				`select token from Users where user_id = ${user_id}`,
 				(err, rows) => {
 					try {
 						if (rows.length === 0 || rows[0].token !== token) {
