@@ -1,0 +1,58 @@
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 09:53:33'
+}
+{
+  meta: {
+    req: {
+      url: '/users/5',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '5744e83d-004e-4f51-b04b-68e9584d76d3',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/users/5',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 48
+  },
+  level: 'error',
+  message: 'HTTP DELETE /users/5',
+  timestamp: '2022-09-04 09:53:33'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 11:08:48'
+}
+{
+  meta: {
+    req: {
+      url: '/users/0',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'fb13b30c-1953-4d71-9fd3-d32241925392',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/users/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 10107
+  },
+  level: 'error',
+  message: 'HTTP DELETE /users/0',
+  timestamp: '2022-09-04 11:08:54'
+}
