@@ -2816,3 +2816,13 @@
   level: 'info',
   timestamp: '2022-09-04 19:19:52'
 }
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:20:04'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:20:04'
+}
