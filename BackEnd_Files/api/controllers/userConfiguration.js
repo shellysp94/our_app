@@ -119,6 +119,8 @@ getUserConfigurationInner = (req, curr_userid, cb) => {
 getUserConfiguration = (req, res) => {
   logger.info("This is an info log");
   const arr = req.params.userid.split(",");
+  console.log("arr:", arr);
+  console.log("req:", req.params);
   if (!req.params.curr_userid) {
     curr_userid = arr[0];
   } else {
