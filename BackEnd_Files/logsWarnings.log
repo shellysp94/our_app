@@ -56,3 +56,2773 @@
   message: 'HTTP DELETE /users/0',
   timestamp: '2022-09-04 11:08:54'
 }
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 16:27:52'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 16:27:52'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIwNTAxNTcsImV4cCI6MTY5MzU4NjE1N30.Yd_ayixQZCcgR_NhjkhIejoEgOcL1watkrJt6Xkrojk',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '89c7b58d-a805-45e4-a963-fbd90788b9c8',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 401 },
+    responseTime: 69
+  },
+  level: 'warn',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-04 16:27:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:26'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:26'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:26'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:26'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIyOTAzMTAsImV4cCI6MTY5MzgyNjMxMH0.CBpofnSWhsETvG-4dpr7KMb8jXo34nnZiAJkbqIi8Gk',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'f3ebd070-cc5e-46ad-aa4a-bc6f76cf50ba',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 137
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-04 16:28:26'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/2/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIyOTAzMTAsImV4cCI6MTY5MzgyNjMxMH0.CBpofnSWhsETvG-4dpr7KMb8jXo34nnZiAJkbqIi8Gk',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'ea9390b4-85ea-4435-aec6-6204e10e09b6',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/2/0',
+      query: {}
+    },
+    res: { statusCode: 401 },
+    responseTime: 16
+  },
+  level: 'warn',
+  message: 'HTTP POST /filters/2/0',
+  timestamp: '2022-09-04 16:28:41'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/2/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIyOTAzMTYsImV4cCI6MTY5MzgyNjMxNn0.kvRpDWZn_3jiyEuL9l-wNgEMPOgsrRqTTfmvBII2YaE',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '5b5b6e11-61f2-4cd3-8a56-6dbaf8018c94',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/2/0',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 159
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/2/0',
+  timestamp: '2022-09-04 16:28:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:29:53'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIyOTAzMTAsImV4cCI6MTY5MzgyNjMxMH0.CBpofnSWhsETvG-4dpr7KMb8jXo34nnZiAJkbqIi8Gk',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '2927f615-b10d-4d16-9c2a-b105d01037eb',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '61'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/1',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 14
+  },
+  level: 'info',
+  message: 'HTTP POST /userLocation/1',
+  timestamp: '2022-09-04 16:29:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:17'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/2',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIyOTAzMTYsImV4cCI6MTY5MzgyNjMxNn0.kvRpDWZn_3jiyEuL9l-wNgEMPOgsrRqTTfmvBII2YaE',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '2db9e4ad-7ca7-4cae-82d7-4293dabea9cc',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '61'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/2',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 13
+  },
+  level: 'info',
+  message: 'HTTP POST /userLocation/2',
+  timestamp: '2022-09-04 16:30:17'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/2/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIyOTAzMTYsImV4cCI6MTY5MzgyNjMxNn0.kvRpDWZn_3jiyEuL9l-wNgEMPOgsrRqTTfmvBII2YaE',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'f368a435-5637-4e1d-a08e-48eefd66569d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/2/0',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 64
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/2/0',
+  timestamp: '2022-09-04 16:30:45'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 16:59:49'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 16:59:49'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:00:07'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:00:07'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:00:45'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:00:46'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:01:37'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:01:38'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:02:09'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:02:09'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:02:38'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:02:38'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:03:20'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:03:20'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:03:25'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:04:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:04:14'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:04:18'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:04:53'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:04:54'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:05:18'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:06:10'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:06:10'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:06:15'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:07:35'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:07:36'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:07:40'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:09:18'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:09:19'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:09:27'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:09:28'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:09:33'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:09:59'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:10:00'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:10:53'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:10:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:10:56'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:18:14)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:10:56'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:11:59'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:12:00'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:12:15'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:12:16'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:12:22'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:18:14)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:12:22'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:12:56'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:12:56'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:13:11'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8289da2e-0638-460a-88d3-62dd1350465f',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '58'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 228
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:13:12'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:13:25'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:13:25'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:13:30'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:18:14)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:13:31'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:16:22'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:16:22'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:16:56'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '11d5400b-1bc8-46ef-8a2d-44f36521d2b8',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '58'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 226
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:16:56'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:17:15'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:17:15'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:17:59'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:18:00'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:18:19'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:18:19'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:18:24'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'dd935081-b9c2-4921-bf71-4eb10012554a',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '58'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 227
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:18:24'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:19:20'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:19:21'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:22:34'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:22:34'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:27:44'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:27:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:28:01'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'c9ebe232-883d-4556-b084-380dff696b0b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '58'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 226
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:28:01'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:28:34'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:28:34'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:28:41'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '740e35fe-f2ed-42a6-b8fd-5c2cade63a3d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '58'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 221
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:28:41'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:29:19'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:29:19'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:29:24'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'b3a8a298-fc24-4caa-b51b-e7e4d146ab42',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '58'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 244
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:29:24'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:30:07'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:30:08'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:30:24'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:30:24'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:30:28'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'bf3eb909-9dc1-4cb6-b6d5-698f89ba7d1e',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 226
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:30:28'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:30:40'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:30:40'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:32:33'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '713fd609-21b4-49d3-827c-055bc0fdeb05',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 217
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:32:33'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:32:45'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:32:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:32:59'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '27b29921-c2de-4b2d-8b79-2c9f2f0ff68c',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 228
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:32:59'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:33:49'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:33:49'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:33:56'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '9eb970e0-b085-4137-bf03-4caef82a35dc',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 216
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:33:56'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:34:31'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:34:32'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:34:38'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '730576ce-db97-47be-89c7-27d0a209d299',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 219
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:34:38'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:35:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:35:15'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:35:18'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:35:18'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:35:24'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4f084c56-b561-4c94-b940-2adcb1917f18',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 255
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:35:25'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:35:37'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:35:38'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:35:49'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:35:49'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:35:55'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '731dc189-4034-4545-91bb-69ab3d87b5f7',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 227
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:35:55'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:36:34'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:36:34'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:36:40'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:36:41'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:36:47'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'cf306c31-c798-47fa-a0d9-19436d21daf2',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 227
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:36:47'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:37:23'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:37:23'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:37:27'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:17:22)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:37:27'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:38:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:38:14'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:38:37'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:38:38'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:38:48'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'adcd53be-8370-404f-84aa-8542a09edb97',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 256
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:38:48'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:39:23'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:39:23'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:39:28'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '422db397-7a09-4a01-a13a-ccb86bb17667',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 233
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:39:28'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:40:11'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:40:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:40:17'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '396741e5-80a7-41ec-84a3-aabfdb0fea0a',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 230
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:40:17'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:40:40'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:40:40'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:40:48'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8572adc0-23a2-4163-98bc-0b2fbbb4f97c',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 232
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:40:48'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:41:22'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:41:23'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:42:17'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:42:18'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:42:44'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:42:44'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:42:49'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:42:49'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:43:31'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:43:31'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:43:37'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:43:37'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:43:58'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:43:58'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:44:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:44:14'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:44:25'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:44:25'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:45:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:45:15'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:45:21'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'bf4d730b-7745-4228-b58c-c3d5848c1214',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 220
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:45:21'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:46:05'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:46:06'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:46:09'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '70fdf4e1-9d93-45b3-84f1-00a9cfe29f18',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 349
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 17:46:09'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:46:22'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:46:22'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:46:27'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:46:27'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:47:25'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:47:25'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:47:32'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:47:32'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:49:20'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:49:21'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:49:57'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:49:58'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:50:04'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:50:04'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:51:24'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:51:24'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:51:28'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:51:28'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:51:50'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:51:50'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:52:01'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:52:01'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:52:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:52:15'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:52:18'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:52:18'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:52:43'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:52:44'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 17:52:48'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:52:48'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 17:54:08'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 17:54:09'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:32:13'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:32:14'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:32:17'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'b610e4b3-2ff5-455c-8ed4-64e8dd70e6b1',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 221
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 18:32:17'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:37:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:37:15'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:37:21'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:20:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 18:37:21'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:38:04'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:38:05'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:38:09'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'bfd64ca7-ef49-4696-bc04-e1f6e52efa77',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 218
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 18:38:09'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:38:16'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:38:17'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:38:20'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:20:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 18:38:20'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:39:23'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:39:24'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:39:28'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:20:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 18:39:28'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:39:46'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:39:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:39:50'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:20:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 18:39:50'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:40:19'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:40:20'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:40:24'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:41:31'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:41:32'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:42:07'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:42:08'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:42:17'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:42:17'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:42:23'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:42:24'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:42:27'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:43:23'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:43:24'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:43:30'
+}
+{
+  message: 'update device token - ERROR',
+  level: 'error',
+  timestamp: '2022-09-04 18:43:30'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:44:06'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:44:07'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:44:13'
+}
+{
+  message: 'update device token - ERROR',
+  level: 'error',
+  timestamp: '2022-09-04 18:44:13'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:47:31'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:47:31'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:47:39'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:47:39'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:47:53'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:48:40'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:48:40'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:49:58'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:49:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:50:02'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 18:51:28'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 18:51:29'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 18:51:32'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:02:59'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:03:00'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:03:34'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:03:35'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:04:34'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:04:34'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:04:41'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:04:41'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:04:43'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:05:21'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:05:22'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:05:26'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:07:53'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:07:54'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:08:00'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:08:19'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:08:20'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:08:24'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:10:01'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:10:01'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:10:33'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:10:33'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:10:38'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:11:02'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:11:03'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:11:18'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:11:19'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:11:25'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:11:37'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:11:37'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:11:41'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e3802ba2-4407-4a4d-99c7-dda22219dc5b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 219
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 19:11:41'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:12:11'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:12:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:12:14'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '916343ab-76dd-4b99-a6a3-5e7ac5d6c05d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 221
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 19:12:14'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:15:18'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:15:18'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:15:23'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'login from device token update - ERROR',
+  timestamp: '2022-09-04 19:15:23'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '03fbc0ea-e276-450a-ba32-08484adde55b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 219
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 19:15:24'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:16:46'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:16:46'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:17:59'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:17:59'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:18:11'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:18:12'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:18:24'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:18:25'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:18:37'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:18:38'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:18:44'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '6227bbe0-3369-4fe9-9197-33f696f8e128',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 251
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 19:18:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:19:02'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:19:02'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/register',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIxMTI3NjIsImV4cCI6MTY5MzY0ODc2Mn0.R0LIulcS6Oe2MJUgmmlBnzqN5LqFaguM1khR7By29ys',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '00e23597-9455-474f-b56f-d89fc036b249',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '378'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/register',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 206
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/register',
+  timestamp: '2022-09-04 19:19:02'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:19:09'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/register',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIxMTI3NjIsImV4cCI6MTY5MzY0ODc2Mn0.R0LIulcS6Oe2MJUgmmlBnzqN5LqFaguM1khR7By29ys',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '04317a7d-3173-438c-b009-5e2ba4c330bb',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '378'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/register',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 9
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/register',
+  timestamp: '2022-09-04 19:19:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:19:10'
+}
+{
+  message: 'This is an err log',
+  level: 'error',
+  timestamp: '2022-09-04 19:19:10'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:19:17'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:19:18'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-04 19:19:26'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:140:39)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'register - ERROR',
+  timestamp: '2022-09-04 19:19:26'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/register',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIxMTI3NjIsImV4cCI6MTY5MzY0ODc2Mn0.R0LIulcS6Oe2MJUgmmlBnzqN5LqFaguM1khR7By29ys',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4c7bc872-af96-487d-bba4-e5e0d428cbaf',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '374'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/register',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 214
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/register',
+  timestamp: '2022-09-04 19:19:26'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:19:52'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:19:52'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-04 19:20:04'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-04 19:20:04'
+}
