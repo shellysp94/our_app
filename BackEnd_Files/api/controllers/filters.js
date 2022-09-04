@@ -530,6 +530,7 @@ getUserFilteredUsers = (req, res) => {
               for (var user of rows) {
                 mutuals.push(user.user_id);
               }
+              console.log("filters age:", mutuals);
 
               getUsersWithCommonAgeFilter(userFilter[0], (response) => {
                 response.forEach((user) => {
@@ -537,6 +538,7 @@ getUserFilteredUsers = (req, res) => {
                     age.push(user.user_id);
                   }
                 });
+                console.log("filters age:", age);
 
                 getUsersConfigurationByRadius(userFilter[0], (response) => {
                   response.forEach((user) => {
@@ -544,6 +546,7 @@ getUserFilteredUsers = (req, res) => {
                       radius.push(user.user_id);
                     }
                   });
+                  console.log("filters age:", radius);
 
                   getUserFilteredUsers_OnlyOnline_Helper(
                     onlyOnline,
