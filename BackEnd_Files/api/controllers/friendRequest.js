@@ -90,6 +90,7 @@ getAllUserConnectionsType = (req, res) => {
 			group by (user_id) having user_id != ${userid}`,
     (err, rows) => {
       try {
+        console.log("from by type:", rows);
         if (parseInt(usersToPresent[0], 10) === 0) {
           // user asked for all other users
           for (user = 0; user < rows.length; user++) {
