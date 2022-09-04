@@ -62,3 +62,365 @@
   message: 'HTTP DELETE /users/0',
   timestamp: '2022-09-04 11:08:54'
 }
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:18:14)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:10:56'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:18:14)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:12:22'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:18:14)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:13:31'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:17:22)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:37:27'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:42:49'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:43:37'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:44:25'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:46:27'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:47:32'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:50:04'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:52:01'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:52:18'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:21:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 17:52:48'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:20:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 18:37:21'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:20:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 18:38:20'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:20:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 18:39:28'
+}
+{
+  err: Error: update device token - ERROR
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:20:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'update device token',
+  timestamp: '2022-09-04 18:39:50'
+}
+{
+  message: 'update device token - ERROR',
+  level: 'error',
+  timestamp: '2022-09-04 18:43:30'
+}
+{
+  message: 'update device token - ERROR',
+  level: 'error',
+  timestamp: '2022-09-04 18:44:13'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'login from device token update - ERROR',
+  timestamp: '2022-09-04 19:15:23'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '03fbc0ea-e276-450a-ba32-08484adde55b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '57'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 219
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-04 19:15:24'
+}
+{
+  message: 'This is an err log',
+  level: 'error',
+  timestamp: '2022-09-04 19:19:10'
+}
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:140:39)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'register - ERROR',
+  timestamp: '2022-09-04 19:19:26'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/register',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIxMTI3NjIsImV4cCI6MTY5MzY0ODc2Mn0.R0LIulcS6Oe2MJUgmmlBnzqN5LqFaguM1khR7By29ys',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4c7bc872-af96-487d-bba4-e5e0d428cbaf',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '374'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/register',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 214
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/register',
+  timestamp: '2022-09-04 19:19:26'
+}
