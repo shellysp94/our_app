@@ -28,7 +28,6 @@ let chatRoomsArray = class {
         );
       });
     });
-    //console.log("C'tor of Chat Rooms Array");
     logger.info("C'tor of Chat Rooms Array");
   }
 
