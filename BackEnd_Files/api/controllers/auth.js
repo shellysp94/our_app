@@ -13,14 +13,13 @@ function updateDevicetoken(user_id_from_query, device_token, userCred, cb) {
 		`insert into Device_token (user_id, device_token) values (${user_id_from_query},"${device_token}")
 	ON duplicate key update user_id=${user_id_from_query},device_token="${device_token}"`,
 		(err, rows) => {
-			try {
-				if (err || rows === undefined || rows.affectedRows < 1) {
-					throw new Error("update device token - ERROR");
-				} else {
-					return cb(userCred);
-				}
-			} catch (err) {
+			if (err || rows === undefined) {
 				return cb(rows);
+			}
+			if (rows.affectedRows < 1) {
+				return cb(undefined);
+			} else {
+				return cb(userCred);
 			}
 		}
 	);
@@ -66,7 +65,9 @@ login = async (req, res) => {
 								[accessToken, email],
 								(err, rows) => {
 									try {
-										if (rows !== undefined || rows.affectedRows >= 1) {
+										if (err || rows === undefined || rows.affectedRows < 1) {
+											throw new Error("Login - Update DB - MySQL Error");
+										} else {
 											mySqlConnection.query(
 												`select * 
 											from Users a
@@ -97,12 +98,9 @@ login = async (req, res) => {
 													}
 												}
 											);
-										} else {
-											logger.error("auth - login - ERROR\nrows don't updated");
-											return res.status(500).send("internal error");
 										}
 									} catch (err) {
-										logger.error("login - ERROR", {err});
+										logger.error({err});
 										return res.status(500).send("internal error");
 									}
 								}
@@ -140,20 +138,19 @@ register = (req, res) => {
 					{email: req.body.email, password: hashedPassword},
 					(err, rows) => {
 						try {
-							if (rows !== undefined || rows.affectedRows >= 1) {
-								createUserConfiguration(req, res);
+							if (err || rows === undefined || rows.affectedRows < 1) {
+								throw new Error("Register - INSERT to DB - MySQL Error");
 							} else {
-								logger.error("register - ERROR", {err});
-								return res.status(500).send("internal error");
+								createUserConfiguration(req, res);
 							}
 						} catch (err) {
-							logger.error("register - ERROR", {err});
+							logger.error({err});
 							return res.status(500).send("internal error");
 						}
 					}
 				);
 			} catch (err) {
-				logger.error("register - ERROR", {err});
+				logger.error("Register - ERROR", {err});
 				return res.status(500).send("internal error");
 			}
 		}
