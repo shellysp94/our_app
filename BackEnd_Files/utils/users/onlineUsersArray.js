@@ -1,10 +1,10 @@
 const onlineUser = require("./onlineUser");
-const logger = require("../logger");
+const { infoLogger } = require("../logger");
 
 let onlineUsersArray = class {
   constructor() {
     this.onlineUsers = [];
-    logger.info("Online users array C'tor:");
+    infoLogger.info("Online users array C'tor:");
   }
 
   async insertNewOnlineUser(user_id, websocket) {
@@ -19,11 +19,11 @@ let onlineUsersArray = class {
       const newOnlineUser = new onlineUser();
       await newOnlineUser.initOnlineUser(user_id, websocket);
       this.onlineUsers.push(newOnlineUser);
-      logger.info(
+      infoLogger.info(
         `Insert a new online user-\nInserting user_id = ${user_id} and his WS to the array!`
       );
     } else {
-      logger.info(
+      infoLogger.info(
         `Insert a new online user-\nUser id ${user_id} is already in the array. Didn't insert him again.`
       );
     }
@@ -32,13 +32,16 @@ let onlineUsersArray = class {
   removeAnOnlineUser(user_id) {
     this.onlineUsers.forEach((onlineUser) => {
       if (onlineUser.getUserId() === user_id) {
-        logger.info("The ready state of ws:", onlineUser.websocket.readyState);
+        infoLogger.info(
+          "The ready state of ws:",
+          onlineUser.websocket.readyState
+        );
         if (
           onlineUser.websocket.readyState === 2 ||
           onlineUser.websocket.readyState === 3
         ) {
           this.onlineUsers.splice(this.onlineUsers.indexOf(onlineUser), 1);
-          logger.info("Remove from online users array");
+          infoLogger.info("Remove from online users array");
         }
       }
     });
@@ -71,7 +74,7 @@ let onlineUsersArray = class {
     const onlineUser = this.getOnlineUser(user_id);
     await onlineUser.updateOnlineUserChatRoomsArray(chatRoom);
 
-    logger.info(
+    infoLogger.info(
       `---FROM ONLINE USERS **ARRAY**---\n user's number: ${user_id} chat rooms array is now:\n${this.getOnlineUser(
         user_id
       ).getAllUserChatRooms()}`

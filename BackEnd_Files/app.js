@@ -4,21 +4,33 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const path = require("path");
-const expressWinston = require('express-winston')
-const logger = require('./utils/logger');
+const expressWinston = require("express-winston");
+const { infoLogger } = require("./utils/logger");
+const { errLogger } = require("./utils/logger");
 
-app.use(expressWinston.logger({
-    winstonInstance: logger,
-    statusLevels: true
-}))
 module.exports = {
-	app: app,
-	jwt: jwt,
+  app: app,
+  jwt: jwt,
 };
+
+expressWinston.requestWhitelist.push("body"); //--------------------NOTE - remove after tests!!-----------------
+app.use(
+  expressWinston.logger({
+    winstonInstance: infoLogger,
+    statusLevels: true,
+  })
+);
+
+app.use(
+  expressWinston.logger({
+    winstonInstance: errLogger,
+    statusLevels: true,
+  })
+);
 
 // config
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/images", express.static("./images"));
 
@@ -51,6 +63,6 @@ app.use("/userLocation", userLocation);
 app.use("/userStatus", userStatus);
 
 const swaggerUi = require("swagger-ui-express"),
-	swaggerDocument = require("./swagger.json");
+  swaggerDocument = require("./swagger.json");
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));

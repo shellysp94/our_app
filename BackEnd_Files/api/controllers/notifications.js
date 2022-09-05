@@ -1,10 +1,10 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 module.exports = {
   getAllNotifications: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     mySqlConnection.query("SELECT * from Notifications", (err, rows) => {
       try {
         res.send(rows);
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   getUserNotifications: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     const userid = req.params.userid;
     mySqlConnection.query(
       "SELECT * FROM Notifications WHERE user_id = ?",
@@ -31,7 +31,7 @@ module.exports = {
   },
 
   getUserUnseenNotifications: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     const userid = req.params.userid;
     mySqlConnection.query(
       "SELECT * FROM Notifications WHERE user_id = ? and seen = 0",
@@ -47,7 +47,7 @@ module.exports = {
   },
 
   updateSeenStatusNotification: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     notification_id = req.params.notification_id;
     mySqlConnection.query(
       `UPDATE notifications SET seen = 1 WHERE notification_id = ${notification_id}`,
@@ -62,7 +62,7 @@ module.exports = {
   },
 
   deleteUserSeenNotifications: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     const userid = req.params.userid;
     mySqlConnection.query(
       "DELETE FROM Notifications WHERE user_id = ? and seen = 1",
@@ -81,7 +81,7 @@ module.exports = {
   },
 
   createUserNotification: (req, cb) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     sqlQuery = `insert into notifications (notification_id, user_id, content, title, creation_date) values (${req.body.notification_id},${req.body.user_id},'${req.body.content}','${req.body.title}',CURRENT_TIMESTAMP())`;
 
     mySqlConnection.query(sqlQuery, (err, rows) => {

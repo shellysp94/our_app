@@ -1,11 +1,11 @@
-const { Logform, Logger } = require("winston");
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 module.exports = {
   getAllUsers: (req, res) => {
-    logger.info("This is an info log");
+    //var message = "url: ," + req.originalUrl + " method: " + req.method;
+    infoLogger.info("API request");
     mySqlConnection.query("SELECT* from Users", (err, rows) => {
       try {
         res.send(rows);
@@ -16,7 +16,7 @@ module.exports = {
   },
 
   getOneUser: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     const arr = req.params.userid.split(",");
     mySqlConnection.query(
       "SELECT * from Users WHERE user_id IN (?)",
@@ -25,15 +25,14 @@ module.exports = {
         try {
           res.send(rows);
         } catch (err) {
-          //console.log(err);
-          logger.error("This is an err log", err);
+          errLogger.error("This is an err log", err);
         }
       }
     );
   },
 
   deleteUser: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     mySqlConnection.query(
       "DELETE FROM Users WHERE user_id=?",
       req.params.userid,
@@ -46,13 +45,13 @@ module.exports = {
           }
         } catch (err) {
           //console.log(err);
-          logger.error("this is error", { err });
+          errLogger.error("this is error", { err });
         }
       }
     );
   },
   updateUser: (req, res) => {
-    logger.info("This is an info log");
+    errLogger.info("This is an info log");
     let user_id = req.params.userid;
     let email = req.body.email;
 

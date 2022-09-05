@@ -2,10 +2,10 @@ const { response } = require("express");
 const { getUserConfigurationInner } = require("./userConfiguration");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 const getAllConstants = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   constants = {
     registration_form: {
       gender: ["Woman", "Man", "prefer not to say"],
@@ -168,7 +168,7 @@ const getAllConstants = (req, res) => {
 };
 
 getUsersAccordingToChosenExperiences = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
   let searchMode, currentUser;
   const users = {

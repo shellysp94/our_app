@@ -1,4 +1,4 @@
-const logger = require("../logger");
+const { infoLogger } = require("../logger");
 
 function closingWebSocket(onlineUsers, ws) {
   logger.info("--------------Closing Websocket-------------");

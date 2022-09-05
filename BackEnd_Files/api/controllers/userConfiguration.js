@@ -4,7 +4,7 @@ const fs = require("fs");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
 
@@ -97,7 +97,7 @@ const queryUserConfiguration = (arr, curr_userid, cb) => {
 };
 
 getAllUsersConfiguration = (req, cb) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   mySqlConnection.query(
     `SELECT a.*, TIMESTAMPDIFF(YEAR, a.date_of_birth, CURDATE()) AS age FROM user_configuration a`,
     (err, rows) => {
@@ -111,17 +111,14 @@ getAllUsersConfiguration = (req, cb) => {
 };
 
 getUserConfigurationInner = (req, curr_userid, cb) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const arr = req.params.userid.split(",");
   return queryUserConfiguration(arr, curr_userid, cb);
 };
 
 getUserConfiguration = (req, res) => {
-  console.log(req);
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const arr = req.params.userid.split(",");
-  console.log("arr:", arr);
-  console.log("req:", req.params);
   if (!req.params.curr_userid) {
     curr_userid = arr[0];
   } else {
@@ -134,7 +131,7 @@ getUserConfiguration = (req, res) => {
 };
 
 getUsersConfigurationByRadius = (req, cb) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const user_id = req.user_id;
   const radius = req.radius_filter;
 
@@ -173,7 +170,7 @@ getUsersConfigurationByRadius = (req, cb) => {
 };
 
 createUserConfiguration = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   /////////////
   mySqlConnection.query(
     `SELECT user_id from Users where email=?`,
@@ -181,7 +178,7 @@ createUserConfiguration = (req, res) => {
     (err, rows) => {
       if (err) {
         //console.log(err);
-        logger.error("This is an err log");
+        errLogger.error("This is an err log");
       } else {
         user_id = rows[0].user_id;
         let first_name = req.body.first_name;
@@ -211,7 +208,7 @@ createUserConfiguration = (req, res) => {
               res.send("user configuration of user added successfully");
             } catch (err) {
               //console.log(err.message);
-              logger.error("This is an err log");
+              errLogger.error("This is an err log");
             }
           }
         );
@@ -221,7 +218,7 @@ createUserConfiguration = (req, res) => {
 };
 
 deleteUserConfiguration = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   mySqlConnection.query(
     "DELETE FROM user_configuration WHERE user_id=?",
     req.params.userid,
@@ -236,7 +233,7 @@ deleteUserConfiguration = (req, res) => {
 };
 
 updateUserConfiguration = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   let user_id = req.params.userid;
   let first_name = req.body.first_name;
   let last_name = req.body.last_name;

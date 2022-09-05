@@ -1,0 +1,64 @@
+{
+  level: 'error',
+  message: 'This is an err log options.winstonInstance.log is not a function',
+  stack: 'TypeError: options.winstonInstance.log is not a function\n' +
+    '    at ServerResponse.res.end (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express-winston\\index.js:425:41)\n' +
+    '    at ServerResponse.send (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:221:10)\n' +
+    '    at ServerResponse.json (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:267:15)\n' +
+    '    at ServerResponse.send (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:158:21)\n' +
+    '    at Query.<anonymous> (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\api\\controllers\\users.js:26:15)\n' +
+    '    at Query.<anonymous> (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\Connection.js:526:10)\n' +
+    '    at Query._callback (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\Connection.js:488:16)\n' +
+    '    at Query.Sequence.end (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n' +
+    '    at Query._handleFinalResultPacket (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n' +
+    '    at Query.EofPacket (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)',
+  timestamp: '2022-09-05 19:30:41'
+}
+{
+  level: 'error',
+  message: 'This is an err log options.winstonInstance.log is not a function',
+  stack: 'TypeError: options.winstonInstance.log is not a function\n' +
+    '    at ServerResponse.res.end (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express-winston\\index.js:425:41)\n' +
+    '    at ServerResponse.send (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:221:10)\n' +
+    '    at ServerResponse.json (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:267:15)\n' +
+    '    at ServerResponse.send (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:158:21)\n' +
+    '    at Query.<anonymous> (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\api\\controllers\\users.js:26:15)\n' +
+    '    at Query.<anonymous> (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\Connection.js:526:10)\n' +
+    '    at Query._callback (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\Connection.js:488:16)\n' +
+    '    at Query.Sequence.end (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n' +
+    '    at Query._handleFinalResultPacket (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n' +
+    '    at Query.EofPacket (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)',
+  timestamp: '2022-09-05 19:31:46'
+}
+{
+  level: 'error',
+  message: 'This is an err log options.winstonInstance.log is not a function',
+  stack: 'TypeError: options.winstonInstance.log is not a function\n' +
+    '    at ServerResponse.res.end (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express-winston\\index.js:425:41)\n' +
+    '    at ServerResponse.send (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:221:10)\n' +
+    '    at ServerResponse.json (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:267:15)\n' +
+    '    at ServerResponse.send (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\express\\lib\\response.js:158:21)\n' +
+    '    at Query.<anonymous> (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\api\\controllers\\users.js:26:15)\n' +
+    '    at Query.<anonymous> (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\Connection.js:526:10)\n' +
+    '    at Query._callback (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\Connection.js:488:16)\n' +
+    '    at Query.Sequence.end (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n' +
+    '    at Query._handleFinalResultPacket (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:149:8)\n' +
+    '    at Query.EofPacket (C:\\Users\\shell\\Desktop\\workshop_app\\final_project\\BackEnd_Files\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:133:8)',
+  timestamp: '2022-09-05 19:33:18'
+}
+{
+  err: TypeError: options.winstonInstance.log is not a function
+      at ServerResponse.res.end (C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\express-winston\index.js:425:41)
+      at write (C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\finalhandler\index.js:297:9)
+      at send (C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\finalhandler\index.js:301:5)
+      at C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\finalhandler\index.js:133:5
+      at C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\express\lib\router\index.js:641:15
+      at next (C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\express\lib\router\index.js:260:14)
+      at C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\express\lib\router\index.js:641:15
+      at next (C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\express\lib\router\index.js:260:14)
+      at next (C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\express\lib\router\route.js:127:14)
+      at Layer.handle [as handle_request] (C:\Users\shell\Desktop\workshop_app\final_project\BackEnd_Files\node_modules\express\lib\router\layer.js:97:5),
+  level: 'error',
+  message: 'Verify Token - ERROR',
+  timestamp: '2022-09-05 19:38:15'
+}

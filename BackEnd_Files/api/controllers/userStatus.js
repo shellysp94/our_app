@@ -1,9 +1,9 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 getUserStatus = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
 
   mySqlConnection.query(
@@ -19,7 +19,7 @@ getUserStatus = (req, res) => {
 };
 
 updateUserStatus = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
   const status = req.body.status;
 

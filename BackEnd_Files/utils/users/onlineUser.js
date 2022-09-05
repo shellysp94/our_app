@@ -2,7 +2,7 @@ const chatRoomsArray = require("../chatRooms/chatRoomsArray");
 const chatRooms = new chatRoomsArray().getInstance().getChatRoomsArray();
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
-const logger = require("../logger");
+const { infoLogger } = require("../logger");
 
 function getUserName(user_id) {
   return new Promise((resolve, reject) => {
@@ -13,7 +13,7 @@ function getUserName(user_id) {
           reject(err);
         }
         if (rows === undefined || rows.length === 0) {
-          logger.info(
+          infoLogger.info(
             "something wrong. This user id didn't exist in the database"
           );
           resolve("");
@@ -31,13 +31,13 @@ let onlineUser = class {
     this.user_name;
     this.websocket;
     this.userChatRooms;
-    logger.info("C'tor of online user");
+    infoLogger.info("C'tor of online user");
   }
 
   async initOnlineUser(user_id, websocket) {
     const userName = await getUserName(user_id);
     if (userName.length === 0) {
-      logger.info(
+      infoLogger.info(
         `INIT online user --->\nSomething went wrong! user id ---${user_id}--- name is undefined from DB! Didn't create this online user.
 				Go to "onlineUser.js" file - the class file`
       );
@@ -50,14 +50,14 @@ let onlineUser = class {
           chatRoom.getUser_A_id() === parseInt(user_id, 10) ||
           chatRoom.getUser_B_id() === parseInt(user_id, 10)
       );
-      logger.info(`C'tor of user: ${user_id} create an online user!`);
+      infoLogger.info(`C'tor of user: ${user_id} create an online user!`);
     }
   }
 
   updateOnlineUserChatRoomsArray(chatRoom) {
     if (!this.userChatRooms.includes(chatRoom)) {
       this.userChatRooms.push(chatRoom);
-      logger.info(
+      infoLogger.info(
         `---FROM ONLINE USER CLASS---\nPush a new chat room for user id: ${
           this.user_id
         }. Push chat room:\n${JSON.stringify(chatRoom)}`

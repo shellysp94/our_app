@@ -1,9 +1,9 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 getUserLocation = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   user_id = req.params.userid;
   mySqlConnection.query(
     `SELECT* from user_location where user_id=${user_id}`,
@@ -18,7 +18,7 @@ getUserLocation = (req, res) => {
 };
 
 insertUserLocation = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const user_id = req.params.userid;
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
@@ -36,7 +36,7 @@ insertUserLocation = (req, res) => {
 };
 
 deleteUserLocation = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   user_id = req.params.userid;
 
   mySqlConnection.query(

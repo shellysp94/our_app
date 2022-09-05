@@ -6,10 +6,10 @@ const { admin } = require("../../config/firebase_config");
 const {
   sendNotificationHelper,
 } = require("../../utils/notifications/notifications");
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 getAllUserConnectionsByName = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const user = req.params.userid;
   const connected = req.params.connected;
   let fullName = req.params.name.split(/(\s+)/);
@@ -73,7 +73,7 @@ getAllUserConnectionsByName = (req, res) => {
 };
 
 getAllUserConnectionsType = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
   const type = req.params.type;
   const usersToPresent = req.params.usersToPresent;
@@ -153,7 +153,7 @@ getAllUserConnectionsType = (req, res) => {
 };
 
 getUserFriendRequestsReceived = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   user_id = req.params.userid;
   mySqlConnection.query(
     `SELECT b.*
@@ -189,7 +189,7 @@ getUserFriendRequestsReceived = (req, res) => {
 };
 
 getUserFriendRequestsSent = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   user_id = req.params.userid;
 
   mySqlConnection.query(
@@ -226,7 +226,7 @@ getUserFriendRequestsSent = (req, res) => {
 };
 
 sendFriendRequest = async (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const sentReqUser = req.params.useridA;
   const recievedReqUser = req.params.useridB;
 
@@ -270,7 +270,7 @@ sendFriendRequest = async (req, res) => {
 };
 
 approveFriendRequest = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const approvedUser = req.params.useridA;
   const sentReqUser = req.params.useridB;
 
@@ -288,7 +288,7 @@ approveFriendRequest = (req, res) => {
 };
 
 declineFriendRequest = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const declinedUser = req.params.useridA;
   const sentReqUser = req.params.useridB;
 

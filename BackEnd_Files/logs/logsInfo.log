@@ -1,0 +1,42 @@
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 20:07:42'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '59870128-ce8e-45ab-b680-b0832ef7432b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {},
+      body: { email: 'shelly@gmail.com', password: '1234' }
+    },
+    res: { statusCode: 200 },
+    responseTime: 693
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 20:07:42'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 20:09:56'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 20:09:56'
+}

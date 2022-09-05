@@ -1,6 +1,6 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 const path = require("path");
 const fs = require("fs");
@@ -20,7 +20,7 @@ module.exports = {
   getPicNameAndEncode,
 
   getUserPictures: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     mySqlConnection.query(
       "SELECT* from User_pictures WHERE user_id=?",
       [req.params.userid],
@@ -70,7 +70,7 @@ module.exports = {
   },
 
   getUserMainPicture: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     mySqlConnection.query(
       "SELECT* from User_pictures WHERE user_id=? AND main_image='1'",
       [req.params.userid],
@@ -85,7 +85,7 @@ module.exports = {
   },
 
   deleteUserPicture: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     mySqlConnection.query(
       "DELETE FROM User_pictures WHERE user_id=? AND image=?",
       [req.params.userid, req.body.image],
@@ -112,7 +112,7 @@ module.exports = {
   },
 
   updateUserPicture: (req, res) => {
-    logger.info("This is an info log");
+    infoLogger.info("This is an info log");
     user_id = req.params.userid;
     old_image = req.body.old_image;
     image = req.file.path.substring(7);
@@ -141,7 +141,7 @@ module.exports = {
 
   uploadBase64Image: async (req, res, next) => {
     try {
-      logger.info("This is an info log");
+      infoLogger.info("This is an info log");
       let user_id = req.params.userid;
       main_image = req.body.main_image;
       mySqlConnection.query(

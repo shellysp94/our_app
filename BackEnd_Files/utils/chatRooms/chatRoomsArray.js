@@ -1,7 +1,7 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 const chatRoom = require("./chatRoom");
-const logger = require("../logger");
+const { infoLogger } = require("../logger");
 
 function getAllChatsInDatabase(callback) {
   mySqlConnection.query(
@@ -28,7 +28,7 @@ let chatRoomsArray = class {
         );
       });
     });
-    logger.info("C'tor of Chat Rooms Array");
+    infoLogger.info("C'tor of Chat Rooms Array");
   }
 
   insertNewChatRoom(chat_id, user_A_id, user_B_id) {
