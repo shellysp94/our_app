@@ -3,47 +3,59 @@ const mySqlConnection = dbConfig;
 const logger = require("../../utils/logger");
 
 getUserStatus = (req, res) => {
-  logger.info("This is an info log");
-  const userid = req.params.userid;
+	logger.info("This is an info log");
+	const userid = req.params.userid;
 
-  mySqlConnection.query(
-    `select * from user_status where user_id = ${userid}`,
-    (err, rows) => {
-      try {
-        res.send(rows[0]);
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-  );
+	mySqlConnection.query(
+		`select * from user_status where user_id = ${userid}`,
+		(err, rows) => {
+			try {
+				if (err || rows === undefined || rows.length === 0) {
+					throw new Error("User Status - GET request MySQL Error");
+				} else {
+					res.send(rows[0]);
+				}
+			} catch (err) {
+				logger.error("User Status - GET MySQL Error", {err});
+				return res.status(500).send("internal error");
+			}
+		}
+	);
 };
 
 updateUserStatus = (req, res) => {
-  logger.info("This is an info log");
-  const userid = req.params.userid;
-  const status = req.body.status;
+	logger.info("This is an info log");
+	const userid = req.params.userid;
+	const status = req.body.status;
 
-  mySqlConnection.query(
-    `insert into user_status (user_id, status_last_update, user_status) values (${userid}, current_timestamp(), "${status}") 
-		on duplicate key update user_id = ${userid}, status_last_update = current_timestamp(), user_status = "${status}"`,
-    (err, rows) => {
-      try {
-        if (rows.affectedRows >= 1) {
-          getUserStatus(req, res);
-        } else {
-          res.statusCode = 404;
-          res.send(
-            "ERROR! Something went wrong! **Post or Update (PUT) user status Request**"
-          );
-        }
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-  );
+	try {
+		if (status === undefined) {
+			throw new Error("User Status - POST MySQL syntax Error");
+		}
+
+		mySqlConnection.query(
+			`insert into user_status (user_id, status_last_update, user_status) values (${userid}, current_timestamp(), "${status}") 
+      on duplicate key update user_id = ${userid}, status_last_update = current_timestamp(), user_status = "${status}"`,
+			(err, rows) => {
+				try {
+					if (err || rows === undefined || rows.affectedRows < 1) {
+						throw new Error("User Status - POST request MySQL Error");
+					}
+
+					getUserStatus(req, res);
+				} catch (err) {
+					logger.error(`${err}`);
+					return res.status(500).send("internal error");
+				}
+			}
+		);
+	} catch (err) {
+		logger.error(`${err}`);
+		return res.status(500).send("internal error");
+	}
 };
 
 module.exports = {
-  getUserStatus,
-  updateUserStatus,
+	getUserStatus,
+	updateUserStatus,
 };
