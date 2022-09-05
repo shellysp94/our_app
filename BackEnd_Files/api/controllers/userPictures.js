@@ -95,7 +95,7 @@ module.exports = {
           //fileName = fileName.substring(6);
           dirnametemp = __dirname.substring(0, __dirname.length - 15);
           //finalFilePath = dirnametemp + "images\\" + fileName; //for localhot
-          finalFilePath = dirnametemp + "images//" + fileName; //for aws
+          finalFilePath = dirnametemp + "images/" + fileName; //for aws
 
           fs.unlink(finalFilePath, function (err) {
             if (err) {
