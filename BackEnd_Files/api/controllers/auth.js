@@ -13,14 +13,13 @@ function updateDevicetoken(user_id_from_query, device_token, userCred, cb) {
 		`insert into Device_token (user_id, device_token) values (${user_id_from_query},"${device_token}")
 	ON duplicate key update user_id=${user_id_from_query},device_token="${device_token}"`,
 		(err, rows) => {
-			try {
-				if (err || rows === undefined || rows.affectedRows < 1) {
-					throw new Error("update device token - ERROR");
-				} else {
-					return cb(userCred);
-				}
-			} catch (err) {
+			if (err || rows === undefined) {
 				return cb(rows);
+			}
+			if (rows.affectedRows < 1) {
+				return cb(undefined);
+			} else {
+				return cb(userCred);
 			}
 		}
 	);
