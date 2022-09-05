@@ -66,7 +66,9 @@ login = async (req, res) => {
 								[accessToken, email],
 								(err, rows) => {
 									try {
-										if (rows !== undefined || rows.affectedRows >= 1) {
+										if (err || rows === undefined || rows.affectedRows < 1) {
+											throw new Error("Login - Update DB - MySQL Error");
+										} else {
 											mySqlConnection.query(
 												`select * 
 											from Users a
@@ -97,12 +99,9 @@ login = async (req, res) => {
 													}
 												}
 											);
-										} else {
-											logger.error("auth - login - ERROR\nrows don't updated");
-											return res.status(500).send("internal error");
 										}
 									} catch (err) {
-										logger.error("login - ERROR", {err});
+										logger.error({err});
 										return res.status(500).send("internal error");
 									}
 								}
@@ -140,20 +139,19 @@ register = (req, res) => {
 					{email: req.body.email, password: hashedPassword},
 					(err, rows) => {
 						try {
-							if (rows !== undefined || rows.affectedRows >= 1) {
-								createUserConfiguration(req, res);
+							if (err || rows === undefined || rows.affectedRows < 1) {
+								throw new Error("Register - INSERT to DB - MySQL Error");
 							} else {
-								logger.error("register - ERROR", {err});
-								return res.status(500).send("internal error");
+								createUserConfiguration(req, res);
 							}
 						} catch (err) {
-							logger.error("register - ERROR", {err});
+							logger.error({err});
 							return res.status(500).send("internal error");
 						}
 					}
 				);
 			} catch (err) {
-				logger.error("register - ERROR", {err});
+				logger.error("Register - ERROR", {err});
 				return res.status(500).send("internal error");
 			}
 		}
