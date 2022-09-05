@@ -572,3 +572,2771 @@
   message: 'HTTP POST /auth/login',
   timestamp: '2022-09-05 14:08:26'
 }
+{
+  err: TypeError: Cannot read properties of undefined (reading 'affectedRows')
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:143:39)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'register - ERROR',
+  timestamp: '2022-09-05 14:27:14'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/register',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIxMTI3NjIsImV4cCI6MTY5MzY0ODc2Mn0.R0LIulcS6Oe2MJUgmmlBnzqN5LqFaguM1khR7By29ys',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'fda6bba3-da00-4f3a-b7ae-3eac0d73c675',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '380'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/register',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 240
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/register',
+  timestamp: '2022-09-05 14:27:14'
+}
+{
+  message: {
+    err: Error: Login - Update DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:70:18)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 14:52:14'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '94564d1f-12bb-489b-b9d8-ec6d8d45bafe',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '56'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 105
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:52:14'
+}
+{
+  message: {
+    err: Error: Login - Update DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:70:18)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 14:53:00'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '1682dfb4-2b37-4fb5-8214-97215bfcc373',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '56'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 287
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:53:00'
+}
+{
+  message: {
+    err: Error: Login - Update DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:70:18)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 14:58:19'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8bc412dd-e54a-40d5-b028-1748e9d336db',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '56'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 101
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:58:19'
+}
+{
+  message: {
+    err: Error: Register - INSERT to DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:143:15)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 14:59:08'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/register',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIxMTI3NjIsImV4cCI6MTY5MzY0ODc2Mn0.R0LIulcS6Oe2MJUgmmlBnzqN5LqFaguM1khR7By29ys',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'a6fe8e69-51a1-47f8-b05d-d238b3af20d6',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '377'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/register',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 109
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/register',
+  timestamp: '2022-09-05 14:59:08'
+}
+{
+  message: 'This is an err log',
+  level: 'error',
+  timestamp: '2022-09-05 14:59:27'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:03:15'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'aa444c91-b5d1-4117-9606-ddeaac9556e6',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '280'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 17
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 15:03:15'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:03:57'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:04:36'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'd787e69a-804e-439a-8a35-5a8b6fbc2f56',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '280'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 47
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 15:04:36'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:05:06'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '95ebd880-01a6-42c1-8fcf-6717fc415e14',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '280'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 91
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 15:05:06'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:05:35'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8b3cac0f-7636-422d-84cf-b8068865a74f',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '280'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 41
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 15:05:35'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:06:00'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8a7a6d61-30b8-433a-9577-08959fe9c997',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '280'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 37
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 15:06:00'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:06:27'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '440c6ae0-90ae-4a31-88ac-e3247ea8afa7',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '277'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 13
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 15:06:27'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL syntax Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:07:26'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '3b963153-2e9f-4a69-8c2b-84e45694f173',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '276'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 40
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 15:07:26'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL syntax Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:605:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:09:00'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '158f3690-3ce1-4f34-acc2-1911773480ac',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '276'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 41
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 15:09:01'
+}
+{
+  message: {
+    err: Error: Filters - Get request - MySQL syntax Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:530:14)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:21:19'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/filteredUsers/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'a635440f-554d-4326-a164-7d066ade1b61',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters/filteredUsers/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 37
+  },
+  level: 'error',
+  message: 'HTTP GET /filters/filteredUsers/1/0',
+  timestamp: '2022-09-05 15:21:19'
+}
+{
+  message: {
+    err: Error: Filters - Get request - MySQL syntax Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:530:14)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:23:16'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/2/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '1b4ba319-7875-4281-b5fc-31d5ad421674',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '277'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/2/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 106
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/2/0',
+  timestamp: '2022-09-05 15:23:16'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL syntax Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:648:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:25:47'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/2/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '2ebe3bcc-333c-403f-95df-623f1782570d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '276'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/2/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 47
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/2/0',
+  timestamp: '2022-09-05 15:25:47'
+}
+{
+  err: Error: Chat - GET MySQL Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\chats.js:16:11)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'Chats',
+  timestamp: '2022-09-05 15:48:18'
+}
+{
+  meta: {
+    req: {
+      url: '/chats',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'ea66a005-9739-40b7-97f6-3e4e90bcb8d8',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/chats',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 16
+  },
+  level: 'error',
+  message: 'HTTP GET /chats',
+  timestamp: '2022-09-05 15:48:18'
+}
+{
+  err: Error: Chat - GET MySQL Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\chats.js:16:11)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'Chats',
+  timestamp: '2022-09-05 15:48:45'
+}
+{
+  meta: {
+    req: {
+      url: '/chats',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '743ea96a-7d9c-4cfc-8ded-52a153b86c1d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/chats',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 49
+  },
+  level: 'error',
+  message: 'HTTP GET /chats',
+  timestamp: '2022-09-05 15:48:45'
+}
+{
+  message: {
+    err: Error: Chats - GET (specific user's chat rooms) MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\chats.js:37:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 15:54:05'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '07f4b7a1-d02e-495e-8404-fb98c09d7c69',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/chats/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 22
+  },
+  level: 'error',
+  message: 'HTTP GET /chats/1',
+  timestamp: '2022-09-05 15:54:05'
+}
+{
+  err: Error: Chats - UPDATE || INSERT to DB - MySQL syntax Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\chats.js:179:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'Chats',
+  timestamp: '2022-09-05 16:05:20'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '0f5682a2-957b-49a8-8771-353fc04d72dc',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '0'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 59
+  },
+  level: 'error',
+  message: 'HTTP POST /chats/2/1',
+  timestamp: '2022-09-05 16:05:20'
+}
+{
+  err: Error: Chat - DELETE (select the chat to delete failed) MySQL Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\chats.js:343:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'Chats',
+  timestamp: '2022-09-05 16:08:57'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/3',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '56a87c76-c23f-4b03-9f3e-cd2383cbd9c4',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/3',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 22
+  },
+  level: 'error',
+  message: 'HTTP DELETE /chats/2/3',
+  timestamp: '2022-09-05 16:08:57'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'Messages',
+  timestamp: '2022-09-05 16:17:29'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e14ffbe8-13b4-4947-8e86-0fabd9b46c91',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 22
+  },
+  level: 'error',
+  message: 'HTTP DELETE /chats/2/1',
+  timestamp: '2022-09-05 16:17:29'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'Messages',
+  timestamp: '2022-09-05 16:18:52'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '07844fdb-5c70-42c6-9111-506626ad08d5',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 32
+  },
+  level: 'error',
+  message: 'HTTP DELETE /chats/2/1',
+  timestamp: '2022-09-05 16:18:52'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'Messages',
+  timestamp: '2022-09-05 16:20:00'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8a8481cb-722d-4442-8a1d-37f75af2b5e6',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 28
+  },
+  level: 'error',
+  message: 'HTTP DELETE /chats/2/1',
+  timestamp: '2022-09-05 16:20:00'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'Messages - DELETE MySQL Error',
+  timestamp: '2022-09-05 16:20:54'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '3418fdc8-8012-47b8-88f1-1292f447cade',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 29
+  },
+  level: 'error',
+  message: 'HTTP DELETE /chats/2/1',
+  timestamp: '2022-09-05 16:20:54'
+}
+{
+  message: 'Messages - DELETE MySQL Error',
+  level: 'error',
+  timestamp: '2022-09-05 16:21:18'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'be99f823-814e-4b97-a523-04c77f54d88f',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 27
+  },
+  level: 'error',
+  message: 'HTTP DELETE /chats/2/1',
+  timestamp: '2022-09-05 16:21:18'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'login from device token update - ERROR',
+  timestamp: '2022-09-05 16:26:13'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4e3fe8c5-84f6-48f5-a897-3d55816c3e04',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '59'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 276
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 16:26:13'
+}
+{
+  meta: {
+    req: {
+      url: '/messages/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '900219bd-41d1-4f13-84d2-eb2d53ee961b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '35'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/messages/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 40
+  },
+  level: 'error',
+  message: 'HTTP POST /messages/2/1',
+  timestamp: '2022-09-05 16:39:51'
+}
+{
+  meta: {
+    req: {
+      url: '/messages/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'efa12397-4943-4bbc-b5d9-abb34ece7b26',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '35'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/messages/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 30
+  },
+  level: 'error',
+  message: 'HTTP POST /messages/2/1',
+  timestamp: '2022-09-05 16:41:32'
+}
+{
+  message: 'Messages - POST MySQL Error',
+  level: 'error',
+  timestamp: '2022-09-05 16:44:08'
+}
+{
+  meta: {
+    req: {
+      url: '/messages/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '3ded5d74-3065-4563-9021-fb8a3ea51bc9',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '35'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/messages/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 40
+  },
+  level: 'error',
+  message: 'HTTP POST /messages/2/1',
+  timestamp: '2022-09-05 16:44:08'
+}
+{
+  err: Error: Messages - POST (send a new message.
+  Sender isn't online to WS
+      at createChatMessage (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\messages.js:33:10)
+      at Layer.handle [as handle_request] (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\layer.js:95:5)
+      at next (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\route.js:137:13)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:185:7)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query._handleFinalResultPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:149:8)
+      at Query.EofPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:133:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23),
+  level: 'error',
+  message: 'Messages - POST MySQL Error',
+  timestamp: '2022-09-05 16:44:42'
+}
+{
+  meta: {
+    req: {
+      url: '/messages/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'ce898958-f10d-486f-84ec-a0e27f859d7e',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '35'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/messages/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 36
+  },
+  level: 'error',
+  message: 'HTTP POST /messages/2/1',
+  timestamp: '2022-09-05 16:44:42'
+}
+{
+  err: Error: Messages - POST send a new message. Sender isn't online to WS
+      at createChatMessage (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\messages.js:33:10)
+      at Layer.handle [as handle_request] (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\layer.js:95:5)
+      at next (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\route.js:137:13)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\auth.js:185:7)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query._handleFinalResultPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:149:8)
+      at Query.EofPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:133:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23),
+  level: 'error',
+  message: 'Messages - POST MySQL Error',
+  timestamp: '2022-09-05 16:45:46'
+}
+{
+  meta: {
+    req: {
+      url: '/messages/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '59409e1a-f918-4700-8f9b-4e55743453f6',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '35'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/messages/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 70
+  },
+  level: 'error',
+  message: 'HTTP POST /messages/2/1',
+  timestamp: '2022-09-05 16:45:46'
+}
+{
+  err: Error: Chats - UPDATE || INSERT to DB - MySQL syntax Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\chats.js:292:17)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'Chats',
+  timestamp: '2022-09-05 16:50:28'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e785bf43-799a-4ec9-86af-e9c05320cf79',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '0'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 60
+  },
+  level: 'error',
+  message: 'HTTP POST /chats/2/1',
+  timestamp: '2022-09-05 16:50:29'
+}
+{
+  err: Error: Chats - UPDATE || INSERT to DB - MySQL syntax Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\chats.js:179:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'Chats',
+  timestamp: '2022-09-05 16:51:30'
+}
+{
+  meta: {
+    req: {
+      url: '/chats/2/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e969cd93-7857-4cd1-b4ba-ff921aae7cda',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '0'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/chats/2/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 47
+  },
+  level: 'error',
+  message: 'HTTP POST /chats/2/1',
+  timestamp: '2022-09-05 16:51:31'
+}
+{
+  meta: {
+    req: {
+      url: '/userStatus/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '3566f194-f53e-44c4-af5c-72926c3c4db3',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '38'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userStatus/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 34
+  },
+  level: 'error',
+  message: 'HTTP POST /userStatus/1',
+  timestamp: '2022-09-05 17:32:19'
+}
+{
+  message: 'Error: User Status - POST MySQL syntax Error',
+  level: 'error',
+  timestamp: '2022-09-05 17:33:16'
+}
+{
+  meta: {
+    req: {
+      url: '/userStatus/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '542f831f-1880-42bc-8dd7-f3706a076b1a',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '38'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userStatus/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 33
+  },
+  level: 'error',
+  message: 'HTTP POST /userStatus/1',
+  timestamp: '2022-09-05 17:33:16'
+}
+{
+  message: 'Error: User Status - POST request MySQL Error',
+  level: 'error',
+  timestamp: '2022-09-05 17:34:03'
+}
+{
+  meta: {
+    req: {
+      url: '/userStatus/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '3180c834-cb60-4a36-8b83-3c63a8877e68',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '39'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userStatus/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 35
+  },
+  level: 'error',
+  message: 'HTTP POST /userStatus/1',
+  timestamp: '2022-09-05 17:34:03'
+}
+{
+  message: 'Error: User Status - POST request MySQL Error',
+  level: 'error',
+  timestamp: '2022-09-05 17:35:27'
+}
+{
+  meta: {
+    req: {
+      url: '/userStatus/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '9fed8302-5ee5-4a00-b65b-399452e05322',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '39'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userStatus/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 34
+  },
+  level: 'error',
+  message: 'HTTP POST /userStatus/1',
+  timestamp: '2022-09-05 17:35:27'
+}
+{
+  err: Error: User Status - GET request MySQL Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userStatus.js:14:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'User Status - GET MySQL Error',
+  timestamp: '2022-09-05 17:35:57'
+}
+{
+  meta: {
+    req: {
+      url: '/userStatus/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '84224f57-0ae2-4ea9-a8da-2b77a56e36aa',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '39'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userStatus/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 52
+  },
+  level: 'error',
+  message: 'HTTP POST /userStatus/1',
+  timestamp: '2022-09-05 17:35:57'
+}
+{
+  err: Error: User Status - GET request MySQL Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userStatus.js:14:12)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'User Status - GET MySQL Error',
+  timestamp: '2022-09-05 17:36:34'
+}
+{
+  meta: {
+    req: {
+      url: '/userStatus/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '34868f30-0655-47e6-a739-1536da218379',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/userStatus/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 25
+  },
+  level: 'error',
+  message: 'HTTP GET /userStatus/1',
+  timestamp: '2022-09-05 17:36:34'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL syntax Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:610:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 18:07:42'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '90a56b12-131f-4092-8137-061ba04805fb',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 23
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 18:07:42'
+}
+{
+  message: {
+    err: Error: Filters - UPDATE || INSERT to DB - MySQL syntax Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:610:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 18:08:04'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '94213e59-1261-44c7-8aed-043388f69844',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '275'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 13
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/1/0',
+  timestamp: '2022-09-05 18:08:04'
+}
+{
+  err: Error: Filters - GET request, get all filters in DB. MySQL Error
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:375:11)
+      at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+      at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+      at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+      at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+      at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+      at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+      at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+      at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+      at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28),
+  level: 'error',
+  message: 'Filters - GET MySQL Error',
+  timestamp: '2022-09-05 18:56:13'
+}
+{
+  meta: {
+    req: {
+      url: '/filters',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '588b7b70-39b2-4813-b007-a1fa4801b2a5',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 13
+  },
+  level: 'error',
+  message: 'HTTP GET /filters',
+  timestamp: '2022-09-05 18:56:13'
+}
+{
+  message: {
+    err: Error: Filters - GET request, get all filters in DB. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:375:11)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 18:56:39'
+}
+{
+  meta: {
+    req: {
+      url: '/filters',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4ba78fab-78d8-47dc-8af7-a119fc4dc94f',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 14
+  },
+  level: 'error',
+  message: 'HTTP GET /filters',
+  timestamp: '2022-09-05 18:56:39'
+}
+{
+  message: 'Filters - GET a user filters, MySQL Error',
+  level: 'error',
+  timestamp: '2022-09-05 19:06:02'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/filteredUsers/1/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e99b6d4b-6b1c-4be6-b11c-cf4d3fefea09',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters/filteredUsers/1/0',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 23
+  },
+  level: 'error',
+  message: 'HTTP GET /filters/filteredUsers/1/0',
+  timestamp: '2022-09-05 19:06:02'
+}
+{
+  message: {
+    err: Error: Filters - friends of friends. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:439:18)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 19:22:57'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/friendsOfFriends/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8803097e-c48a-4d95-9f7e-8478c707efca',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters/friendsOfFriends/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 19
+  },
+  level: 'error',
+  message: 'HTTP GET /filters/friendsOfFriends/1',
+  timestamp: '2022-09-05 19:22:57'
+}
+{
+  message: {
+    err: Error: Filters - friends of friends. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:440:18)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 19:23:51'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/friendsOfFriends/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '5fa039cc-0b90-4115-92c3-2b8f7bea0a99',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters/friendsOfFriends/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 31
+  },
+  level: 'error',
+  message: 'HTTP GET /filters/friendsOfFriends/1',
+  timestamp: '2022-09-05 19:23:52'
+}
+{
+  message: {
+    err: Error: Filters - friends of friends. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:440:18)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 19:24:26'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/friendsOfFriends/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '9db509fa-a7c1-448b-aebe-ead6c55de048',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters/friendsOfFriends/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 29
+  },
+  level: 'error',
+  message: 'HTTP GET /filters/friendsOfFriends/1',
+  timestamp: '2022-09-05 19:24:26'
+}
+{
+  message: {
+    err: Error: Filters - DELETE request. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:680:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 19:37:12'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '05bb4836-79eb-43f4-818e-367eb80298e7',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/filters/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 25
+  },
+  level: 'error',
+  message: 'HTTP DELETE /filters/1',
+  timestamp: '2022-09-05 19:37:13'
+}
+{
+  message: {
+    err: Error: Filters - DELETE request. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:680:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 19:39:47'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/4',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE2NjIzOTU4ODAsImV4cCI6MTY5MzkzMTg4MH0._XV7LF1DDn908KB5dIHussquYO1vcw7DIclfSny82Zg',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '78a0d7da-fa41-46ee-b5d6-2002061be2bb',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/filters/4',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 28
+  },
+  level: 'error',
+  message: 'HTTP DELETE /filters/4',
+  timestamp: '2022-09-05 19:39:47'
+}
+{
+  message: {
+    err: Error: Filters - DELETE request. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:680:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 19:58:44'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/4',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE2NjIzOTU4ODAsImV4cCI6MTY5MzkzMTg4MH0._XV7LF1DDn908KB5dIHussquYO1vcw7DIclfSny82Zg',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e06ea640-fff2-4c11-ab0b-c69fb96902fd',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/filters/4',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 30
+  },
+  level: 'error',
+  message: 'HTTP DELETE /filters/4',
+  timestamp: '2022-09-05 19:58:44'
+}
+{
+  message: {
+    err: Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELCT* from Users' at line 1
+        at Query.Sequence._packetToError (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Socket.emit (node:events:520:28)
+        at addChunk (node:internal/streams/readable:315:12)
+        --------------------
+        at Protocol._enqueue (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+        at Connection.query (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:198:25)
+        at getAllUsers (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\users.js:9:19)
+        at Layer.handle [as handle_request] (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\layer.js:95:5)
+        at next (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\route.js:137:13)
+        at Route.dispatch (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\route.js:112:3)
+        at Layer.handle [as handle_request] (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\layer.js:95:5)
+        at C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\index.js:281:22
+        at Function.process_params (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\index.js:341:12)
+        at next (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\index.js:275:10) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELCT* from Users' at line 1",
+      sqlState: '42000',
+      index: 0,
+      sql: 'SELCT* from Users'
+    }
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:00:34'
+}
+{
+  meta: {
+    req: {
+      url: '/users/',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'b79f069a-fb76-42b3-b8a7-e950be05ce56',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '48'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/users/',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 35
+  },
+  level: 'error',
+  message: 'HTTP GET /users/',
+  timestamp: '2022-09-05 20:00:34'
+}
+{
+  message: {
+    err: Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELCT* from Users' at line 1
+        at Query.Sequence._packetToError (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Socket.emit (node:events:520:28)
+        at addChunk (node:internal/streams/readable:315:12)
+        --------------------
+        at Protocol._enqueue (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+        at Connection.query (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:198:25)
+        at getAllUsers (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\users.js:9:19)
+        at Layer.handle [as handle_request] (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\layer.js:95:5)
+        at next (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\route.js:137:13)
+        at Route.dispatch (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\route.js:112:3)
+        at Layer.handle [as handle_request] (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\layer.js:95:5)
+        at C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\index.js:281:22
+        at Function.process_params (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\index.js:341:12)
+        at next (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\express\lib\router\index.js:275:10) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELCT* from Users' at line 1",
+      sqlState: '42000',
+      index: 0,
+      sql: 'SELCT* from Users'
+    }
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:01:53'
+}
+{
+  meta: {
+    req: {
+      url: '/users/',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '68149aca-3c9c-41d0-8dd6-17c8552b263b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '48'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/users/',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 32
+  },
+  level: 'error',
+  message: 'HTTP GET /users/',
+  timestamp: '2022-09-05 20:01:53'
+}
+{
+  message: {
+    err: Error: Users - GET request. Get all users in DB, MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\users.js:12:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:02:32'
+}
+{
+  meta: {
+    req: {
+      url: '/users/',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e219b47a-e547-4422-ae5b-4dea6ac973f1',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '48'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/users/',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 24
+  },
+  level: 'error',
+  message: 'HTTP GET /users/',
+  timestamp: '2022-09-05 20:02:32'
+}
+{
+  message: {
+    err: Error: Users - GET request. Get a users from the DB, MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\users.js:36:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:08:42'
+}
+{
+  meta: {
+    req: {
+      url: '/users/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '3e317722-3210-4839-b010-0b7f8e92eee7',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '48'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/users/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 43
+  },
+  level: 'error',
+  message: 'HTTP GET /users/1',
+  timestamp: '2022-09-05 20:08:42'
+}
+{
+  message: {
+    err: Error: Users - GET request. Get a users from the DB, MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\users.js:34:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:09:53'
+}
+{
+  meta: {
+    req: {
+      url: '/users/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '808ff85f-cdce-40b8-a8ad-2f8c1d8c085e',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '48'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/users/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 33
+  },
+  level: 'error',
+  message: 'HTTP GET /users/1',
+  timestamp: '2022-09-05 20:09:53'
+}
+{
+  message: {
+    err: Error: Users - DELETE a user from DB, MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\users.js:58:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:17:12'
+}
+{
+  meta: {
+    req: {
+      url: '/users/6',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'f2b52e23-3759-4484-ba57-5013e5d6632a',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/users/6',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 14
+  },
+  level: 'error',
+  message: 'HTTP DELETE /users/6',
+  timestamp: '2022-09-05 20:17:12'
+}
+{
+  meta: {
+    req: {
+      url: '/users/2',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'ccf4a29b-a5f8-4467-b3bb-66b80163041b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'PUT',
+      httpVersion: '1.1',
+      originalUrl: '/users/2',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 38
+  },
+  level: 'error',
+  message: 'HTTP PUT /users/2',
+  timestamp: '2022-09-05 20:23:57'
+}
+{
+  meta: {
+    req: {
+      url: '/users/2',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '081943a6-5377-4c71-bcf1-255401559c8f',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'PUT',
+      httpVersion: '1.1',
+      originalUrl: '/users/2',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 64
+  },
+  level: 'error',
+  message: 'HTTP PUT /users/2',
+  timestamp: '2022-09-05 20:24:54'
+}
+{
+  meta: {
+    req: {
+      url: '/users/2',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'c21fc359-5298-4bee-a1c2-ec0675b00be6',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'PUT',
+      httpVersion: '1.1',
+      originalUrl: '/users/2',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 67
+  },
+  level: 'error',
+  message: 'HTTP PUT /users/2',
+  timestamp: '2022-09-05 20:25:17'
+}
+{
+  meta: {
+    req: {
+      url: '/users/2',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE2NjIzNzkxMTMsImV4cCI6MTY5MzkxNTExM30.4hDPWeSfAmCEqKazn4Tk7Q7UaHzEK3I9fWvKYMa0tPA',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '96b0aa11-d106-4c86-a2e9-449dd91ea9f7',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'PUT',
+      httpVersion: '1.1',
+      originalUrl: '/users/2',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 72
+  },
+  level: 'error',
+  message: 'HTTP PUT /users/2',
+  timestamp: '2022-09-05 20:31:06'
+}
+{
+  message: {
+    err: Error: User Location - GET a user location
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userLocation.js:14:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:42:32'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'd8d3a05d-95b8-40a4-a4e5-9d22c6f08e11',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 65
+  },
+  level: 'error',
+  message: 'HTTP GET /userLocation/1',
+  timestamp: '2022-09-05 20:42:32'
+}
+{
+  message: {
+    err: Error: User Location - GET a user location. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userLocation.js:14:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:42:55'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NjIzNzY5MTYsImV4cCI6MTY5MzkxMjkxNn0.e6LlUnHack1tZLqI9WDUk7MFtGpIqSbbVusiNl-IAg0',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '37d5705f-e8e5-4bf2-b2d7-99c96e37d721',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/1',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 41
+  },
+  level: 'error',
+  message: 'HTTP GET /userLocation/1',
+  timestamp: '2022-09-05 20:42:55'
+}
+{
+  message: {
+    err: Error: User Location - GET a user location. User doesn't have a location in the DB
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userLocation.js:17:13)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query._handleFinalResultPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:149:8)
+        at Query.EofPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:133:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:43:33'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/3',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIzODQzNzMsImV4cCI6MTY5MzkyMDM3M30.7hZUQjlLbFWTeOpr-tfJo3IFjEr2SpEqCpVqSpMWsCo',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'd0ebe18d-3109-4103-a6eb-6970bc6ec84d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/3',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 26
+  },
+  level: 'error',
+  message: 'HTTP GET /userLocation/3',
+  timestamp: '2022-09-05 20:43:33'
+}
+{
+  message: {
+    err: Error: User Location - POST (or UPDATE) a user's location in DB. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userLocation.js:44:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:49:37'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/3',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIzODQzNzMsImV4cCI6MTY5MzkyMDM3M30.7hZUQjlLbFWTeOpr-tfJo3IFjEr2SpEqCpVqSpMWsCo',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'd0abfcff-1d2f-4ac6-9270-ae579cd63c3d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/3',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 13
+  },
+  level: 'error',
+  message: 'HTTP POST /userLocation/3',
+  timestamp: '2022-09-05 20:49:37'
+}
+{
+  message: {
+    err: Error: User Location - GET a user location. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userLocation.js:14:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:55:34'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/3',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIzODQzNzMsImV4cCI6MTY5MzkyMDM3M30.7hZUQjlLbFWTeOpr-tfJo3IFjEr2SpEqCpVqSpMWsCo',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4fa88c21-d424-451b-aa67-dcdc78bc8207',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/3',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 50
+  },
+  level: 'error',
+  message: 'HTTP GET /userLocation/3',
+  timestamp: '2022-09-05 20:55:34'
+}
+{
+  message: {
+    err: Error: User Location - POST (or UPDATE) a user's location in DB. MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userLocation.js:44:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:55:57'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/3',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIzODQzNzMsImV4cCI6MTY5MzkyMDM3M30.7hZUQjlLbFWTeOpr-tfJo3IFjEr2SpEqCpVqSpMWsCo',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '6bd01cd7-f325-4ba7-b7a4-970aab626a1d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '61'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/3',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 35
+  },
+  level: 'error',
+  message: 'HTTP POST /userLocation/3',
+  timestamp: '2022-09-05 20:55:57'
+}
+{
+  message: {
+    err: Error: User Location - DELETE a user location, MySQL Error
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userLocation.js:67:12)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query.ErrorPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:92:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+        at Socket.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:88:28)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:56:59'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/3',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIzODQzNzMsImV4cCI6MTY5MzkyMDM3M30.7hZUQjlLbFWTeOpr-tfJo3IFjEr2SpEqCpVqSpMWsCo',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'da2e3e00-671f-4ff6-9f89-9b72809a43ea',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'DELETE',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/3',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 23
+  },
+  level: 'error',
+  message: 'HTTP DELETE /userLocation/3',
+  timestamp: '2022-09-05 20:56:59'
+}
+{
+  message: {
+    err: Error: User Location - GET a user location. User doesn't have a location in the DB
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\userLocation.js:17:13)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query._handleFinalResultPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:149:8)
+        at Query.EofPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:133:8)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+  },
+  level: 'error',
+  timestamp: '2022-09-05 20:57:16'
+}
+{
+  meta: {
+    req: {
+      url: '/userLocation/3',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJpYXQiOjE2NjIzODQzNzMsImV4cCI6MTY5MzkyMDM3M30.7hZUQjlLbFWTeOpr-tfJo3IFjEr2SpEqCpVqSpMWsCo',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8cf02152-677a-4a42-b799-7b3286c363a4',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/userLocation/3',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 18
+  },
+  level: 'error',
+  message: 'HTTP GET /userLocation/3',
+  timestamp: '2022-09-05 20:57:16'
+}
