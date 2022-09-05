@@ -14,10 +14,10 @@ function updateDevicetoken(user_id_from_query, device_token, userCred, cb) {
 	ON duplicate key update user_id=${user_id_from_query},device_token="${device_token}"`,
 		(err, rows) => {
 			try {
-				if (rows !== undefined && rows.affectedRows >= 1) {
-					return cb(userCred);
-				} else {
+				if (err || rows === undefined || rows.affectedRows < 1) {
 					throw new Error("update device token - ERROR");
+				} else {
+					return cb(userCred);
 				}
 			} catch (err) {
 				return cb(rows);
@@ -99,9 +99,11 @@ login = async (req, res) => {
 											);
 										} else {
 											logger.error("auth - login - ERROR\nrows don't updated");
+											return res.status(500).send("internal error");
 										}
 									} catch (err) {
-										console.log(err.message);
+										logger.error("login - ERROR", {err});
+										return res.status(500).send("internal error");
 									}
 								}
 							);
@@ -110,7 +112,8 @@ login = async (req, res) => {
 							return res.send(msgToClient);
 						}
 					} catch (err) {
-						console.log(err.message);
+						logger.error("login - ERROR", {err});
+						return res.status(500).send("internal error");
 					}
 				});
 			}
@@ -150,7 +153,8 @@ register = (req, res) => {
 					}
 				);
 			} catch (err) {
-				console.log(err.message);
+				logger.error("register - ERROR", {err});
+				return res.status(500).send("internal error");
 			}
 		}
 	);
@@ -183,7 +187,8 @@ verifyToken = (req, res, next) => {
 						req.payload = payload;
 						next();
 					} catch (err) {
-						console.log(err.message);
+						logger.error("Verify Token - ERROR", {err});
+						return res.status(500).send("internal error");
 					}
 				}
 			);
