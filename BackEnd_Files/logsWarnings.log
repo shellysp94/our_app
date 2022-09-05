@@ -3812,3 +3812,801 @@
   level: 'info',
   timestamp: '2022-09-05 13:49:51'
 }
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:50:38'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:50:39'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:53:11'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:53:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:53:19'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '985f1eaf-b28a-41cc-ac01-cb3c57444f50',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 112
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:53:19'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:53:23'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:53:24'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:53:25'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'login from device token update - ERROR',
+  timestamp: '2022-09-05 13:53:26'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4e54b8ae-9da8-40ed-95f2-12b05f2a909f',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 124
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:53:26'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:53:32'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:53:32'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:54:02'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:54:02'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:54:39'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:54:39'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:54:44'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8fa68fa0-2901-4b7e-b643-06ba10bddf0c',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 297
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:54:44'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:55:27'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:55:27'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:55:30'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '17d878b5-02a0-4464-98b5-737eefe85a93',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 110
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:55:30'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:55:47'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:55:48'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:55:49'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '6f505000-b287-496c-a52a-44478c4e87f3',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 130
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:55:49'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:56:02'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:56:02'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:56:24'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:56:25'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:56:28'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '6e010fdb-12cb-4d51-a5f5-22b915cf1c8b',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 260
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:56:28'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:56:59'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:57:00'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:57:03'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '44fa3fcc-4d95-4115-a436-a4f35199aae4',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 225
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:57:03'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:58:11'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:58:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:58:14'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '7958a0c6-948a-4137-85bb-3ec5380a72ff',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 248
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:58:14'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:58:39'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:58:39'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 13:58:42'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '417835d3-ecd3-45ba-83c2-d17adb3a5ae3',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 110
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:58:42'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 13:59:55'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 13:59:56'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 14:00:00'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'c0e57d78-806b-49da-ba69-ea2651d27680',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 107
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:00:00'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:00:29'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:00:29'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 14:00:33'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '18770ea5-fdd5-41e8-97a4-d602f0e9777f',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 241
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:00:33'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:00:57'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:00:57'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 14:01:00'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '965f4233-bcdf-4776-a116-b93e55f54253',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 112
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:01:00'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:02:23'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:02:24'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:02:29'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:02:29'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 14:02:32'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e89f102e-fd8b-46cf-aca0-06d0669f5b9d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 104
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:02:32'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:02:52'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:02:52'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 14:02:55'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'f47e911f-500d-4ae0-ad6e-bd2e847628cc',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 247
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:02:55'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:03:24'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:03:24'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:05:34'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:05:34'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:08:05'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:08:05'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 14:08:11'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '131267fc-769a-4764-a329-d463e144ba62',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 275
+  },
+  level: 'info',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:08:11'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:08:19'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:08:20'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-05 14:08:26'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'login from device token update - ERROR',
+  timestamp: '2022-09-05 14:08:26'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'b6520c24-522a-468e-9c47-c0bc101430d8',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 230
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:08:26'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:08:32'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:08:32'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:08:58'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:08:58'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:09:39'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:09:39'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:09:59'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:10:00'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:10:28'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:10:28'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-05 14:10:55'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-05 14:10:55'
+}

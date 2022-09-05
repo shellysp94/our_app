@@ -508,3 +508,67 @@
   message: 'HTTP POST /chats/2/3',
   timestamp: '2022-09-05 12:40:01'
 }
+{
+  err: null,
+  level: 'error',
+  message: 'login from device token update - ERROR',
+  timestamp: '2022-09-05 13:53:26'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4e54b8ae-9da8-40ed-95f2-12b05f2a909f',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 124
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 13:53:26'
+}
+{
+  err: null,
+  level: 'error',
+  message: 'login from device token update - ERROR',
+  timestamp: '2022-09-05 14:08:26'
+}
+{
+  meta: {
+    req: {
+      url: '/auth/login',
+      headers: {
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'b6520c24-522a-468e-9c47-c0bc101430d8',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '60'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/auth/login',
+      query: {}
+    },
+    res: { statusCode: 500 },
+    responseTime: 230
+  },
+  level: 'error',
+  message: 'HTTP POST /auth/login',
+  timestamp: '2022-09-05 14:08:26'
+}
