@@ -686,7 +686,7 @@ deleteUserFilter = (req, res) => {
 				}
 			} catch (err) {
 				logger.error({err});
-				return res.status(500).send(`Internal Error\n${err}`);
+				return res.status(500).send(`Internal Error`);
 			}
 		}
 	);
