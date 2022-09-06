@@ -205,9 +205,11 @@ createUserConfiguration = (req, res) => {
           `INSERT INTO user_configuration (user_id, first_name, last_name, date_of_birth, city, gender, phone_number, registration_date, relationship_status, sexual_orientation, profession, pronoun, hobbies) VALUES ("${user_id}","${first_name}","${last_name}","${dateOfBirth}","${city}","${gender}","${phoneNumber}","${registerDate}","${relationship_status}","${sexual_orientation}","${profession}","${pronoun}", "${hobbies}")`,
           (err, result) => {
             try {
-              res.send("user configuration of user added successfully");
+              res.send({
+                user_id: user_id,
+                msg: "user configuration of user added successfully",
+              });
             } catch (err) {
-              //console.log(err.message);
               errLogger.error("This is an err log");
             }
           }
