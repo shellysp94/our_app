@@ -1,7 +1,7 @@
 const { infoLogger } = require("../logger");
 
 function closingWebSocket(onlineUsers, ws) {
-  logger.info("--------------Closing Websocket-------------");
+  infoLogger.info("--------------Closing Websocket-------------");
   onlineUsers.getOnlineUsersArray().forEach((user) => {
     //console.log("the compare of ws:", user.websocket === ws);
     if (user.websocket === ws) {
