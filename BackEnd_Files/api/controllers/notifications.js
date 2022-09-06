@@ -82,7 +82,7 @@ module.exports = {
 
   createUserNotification: (req, cb) => {
     infoLogger.info("This is an info log");
-    sqlQuery = `insert into notifications (notification_id, user_id, content, title, creation_date) values (${req.body.notification_id},${req.body.user_id},'${req.body.content}','${req.body.title}',CURRENT_TIMESTAMP())`;
+    sqlQuery = `insert into Notifications (notification_id, user_id, content, title, creation_date) values (${req.body.notification_id},${req.body.user_id},'${req.body.content}','${req.body.title}',CURRENT_TIMESTAMP())`;
 
     mySqlConnection.query(sqlQuery, (err, rows) => {
       try {
