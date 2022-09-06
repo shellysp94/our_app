@@ -39,7 +39,9 @@ getAllUserConnectionsByName = (req, res) => {
 
 	mySqlConnection.query(sqlQuery, (err, rows) => {
 		try {
-			if (rows !== undefined) {
+			if (err || rows === undefined) {
+				throw new Error("Friend Request - BY NAME, MySQL Error");
+			} else {
 				if (rows.length === 0) {
 					msgToClient = {
 						msg: `There are no suitable connections`,
@@ -60,14 +62,10 @@ getAllUserConnectionsByName = (req, res) => {
 					};
 					getAllUserConnectionsType(resultArrayToObject, res);
 				}
-			} else {
-				msgToClient = {
-					msg: `There are no suitable connections`,
-				};
-				return res.send(msgToClient);
 			}
 		} catch (err) {
-			console.log(err.message);
+			errLogger.error({err});
+			return res.status(500).send("Internal Error");
 		}
 	});
 };
@@ -90,43 +88,58 @@ getAllUserConnectionsType = (req, res) => {
 			group by (user_id) having user_id != ${userid}`,
 		(err, rows) => {
 			try {
-				console.log("from by type:", rows);
-				if (parseInt(usersToPresent[0], 10) === 0) {
-					// user asked for all other users
-					for (user = 0; user < rows.length; user++) {
-						usersConfigurations.push(rows[user].user_id);
-					}
+				if (err || rows === undefined) {
+					throw new Error(
+						"Friend Request - BY TYPE **GROUP BY query**, MySQL Error"
+					);
 				} else {
-					// user asked for a specific users
-					for (user = 0; user < rows.length; user++) {
-						if (usersToPresent.includes(rows[user].user_id)) {
+					if (parseInt(usersToPresent[0], 10) === 0) {
+						// user asked for all other users
+						for (user = 0; user < rows.length; user++) {
 							usersConfigurations.push(rows[user].user_id);
 						}
-					}
-				}
-
-				let resultArrayToObject = {
-					params: {userid: String(usersConfigurations)},
-				};
-				getUserConfigurationInner(
-					resultArrayToObject,
-					userid,
-					(resultFromConfiguration) => {
-						try {
-							if (resultFromConfiguration === undefined) {
-								throw new Error(
-									"Friend Request - BY TYPE request, get user configuration inner failed"
-								);
+					} else {
+						// user asked for a specific users
+						for (user = 0; user < rows.length; user++) {
+							if (usersToPresent.includes(rows[user].user_id)) {
+								usersConfigurations.push(rows[user].user_id);
 							}
-							for (user = 0; user < resultFromConfiguration.length; user++) {
-								for (row = 0; row < rows.length; row++) {
-									if (
-										parseInt(resultFromConfiguration[user].user_id, 10) ===
-										parseInt(rows[row].user_id, 10)
-									) {
-										if (parseInt(type, 10) === 1) {
-											// user asked for his friends/requests only
-											if (parseInt(rows[row].notConnected, 10) === 0) {
+						}
+					}
+
+					let resultArrayToObject = {
+						params: {userid: String(usersConfigurations)},
+					};
+					getUserConfigurationInner(
+						resultArrayToObject,
+						userid,
+						(resultFromConfiguration) => {
+							try {
+								if (resultFromConfiguration === undefined) {
+									throw new Error(
+										"Friend Request - BY TYPE request, get user configuration inner failed"
+									);
+								}
+
+								for (user = 0; user < resultFromConfiguration.length; user++) {
+									for (row = 0; row < rows.length; row++) {
+										if (
+											parseInt(resultFromConfiguration[user].user_id, 10) ===
+											parseInt(rows[row].user_id, 10)
+										) {
+											if (parseInt(type, 10) === 1) {
+												// user asked for his friends/requests only
+												if (parseInt(rows[row].notConnected, 10) === 0) {
+													mergeObjects.push(
+														Object.assign(
+															{},
+															resultFromConfiguration[user],
+															rows[row]
+														)
+													);
+												}
+											} else {
+												// user asked for all users in db
 												mergeObjects.push(
 													Object.assign(
 														{},
@@ -135,26 +148,18 @@ getAllUserConnectionsType = (req, res) => {
 													)
 												);
 											}
-										} else {
-											// user asked for all users in db
-											mergeObjects.push(
-												Object.assign(
-													{},
-													resultFromConfiguration[user],
-													rows[row]
-												)
-											);
 										}
 									}
 								}
+
+								res.send(mergeObjects);
+							} catch (err) {
+								errLogger.error({err});
+								return res.status(500).send(`Internal Error`);
 							}
-							res.send(mergeObjects);
-						} catch (err) {
-							errLogger.error({err});
-							return res.status(500).send(`Internal Error`);
 						}
-					}
-				);
+					);
+				}
 			} catch (err) {
 				errLogger.error({err});
 				return res.status(500).send(`Internal Error`);
@@ -166,33 +171,55 @@ getAllUserConnectionsType = (req, res) => {
 getUserFriendRequestsReceived = (req, res) => {
 	infoLogger.info("This is an info log");
 	user_id = req.params.userid;
+
 	mySqlConnection.query(
 		`SELECT b.*
         from Connections a
         join user_configuration b
         on a.user_A_id = b.user_id
-        where a.user_B_id = ? and a.connected =0;`,
-		[user_id],
+        where a.user_B_id = ${user_id} and a.connected = 0;`,
 		(err, rows) => {
 			try {
-				if (rows.length > 0) {
-					let usersArr = [];
-					for (let i = 0; i < rows.length; i++) {
-						usersArr.push(rows[i].user_id);
-					}
-
-					let resultArrayToObject = {
-						params: {userid: String(usersArr)},
-					};
-
-					getUserConfigurationInner(resultArrayToObject, user_id, (config) => {
-						res.send(config);
-					});
+				if (err || rows === undefined) {
+					throw new Error(
+						"Friend Request - get User Friend Requests Received, MySQL Error"
+					);
 				} else {
-					res.send([]);
+					if (rows.length > 0) {
+						let usersArr = [];
+						for (let i = 0; i < rows.length; i++) {
+							usersArr.push(rows[i].user_id);
+						}
+
+						let resultArrayToObject = {
+							params: {userid: String(usersArr)},
+						};
+
+						getUserConfigurationInner(
+							resultArrayToObject,
+							user_id,
+							(config) => {
+								try {
+									if (config === undefined) {
+										throw new Error(
+											"Friend Request - Get User Friend Requests Received. Get User Configuration Inner failed"
+										);
+									}
+
+									res.send(config);
+								} catch (err) {
+									errLogger.error({err});
+									return res.status(500).send(`Internal Error`);
+								}
+							}
+						);
+					} else {
+						res.send(rows);
+					}
 				}
 			} catch (err) {
-				console.log(err);
+				errLogger.error({err});
+				return res.status(500).send(`Internal Error`);
 			}
 		}
 	);
@@ -207,28 +234,49 @@ getUserFriendRequestsSent = (req, res) => {
         from Connections a
         join user_configuration b
         on a.user_B_id = b.user_id
-        where a.user_A_id = ? and a.connected =0;`,
-		[user_id],
+        where a.user_A_id = ${user_id} and a.connected = 0;`,
 		(err, rows) => {
 			try {
-				if (rows.length > 0) {
-					let usersArr = [];
-					for (let i = 0; i < rows.length; i++) {
-						usersArr.push(rows[i].user_id);
-					}
-
-					let resultArrayToObject = {
-						params: {userid: String(usersArr)},
-					};
-
-					getUserConfigurationInner(resultArrayToObject, user_id, (config) => {
-						res.send(config);
-					});
+				if (err || rows === undefined) {
+					throw new Error(
+						"Friend Request - get User Friend Requests Sent, MySQL Error"
+					);
 				} else {
-					res.send([]);
+					if (rows.length > 0) {
+						let usersArr = [];
+						for (let i = 0; i < rows.length; i++) {
+							usersArr.push(rows[i].user_id);
+						}
+
+						let resultArrayToObject = {
+							params: {userid: String(usersArr)},
+						};
+
+						getUserConfigurationInner(
+							resultArrayToObject,
+							user_id,
+							(config) => {
+								try {
+									if (config === undefined) {
+										throw new Error(
+											"Friend Request - Get User Friend Requests Sent. Get User Configuration Inner failed"
+										);
+									}
+
+									res.send(config);
+								} catch (err) {
+									errLogger.error({err});
+									return res.status(500).send(`Internal Error`);
+								}
+							}
+						);
+					} else {
+						res.send(rows);
+					}
 				}
 			} catch (err) {
-				console.log(err);
+				errLogger.error({err});
+				return res.status(500).send(`Internal Error`);
 			}
 		}
 	);
@@ -237,42 +285,56 @@ getUserFriendRequestsSent = (req, res) => {
 sendFriendRequest = async (req, res) => {
 	infoLogger.info("This is an info log");
 	const sentReqUser = req.params.useridA;
-	const recievedReqUser = req.params.useridB;
+	const receivedReqUser = req.params.useridB;
 
 	mySqlConnection.query(
-		`select * from Connections where (user_A_id = ${sentReqUser} and user_B_id = ${recievedReqUser}) or (user_A_id = ${recievedReqUser} and user_B_id = ${sentReqUser})`,
+		`select * from Connections where (user_A_id = ${sentReqUser} and user_B_id = ${receivedReqUser}) or (user_A_id = ${receivedReqUser} and user_B_id = ${sentReqUser})`,
 		(err, rows) => {
 			try {
-				if (rows.length > 0) {
-					if (rows[0].connected == 1) {
-						return res.send(`${recievedReqUser} is already your friend`);
-					} else if (rows[0].user_A_id == sentReqUser) {
-						return res.send(
-							`You already sent ${recievedReqUser} a friend request`
-						);
+				if (err || rows === undefined) {
+					throw new Error(
+						"Friend Request - Send Friend Request, Check if users are already friends or friend request already sent - FAILED"
+					);
+				} else {
+					if (rows.length > 0) {
+						if (rows[0].connected == 1) {
+							return res.send(`${receivedReqUser} is already your friend`);
+						} else if (rows[0].user_A_id == sentReqUser) {
+							return res.send(
+								`You already sent ${receivedReqUser} a friend request`
+							);
+						} else {
+							return res.send(
+								`${receivedReqUser} sent you already a friend request, you can approve it`
+							);
+						}
 					} else {
-						return res.send(
-							`${recievedReqUser} sent you already a friend request, you can approve it`
+						mySqlConnection.query(
+							`insert into Connections (user_A_id, user_B_id, creation_date, last_update) values
+            (${req.params.useridA}, ${req.params.useridB}, curdate(), curdate())`,
+							//[req.params.useridA, req.params.useridB],
+							(err, rows) => {
+								try {
+									if (err || rows === undefined || rows.affectedRows < 1) {
+										throw new Error(
+											"Friend Request - POST (send friend request) MySQL Error"
+										);
+									}
+
+									titleToSend = `New friend request`;
+									bodyToSend = `Friend request from `;
+									sendNotificationHelper(req, res, titleToSend, bodyToSend);
+								} catch (err) {
+									errLogger.error({err});
+									return res.status(500).send(`Internal Error`);
+								}
+							}
 						);
 					}
-				} else {
-					mySqlConnection.query(
-						`insert into Connections (user_A_id, user_B_id, creation_date, last_update) values
-					(?,?, curdate(), curdate())`,
-						[req.params.useridA, req.params.useridB],
-						(err, rows) => {
-							try {
-								titleToSend = `New friend request`;
-								bodyToSend = `Friend request from `;
-								sendNotificationHelper(req, res, titleToSend, bodyToSend);
-							} catch (err) {
-								console.log(err);
-							}
-						}
-					);
 				}
 			} catch (err) {
-				console.log(err.message);
+				errLogger.error({err});
+				return res.status(500).send(`Internal Error`);
 			}
 		}
 	);
@@ -284,13 +346,19 @@ approveFriendRequest = (req, res) => {
 	const sentReqUser = req.params.useridB;
 
 	mySqlConnection.query(
-		`update Connections set connected = 1 where (user_A_id = ? and user_B_id = ?)`,
-		[sentReqUser, approvedUser],
+		`update Connections set connected = 1 where (user_A_id = ${sentReqUser} and user_B_id = ${approvedUser})`,
 		(err, rows) => {
 			try {
+				if (err || rows === undefined || rows.affectedRows < 1) {
+					throw new Error(
+						"Friend Request - PUT (UPDATE approved friend request) MySQL Error"
+					);
+				}
+
 				res.send(`${approvedUser} approved friend request from ${sentReqUser}`);
 			} catch (err) {
-				console.log(err.message);
+				errLogger.error({err});
+				return res.status(500).send(`Internal Error`);
 			}
 		}
 	);
@@ -305,9 +373,18 @@ declineFriendRequest = (req, res) => {
 		`DELETE FROM Connections WHERE user_A_id =${sentReqUser} and user_B_id =${declinedUser}`,
 		(err, rows) => {
 			try {
-				res.send(`${declinedUser} declined friend request from ${sentReqUser}`);
+				if (err || rows === undefined) {
+					throw new Error(
+						"Friend Request - DELETE - decline friend request, MySQL Error"
+					);
+				} else {
+					res.send(
+						`${declinedUser} declined friend request from ${sentReqUser}`
+					);
+				}
 			} catch {
-				console.log(err.message);
+				errLogger.error({err});
+				return res.status(500).send(`Internal Error`);
 			}
 		}
 	);
