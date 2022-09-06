@@ -40,3 +40,89 @@
   level: 'info',
   timestamp: '2022-09-05 20:09:56'
 }
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-06 10:52:06'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-06 10:52:06'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-06 10:52:10'
+}
+{
+  meta: {
+    req: {
+      url: '/users/12',
+      headers: {
+        authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwiaWF0IjoxNjYyMzY4MTUxLCJleHAiOjE2OTM5MDQxNTF9.BCOdfHcyCjsZNcA3k-4qubo628vnnasF_YK5-ZYcF3c',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '3ed2dcbf-08cf-4ff2-8657-6b57085d1992',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '28'
+      },
+      method: 'PUT',
+      httpVersion: '1.1',
+      originalUrl: '/users/12',
+      query: {},
+      body: { password: '1111' }
+    },
+    res: { statusCode: 200 },
+    responseTime: 32288
+  },
+  level: 'info',
+  message: 'HTTP PUT /users/12',
+  timestamp: '2022-09-06 10:52:42'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-06 10:55:53'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-06 10:55:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-06 10:56:40'
+}
+{
+  meta: {
+    req: {
+      url: '/users/12',
+      headers: {
+        authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwiaWF0IjoxNjYyMzY4MTUxLCJleHAiOjE2OTM5MDQxNTF9.BCOdfHcyCjsZNcA3k-4qubo628vnnasF_YK5-ZYcF3c',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '254ba6de-a08a-433b-bf98-e00ca4f089e8',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '28'
+      },
+      method: 'PUT',
+      httpVersion: '1.1',
+      originalUrl: '/users/12',
+      query: {},
+      body: { password: '1111' }
+    },
+    res: { statusCode: 200 },
+    responseTime: 13656
+  },
+  level: 'info',
+  message: 'HTTP PUT /users/12',
+  timestamp: '2022-09-06 10:56:53'
+}

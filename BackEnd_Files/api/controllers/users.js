@@ -1,7 +1,7 @@
-const { Logform, Logger } = require("winston");
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 const { infoLogger, errLogger } = require("../../utils/logger");
+const bcrypt = require("bcrypt");
 
 getAllUsers = (req, res) => {
   infoLogger.info("This is an info log");
@@ -67,17 +67,14 @@ deleteUser = (req, res) => {
   );
 };
 
-updateUser = (req, res) => {
+updateUser = async (req, res) => {
   infoLogger.info("This is an info log");
   let user_id = req.params.userid;
-  let email = req.body.email;
-
-  let hashedPassword = bcrypt.hash(req.body.password, 10);
+  let hashedPassword = await bcrypt.hash(req.body.password, 10);
 
   mySqlConnection.query(
-    `update Users set email = "${email}", password = "${hashedPassword}" where user_id = ${user_id}`,
-    // "UPDATE Users SET email=?, password=? WHERE user_id=?",
-    // [email, hashedPassword, user_id],
+    `update Users set password = "${hashedPassword}" where user_id = ${user_id}`,
+
     (err, rows) => {
       try {
         if (err || rows === undefined || rows.affectedRows < 1) {
