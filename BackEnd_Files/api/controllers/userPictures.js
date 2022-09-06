@@ -115,16 +115,23 @@ module.exports = {
     infoLogger.info("This is an info log");
     user_id = req.params.userid;
     old_image = req.body.old_image;
-    image = req.file.path.substring(7);
+    image = req.body.image;
     main_image = req.body.main_image;
 
+    const pathName = "./images/" + Date.now() + ".png";
+    const imgdata = req.body.image;
+    const base64Data = imgdata.replace(/^data:([A-Za-z-+/]+);base64,/, "");
+    fs.writeFileSync(pathName, base64Data, { encoding: "base64" });
+
     mySqlConnection.query(
-      "UPDATE User_pictures SET image=?, main_image=? WHERE user_id=? and image=?",
-      [image, main_image, user_id, old_image],
+      `UPDATE User_pictures SET image=${pathName.substring(
+        9
+      )}, main_image=${main_image} WHERE user_id=${user_id} and image=${image}`,
       (err, result) => {
         if (!err) {
           dirnametemp = __dirname.substring(0, __dirname.length - 15);
-          finalFilePath = dirnametemp + "images\\" + old_image;
+          finalFilePath = dirnametemp + "images\\" + old_image; //for local
+          //finalFilePath = dirnametemp + "images//" + old_image; //for aws
           fs.unlink(finalFilePath, function (err) {
             if (err) {
               console.log(err);
