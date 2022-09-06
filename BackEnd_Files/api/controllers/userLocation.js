@@ -3,7 +3,7 @@ const mySqlConnection = dbConfig;
 const { infoLogger, errLogger } = require("../../utils/logger");
 
 getUserLocation = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   user_id = req.params.userid;
 
   mySqlConnection.query(
@@ -20,7 +20,7 @@ getUserLocation = (req, res) => {
           }
         }
       } catch (err) {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send("Internal Error");
       }
     }
@@ -28,7 +28,7 @@ getUserLocation = (req, res) => {
 };
 
 insertUserLocation = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const user_id = req.params.userid;
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
@@ -46,7 +46,7 @@ insertUserLocation = (req, res) => {
           res.send(`Location updated for user ${user_id}`);
         }
       } catch (err) {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send("Internal Error");
       }
     }
@@ -54,7 +54,7 @@ insertUserLocation = (req, res) => {
 };
 
 deleteUserLocation = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   user_id = req.params.userid;
 
   mySqlConnection.query(
@@ -69,7 +69,7 @@ deleteUserLocation = (req, res) => {
           res.send(`Location of user ${user_id} deleted`);
         }
       } catch (err) {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send("Internal Error");
       }
     }

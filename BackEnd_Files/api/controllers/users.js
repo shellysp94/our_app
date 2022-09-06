@@ -4,7 +4,7 @@ const mySqlConnection = dbConfig;
 const { infoLogger, errLogger } = require("../../utils/logger");
 
 getAllUsers = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
 
   mySqlConnection.query("SELECT* from Users", (err, rows) => {
     try {
@@ -16,14 +16,14 @@ getAllUsers = (req, res) => {
         res.send(rows);
       }
     } catch (err) {
-      logger.error({ err });
+      errLogger.error({ err });
       return res.status(500).send(`Internal Error`);
     }
   });
 };
 
 getOneUser = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const arr = req.params.userid.split(",");
 
   mySqlConnection.query(
@@ -38,7 +38,7 @@ getOneUser = (req, res) => {
           res.send(rows);
         }
       } catch (err) {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send(`Internal Error`);
       }
     }
@@ -46,7 +46,7 @@ getOneUser = (req, res) => {
 };
 
 deleteUser = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
 
   mySqlConnection.query(
     `delete from Users  where user_id = ${req.params.userid}`,
@@ -60,7 +60,7 @@ deleteUser = (req, res) => {
           res.send("user deleted successfully");
         }
       } catch (err) {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send(`Internal Error`);
       }
     }
@@ -68,7 +68,7 @@ deleteUser = (req, res) => {
 };
 
 updateUser = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   let user_id = req.params.userid;
   let email = req.body.email;
 
@@ -86,7 +86,7 @@ updateUser = (req, res) => {
           res.send("user updated successfully");
         }
       } catch {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send(`Internal Error`);
       }
     }

@@ -3,7 +3,7 @@ const mySqlConnection = dbConfig;
 const { infoLogger, errLogger } = require("../../utils/logger");
 
 getUserStatus = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
 
   mySqlConnection.query(
@@ -16,7 +16,7 @@ getUserStatus = (req, res) => {
           res.send(rows[0]);
         }
       } catch (err) {
-        logger.error("User Status - GET MySQL Error", { err });
+        errLogger.error("User Status - GET MySQL Error", { err });
         return res.status(500).send("internal error");
       }
     }
@@ -24,7 +24,7 @@ getUserStatus = (req, res) => {
 };
 
 updateUserStatus = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
   const status = req.body.status;
 
@@ -44,13 +44,13 @@ updateUserStatus = (req, res) => {
 
           getUserStatus(req, res);
         } catch (err) {
-          logger.error(`${err}`);
+          errLogger.error(`${err}`);
           return res.status(500).send("internal error");
         }
       }
     );
   } catch (err) {
-    logger.error(`${err}`);
+    errLogger.error(`${err}`);
     return res.status(500).send("internal error");
   }
 };

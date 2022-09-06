@@ -8,7 +8,7 @@ const { getAllUserConnectionsType } = require("./friendRequest");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
-const logger = require("../../utils/logger");
+const { infoLogger, errLogger } = require("../../utils/logger");
 
 function splitCommas(myQuery, relevantColumn, string) {
   let splittedQuery = myQuery;
@@ -29,7 +29,7 @@ function splitCommas(myQuery, relevantColumn, string) {
 }
 
 function noFilter(req, cb) {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   let allUsersWithoutMe = [];
   getAllUsersConfiguration(req, (allUsers) => {
     allUsers.forEach((user) => {
@@ -228,7 +228,7 @@ function interestedInHelper_AccordingToUserInterestedInChosen(
 }
 
 function createInterestedInQuery(req) {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   let interestedIn = req.interested_in_filter;
   let currentUserId = req.user_id;
 
@@ -275,7 +275,7 @@ function createInterestedInQuery(req) {
 
 //////////////////////////////////////////// Age Helper /////////////////////////////////////////////
 getUsersWithCommonAgeFilter = (req, cb) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const age = [];
   const from = JSON.parse(req.age_filter)[0];
   const until = JSON.parse(req.age_filter)[1];
@@ -368,7 +368,7 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 
 //////////////////////////////////////////// Filter's API /////////////////////////////////////////////
 getAllFilters = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
     try {
       if (err || rows === undefined) {
@@ -379,14 +379,14 @@ getAllFilters = (req, res) => {
         res.send(rows);
       }
     } catch (err) {
-      logger.error({ err });
+      errLogger.error({ err });
       return res.status(500).send("internal error");
     }
   });
 };
 
 getUserFilter = (req, cb) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
 
   mySqlConnection.query(
@@ -399,7 +399,7 @@ getUserFilter = (req, cb) => {
 };
 
 getFriendsOfFriends = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
   let myFriends_myFriendsOfFriends = {};
   let myFriendsUserid = [];
@@ -514,7 +514,7 @@ getFriendsOfFriends = (req, res) => {
                       );
                     }
                   } catch (err) {
-                    logger.error({ err });
+                    errLogger.error({ err });
                     return res.status(500).send("internal error");
                   }
                 });
@@ -525,7 +525,7 @@ getFriendsOfFriends = (req, res) => {
           }
         }
       } catch (err) {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send("internal error");
       }
     }
@@ -533,7 +533,7 @@ getFriendsOfFriends = (req, res) => {
 };
 
 getUserFilteredUsers = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   let onlyOnline = req.params.onlyOnline;
   let usersToPresent = [];
   let mutuals = [];
@@ -544,7 +544,7 @@ getUserFilteredUsers = (req, res) => {
 
   getUserFilter(req, async (userFilter) => {
     if (userFilter === undefined) {
-      logger.error("Filters - GET a user filters, MySQL Error");
+      errLogger.error("Filters - GET a user filters, MySQL Error");
       return res.status(500).send(`Internal Error`);
     }
 
@@ -612,12 +612,12 @@ getUserFilteredUsers = (req, res) => {
               }
             }
           } catch (err) {
-            logger.error({ err });
+            errLogger.error({ err });
             return res.status(500).send(`${err}`);
           }
         });
       } catch (resolve) {
-        logger.error({ resolve });
+        errLogger.error({ resolve });
         return res.status(500).send(`Internal Error\n${resolve}`);
       }
     }
@@ -625,7 +625,7 @@ getUserFilteredUsers = (req, res) => {
 };
 
 createUserFilter = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
   const searchMode = req.body.search_mode_filter;
   const hobbiesFilter = req.body.hobbies_filter;
@@ -661,7 +661,7 @@ createUserFilter = (req, res) => {
           getUserFilteredUsers(req, res);
         }
       } catch (err) {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send(`${err}`);
       }
     }
@@ -669,7 +669,7 @@ createUserFilter = (req, res) => {
 };
 
 deleteUserFilter = (req, res) => {
-  logger.info("This is an info log");
+  infoLogger.info("This is an info log");
   const userid = req.params.userid;
 
   mySqlConnection.query(
@@ -685,7 +685,7 @@ deleteUserFilter = (req, res) => {
           return res.send(msgToClient);
         }
       } catch (err) {
-        logger.error({ err });
+        errLogger.error({ err });
         return res.status(500).send(`Internal Error`);
       }
     }
