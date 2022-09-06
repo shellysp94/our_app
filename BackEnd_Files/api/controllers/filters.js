@@ -8,7 +8,7 @@ const { getAllUserConnectionsType } = require("./friendRequest");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
-const { infoLogger, errLogger } = require("../../utils/logger");
+const logger = require("../../utils/logger");
 
 function splitCommas(myQuery, relevantColumn, string) {
   let splittedQuery = myQuery;
@@ -29,7 +29,7 @@ function splitCommas(myQuery, relevantColumn, string) {
 }
 
 function noFilter(req, cb) {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   let allUsersWithoutMe = [];
   getAllUsersConfiguration(req, (allUsers) => {
     allUsers.forEach((user) => {
@@ -141,8 +141,7 @@ function interestedInHelper_AccordingToGenderAndSexualOrientation(
       sqlQuery = `(sexual_orientation like 'Asexual')`;
       break;
     default:
-      sqlQuery =
-        "ILLEGAL function 'interestedInHelper_AccordingToGenderAndSexualOrientation' - switch case --> default";
+      sqlQuery = undefined;
   }
 
   return cb(sqlQuery);
@@ -175,6 +174,9 @@ function interestedInHelper_AccordingToUserInterestedInChosen(
       currentUserGender,
       currentUserSexualOrientation,
       (toConcatSqlQuery) => {
+        if (toConcatSqlQuery === undefined) {
+          return cb(undefined);
+        }
         sqlQuery = " and (";
         sqlQuery = sqlQuery.concat(toConcatSqlQuery);
         sqlQuery = sqlQuery.concat(
@@ -226,7 +228,7 @@ function interestedInHelper_AccordingToUserInterestedInChosen(
 }
 
 function createInterestedInQuery(req) {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   let interestedIn = req.interested_in_filter;
   let currentUserId = req.user_id;
 
@@ -248,7 +250,7 @@ function createInterestedInQuery(req) {
               currentUserGender,
               currentUserSexualOrientation,
               (sqlQuery) => {
-                if (sqlQuery.length <= 0) {
+                if (sqlQuery === undefined || sqlQuery.length <= 0) {
                   reject(
                     `!!INTERESTED IN!!\nSomething went wrong. Interested In parameter illegal`
                   );
@@ -273,7 +275,7 @@ function createInterestedInQuery(req) {
 
 //////////////////////////////////////////// Age Helper /////////////////////////////////////////////
 getUsersWithCommonAgeFilter = (req, cb) => {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   const age = [];
   const from = JSON.parse(req.age_filter)[0];
   const until = JSON.parse(req.age_filter)[1];
@@ -366,35 +368,38 @@ function getUserFilteredUsers_OnlyOnline_Helper(
 
 //////////////////////////////////////////// Filter's API /////////////////////////////////////////////
 getAllFilters = (req, res) => {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   mySqlConnection.query("SELECT * FROM Filters", (err, rows) => {
     try {
-      res.send(rows);
+      if (err || rows === undefined) {
+        throw new Error(
+          "Filters - GET request, get all filters in DB. MySQL Error"
+        );
+      } else {
+        res.send(rows);
+      }
     } catch (err) {
-      console.log(err.message);
+      logger.error({ err });
+      return res.status(500).send("internal error");
     }
   });
 };
 
 getUserFilter = (req, cb) => {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   const userid = req.params.userid;
 
   mySqlConnection.query(
     "SELECT * FROM Filters WHERE user_id = ?",
     [userid],
     (err, rows) => {
-      try {
-        return cb(rows);
-      } catch (err) {
-        console.log(err.message);
-      }
+      return cb(rows);
     }
   );
 };
 
 getFriendsOfFriends = (req, res) => {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   const userid = req.params.userid;
   let myFriends_myFriendsOfFriends = {};
   let myFriendsUserid = [];
@@ -405,91 +410,130 @@ getFriendsOfFriends = (req, res) => {
     `select user_A_id, user_B_id from Connections where (user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1`,
     (err, rows) => {
       try {
-        if (rows !== undefined && rows.length > 0) {
-          for (row = 0; row < rows.length; row++) {
-            if (parseInt(rows[row].user_a_id, 10) !== parseInt(userid, 10)) {
-              myFriendsUserid.push(parseInt(rows[row].user_a_id, 10));
-            } else {
-              myFriendsUserid.push(parseInt(rows[row].user_b_id, 10));
+        if (err || rows === undefined) {
+          throw new Error(
+            "Filters - friends of friends. GET request, MySQL Error"
+          );
+        } else {
+          if (rows.length > 0) {
+            for (row = 0; row < rows.length; row++) {
+              if (parseInt(rows[row].user_A_id, 10) !== parseInt(userid, 10)) {
+                myFriendsUserid.push(parseInt(rows[row].user_A_id, 10));
+              } else {
+                myFriendsUserid.push(parseInt(rows[row].user_B_id, 10));
+              }
             }
-          }
-          createFriendsOfFriendsQuery(myFriendsUserid, sqlQuery, (response) => {
-            mySqlConnection.query(response, (err, rows) => {
-              try {
-                if (rows !== undefined && rows.length > 0) {
-                  for (
-                    myFriendOfFriend = 0;
-                    myFriendOfFriend < rows.length;
-                    myFriendOfFriend++
-                  ) {
-                    if (
-                      !myFriendsUserid.includes(
-                        parseInt(rows[myFriendOfFriend].user_A_id, 10)
-                      )
-                    ) {
-                      myFriendsOfFriendsUserid.push(
-                        parseInt(rows[myFriendOfFriend].user_A_id, 10)
-                      );
-                    }
-                    if (
-                      !myFriendsUserid.includes(
-                        parseInt(rows[myFriendOfFriend].user_B_id, 10)
-                      )
-                    ) {
-                      myFriendsOfFriendsUserid.push(
-                        parseInt(rows[myFriendOfFriend].user_B_id, 10)
-                      );
-                    }
-                  }
+
+            createFriendsOfFriendsQuery(
+              myFriendsUserid,
+              sqlQuery,
+              (response) => {
+                if (response === undefined) {
+                  throw new Error(
+                    "Filters - friends of friends. Create friends of friends function cb failed"
+                  );
                 }
 
-                let myFriendsRequest = {
-                  params: {
-                    userid: String(myFriendsUserid),
-                  },
-                };
-                let myFriendsOfFriendsRequest = {
-                  params: {
-                    userid: String(myFriendsOfFriendsUserid),
-                  },
-                };
-                getUserConfigurationInner(
-                  myFriendsRequest,
-                  userid,
-                  (myFriendsConfigurations) => {
-                    Object.assign(myFriends_myFriendsOfFriends, {
-                      myFriends: myFriendsConfigurations,
-                    });
-
-                    getUserConfigurationInner(
-                      myFriendsOfFriendsRequest,
-                      userid,
-                      (myFriendsOfFriendsConfigurations) => {
-                        Object.assign(myFriends_myFriendsOfFriends, {
-                          myFriendsOfFriends: myFriendsOfFriendsConfigurations,
-                        });
-                        res.send(myFriends_myFriendsOfFriends);
+                console.log(response);
+                mySqlConnection.query(response, (err, rows) => {
+                  try {
+                    if (err || rows === undefined) {
+                      throw new Error(
+                        "Filters - friends of friends. MySQL Error"
+                      );
+                    } else {
+                      if (rows.length > 0) {
+                        for (
+                          myFriendOfFriend = 0;
+                          myFriendOfFriend < rows.length;
+                          myFriendOfFriend++
+                        ) {
+                          if (
+                            !myFriendsUserid.includes(
+                              parseInt(rows[myFriendOfFriend].user_A_id, 10)
+                            )
+                          ) {
+                            myFriendsOfFriendsUserid.push(
+                              parseInt(rows[myFriendOfFriend].user_A_id, 10)
+                            );
+                          }
+                          if (
+                            !myFriendsUserid.includes(
+                              parseInt(rows[myFriendOfFriend].user_B_id, 10)
+                            )
+                          ) {
+                            myFriendsOfFriendsUserid.push(
+                              parseInt(rows[myFriendOfFriend].user_B_id, 10)
+                            );
+                          }
+                        }
                       }
-                    );
+
+                      let myFriendsRequest = {
+                        params: {
+                          userid: String(myFriendsUserid),
+                        },
+                      };
+                      let myFriendsOfFriendsRequest = {
+                        params: {
+                          userid: String(myFriendsOfFriendsUserid),
+                        },
+                      };
+                      getUserConfigurationInner(
+                        myFriendsRequest,
+                        userid,
+                        (myFriendsConfigurations) => {
+                          if (myFriendsConfigurations === undefined) {
+                            throw new Error(
+                              "Filters - friends of friends. **MY FRIENDS CONFIGURATIONS**\nGet Users Configuration Inner (cb) failed"
+                            );
+                          }
+
+                          Object.assign(myFriends_myFriendsOfFriends, {
+                            myFriends: myFriendsConfigurations,
+                          });
+
+                          getUserConfigurationInner(
+                            myFriendsOfFriendsRequest,
+                            userid,
+                            (myFriendsOfFriendsConfigurations) => {
+                              if (myFriendsConfigurations === undefined) {
+                                throw new Error(
+                                  "Filters - friends of friends. **MY FRIENDS OF FRIENDS CONFIGURATIONS**\nGet Users Configuration Inner (cb) failed"
+                                );
+                              }
+
+                              Object.assign(myFriends_myFriendsOfFriends, {
+                                myFriendsOfFriends:
+                                  myFriendsOfFriendsConfigurations,
+                              });
+                              res.send(myFriends_myFriendsOfFriends);
+                            }
+                          );
+                        }
+                      );
+                    }
+                  } catch (err) {
+                    logger.error({ err });
+                    return res.status(500).send("internal error");
                   }
-                );
-              } catch (err) {
-                console.log(err.message);
+                });
               }
-            });
-          });
-        } else {
-          return res.send(rows);
+            );
+          } else {
+            return res.send(rows);
+          }
         }
       } catch (err) {
-        console.log(err.message);
+        logger.error({ err });
+        return res.status(500).send("internal error");
       }
     }
   );
 };
 
 getUserFilteredUsers = (req, res) => {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   let onlyOnline = req.params.onlyOnline;
   let usersToPresent = [];
   let mutuals = [];
@@ -499,6 +543,11 @@ getUserFilteredUsers = (req, res) => {
   let resolve;
 
   getUserFilter(req, async (userFilter) => {
+    if (userFilter === undefined) {
+      logger.error("Filters - GET a user filters, MySQL Error");
+      return res.status(500).send(`Internal Error`);
+    }
+
     if (userFilter.length === 0) {
       // user don't have filters - return to client all users in db
       getUserFilteredUsers_OnlyOnline_Helper(
@@ -563,12 +612,12 @@ getUserFilteredUsers = (req, res) => {
               }
             }
           } catch (err) {
-            errLogger.error({ err });
+            logger.error({ err });
             return res.status(500).send(`${err}`);
           }
         });
       } catch (resolve) {
-        errLogger.error({ resolve });
+        logger.error({ resolve });
         return res.status(500).send(`Internal Error\n${resolve}`);
       }
     }
@@ -576,7 +625,7 @@ getUserFilteredUsers = (req, res) => {
 };
 
 createUserFilter = (req, res) => {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   const userid = req.params.userid;
   const searchMode = req.body.search_mode_filter;
   const hobbiesFilter = req.body.hobbies_filter;
@@ -612,7 +661,7 @@ createUserFilter = (req, res) => {
           getUserFilteredUsers(req, res);
         }
       } catch (err) {
-        errLogger.error({ err });
+        logger.error({ err });
         return res.status(500).send(`${err}`);
       }
     }
@@ -620,20 +669,24 @@ createUserFilter = (req, res) => {
 };
 
 deleteUserFilter = (req, res) => {
-  infoLogger.info("This is an info log");
+  logger.info("This is an info log");
   const userid = req.params.userid;
 
   mySqlConnection.query(
-    "delete from Filters where user_id = ?",
-    [userid],
-    (err, result) => {
+    `delete from Filters where user_id = ${userid}`,
+    (err, rows) => {
       try {
-        msgToClient = {
-          msg: `User number ${userid} filter deleted successfully`,
-        };
-        return res.send(msgToClient);
+        if (err || rows === undefined) {
+          throw new Error("Filters - DELETE request. MySQL Error");
+        } else {
+          msgToClient = {
+            msg: `User number ${userid} filter deleted successfully`,
+          };
+          return res.send(msgToClient);
+        }
       } catch (err) {
-        console.log(err.message);
+        logger.error({ err });
+        return res.status(500).send(`Internal Error`);
       }
     }
   );
