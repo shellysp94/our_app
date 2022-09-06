@@ -4,7 +4,7 @@ const { infoLogger, errLogger } = require("../../utils/logger");
 const bcrypt = require("bcrypt");
 
 getAllUsers = (req, res) => {
-  infoLogger.info("This is an info log");
+  //infoLogger.info("This is an info log");
 
   mySqlConnection.query("SELECT* from Users", (err, rows) => {
     try {
@@ -23,7 +23,7 @@ getAllUsers = (req, res) => {
 };
 
 getOneUser = (req, res) => {
-  infoLogger.info("This is an info log");
+  //infoLogger.info("This is an info log");
   const arr = req.params.userid.split(",");
 
   mySqlConnection.query(

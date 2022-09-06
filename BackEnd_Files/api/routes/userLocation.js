@@ -9,8 +9,7 @@ const {
 } = require("../controllers/userLocation");
 
 router.get("/:userid", verifyToken, getUserLocation);
-//router.post('/:userid',verifyToken,insertUserLocation);
-router.post("/:userid", insertUserLocation);
+router.post("/:userid", verifyToken, insertUserLocation);
 router.delete("/:userid", verifyToken, deleteUserLocation);
 
 module.exports = router;
