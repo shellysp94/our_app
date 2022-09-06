@@ -255,7 +255,7 @@ sendFriendRequest = async (req, res) => {
               try {
                 titleToSend = `New friend request`;
                 bodyToSend = `Friend request from `;
-                //sendNotificationHelper(req, res, titleToSend, bodyToSend);
+                sendNotificationHelper(req, res, titleToSend, bodyToSend);
               } catch (err) {
                 console.log(err);
               }
