@@ -41,10 +41,10 @@ getSpecificUserChats = (req, res) => {
           if (rows.length > 0) {
             let openChatUsers = [];
             for (let user = 0; user < rows.length; user++) {
-              if (parseInt(rows[user].user_a_id, 10) !== parseInt(userid, 10)) {
-                openChatUsers.push(parseInt(rows[user].user_a_id, 10));
+              if (parseInt(rows[user].user_A_id, 10) !== parseInt(userid, 10)) {
+                openChatUsers.push(parseInt(rows[user].user_A_id, 10));
               } else {
-                openChatUsers.push(parseInt(rows[user].user_b_id, 10));
+                openChatUsers.push(parseInt(rows[user].user_B_id, 10));
               }
             }
             let resultArrayToObject = {
