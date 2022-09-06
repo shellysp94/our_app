@@ -36,7 +36,7 @@ const formatConf = format.combine(
 
 const infoLogger = createLogger({
   transports: [
-    //new transports.Console(),
+    new transports.Console(),
     new transports.File({
       level: "info",
       filename: "./logs/logsInfo.log",
@@ -48,6 +48,7 @@ const infoLogger = createLogger({
 
 const errLogger = createLogger({
   transports: [
+    new transports.Console(),
     new transports.File({
       level: "error",
       filename: "./logs/logsErrors.log",
