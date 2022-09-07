@@ -67,3 +67,8 @@
   level: 'error',
   timestamp: '2022-09-07 14:48:41'
 }
+{
+  message: 'Token Illegal. Connection Closed',
+  level: 'error',
+  timestamp: '2022-09-07 15:17:28'
+}

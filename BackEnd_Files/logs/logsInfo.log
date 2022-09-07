@@ -12473,3 +12473,18 @@
   level: 'info',
   timestamp: '2022-09-07 15:10:44'
 }
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-07 15:17:24'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-07 15:17:24'
+}
+{
+  message: '--------------Closing Websocket-------------',
+  level: 'info',
+  timestamp: '2022-09-07 15:17:28'
+}
