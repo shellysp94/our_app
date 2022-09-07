@@ -9,34 +9,37 @@ const { rejects } = require("assert");
 
 function getPicNameAndEncode(imageName) {
   dirnametemp = __dirname.substring(0, __dirname.length - 15);
-  //local host
-  //finalFilePath = dirnametemp + "images\\" + imageName;
-  //ec2
-  finalFilePath = dirnametemp + "images//" + imageName;
+  //finalFilePath = dirnametemp + "images\\" + imageName;//local host
+  finalFilePath = dirnametemp + "images//" + imageName; //ec2
 
   //encode image as base 64
-  var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
-  return imageAsBase64;
+  try {
+    var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
+    return imageAsBase64;
+  } catch (err) {
+    return null;
+  }
 }
 
 function deletePicture(user_id, imageName, res) {
   mySqlConnection.query(
-    `DELETE FROM User_pictures WHERE user_id=${user_id} AND image="${imageName}"`,
+    `DELETE FROM User_pictures WHERE user_id = ${user_id} AND image = "${imageName}"`,
     (err, rows) => {
       try {
-        dirnametemp = __dirname.substring(0, __dirname.length - 15);
-        finalFilePath = dirnametemp + "images\\" + imageName; //for localhot
-        // finalFilePath = dirnametemp + "images/" + imageName; //for aws
+        if (err || rows === undefined) {
+          throw new Error(
+            "User Pictures - DELETE user's picture by image name, MySQL Error"
+          );
+        }
 
-        fs.unlink(finalFilePath, function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            res.send("picture deleted successfully");
-          }
-        });
+        dirnametemp = __dirname.substring(0, __dirname.length - 15);
+        //finalFilePath = dirnametemp + "images\\" + imageName; //for localhost
+        finalFilePath = dirnametemp + "images/" + imageName; //for ec2
+        fs.unlinkSync(finalFilePath);
+        res.send("picture deleted successfully");
       } catch (err) {
-        errLogger.error(err);
+        errLogger.error({ err });
+        return res.status(500).send("Internal Error");
       }
     }
   );
@@ -47,7 +50,7 @@ function setRandomImageToBeMain(user_id, imageNameToUpdate) {
     mySqlConnection.query(
       `UPDATE User_pictures SET main_image = '1' WHERE user_id=${user_id} AND image = "${imageNameToUpdate}" `,
       (err, rows) => {
-        if (err) {
+        if (err || rows === undefined || rows.affectedRows < 1) {
           reject(err);
         }
         resolve("success");
@@ -58,32 +61,53 @@ function setRandomImageToBeMain(user_id, imageNameToUpdate) {
 
 getUserPictures = (req, res) => {
   infoLogger.info("This is an info log");
+
   mySqlConnection.query(
-    "SELECT* from User_pictures WHERE user_id=?",
-    [req.params.userid],
+    `SELECT * from User_pictures WHERE user_id = ${req.params.userid}`,
     (err, rows) => {
       try {
+        if (err || rows === undefined) {
+          throw new Error("User Picture - GET User's Pictures, MySQL Error");
+        }
+
         if (rows.length > 0) {
           for (var i = 0; i < rows.length; i++) {
-            rows[i].image = getPicNameAndEncode(rows[i].image);
+            const pictureNameAndEncode = getPicNameAndEncode(rows[i].image);
+            if (pictureNameAndEncode === null) {
+              throw new Error(
+                "User Picture - GET Picture Name And Encode (FS) failed"
+              );
+            }
+            rows[i].image = pictureNameAndEncode;
           }
           return res.send(rows);
         } else {
-          //maybe should convert to cb func in user confihturaion
           mySqlConnection.query(
-            `SELECT * from user_configuration where user_id = ?`,
-            [req.params.userid],
-            (err, newRows) => {
-              if (!err) {
+            `SELECT * from user_configuration where user_id = ${req.params.userid}`,
+            (err, rows) => {
+              try {
+                if (err || rows === undefined) {
+                  throw new Error(
+                    "User Pictures - GET user's pictures - query to determine user's gender"
+                  );
+                }
+
                 main_image = "1";
                 user_id = req.params.userid;
-
-                if (newRows[0].gender == "Woman") {
-                  user_image = getPicNameAndEncode("woman_profile.jpg");
-                } else if (newRows[0].gender == "Man") {
-                  user_image = getPicNameAndEncode("male_profile.jpg");
+                let picName;
+                if (rows[0].gender == "Woman") {
+                  picName = "woman_profile.jpg";
+                } else if (rows[0].gender == "Man") {
+                  picName = "male_profile.jpg";
                 } else {
-                  user_image = getPicNameAndEncode("non_binary_profile.PNG");
+                  picName = "non_binary_profile.PNG";
+                }
+
+                user_image = getPicNameAndEncode(picName);
+                if (user_image === null) {
+                  throw new Error(
+                    "User Picture - GET Picture Name And Encode (FS) failed"
+                  );
                 }
 
                 return res.send([
@@ -93,14 +117,16 @@ getUserPictures = (req, res) => {
                     main_image: main_image,
                   },
                 ]);
-              } else {
-                console.log(err);
+              } catch (err) {
+                errLogger.error({ err });
+                return res.status(500).send("Internal Error");
               }
             }
           );
         }
-      } catch {
-        console.log(err);
+      } catch (err) {
+        errLogger.error({ err });
+        return res.status(500).send("Internal Error");
       }
     }
   );
@@ -109,13 +135,18 @@ getUserPictures = (req, res) => {
 getUserMainPicture = (req, res) => {
   infoLogger.info("This is an info log");
   mySqlConnection.query(
-    "SELECT* from User_pictures WHERE user_id=? AND main_image='1'",
-    [req.params.userid],
+    `SELECT* from User_pictures WHERE user_id=${req.params.userid} AND main_image='1'`,
     (err, rows) => {
       try {
+        if (err || rows === undefined) {
+          throw new Error(
+            "User Pictures - GET user's main picture, MySQL Error"
+          );
+        }
         res.send(rows);
-      } catch {
-        console.log(err);
+      } catch (err) {
+        errLogger.error({ err });
+        return res.status(500).send("Internal Error");
       }
     }
   );
@@ -129,6 +160,10 @@ deleteUserPicture = (req, res) => {
     `SELECT* from User_pictures WHERE user_id = ${user_id} order by main_image desc`,
     async (err, rows) => {
       try {
+        if (err || rows === undefined) {
+          throw new Error("User picture - delete picture failure, MySQL Error");
+        }
+
         if (rows.length === 1 && rows[0].image === imageName) {
           deletePicture(user_id, imageName, res);
         } else if (rows.length > 1) {
@@ -140,7 +175,8 @@ deleteUserPicture = (req, res) => {
           }
         }
       } catch (err) {
-        errLogger.error(err);
+        errLogger.error({ err });
+        return res.status(500).send("Internal Error");
       }
     }
   );
@@ -180,10 +216,15 @@ uploadBase64Image = async (req, res, next) => {
     let user_id = req.params.userid;
     main_image = req.body.main_image;
     mySqlConnection.query(
-      `SELECT* FROM User_pictures WHERE user_id=? AND main_image='1'`,
-      [user_id],
+      `SELECT* FROM User_pictures WHERE user_id=${user_id} AND main_image='1'`,
       (err, rows) => {
-        if (!err) {
+        try {
+          if (err || rows === undefined) {
+            throw new Error(
+              "User picture - upload picture failure, MySQL Error"
+            );
+          }
+
           if (rows.length > 0 && main_image == "1") {
             return res.send({ msg: "user already has main image" });
           } else {
@@ -198,18 +239,27 @@ uploadBase64Image = async (req, res, next) => {
               `INSERT INTO User_pictures (user_id, image, main_image) VALUES ("${user_id}","${pathName.substring(
                 9
               )}","${main_image}")`,
-              (err, result) => {
-                if (!err) {
+              (err, rows) => {
+                try {
+                  if (err || rows === undefined || rows.affectedRows < 1) {
+                    throw new Error(
+                      "User picture - upload picture failure, MySQL Error"
+                    );
+                  }
                   return res.send({
                     msg: "picture of user added successfully",
                     image: pathName.substring(9),
                   });
-                } else {
-                  console.log(err);
+                } catch (err) {
+                  errLogger.error({ err });
+                  return res.status(500).send("Internal Error");
                 }
               }
             );
           }
+        } catch (err) {
+          errLogger.error({ err });
+          return res.status(500).send("Internal Error");
         }
       }
     );
