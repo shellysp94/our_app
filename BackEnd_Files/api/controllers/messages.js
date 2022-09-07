@@ -56,7 +56,7 @@ createChatMessage = (req, res) => {
           } else {
             const titleToSend = "You got a new message";
             const bodyToSend = "New message from ";
-            sendNotificationHelper(req, res, titleToSend, bodyToSend);
+            //sendNotificationHelper(req, res, titleToSend, bodyToSend);
 
             mySqlConnection.query(
               `select * from Messages where chat_id = ${chatID} order by creation_date desc limit 1`,
