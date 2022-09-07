@@ -41,9 +41,8 @@ wss.on("connection", async (ws, req) => {
 					ws.close();
 				} else {
 					await onlineUsers.insertNewOnlineUser(userid, ws);
-					ws.send("halloooooooooooooooooooo");
-					infoLogger.info("online users array:");
-					//infoLogger.info(onlineUsers);
+					ws.send("New User Connected");
+					infoLogger.info("Online Users Array Updated");
 				}
 			});
 		} else {

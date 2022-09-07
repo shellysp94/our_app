@@ -1,14 +1,15 @@
-const { infoLogger } = require("../logger");
+const {info} = require("winston");
+const {infoLogger} = require("../logger");
 
 function closingWebSocket(onlineUsers, ws) {
-  infoLogger.info("--------------Closing Websocket-------------");
-  onlineUsers.getOnlineUsersArray().forEach((user) => {
-    //console.log("the compare of ws:", user.websocket === ws);
-    if (user.websocket === ws) {
-      onlineUsers.removeAnOnlineUser(user.user_id);
-      //console.log(`user number ${user.user_id} disconnected`);
-    }
-  });
+	infoLogger.info(`Closing Websocket`);
+	onlineUsers.getOnlineUsersArray().forEach((user) => {
+		if (user.websocket === ws) {
+			info.infoLogger(`User ${user.user_id} Websocket Closed`);
+			onlineUsers.removeAnOnlineUser(user.user_id);
+			ws.send(`User Disconnected`);
+		}
+	});
 }
 
-module.exports = { closingWebSocket: closingWebSocket };
+module.exports = {closingWebSocket: closingWebSocket};
