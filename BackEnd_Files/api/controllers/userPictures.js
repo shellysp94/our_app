@@ -9,10 +9,8 @@ const { rejects } = require("assert");
 
 function getPicNameAndEncode(imageName) {
   dirnametemp = __dirname.substring(0, __dirname.length - 15);
-  //local host
-  finalFilePath = dirnametemp + "images\\" + imageName;
-  //ec2
-  //finalFilePath = dirnametemp + "images//" + imageName;
+  //finalFilePath = dirnametemp + "images\\" + imageName;//local host
+  finalFilePath = dirnametemp + "images//" + imageName; //ec2
 
   //encode image as base 64
   try {
@@ -25,7 +23,7 @@ function getPicNameAndEncode(imageName) {
 
 function deletePicture(user_id, imageName, res) {
   mySqlConnection.query(
-    `DEETE FROM User_pictures WHERE user_id = ${user_id} AND image = "${imageName}"`,
+    `DELETE FROM User_pictures WHERE user_id = ${user_id} AND image = "${imageName}"`,
     (err, rows) => {
       try {
         if (err || rows === undefined) {
@@ -35,8 +33,8 @@ function deletePicture(user_id, imageName, res) {
         }
 
         dirnametemp = __dirname.substring(0, __dirname.length - 15);
-        finalFilePath = dirnametemp + "images\\" + imageName; //for localhost
-        // finalFilePath = dirnametemp + "images/" + imageName; //for aws
+        //finalFilePath = dirnametemp + "images\\" + imageName; //for localhost
+        finalFilePath = dirnametemp + "images/" + imageName; //for aws
         fs.unlinkSync(finalFilePath);
         res.send("picture deleted successfully");
       } catch (err) {
@@ -256,15 +254,6 @@ uploadBase64Image = async (req, res, next) => {
                   errLogger.error({ err });
                   return res.status(500).send("Internal Error");
                 }
-
-                // if (!err) {
-                //   return res.send({
-                //     msg: "picture of user added successfully",
-                //     image: pathName.substring(9),
-                //   });
-                // } else {
-                //   console.log(err);
-                // }
               }
             );
           }
@@ -272,35 +261,6 @@ uploadBase64Image = async (req, res, next) => {
           errLogger.error({ err });
           return res.status(500).send("Internal Error");
         }
-
-        // if (!err) {
-        //   if (rows.length > 0 && main_image == "1") {
-        //     return res.send({ msg: "user already has main image" });
-        //   } else {
-        //     const pathName = "./images/" + Date.now() + ".png";
-        //     const imgdata = req.body.base64image;
-        //     const base64Data = imgdata.replace(
-        //       /^data:([A-Za-z-+/]+);base64,/,
-        //       ""
-        //     );
-        //     fs.writeFileSync(pathName, base64Data, { encoding: "base64" });
-        //     mySqlConnection.query(
-        //       `INSERT INTO User_pictures (user_id, image, main_image) VALUES ("${user_id}","${pathName.substring(
-        //         9
-        //       )}","${main_image}")`,
-        //       (err, result) => {
-        //         if (!err) {
-        //           return res.send({
-        //             msg: "picture of user added successfully",
-        //             image: pathName.substring(9),
-        //           });
-        //         } else {
-        //           console.log(err);
-        //         }
-        //       }
-        //     );
-        //   }
-        // }
       }
     );
   } catch (e) {
