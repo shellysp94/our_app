@@ -62,3 +62,8 @@
   message: 'Verify Token - ERROR',
   timestamp: '2022-09-05 19:38:15'
 }
+{
+  message: 'Token Illegal. Connection Closed',
+  level: 'error',
+  timestamp: '2022-09-07 14:48:41'
+}
