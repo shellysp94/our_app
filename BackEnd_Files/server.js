@@ -42,7 +42,7 @@ wss.on("connection", async (ws, req) => {
 				} else {
 					await onlineUsers.insertNewOnlineUser(userid, ws);
 					infoLogger.info("online users array:");
-					infoLogger.info(onlineUsers);
+					//infoLogger.info(onlineUsers);
 				}
 			});
 		} else {
