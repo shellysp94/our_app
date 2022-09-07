@@ -10,9 +10,9 @@ const { rejects } = require("assert");
 function getPicNameAndEncode(imageName) {
   dirnametemp = __dirname.substring(0, __dirname.length - 15);
   //local host
-  finalFilePath = dirnametemp + "images\\" + imageName;
+  //finalFilePath = dirnametemp + "images\\" + imageName;
   //ec2
-  //finalFilePath = dirnametemp + "images//" + imageName;
+  finalFilePath = dirnametemp + "images//" + imageName;
 
   //encode image as base 64
   var imageAsBase64 = fs.readFileSync(finalFilePath, "base64");
