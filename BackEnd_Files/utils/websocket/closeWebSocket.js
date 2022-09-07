@@ -7,7 +7,6 @@ function closingWebSocket(onlineUsers, ws) {
     if (user.websocket === ws) {
       infoLogger.info(`User ${user.user_id} Websocket Closed`);
       onlineUsers.removeAnOnlineUser(user.user_id);
-      ws.send(`User Disconnected`);
     }
   });
 }
