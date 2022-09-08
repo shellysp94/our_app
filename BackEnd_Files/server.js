@@ -37,12 +37,14 @@ wss.on("connection", async (ws, req) => {
       jwt.verify(token, publicToken, async (err, payload) => {
         if (err) {
           errLogger.error(`Error: ${err.message}. connection closed`);
-          ws.send(`Error: ${err.message}. connection closed`);
+          ws.send(
+            JSON.stringify({ msg: `Error: ${err.message}. connection closed` })
+          );
           ws.close();
         } else {
           await onlineUsers.insertNewOnlineUser(userid, ws);
           wss.clients.forEach((client) =>
-            client.send({ msg: "New User Connected" })
+            client.send(JSON.stringify({ msg: "New User Connected" }))
           );
 
           infoLogger.info("Online Users Array Updated");
@@ -50,12 +52,11 @@ wss.on("connection", async (ws, req) => {
       });
     } else {
       errLogger.error("Token Illegal. Connection Closed");
-      ws.send("Token illegal. connection closed");
+      ws.send(JSON.stringify({ msg: "Token illegal. connection closed" }));
       ws.close();
     }
   } catch (err) {
     errLogger.error(`Server - connection to WS, error\n${err}`);
-    ws.send(500);
     ws.close();
   }
 
@@ -65,7 +66,9 @@ wss.on("connection", async (ws, req) => {
 
   ws.on("close", () => {
     closingWebSocket(onlineUsers, ws);
-    wss.clients.forEach((client) => client.send({ msg: "User Disconnected" }));
+    wss.clients.forEach((client) =>
+      client.send(JSON.stringify({ msg: "User Disconnected" }))
+    );
   });
 });
 
