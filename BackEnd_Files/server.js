@@ -41,7 +41,9 @@ wss.on("connection", async (ws, req) => {
           ws.close();
         } else {
           await onlineUsers.insertNewOnlineUser(userid, ws);
-          wss.clients.forEach((client) => client.send("New User Connected"));
+          wss.clients.forEach((client) =>
+            client.send({ msg: "New User Connected" })
+          );
 
           infoLogger.info("Online Users Array Updated");
         }
@@ -63,7 +65,7 @@ wss.on("connection", async (ws, req) => {
 
   ws.on("close", () => {
     closingWebSocket(onlineUsers, ws);
-    wss.clients.forEach((client) => client.send("User Disconnected"));
+    wss.clients.forEach((client) => client.send({ msg: "User Disconnected" }));
   });
 });
 
