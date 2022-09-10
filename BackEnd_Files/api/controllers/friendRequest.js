@@ -33,7 +33,7 @@ getAllUserConnectionsByName = (req, res) => {
 
 	if (parseInt(connected, 10) === 1) {
 		sqlQuery = sqlQuery.concat(
-			` and (user_A_id = ${user} or user_B_id = ${user}) and connected = 1`
+			` and (user_A_id = ${user} or user_B_id = ${user})`
 		);
 	}
 
@@ -79,13 +79,15 @@ getAllUserConnectionsType = (req, res) => {
 	let mergeObjects = [];
 
 	mySqlConnection.query(
-		`select distinct user_id, 
-				if((user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1, 1, 0) mutualConnections,
-				if(user_A_id = ${userid} and connected = 0, 1, 0) requestsUserSent,
-				if(user_B_id = ${userid} and connected = 0, 1, 0) requestsUserReceived, 
-				if((user_A_id != ${userid} and user_B_id != ${userid}) or (user_A_id is null and user_B_id is null), 1, 0) notConnected
-			from Connections right join user_configuration on(user_id = user_A_id or user_id = user_B_id) 
-			group by (user_id) having user_id != ${userid}`,
+		`select user_id,'' as mutualConnections, '' as notConnected, '' as requestsUserSent, '' as requestsUserReceived, MAX(CASE 
+		WHEN (user_A_id = ${userid} or user_B_id = ${userid}) and connected = 1 THEN 4
+		WHEN (user_A_id != ${userid} and user_B_id != ${userid}) or (user_A_id is null and user_B_id is null) THEN 1
+		WHEN user_A_id = ${userid} and connected = 0 THEN 2
+		WHEN user_B_id = ${userid} and connected = 0 THEN 3
+		END) as connection_type
+	   from Connections 
+	  right join user_configuration on(user_id = user_A_id or user_id = user_B_id)
+	  group by user_id having user_id != ${userid};`,
 		(err, rows) => {
 			try {
 				if (err || rows === undefined) {
@@ -93,6 +95,35 @@ getAllUserConnectionsType = (req, res) => {
 						"Friend Request - BY TYPE **GROUP BY query**, MySQL Error"
 					);
 				} else {
+					for (i = 0; i < rows.length; i++) {
+						switch (rows[i].connection_type) {
+							case 1:
+								rows[i].notConnected = 1;
+								rows[i].mutualConnections = 0;
+								rows[i].requestsUserSent = 0;
+								rows[i].requestsUserReceived = 0;
+								break;
+							case 2:
+								rows[i].notConnected = 0;
+								rows[i].mutualConnections = 0;
+								rows[i].requestsUserSent = 1;
+								rows[i].requestsUserReceived = 0;
+								break;
+							case 3:
+								rows[i].notConnected = 0;
+								rows[i].mutualConnections = 0;
+								rows[i].requestsUserSent = 0;
+								rows[i].requestsUserReceived = 1;
+								break;
+							case 4:
+								rows[i].notConnected = 0;
+								rows[i].mutualConnections = 1;
+								rows[i].requestsUserSent = 0;
+								rows[i].requestsUserReceived = 0;
+								break;
+						}
+					}
+
 					if (parseInt(usersToPresent[0], 10) === 0) {
 						// user asked for all other users
 						for (user = 0; user < rows.length; user++) {
