@@ -12488,3 +12488,859 @@
   level: 'info',
   timestamp: '2022-09-07 15:17:28'
 }
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 13:45:12'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 13:45:12'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/28/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyNzk3Njc4LCJleHAiOjE2OTQzMzM2Nzh9.Rxmzjisgwm_XYBp_6tnfH2DqE86-n9mA0EFFAoz1KqU',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8c5836bb-89ed-4d61-9ce4-6a1899cab6eb',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/28/1/%20',
+      query: {}
+    },
+    res: { statusCode: 401 },
+    responseTime: 182
+  },
+  level: 'warn',
+  message: 'HTTP GET /friendRequest/byName/28/1/%20',
+  timestamp: '2022-09-10 13:45:17'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:45:52'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:45:52'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:45:52'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'cd873c03-2ebe-4849-b687-c919543884bc',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 806
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 13:45:52'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 13:46:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 13:46:15'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:46:19'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:46:19'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:46:19'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'beaa175c-f1b9-4f14-a723-8d68f0745bf3',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 784
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 13:46:19'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:49:04'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:49:04'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:49:05'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/send/43/32',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '968e353b-9c3e-450c-af65-870c7d2c3810',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '0'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/send/43/32',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 1558
+  },
+  level: 'info',
+  message: 'HTTP POST /friendRequest/send/43/32',
+  timestamp: '2022-09-10 13:49:05'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:49:52'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:49:52'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:49:52'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/0/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'c139c7c8-3bc9-4625-a16f-51f967804704',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/0/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 792
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/0/%20',
+  timestamp: '2022-09-10 13:49:52'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:53:14'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:53:14'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:53:14'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'fc9ede45-695f-4150-a8a1-ae9b380c6775',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 836
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 13:53:14'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:54:30'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:54:30'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:54:31'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '785a0b18-04f3-4915-bfd9-9be48089e233',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 754
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 13:54:31'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 13:55:46'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 13:55:47'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 13:56:49'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 13:56:51'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:56:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:56:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:56:54'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8833a9e7-75ad-40fa-9e44-6b19c96c3e13',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 850
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 13:56:54'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 13:57:39'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 13:57:40'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:57:44'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:57:44'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:57:44'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'b9cd01e1-0313-4c7e-bde2-993b12fcc2b9',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 2154
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 13:57:45'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 13:57:59'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 13:58:00'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:58:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:58:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 13:58:10'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '3ba24688-9b74-49a9-94fd-993b21865444',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 2589
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 13:58:11'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:00:32'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:00:33'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:00:41'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:00:41'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:00:42'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'e4c9e81b-7d16-4c78-9a23-0e5218814696',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 1623
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 14:00:42'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:01:56'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:01:57'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:02:01'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:02:01'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:02:01'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '6c572d9d-fa81-4de2-91e4-a8b7ea05d22d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 2524
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 14:02:02'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:03:05'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:03:06'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:03:10'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:03:10'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:03:10'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'fbb422bc-5642-4b72-a0b9-5ad26d0e646e',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 809
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 14:03:11'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:04:26'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:04:27'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:04:36'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:04:36'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:04:42'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:04:42'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:04:43'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '71adc832-a49f-428c-9879-c74880d2bab0',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 1589
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 14:04:43'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:05:16'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:05:17'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:06:46'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:06:47'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:06:51'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:06:51'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:06:53'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'ab1f5c58-19e2-4426-9603-c55ac90e2464',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 3073
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 14:06:54'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:07:58'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:07:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:08:13'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:08:13'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:08:14'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/0/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '7062824d-0430-4e5d-bc06-745896b9e778',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/0/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 2847
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/0/%20',
+  timestamp: '2022-09-10 14:08:15'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-10 14:10:32'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-10 14:10:34'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:10:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:10:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:10:46'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/0/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '358c7958-61a5-4359-82d7-b22f8f3565f3',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/0/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 805
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/0/%20',
+  timestamp: '2022-09-10 14:10:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:11:47'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:11:47'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-10 14:11:48'
+}
+{
+  meta: {
+    req: {
+      url: '/friendRequest/byName/43/1/%20',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MywiaWF0IjoxNjYyNzk4NzM2LCJleHAiOjE2OTQzMzQ3MzZ9.vuZWIrsVAYD95FlqQZD-4dHfILAtkQ7M9182zEP7A3k',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'bc342941-3920-4443-ad31-615e625b6b17',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/friendRequest/byName/43/1/%20',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 775
+  },
+  level: 'info',
+  message: 'HTTP GET /friendRequest/byName/43/1/%20',
+  timestamp: '2022-09-10 14:11:48'
+}
