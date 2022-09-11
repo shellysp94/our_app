@@ -665,6 +665,7 @@ createUserFilter = (req, res) => {
 	const radiusFilter = req.body.radius_filter;
 	const friendsOnly = req.body.friends_only_filter;
 	let ageFilter = req.body.age_filter;
+	let toBroadcastAllOnline = false;
 
 	if (ageFilter.length === 0) {
 		ageFilter = "[]";
@@ -675,25 +676,54 @@ createUserFilter = (req, res) => {
 		ageFilter = ageFilter.concat(req.body.age_filter[1]);
 		ageFilter = ageFilter.concat("]");
 	}
-
 	mySqlConnection.query(
-		`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, radius_filter, friends_only_filter) 
-      values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${radiusFilter}, ${friendsOnly}) 
-      ON DUPLICATE KEY UPDATE user_id = ${userid}, search_mode = '${searchMode}', hobbies_filter = '${hobbiesFilter}', gender_filter = '${genderFilter}', 
-      relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', radius_filter = ${radiusFilter}, friends_only_filter = ${friendsOnly}`,
+		`select search_mode from Filters where user_id = ${userid}`,
 		(err, rows) => {
 			try {
-				if (err || rows === undefined || rows.affectedRows < 1) {
+				if (err || rows === undefined) {
 					throw new Error(
-						"Filters - UPDATE || INSERT to DB - MySQL syntax Error"
+						"Filters - UPDATE || INSERT --> select search mode for broadcast to ws, MySQL Error"
 					);
-				} else {
-					getUserFilteredUsers(req, res);
 				}
-			} catch (err) {
-				errLogger.error({err});
-				return res.status(500).send(`Internal Error`);
-			}
+				if (rows[0].search_mode !== searchMode) {
+					console.log("in the if statment");
+					toBroadcastAllOnline = true;
+				}
+
+				mySqlConnection.query(
+					`INSERT INTO Filters (user_id, search_mode, hobbies_filter, gender_filter, relationship_filter, interested_in_filter, age_filter, radius_filter, friends_only_filter) 
+			  values (${userid}, '${searchMode}', '${hobbiesFilter}', '${genderFilter}', '${relationshipFilter}', '${interestedInFilter}', '${ageFilter}', ${radiusFilter}, ${friendsOnly}) 
+			  ON DUPLICATE KEY UPDATE user_id = ${userid}, search_mode = '${searchMode}', hobbies_filter = '${hobbiesFilter}', gender_filter = '${genderFilter}', 
+			  relationship_filter = '${relationshipFilter}', interested_in_filter = '${interestedInFilter}', age_filter = '${ageFilter}', radius_filter = ${radiusFilter}, friends_only_filter = ${friendsOnly}`,
+					(err, rows) => {
+						try {
+							if (err || rows === undefined || rows.affectedRows < 1) {
+								throw new Error(
+									"Filters - UPDATE || INSERT to DB - MySQL syntax Error"
+								);
+							} else {
+								if (toBroadcastAllOnline) {
+									onlineUsers.getOnlineUsersArray().forEach((onlineUser) => {
+										if (
+											parseInt(onlineUser.getUserId(), 10) !==
+											parseInt(userid, 10)
+										) {
+											onlineUser
+												.getWebSocket()
+												.send(JSON.stringify({msg: "User Update Search Mode"}));
+										}
+									});
+								}
+
+								getUserFilteredUsers(req, res);
+							}
+						} catch (err) {
+							errLogger.error({err});
+							return res.status(500).send(`Internal Error`);
+						}
+					}
+				);
+			} catch (err) {}
 		}
 	);
 };

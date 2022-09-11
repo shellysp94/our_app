@@ -72,3 +72,62 @@
   level: 'error',
   timestamp: '2022-09-07 15:17:28'
 }
+{
+  message: {
+    err: TypeError: onlineUsers.getOnlineUsersArray.forEach is not a function
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\api\controllers\filters.js:706:42)
+        at Query.<anonymous> (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:526:10)
+        at Query._callback (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\Connection.js:488:16)
+        at Query.Sequence.end (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+        at Query._handleFinalResultPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:149:8)
+        at Query.OkPacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\sequences\Query.js:74:10)
+        at Protocol._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+        at Parser._parsePacket (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:433:10)
+        at Parser.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Parser.js:43:10)
+        at Protocol.write (C:\Users\morze\Desktop\Final_Project\our_app\BackEnd_Files\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+  },
+  level: 'error',
+  timestamp: '2022-09-11 11:32:09'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '2796c815-16fa-4df7-a607-340ad680e52e',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/0',
+      query: {},
+      body: {
+        search_mode_filter: 'Workout',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 500 },
+    responseTime: 509
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/28/0',
+  timestamp: '2022-09-11 11:32:09'
+}
+{
+  message: 'Token Illegal. Connection Closed',
+  level: 'error',
+  timestamp: '2022-09-11 11:52:14'
+}

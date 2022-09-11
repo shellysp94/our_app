@@ -12488,3 +12488,1384 @@
   level: 'info',
   timestamp: '2022-09-07 15:17:28'
 }
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:29:37'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:29:38'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:30:43'
+}
+{
+  meta: {
+    req: {
+      url: '/filters',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'bc537bbe-2635-4a55-b4c2-27a5c7454472',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 168
+  },
+  level: 'info',
+  message: 'HTTP GET /filters',
+  timestamp: '2022-09-11 11:30:43'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:32:08'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '2796c815-16fa-4df7-a607-340ad680e52e',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/0',
+      query: {},
+      body: {
+        search_mode_filter: 'Workout',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 500 },
+    responseTime: 509
+  },
+  level: 'error',
+  message: 'HTTP POST /filters/28/0',
+  timestamp: '2022-09-11 11:32:09'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:33:44'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:33:45'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:33:49'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:33:50'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:55'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:55'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:55'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:55'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:55'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:55'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:55'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:56'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:56'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:33:56'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '71a62ad1-4475-4470-81fc-bb675ed5c32d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/0',
+      query: {},
+      body: {
+        search_mode_filter: 'Workout',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1447
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/0',
+  timestamp: '2022-09-11 11:33:56'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:08'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:09'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:10'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8b869381-84e1-43b2-ae0f-317230a4e567',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '282'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/0',
+      query: {},
+      body: {
+        search_mode_filter: 'Whatever',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1810
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/0',
+  timestamp: '2022-09-11 11:34:10'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:34:45'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:34:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:52'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:53'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:34:54'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '98cc5e44-d3f4-4097-acfe-89ec18b7794d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '282'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/0',
+      query: {},
+      body: {
+        search_mode_filter: 'Whatever',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1714
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/0',
+  timestamp: '2022-09-11 11:34:54'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:10'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/0',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'ebf26211-ac96-4d08-bd04-26cf2227b34c',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/0',
+      query: {},
+      body: {
+        search_mode_filter: 'Workout',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1290
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/0',
+  timestamp: '2022-09-11 11:35:11'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:36:18'
+}
+{
+  message: "C'tor of user: 27 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:36:19'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 27 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:36:19'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:36:19'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:36:45'
+}
+{
+  message: "C'tor of user: 28 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:36:45'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 28 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:36:45'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:36:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:37:58'
+}
+{
+  meta: {
+    req: {
+      url: '/filters',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '4b706a21-8aa3-46c3-a453-c237c9ab3716',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 147
+  },
+  level: 'info',
+  message: 'HTTP GET /filters',
+  timestamp: '2022-09-11 11:37:58'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:12'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:12'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:12'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:12'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:12'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:12'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:12'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:13'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:13'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:38:13'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '1a26ffb1-c653-4a8c-8328-1378bd9a1cb2',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '282'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/1',
+      query: {},
+      body: {
+        search_mode_filter: 'Whatever',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1585
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/1',
+  timestamp: '2022-09-11 11:38:13'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:39:25'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:39:26'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:40:08'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:40:09'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:40:29'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:40:30'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:41:14'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:41:15'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:41:23'
+}
+{
+  message: "C'tor of user: 27 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:41:23'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 27 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:23'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:23'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:41:27'
+}
+{
+  message: "C'tor of user: 28 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:41:27'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 28 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:27'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:27'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:41:46'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'efa79e51-3f9e-496f-959d-efc8ce727541',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/1',
+      query: {},
+      body: {
+        search_mode_filter: 'Workout',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1296
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/1',
+  timestamp: '2022-09-11 11:41:47'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:42:20'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:42:21'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:42:32'
+}
+{
+  message: "C'tor of user: 27 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:42:32'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 27 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:32'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:32'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:42:35'
+}
+{
+  message: "C'tor of user: 28 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:42:35'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 28 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:35'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:35'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:45'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:42:46'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'cd28dde7-1741-4ab1-85f0-3be72462736d',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '282'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/1',
+      query: {},
+      body: {
+        search_mode_filter: 'Whatever',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1615
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/1',
+  timestamp: '2022-09-11 11:42:46'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:31'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:31'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:31'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:31'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:31'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:31'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:31'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:32'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:32'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:43:32'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'aae29a67-2881-42ef-a7fe-6f3c495b7c5c',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/1',
+      query: {},
+      body: {
+        search_mode_filter: 'Workout',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1263
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/1',
+  timestamp: '2022-09-11 11:43:32'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/27/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywiaWF0IjoxNjYyODc2MDAzLCJleHAiOjE2OTQ0MTIwMDN9.cTP1JbT3yFRvySKF9Pry-8UFzK8hcivs6fbS8H36Yw8',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '8c52ad64-5234-4558-a8af-6335771137ce',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/27/1',
+      query: {},
+      body: {
+        search_mode_filter: 'Workout',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 401 },
+    responseTime: 140
+  },
+  level: 'warn',
+  message: 'HTTP POST /filters/27/1',
+  timestamp: '2022-09-11 11:43:59'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:33'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:33'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:33'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:33'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:34'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:34'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:34'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:34'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:34'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:44:34'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/27/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyNywiaWF0IjoxNjYyODg1Nzc2LCJleHAiOjE2OTQ0MjE3NzZ9.tfm3i6agt0Lh1tl6HCKDg23Ch0Qxrl0TCNj9WwU3YWw',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'b76dc930-de34-4f69-bd46-e456760a647c',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '281'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/27/1',
+      query: {},
+      body: {
+        search_mode_filter: 'Workout',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1548
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/27/1',
+  timestamp: '2022-09-11 11:44:34'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:46:15'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:46:16'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:51:35'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:51:36'
+}
+{
+  message: "C'tor of Chat Rooms Array",
+  level: 'info',
+  timestamp: '2022-09-11 11:52:04'
+}
+{
+  message: "Online users array C'tor:",
+  level: 'info',
+  timestamp: '2022-09-11 11:52:05'
+}
+{
+  message: 'Closing Websocket',
+  level: 'info',
+  timestamp: '2022-09-11 11:52:14'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:52:24'
+}
+{
+  message: "C'tor of user: 28 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:52:24'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 28 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:52:24'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:52:24'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:53:32'
+}
+{
+  message: "C'tor of user: 31 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:53:32'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 31 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:53:32'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:53:32'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:54:07'
+}
+{
+  message: "C'tor of user: 32 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:54:07'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 32 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:54:07'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:54:07'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:54:56'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:55:49'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:56:29'
+}
+{
+  meta: {
+    req: {
+      url: '/filters',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': '9c73af1d-887b-401c-ad55-f8c37627d534',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive'
+      },
+      method: 'GET',
+      httpVersion: '1.1',
+      originalUrl: '/filters',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 147
+  },
+  level: 'info',
+  message: 'HTTP GET /filters',
+  timestamp: '2022-09-11 11:56:30'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:57:12'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:02'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:02'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:02'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:02'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:03'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:03'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:03'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:03'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:03'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 11:58:03'
+}
+{
+  meta: {
+    req: {
+      url: '/filters/28/1',
+      headers: {
+        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyOCwiaWF0IjoxNjYyODc4MTg1LCJleHAiOjE2OTQ0MTQxODV9.o2IIG7YFyRc0XockYs7xi0JdxRY84uZVOzDQoIrWBe0',
+        'content-type': 'application/json',
+        'user-agent': 'PostmanRuntime/7.29.2',
+        accept: '*/*',
+        'postman-token': 'aa6e7c26-06b8-4c3a-81cf-f2d2493c3b33',
+        host: 'localhost:3000',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-length': '279'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/filters/28/1',
+      query: {},
+      body: {
+        search_mode_filter: 'Chill',
+        hobbies_filter: 'Hobbies',
+        gender_filter: 'Gender',
+        relationship_filter: 'Relationship',
+        interested_in_filter: 'Interested in',
+        age_filter: [],
+        radius_filter: 1000,
+        friends_only_filter: 0
+      }
+    },
+    res: { statusCode: 200 },
+    responseTime: 1261
+  },
+  level: 'info',
+  message: 'HTTP POST /filters/28/1',
+  timestamp: '2022-09-11 11:58:03'
+}
+{
+  message: "C'tor of online user",
+  level: 'info',
+  timestamp: '2022-09-11 11:59:55'
+}
+{
+  message: "C'tor of user: 29 create an online user!",
+  level: 'info',
+  timestamp: '2022-09-11 11:59:55'
+}
+{
+  message: 'Insert a new online user - Inserting user_id = 29 and his WS to the array!',
+  level: 'info',
+  timestamp: '2022-09-11 11:59:55'
+}
+{
+  message: 'Online Users Array Updated',
+  level: 'info',
+  timestamp: '2022-09-11 11:59:55'
+}
+{
+  message: 'This is an info log',
+  level: 'info',
+  timestamp: '2022-09-11 12:00:19'
+}
