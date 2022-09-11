@@ -12,7 +12,7 @@ const {
 
 router.get("/:userid", getUserPictures); //get user by appid (/hobbies/:userid)
 router.get("/main/:userid", verifyToken, getUserMainPicture);
-router.post("/:userid", verifyToken, uploadBase64Image);
+router.post("/:userid", uploadBase64Image);
 router.delete("/:userid", verifyToken, deleteUserPicture); //delete user specific picture
 //router.put('/:userid',upload, updateUserPicture); //update user
 
