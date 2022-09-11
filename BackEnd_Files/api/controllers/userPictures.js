@@ -63,7 +63,7 @@ getUserPictures = (req, res) => {
   infoLogger.info("This is an info log");
 
   mySqlConnection.query(
-    `SELECT * from User_pictures WHERE user_id = ${req.params.userid}`,
+    `SELECT * from User_pictures a WHERE user_id = ${req.params.userid}`,
     (err, rows) => {
       try {
         if (err || rows === undefined) {
@@ -93,6 +93,7 @@ getUserPictures = (req, res) => {
                 }
 
                 main_image = "1";
+                isGen = "1";
                 user_id = req.params.userid;
                 let picName;
                 if (rows[0].gender == "Woman") {
@@ -115,6 +116,7 @@ getUserPictures = (req, res) => {
                     user_id: user_id,
                     image: user_image,
                     main_image: main_image,
+                    isGen: isGen,
                   },
                 ]);
               } catch (err) {
