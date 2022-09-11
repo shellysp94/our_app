@@ -1001,7 +1001,7 @@
 				"properties": {
 					"code": {
 						"type": "number",
-						"example": 404
+						"example": 500
 					},
 					"msg": {
 						"type": "string"
