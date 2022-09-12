@@ -249,10 +249,30 @@ createUserConfiguration = (req, res) => {
                     }
                   );
                 } else {
-                  res.send({
-                    user_id: user_id,
-                    msg: "user Configuration (and user row) of user added successfully",
-                  });
+                  mySqlConnection.query(
+                    `insert into user_location (user_id, longitude, latitude) values (${user_id},32.047648,34.761748)`,
+                    (err, rows) => {
+                      try {
+                        if (
+                          err ||
+                          rows === undefined ||
+                          rows.affectedRows < 1
+                        ) {
+                          throw new Error(
+                            "User Configuration - failed INSERT location, MySQL Error - Check DB!"
+                          );
+                        } else {
+                          res.send({
+                            user_id: user_id,
+                            msg: "User Configuration (and user row) of user added successfully",
+                          });
+                        }
+                      } catch (err) {
+                        errLogger.error({ err });
+                        res.status(500).send("Internal Error");
+                      }
+                    }
+                  );
                 }
               } catch (err) {
                 errLogger.error({ err });
