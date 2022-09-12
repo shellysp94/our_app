@@ -665,7 +665,7 @@ createUserFilter = (req, res) => {
   const radiusFilter = req.body.radius_filter;
   const friendsOnly = req.body.friends_only_filter;
   let ageFilter = req.body.age_filter;
-  let toBroadcastAllOnline = false;
+  let toBroadcastAllOnline = true;
 
   if (ageFilter.length === 0) {
     ageFilter = "[]";
@@ -685,8 +685,10 @@ createUserFilter = (req, res) => {
             "Filters - UPDATE || INSERT --> select search mode for broadcast to ws, MySQL Error"
           );
         }
-        if (rows[0].search_mode !== searchMode) {
-          toBroadcastAllOnline = true;
+        if (rows.length > 0) {
+          if (rows[0].search_mode === searchMode) {
+            toBroadcastAllOnline = false;
+          }
         }
 
         mySqlConnection.query(
