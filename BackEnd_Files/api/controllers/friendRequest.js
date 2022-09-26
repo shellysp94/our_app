@@ -343,7 +343,6 @@ sendFriendRequest = async (req, res) => {
             mySqlConnection.query(
               `insert into Connections (user_A_id, user_B_id, creation_date, last_update) values
             (${req.params.useridA}, ${req.params.useridB}, curdate(), curdate())`,
-              //[req.params.useridA, req.params.useridB],
               (err, rows) => {
                 try {
                   if (err || rows === undefined || rows.affectedRows < 1) {

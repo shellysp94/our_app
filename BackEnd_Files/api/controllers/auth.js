@@ -1,6 +1,5 @@
 const { app, jwt } = require("../../app");
 const dbConfig = require("../../config/db_config");
-//var configuration = require("./userConfiguration");
 const { createUserConfiguration } = require("./userConfiguration");
 const publicToken = require("../../config/auth_config");
 const bcrypt = require("bcrypt");

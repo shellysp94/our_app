@@ -52,7 +52,6 @@ const extractParametersForNotification = (req, newRows, title, body) => {
   const paramsForNotification = {
     deviceTokenToSend: tokensArr,
     titleToSend: title,
-    //bodyToSend: body + `${senderName}`,
     bodyToSend: body.concat(senderName),
     userIdTosend: req.params.useridB,
   };

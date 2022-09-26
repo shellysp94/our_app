@@ -50,8 +50,6 @@ deleteUser = (req, res) => {
 
   mySqlConnection.query(
     `delete from Users  where user_id = ${req.params.userid}`,
-    // "DELETE FROM Users WHERE user_id=?",
-    // req.params.userid,
     (err, rows) => {
       try {
         if (err || rows === undefined) {
