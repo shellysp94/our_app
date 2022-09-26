@@ -181,34 +181,6 @@ deleteUserPicture = (req, res) => {
   );
 };
 
-updateUserPicture = (req, res) => {
-  infoLogger.info("This is an info log");
-  user_id = req.params.userid;
-  old_image = req.body.old_image;
-  image = req.file.path.substring(7);
-  main_image = req.body.main_image;
-
-  mySqlConnection.query(
-    "UPDATE User_pictures SET image=?, main_image=? WHERE user_id=? and image=?",
-    [image, main_image, user_id, old_image],
-    (err, result) => {
-      if (!err) {
-        dirnametemp = __dirname.substring(0, __dirname.length - 15);
-        finalFilePath = dirnametemp + "images\\" + old_image;
-        fs.unlink(finalFilePath, function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            res.send("picture updated successfully");
-          }
-        });
-      } else {
-        console.log(err);
-      }
-    }
-  );
-};
-
 uploadBase64Image = async (req, res, next) => {
   try {
     infoLogger.info("This is an info log");
