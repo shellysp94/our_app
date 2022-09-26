@@ -244,6 +244,5 @@ module.exports = {
   getUserPictures,
   getUserMainPicture,
   deleteUserPicture,
-  updateUserPicture,
   uploadBase64Image,
 };
