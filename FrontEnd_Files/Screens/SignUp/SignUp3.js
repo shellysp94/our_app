@@ -13,7 +13,7 @@ import {
   updateConfiguration,
   updateHobbies,
 } from '../../store/Slices/configurationSlice';
-
+import {updateDetails} from '../../store/Slices/configurationSlice';
 import {
   Collapse,
   CollapseHeader,
@@ -72,6 +72,22 @@ const SignUp3 = ({route, navigation}) => {
         return false;
       } else {
         dispatch(updateUserId({user_id: response.data.user_id}));
+        const getUser = await axios.get(
+          `${path}/userConfiguration/${response.data.user_id}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + response.data.token,
+            },
+          },
+        );
+        dispatch(
+          updateDetails({
+            userConfig: getUser.data[0],
+            email: response.data.email,
+            fullName: `${getUser.data[0].first_name} ${getUser.data[0].last_name}`,
+            token: response.data.token,
+          }),
+        );
         return true;
       }
     } catch (error) {
@@ -141,7 +157,7 @@ const SignUp3 = ({route, navigation}) => {
             onPress={async () => {
               const res = await AddUserToDB();
               if (res) {
-                navigation.navigate('Log In stack', {page: 'SignUp3'});
+                navigation.navigate('SignUp4', {page: 'SignUp3'});
               }
             }}
           />

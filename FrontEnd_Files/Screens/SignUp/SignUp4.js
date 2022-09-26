@@ -21,26 +21,28 @@ const SignUp4 = ({route, navigation}) => {
   const {page} = route.params;
   const path = getCurrentPath();
   const [isMain, setIsMain] = useState(false);
-  const myPictures = useSelector(state => state.pictures.myPictures);
-  const tempPictures = useSelector(state => state.pictures.tempPictures);
+  const myPictures = useSelector(state => state.pictures?.myPictures);
+  const tempPictures = useSelector(state => state.pictures?.tempPictures);
   const conf = useSelector(state => state.configuration.userConfig);
   const verifyToken = useSelector(state => state.configuration.token);
   const dispatch = useDispatch();
-
+  console.log(conf);
   useEffect(() => {
-    if (!myPictures[0]?.isGen) {
-      //if the first image is not generic
-      setIsMain(true);
-      dispatch(setTempPictures({key: 0, value: myPictures[0].image}));
-    } else {
-      //if the first image is generic
-      dispatch(clearMyPictures());
-      setIsMain(false);
+    if (page !== 'SignUp3') {
+      if (!myPictures[0]?.isGen) {
+        //if the first image is not generic
+        setIsMain(true);
+        dispatch(setTempPictures({key: 0, value: myPictures[0]?.image}));
+      } else {
+        //if the first image is generic
+        dispatch(clearMyPictures());
+        setIsMain(false);
+      }
+      if (myPictures && myPictures[1] !== undefined)
+        dispatch(setTempPictures({key: 1, value: myPictures[1]?.image}));
+      if (myPictures && myPictures[2] !== undefined)
+        dispatch(setTempPictures({key: 2, value: myPictures[2]?.image}));
     }
-    if (myPictures[1] !== undefined)
-      dispatch(setTempPictures({key: 1, value: myPictures[1]?.image}));
-    if (myPictures[2] !== undefined)
-      dispatch(setTempPictures({key: 2, value: myPictures[2]?.image}));
   }, []);
 
   const pickImage = num => {
