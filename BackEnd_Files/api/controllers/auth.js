@@ -1,9 +1,8 @@
-const { app, jwt } = require("../../app");
+const { jwt } = require("../../app");
 const dbConfig = require("../../config/db_config");
 const { createUserConfiguration } = require("./userConfiguration");
 const publicToken = require("../../config/auth_config");
 const bcrypt = require("bcrypt");
-const { response } = require("express");
 const mySqlConnection = dbConfig;
 const { infoLogger, errLogger } = require("../../utils/logger");
 

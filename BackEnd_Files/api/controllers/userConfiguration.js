@@ -1,11 +1,9 @@
 const dbConfig = require("../../config/db_config");
 const userPictures = require("./userPictures");
-const fs = require("fs");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
 const mySqlConnection = dbConfig;
 const { infoLogger, errLogger } = require("../../utils/logger");
-const { brotliCompress } = require("zlib");
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);

@@ -1,5 +1,5 @@
 const { createLogger, format, transports } = require("winston");
-const { timestamp, printf, errors } = format;
+const { timestamp, errors } = format;
 
 const formatConf = format.combine(
   timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
