@@ -13,11 +13,25 @@ import {useDispatch} from 'react-redux';
 const AgeItem = props => {
   const config = useSelector(state => state.configuration.userConfig);
   const [visible, setVisible] = useState(false);
-  const [min, setMin] = useState(config.age - 5);
-  const [max, setMax] = useState(config.age + 5);
+  // const filters = useSelector(state => state.configuration.filters);
+  const age_filter = useSelector(
+    state => state.configuration.filters.age_filter,
+  );
+  console.log('age_filter', age_filter);
+  const dispatch = useDispatch();
+  // const min = age_filter[0];
+  // const max = age_filter[1];
+  if (age_filter.length === 0) {
+    console.log('!');
+    dispatch(
+      updateOneFilter({
+        filter: 'age_filter',
+        item: [config.age - 5, config.age + 5],
+      }),
+    );
+  }
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const dispatch = useDispatch();
 
   return (
     <View style={styles.FilterItem.viewStyle}>
@@ -25,18 +39,25 @@ const AgeItem = props => {
       <Modal transparent={true} visible={visible}>
         <View style={styles.Modal.Item}>
           <Text style={styles.Modal.title}>Age</Text>
-          <Text style={styles.Modal.sliderValues}>{`${min}-${max + 1}`}</Text>
+          <Text
+            style={
+              styles.Modal.sliderValues
+            }>{`${age_filter[0]}-${age_filter[1]}`}</Text>
           <MultiSlider
             sliderLength={290}
             isMarkersSeparated={true}
             min={18}
             max={100}
-            values={[min, max]}
+            values={[age_filter[0], age_filter[1]]}
             onValuesChangeFinish={values => {
-              setMax(values[1]);
-              setMin(values[0]);
+              console.log(values);
+              const max = values[1];
+              const min = values[0];
               dispatch(
-                updateOneFilter({filter: 'age_filter', item: [min, max]}),
+                updateOneFilter({
+                  filter: 'age_filter',
+                  item: [min, max],
+                }),
               );
             }}
           />
@@ -54,14 +75,18 @@ const AgeItem = props => {
       <View style={styles.FilterItem.item}>
         <Pressable style={styles.FilterItem.itemPressable} onPress={showModal}>
           <Text style={styles.FilterItem.valueItemText}>
-            {min}-{max}
+            {age_filter[0]}-{age_filter[1]}
           </Text>
         </Pressable>
         <Pressable
           onPress={() => {
-            setMax(config.age + 5);
-            setMin(config.age - 5);
-            props.setAge([min, max]);
+            dispatch(
+              updateOneFilter({
+                filter: 'age_filter',
+                item: [config.age - 5, config.age + 5],
+              }),
+            );
+            // props.setAge([min, max]);
           }}>
           <Ionicons
             color={Theme.backgroundColor}

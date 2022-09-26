@@ -32,6 +32,7 @@ const NearbyPeople = ({navigation}) => {
   const verifyToken = useSelector(state => state.configuration.token);
   const onApplyHandler = useCallback(async () => {
     try {
+      console.log('Filters: ', JSON.stringify(filters, null, 2));
       const people = await axios.post(
         `${path}/filters/${user_id}/${
           filters.online_filter === true ? '1' : '0'
