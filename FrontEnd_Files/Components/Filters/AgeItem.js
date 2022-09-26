@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Modal, Button, Pressable} from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import styles from '../../Styles/FiltersStyle';
@@ -9,26 +9,23 @@ import Theme from '../../Styles/Theme';
 import {updateOneFilter} from '../../store/Slices/configurationSlice';
 import {useDispatch} from 'react-redux';
 
-const AgeItem = props => {
+const AgeItem = () => {
   const config = useSelector(state => state.configuration.userConfig);
   const [visible, setVisible] = useState(false);
-  // const filters = useSelector(state => state.configuration.filters);
   const age_filter = useSelector(
     state => state.configuration.filters.age_filter,
   );
-  console.log('age_filter', age_filter);
   const dispatch = useDispatch();
-  // const min = age_filter[0];
-  // const max = age_filter[1];
-  if (age_filter.length === 0) {
-    console.log('!');
-    dispatch(
-      updateOneFilter({
-        filter: 'age_filter',
-        item: [config.age - 5, config.age + 5],
-      }),
-    );
-  }
+  useEffect(() => {
+    if (age_filter.length === 0) {
+      dispatch(
+        updateOneFilter({
+          filter: 'age_filter',
+          item: [config.age - 5, config.age + 5],
+        }),
+      );
+    }
+  }, [age_filter.length, config.age, dispatch]);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
@@ -49,7 +46,6 @@ const AgeItem = props => {
             max={100}
             values={[age_filter[0], age_filter[1]]}
             onValuesChangeFinish={values => {
-              console.log(values);
               const max = values[1];
               const min = values[0];
               dispatch(
@@ -85,7 +81,6 @@ const AgeItem = props => {
                 item: [config.age - 5, config.age + 5],
               }),
             );
-            // props.setAge([min, max]);
           }}>
           <Ionicons
             color={Theme.backgroundColor}

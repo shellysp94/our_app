@@ -13,7 +13,6 @@ import axios from 'axios';
 import {updateNearbyPeople} from '../store/Slices/peopleSlice';
 import StatusModal from '../Components/StatusModal';
 import {getCurrentPath} from '../utils/generalFunctions';
-import {applyPressed} from '../store/Slices/peopleSlice';
 
 const NearbyPeople = ({navigation}) => {
   const path = getCurrentPath();
@@ -32,7 +31,6 @@ const NearbyPeople = ({navigation}) => {
   const verifyToken = useSelector(state => state.configuration.token);
   const onApplyHandler = useCallback(async () => {
     try {
-      console.log('Filters: ', JSON.stringify(filters, null, 2));
       const people = await axios.post(
         `${path}/filters/${user_id}/${
           filters.online_filter === true ? '1' : '0'
@@ -45,16 +43,14 @@ const NearbyPeople = ({navigation}) => {
         },
       );
       dispatch(updateNearbyPeople({nearbyPeople: people.data}));
-      dispatch(applyPressed({pressed: false}));
     } catch (err) {
       console.error(err);
-      console.log(err);
     }
-  }, [isApplyPressed]);
+  });
 
   useEffect(() => {
     onApplyHandler();
-  }, [user_id, filters, refresh]);
+  }, [user_id, isApplyPressed, refresh]);
 
   useEffect(() => {
     setVisible(true);

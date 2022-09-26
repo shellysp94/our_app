@@ -52,7 +52,6 @@ const CustomFiltersBar = props => {
   const online_filter = useSelector(
     state => state.configuration?.filters.online_filter,
   );
-  const isApplyPressed = useSelector(state => state.people.applyPressed);
   //---------------------------------------------------
 
   const dispatch = useDispatch();
@@ -72,7 +71,7 @@ const CustomFiltersBar = props => {
   //When Apply button is pressed the state update and the POST filters call runs
   const onApply = () => {
     dispatch(updateFilters({filters: filters}));
-    dispatch(applyPressed({pressed: !isApplyPressed}));
+    dispatch(applyPressed());
     props.navigation.closeDrawer();
   };
   //When Clear button is pressed the state is Initialized
@@ -94,7 +93,7 @@ const CustomFiltersBar = props => {
       </View>
       <DrawerItemList {...props} />
       <View style={styles.View.filtersMenu}>
-        <AgeItem myAge={age_filter} />
+        <AgeItem />
         <FilterItem
           filter={'gender_filter'}
           title={gender_filter}

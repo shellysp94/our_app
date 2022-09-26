@@ -7,7 +7,7 @@ const initialState = {
   usersBySearchModes: {},
   receivedRequests: [],
   sendRequests: [],
-  applyPressed: false,
+  applyPressed: 0,
 };
 
 export const peopleSlice = createSlice({
@@ -33,7 +33,8 @@ export const peopleSlice = createSlice({
       state.friendToSearch = action.payload.friendToSearch;
     },
     applyPressed: (state, action) => {
-      state.applyPressed = action.payload.pressed;
+      state.applyPressed = state.applyPressed + 1;
+      console.log('state.applyPressed: ', state.applyPressed);
     },
     clearPeopleSlice: state => initialState,
   },
