@@ -75,10 +75,6 @@ wss.on("connection", async (ws, req) => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/new_index.html");
-});
-
 server.listen(port, () => {
   console.log(`server running on port ${port}`);
 });

@@ -1,8 +1,6 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
 const { getUserConfigurationInner } = require("./userConfiguration");
-const { sendNotification } = require("../fcm");
-const { admin } = require("../../config/firebase_config");
 const {
   sendNotificationHelper,
 } = require("../../utils/notifications/notifications");

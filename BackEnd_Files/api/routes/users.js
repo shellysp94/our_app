@@ -7,7 +7,6 @@ const {
   getOneUser,
   deleteUser,
   updateUser,
-  getUsersByRadius,
 } = require("../controllers/users");
 
 router.get("/", getAllUsers); //get all users (/users/)

@@ -1,10 +1,6 @@
 const dbConfig = require("../../config/db_config");
 const mySqlConnection = dbConfig;
-const {
-  getUserConfigurationInner,
-} = require("../../api/controllers/userConfiguration");
 const { sendNotification } = require("../../api/fcm");
-const { admin } = require("../../config/firebase_config");
 
 const sendNotificationHelper = (req, res, titleToSend, bodyToSend) => {
   mySqlConnection.query(

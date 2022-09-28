@@ -1,6 +1,4 @@
 const { admin } = require("../config/firebase_config");
-const dbConfig = require("../config/db_config");
-const mySqlConnection = dbConfig;
 const { createUserNotification } = require("./controllers/notifications");
 const { infoLogger, errLogger } = require("../utils/logger");
 

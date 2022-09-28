@@ -1,4 +1,3 @@
-const { response } = require("express");
 const { getUserConfigurationInner } = require("./userConfiguration");
 const onlineUsersArray = require("../../utils/users/onlineUsersArray");
 const onlineUsers = new onlineUsersArray().getInstance();
