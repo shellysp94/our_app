@@ -11,7 +11,7 @@ module.exports = {
   jwt: jwt,
 };
 
-expressWinston.requestWhitelist.push("body"); //--------------------NOTE - remove after tests!!-----------------
+expressWinston.requestWhitelist.push("body"); //body request for logger
 app.use(
   expressWinston.logger({
     winstonInstance: infoLogger,
