@@ -66,10 +66,6 @@ const styles = StyleSheet.create({
     row: {
       flexDirection: 'row',
     },
-    //   Details: {
-    //     width: 220,
-    //     justifyContent: 'flex-start',
-    //   },
   },
   Pressables: {
     item: {
@@ -132,21 +128,6 @@ const styles = StyleSheet.create({
       fontSize: 12,
       fontFamily: Theme.fontFamilyRegular,
     },
-    // chatTitle: {
-    //   textAlign: 'center',
-    //   color: '#334c9e',
-    //   fontWeight: 'bold',
-    //   fontSize: 24,
-    // },
-    // chatSubtitle: {
-    //   textAlign: 'center',
-    //   color: '#7554a0',
-    //   fontSize: 12,
-    // },
-    // MessageTitle: {
-    //   fontFamily: Theme.fontFamilyBold,
-    //   color: Theme.backgroundColor,
-    // },
   },
   TInput: {
     messageInput: {

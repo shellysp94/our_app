@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
       left: 10,
     },
     viewStyle: {
-      backgroundColor: '#EBEBEB', // birthday,hobbies
+      backgroundColor: '#EBEBEB',
       marginLeft: 30,
       padding: 7,
       margin: 5,

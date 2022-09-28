@@ -44,7 +44,6 @@ function socketService(token) {
 
 export function* watchSocket() {
   const token = yield select(getToken);
-  // const myID = yield select(getMyID);
   const requestChan = yield call(socketService, token);
 
   try {
@@ -55,7 +54,6 @@ export function* watchSocket() {
       }
       if (data.type === newMessageWaiting.type) {
         let theirMessage = JSON.parse(data.payload);
-        // if (theirMessage.receiver_user_id === myID) {
         yield put(newMessageWaiting());
         yield put(addMessageToChat({myMessage: theirMessage}));
       }

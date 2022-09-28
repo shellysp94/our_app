@@ -152,7 +152,6 @@ const UserItem = props => {
         </View>
         <View
           style={{
-            // flexDirection: 'row',
             justifyContent: 'space-between',
             width: '82%',
           }}>

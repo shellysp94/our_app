@@ -101,7 +101,6 @@ const SignUpStackItems = SignUpStack.map(item => {
 const loggingToAppItems = loggingToAppScreens.map(item => {
   return (
     <MainDrawer.Screen
-      // options={{gestureEnabled: false}}
       name={item.title}
       component={item.screen}
       key={item.screen}

@@ -86,7 +86,6 @@ function SignUp1({navigation}) {
     date_of_birth: `${day}-${month}-${year}`,
   };
 
-  var year = date.getFullYear();
   const onChangeDate = (event, selectedDate) => {
     setShow(false);
     setDate(selectedDate);

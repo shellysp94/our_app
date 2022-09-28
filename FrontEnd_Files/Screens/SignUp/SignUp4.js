@@ -196,46 +196,20 @@ const SignUp4 = ({route, navigation}) => {
           </View>
           <View>
             <Pressable
-              style={{
-                backgroundColor: Theme.secondColor,
-                padding: 6,
-                width: 120,
-                borderRadius: 5,
-                marginTop: 10,
-              }}
+              style={styles.uploadImagePressable}
               onPress={() => uploadImage()}>
-              <Text
-                style={{
-                  alignSelf: 'center',
-                  fontFamily: Theme.fontFamilyBold,
-                  color: '#FFFFFF',
-                }}>
-                Upload
-              </Text>
+              <Text style={styles.uploadText}>Upload</Text>
             </Pressable>
           </View>
           <View>
             <Pressable
-              style={{
-                backgroundColor: Theme.highLightColor,
-                padding: 6,
-                width: 120,
-                borderRadius: 5,
-                marginTop: 10,
-              }}
+              style={styles.skipPressble}
               onPress={() => {
                 page === 'SignUp3'
                   ? navigation.navigate('Log In stack')
                   : navigation.navigate('My Profile');
               }}>
-              <Text
-                style={{
-                  alignSelf: 'center',
-                  fontFamily: Theme.fontFamilyBold,
-                  color: '#FFFFFF',
-                }}>
-                Skip
-              </Text>
+              <Text style={styles.skipText}>Skip</Text>
             </Pressable>
           </View>
         </View>

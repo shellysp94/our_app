@@ -33,7 +33,6 @@ const checkLocationPermission = async () => {
   }
 };
 
-//FIX ME - change accurency to 5 meters
 const getMyLocation = async () => {
   return new Promise((resolve, reject) => {
     Geolocation.getCurrentPosition(resolve, reject, options);

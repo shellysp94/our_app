@@ -3,7 +3,7 @@
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable no-unused-vars */
 import React, {useEffect} from 'react';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import UserItem from '../Components/userItem';

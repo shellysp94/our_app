@@ -142,71 +142,30 @@ const styles = StyleSheet.create({
     fontFamily: Theme.fontFamilyBold,
     fontSize: 22,
   },
-  // textTitle: {
-  //   marginTop: 15,
-  //   marginBottom: 10,
-  //   color: '#0E6070',
-  // },
-  // Pressables: {
-  //   height: 30,
-  //   width: '80%',
-  //   borderRadius: 5,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   left: 40,
-  // },
-  // Hobbies: {
-  //   marginTop: 20,
-  //   marginBottom: 20,
-  // },
-
-  // pic: {
-  //   height: 80,
-  //   width: 80,
-  //   margin: 15,
-  //   borderWidth: 2,
-  //   borderColor: '#0E6070',
-  //   borderRadius: 40,
-  //   elevation: 10,
-  // },
-  // ButtonSection2: {
-  //   width: 150,
-  //   height: 70,
-  //   alignSelf: 'center',
-  //   justifyContent: 'space-between',
-  // },
-
-  // signUpHobbies: {
-  //   backgroundColor: '#EBEBEB',
-  //   marginLeft: 30,
-  //   padding: 7,
-  //   color: Theme.secondColor,
-  //   margin: 5,
-  //   borderRadius: 5,
-  //   width: '80%',
-  //   borderWidth: 1,
-  //   borderColor: 'white',
-  //   elevation: 5,
-  // },
-  // HobbiesItem: {
-  //   width: 280,
-  //   margin: 5,
-  // },
-  // cameraButton: {
-  //   width: 50,
-  //   height: 50,
-  //   borderRadius: 50,
-  //   borderWidth: 2,
-  //   borderColor: '#0E6070',
-  //   marginBottom: 35,
-  //   backgroundColor: 'transparent',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // Xbutton: {
-  //   fontSize: 18,
-  //   fontFamily: Theme.fontFamilyRegular,
-  // },
+  uploadImagePressable: {
+    backgroundColor: Theme.secondColor,
+    padding: 6,
+    width: 120,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  uploadText: {
+    alignSelf: 'center',
+    fontFamily: Theme.fontFamilyBold,
+    color: '#FFFFFF',
+  },
+  skipPressble: {
+    backgroundColor: Theme.highLightColor,
+    padding: 6,
+    width: 120,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  skipText: {
+    alignSelf: 'center',
+    fontFamily: Theme.fontFamilyBold,
+    color: '#FFFFFF',
+  },
 });
 
 export default styles;
