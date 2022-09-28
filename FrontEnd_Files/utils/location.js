@@ -33,7 +33,7 @@ const checkLocationPermission = async () => {
   }
 };
 
-const getMyLocation = async () => {
+export const getMyLocation = async () => {
   return new Promise((resolve, reject) => {
     Geolocation.getCurrentPosition(resolve, reject, options);
   });

@@ -18,8 +18,8 @@ import {
   clearSignUpConfig,
 } from '../store/Slices/configurationSlice';
 import {getCurrentPath} from '../utils/generalFunctions';
-import Geolocation from '@react-native-community/geolocation';
 import {setMyLocation} from '../store/Slices/generalSlice';
+import {getMyLocation, sendLocation} from '../utils/location';
 
 const LogIn = ({navigation}) => {
   const path = getCurrentPath();
@@ -29,36 +29,36 @@ const LogIn = ({navigation}) => {
   const [validEmail, setValidEmail] = useState(false);
   const dispatch = useDispatch();
   const status = useSelector(state => state.general?.status);
-  const options = {
-    enableHighAccuracy: false,
-    timeout: 5000,
-    maximumAge: 0,
-  };
+  // const options = {
+  //   enableHighAccuracy: false,
+  //   timeout: 5000,
+  //   maximumAge: 0,
+  // };
 
-  const sendLocation = async (id, latitude, longitude, token) => {
-    try {
-      console.log(id, latitude, longitude, token);
-      const res = await axios.post(
-        `${path}/userLocation/${id}`,
-        {
-          longitude: longitude,
-          latitude: latitude,
-        },
-        {
-          headers: {
-            Authorization: 'Bearer ' + token,
-          },
-        },
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  const getMyLocation = async () => {
-    return new Promise((resolve, reject) => {
-      Geolocation.getCurrentPosition(resolve, reject, options);
-    });
-  };
+  // const sendLocation = async (id, latitude, longitude, token) => {
+  //   try {
+  //     console.log(id, latitude, longitude, token);
+  //     const res = await axios.post(
+  //       `${path}/userLocation/${id}`,
+  //       {
+  //         longitude: longitude,
+  //         latitude: latitude,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: 'Bearer ' + token,
+  //         },
+  //       },
+  //     );
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+  // const getMyLocation = async () => {
+  //   return new Promise((resolve, reject) => {
+  //     Geolocation.getCurrentPosition(resolve, reject, options);
+  //   });
+  // };
   const getFcmToken = async event => {
     const fcmtoken = await AsyncStorage.getItem('fcmtoken');
     setDeviceToken(fcmtoken);
